@@ -5,6 +5,7 @@ package Model;
     //Password
     //Name
     //Events
+    //Notes
 
 public class User {
 
