@@ -5,7 +5,7 @@ package Controller;
     //Date picker
     //Name of note
     //Category of note (maybe a dropdown)
-    //Adding a new category will pop up an Add Category view
+        //Adding a new category will pop up an Add Category view
     //Description (notes itself)
     //Save note button
     //Cancel button
