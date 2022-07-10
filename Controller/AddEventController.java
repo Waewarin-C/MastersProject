@@ -4,7 +4,7 @@ package Controller;
 //Add Event view will include
     //Date picker
     //Name of event
-    //Category of event (maybe a dropdown)
+    //Category of event (maybe a dropdown or radio button)
         //Adding a new category will pop up an Add Category view
     //Location
     //Description
