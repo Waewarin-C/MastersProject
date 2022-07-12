@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EventsController">
    <children>
       <BorderPane layoutX="13.0" layoutY="13.0" prefHeight="640.0" prefWidth="640.0">
@@ -30,52 +29,52 @@
                <children>
                   <Label text="Name:">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="eventNameInfo" text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="14.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
                   <Label text="Date:">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="eventDateInfo" text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="14.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
                   <Label text="Location:">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="eventLocationInfo" text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="14.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
                   <Label text="Category:">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="eventCategoryInfo" text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="14.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
                   <Label text="Description:">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="eventDescriptionInfo" text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="14.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
                </children>
@@ -87,7 +86,7 @@
          <top>
             <Label fx:id="eventsDateLabel" text="Label" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Segoe UI Semibold" size="30.0" />
+                  <Font name="Berlin Sans FB" size="30.0" />
                </font>
             </Label>
          </top>

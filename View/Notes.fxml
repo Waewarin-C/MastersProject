@@ -12,7 +12,7 @@
    <children>
       <Label fx:id="notesDateLabel" layoutX="14.0" layoutY="14.0" text="Label">
          <font>
-            <Font name="Segoe UI Semibold" size="30.0" />
+            <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
       <ListView fx:id="eventsListView" layoutX="14.0" layoutY="59.0" maxHeight="-Infinity" prefHeight="550.0" prefWidth="200.0">
@@ -24,42 +24,42 @@
          <children>
             <Label text="Name:">
                <font>
-                  <Font name="Segoe UI Semibold" size="18.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
             <Label fx:id="noteNameInfo" text="Label">
                <font>
-                  <Font name="Segoe UI Semibold" size="14.0" />
+                  <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
             <Label text="Date:">
                <font>
-                  <Font name="Segoe UI Semibold" size="18.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
             <Label fx:id="noteDateInfo" text="Label">
                <font>
-                  <Font name="Segoe UI Semibold" size="14.0" />
+                  <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
             <Label text="Category:">
                <font>
-                  <Font name="Segoe UI Semibold" size="18.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
             <Label fx:id="noteCategoryInfo" text="Label">
                <font>
-                  <Font name="Segoe UI Semibold" size="14.0" />
+                  <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
             <Label text="Notes:">
                <font>
-                  <Font name="Segoe UI Semibold" size="18.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <TextArea fx:id="notesInfo" editable="false" prefHeight="290.0" prefWidth="200.0">
+            <TextArea fx:id="notesInfo" editable="false" prefHeight="320.0" prefWidth="200.0">
                <font>
-                  <Font name="Segoe UI Semibold" size="14.0" />
+                  <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextArea>
          </children>

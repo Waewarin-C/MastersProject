@@ -18,7 +18,7 @@
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Welcome!">
          <font>
-            <Font name="Segoe UI Semibold" size="30.0" />
+            <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
       <GridPane hgap="10.0" layoutX="51.0" layoutY="77.0" vgap="10.0">
@@ -44,12 +44,12 @@
                <children>
                   <Label text="Home">
                      <font>
-                        <Font name="Segoe UI Semibold" size="24.0" />
+                        <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -58,12 +58,12 @@
                <children>
                   <Label text="Events Calendar">
                      <font>
-                        <Font name="Segoe UI Semibold" size="24.0" />
+                        <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -72,12 +72,12 @@
                <children>
                   <Label text="Notes Calendar">
                      <font>
-                        <Font name="Segoe UI Semibold" size="24.0" />
+                        <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -86,12 +86,12 @@
                <children>
                   <Label text="Categories">
                      <font>
-                        <Font name="Segoe UI Semibold" size="24.0" />
+                        <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
@@ -100,19 +100,19 @@
                <children>
                   <Label text="Settings">
                      <font>
-                        <Font name="Segoe UI Semibold" size="24.0" />
+                        <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Label">
                      <font>
-                        <Font name="Segoe UI Semibold" size="18.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
             <Button fx:id="beginButton" mnemonicParsing="false" onAction="#goToHome" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
-                  <Font name="Segoe UI Semibold" size="18.0" />
+                  <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Button>
          </children>
