@@ -3,13 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EventsController">
+<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotesController">
    <children>
       <Label fx:id="notesDateLabel" layoutX="14.0" layoutY="14.0" text="Label">
          <font>
@@ -28,7 +27,7 @@
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="eventNameInfo" text="Label">
+            <Label fx:id="noteNameInfo" text="Label">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -38,7 +37,7 @@
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="eventDateInfo" text="Label">
+            <Label fx:id="noteDateInfo" text="Label">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -48,7 +47,7 @@
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="eventCategoryInfo" text="Label">
+            <Label fx:id="noteCategoryInfo" text="Label">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -58,17 +57,16 @@
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="eventDescriptionInfo" text="Label">
+            <TextArea fx:id="notesInfo" editable="false" prefHeight="290.0" prefWidth="200.0">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
-            </Label>
+            </TextArea>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="307.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
