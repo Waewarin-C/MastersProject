@@ -7,6 +7,12 @@ package Model;
     //Events
     //Notes
 
-public class User {
+import java.util.List;
 
+public class User {
+    String username;
+    String password;
+    String displayName;
+    List<Event> events;
+    List<Note> notes;
 }
