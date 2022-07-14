@@ -36,7 +36,7 @@ public class Account {
         return errorMessage;
     }
 
-    public String createAccount(String username, String password, String confirmPassword, String name)
+    public String createAccount(String username, String password, String confirmPassword, String displayName)
     {
         String errorMessage = "";
 
@@ -47,7 +47,7 @@ public class Account {
         }
 
         //Check limit on display name
-        if(name.length() > 30)
+        if(displayName.length() > 30)
         {
             errorMessage += "\nDisplay name cannot be more than 30 characters";
         }

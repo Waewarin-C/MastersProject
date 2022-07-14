@@ -3,7 +3,8 @@ package Model;
 //Keeps the information about a single user
     //Username
     //Password
-    //Name
+    //Display Name
+    //Notes font
     //Events
     //Notes
 
@@ -13,6 +14,7 @@ public class User {
     String username;
     String password;
     String displayName;
+    String notesFont;
     List<Event> events;
     List<Note> notes;
 }
