@@ -18,7 +18,12 @@ import java.util.HashMap;
 
 public class Account {
 
-    HashMap<String, User> accounts = new HashMap<String, User>();
+    HashMap<String, User> accounts;
+
+    public Account()
+    {
+        this.accounts = new HashMap<String, User>();
+    }
 
     public String login(String username, String password)
     {
@@ -35,6 +40,13 @@ public class Account {
         {
             errorMessage = "Incorrect password entered";
         }
+
+        //Grab user information and settings are store in User object if credentials are correct
+        if(errorMessage.equals(""))
+        {
+            storeUserInfo(username);
+        }
+
         return errorMessage;
     }
 
@@ -67,7 +79,10 @@ public class Account {
         }
 
         //Save new account information with default settings if everything is good to go
-        saveNewAccount(username, password, displayName);
+        if(errorMessage.equals(""))
+        {
+            saveNewAccount(username, password, displayName);
+        }
 
         return errorMessage;
     }
