@@ -15,7 +15,8 @@ Users can add events and/or take notes
 These options may be turned into a bottom bar and displayed on every view
 * Home
 * Events Calendar
-* Notes Calendar
+* Notes Calendar (This may be taken out of project scope)
+* Add Event
 * Categories
 * Settings
 

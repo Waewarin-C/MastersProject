@@ -11,25 +11,27 @@ package Model;
             //Check if password contains at least 8 characters
             //Check if password and confirm password are the same
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class Account {
 
-    HashMap<String, User> users = new HashMap<String, User>();
+    HashMap<String, User> accounts = new HashMap<String, User>();
 
     public String login(String username, String password)
     {
         String errorMessage = "";
 
         //Check if username is incorrect
-        if(!users.containsKey(username))
+        if(!accounts.containsKey(username))
         {
             errorMessage = "Incorrect username entered";
         }
 
         //Check if password is incorrect
-        if(!users.get(username).password.equals(password))
+        if(!accounts.get(username).password.equals(password))
         {
             errorMessage = "Incorrect password entered";
         }
@@ -41,7 +43,7 @@ public class Account {
         String errorMessage = "";
 
         //Check if username is already taken
-        if(users.containsKey(username))
+        if(accounts.containsKey(username))
         {
             errorMessage = "Username \"" + username + "\" is already taken, please enter another one";
         }
@@ -64,6 +66,31 @@ public class Account {
             errorMessage += "\nPassword and Confirm Password not the same";
         }
 
+        //Save new account information with default settings if everything is good to go
+        saveNewAccount(username, password, displayName);
+
         return errorMessage;
+    }
+
+    public void saveNewAccount(String username, String password, String displayName)
+    {
+        try
+        {
+            String fileName = "../Accounts/" + username;
+            FileWriter newFile = new FileWriter(new File(fileName));
+
+            newFile.write(String.format("%s,%s\n", "Setting", "Value"));
+            newFile.write(String.format("%s,%s\n", "Usename", username));
+            newFile.write(String.format("%s,%s\n", "Password", password));
+            newFile.write(String.format("%s,%s", "Display Name", displayName));
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error: cannot save new account");
+            e.printStackTrace();
+        }
+    }
+    public HashMap<String, User> getAccounts() {
+        return accounts;
     }
 }
