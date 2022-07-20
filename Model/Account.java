@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Account {
 
@@ -48,6 +49,23 @@ public class Account {
         }
 
         return errorMessage;
+    }
+
+    public void storeUserInfo(String username)
+    {
+        try
+        {
+            String fileName = "../Accounts/" + username;
+            Scanner scan = new Scanner(new File(fileName));
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            scan.close();
+        }
     }
 
     public String createAccount(String username, String password, String confirmPassword, String displayName)
@@ -92,12 +110,17 @@ public class Account {
         try
         {
             String fileName = "../Accounts/" + username;
-            FileWriter newFile = new FileWriter(new File(fileName));
+            File file = new File(fileName);
+            file.createNewFile();
+
+            FileWriter newFile = new FileWriter(file);
 
             newFile.write(String.format("%s,%s\n", "Setting", "Value"));
-            newFile.write(String.format("%s,%s\n", "Usename", username));
+            newFile.write(String.format("%s,%s\n", "Username", username));
             newFile.write(String.format("%s,%s\n", "Password", password));
             newFile.write(String.format("%s,%s", "Display Name", displayName));
+
+            newFile.close();
         }
         catch(IOException e)
         {
