@@ -53,10 +53,11 @@ public class Account {
 
     public void storeUserInfo(String username)
     {
+        Scanner scan = null;
         try
         {
             String fileName = "../Accounts/" + username;
-            Scanner scan = new Scanner(new File(fileName));
+            scan = new Scanner(new File(fileName));
         }
         catch(IOException e)
         {
@@ -107,13 +108,11 @@ public class Account {
 
     public void saveNewAccount(String username, String password, String displayName)
     {
+        //When writing to events file, need to specify that append is true
         try
         {
             String fileName = "../Accounts/" + username;
-            File file = new File(fileName);
-            file.createNewFile();
-
-            FileWriter newFile = new FileWriter(file);
+            FileWriter newFile = new FileWriter(new File(fileName));
 
             newFile.write(String.format("%s,%s\n", "Setting", "Value"));
             newFile.write(String.format("%s,%s\n", "Username", username));
