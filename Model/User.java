@@ -8,7 +8,7 @@ package Model;
     //Events
     //Notes
 
-import java.util.List;
+import java.util.*;
 
 public class User {
     String username;
@@ -17,4 +17,12 @@ public class User {
     String notesFont;
     List<Event> events;
     List<Note> notes;
+
+    public User(String username, String password, String displayName)
+    {
+        this.username = username;
+        this.password = password;
+        this.displayName = displayName;
+        this.events = new ArrayList<Event>();
+    }
 }

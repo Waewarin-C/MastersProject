@@ -45,28 +45,16 @@ public class Account {
         //Grab user information and settings are store in User object if credentials are correct
         if(errorMessage.equals(""))
         {
-            storeUserInfo(username);
+            obtainLoggedInUser(username);
         }
 
         return errorMessage;
     }
 
-    public void storeUserInfo(String username)
+    public void obtainLoggedInUser(String username)
     {
-        Scanner scan = null;
-        try
-        {
-            String fileName = "../Accounts/" + username;
-            scan = new Scanner(new File(fileName));
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            scan.close();
-        }
+        //Pass the logged in user info to Home page
+        User loggedInUser = accounts.get(username);
     }
 
     public String createAccount(String username, String password, String confirmPassword, String displayName)
