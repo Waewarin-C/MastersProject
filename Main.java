@@ -1,4 +1,5 @@
 import Model.Event;
+import Model.Login;
 import Model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 public class Main extends Application {
 
     public static Stage stage;
+    public static Login login;
 
     @Override
     public void start(Stage primaryStage)
@@ -35,6 +37,8 @@ public class Main extends Application {
 
     public static void main(String[] args)
     {
+        login = new Login();
+
         loadExistingAccounts();
 
         launch(args);
@@ -46,9 +50,12 @@ public class Main extends Application {
         {
             File[] files = new File("./Account").listFiles();
 
-            storeUserInfo(files[0]);
-            storeUserEvents(files[1]);
-
+            //If there is already an account, i.e., not the first time running program
+            if(files.length != 0)
+            {
+                storeUserInfo(files[0]);
+                storeUserEvents(files[1]);
+            }
         }
         catch(NullPointerException e) {
             System.out.println("Error: unable to load existing account");
@@ -65,11 +72,13 @@ public class Main extends Application {
             scan = new Scanner(file);
             //Skip the first line
             scan.nextLine();
-            String[] usernameInfo = scan.nextLine().split(",");
-            String[] passwordInfo = scan.nextLine().split(",");
-            String[] displayNameInfo = scan.nextLine().split(",");
+            String username = scan.nextLine().split(",")[1];
+            String password = scan.nextLine().split(",")[1];
+            String displayName = scan.nextLine().split(",")[1];
 
-            User user = new User(usernameInfo[1], passwordInfo[1], displayNameInfo[1]);
+            login.getUser().setUsername(username);
+            login.getUser().setPassword(password);
+            login.getUser().setDisplayName(displayName);
         }
         catch(IOException e)
         {
@@ -102,10 +111,12 @@ public class Main extends Application {
                 events.add(event);
             }
 
-            //Add the list of events to the corresponding user
+            //Add the list of events to the user object
+            login.getUser().setEvents(events);
         }
         catch(IOException e)
         {
+            System.out.println("Error: unable to load the events of the user " + login.getUser().getUsername());
             e.printStackTrace();
         }
         finally

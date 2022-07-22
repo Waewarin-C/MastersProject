@@ -18,11 +18,8 @@ public class User {
     List<Event> events;
     List<Note> notes;
 
-    public User(String username, String password, String displayName)
+    public User()
     {
-        this.username = username;
-        this.password = password;
-        this.displayName = displayName;
         this.events = new ArrayList<Event>();
     }
 

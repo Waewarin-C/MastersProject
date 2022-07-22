@@ -16,13 +16,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Account {
+public class Login {
 
-    HashMap<String, User> accounts;
+    User user;
 
-    public Account()
+    public Login()
     {
-        this.accounts = new HashMap<String, User>();
+        this.user = new User();
     }
 
     public String login(String username, String password)
@@ -30,41 +30,23 @@ public class Account {
         String errorMessage = "";
 
         //Check if username is incorrect
-        if(!accounts.containsKey(username))
+        if(!this.user.getUsername().equals(username))
         {
             errorMessage = "Incorrect username entered";
         }
 
         //Check if password is incorrect
-        if(!accounts.get(username).password.equals(password))
+        if(!this.user.getPassword().equals(password))
         {
             errorMessage = "Incorrect password entered";
-        }
-
-        //Grab user information and settings are store in User object if credentials are correct
-        if(errorMessage.equals(""))
-        {
-            obtainLoggedInUser(username);
         }
 
         return errorMessage;
     }
 
-    public void obtainLoggedInUser(String username)
-    {
-        //Pass the logged in user info to Home page
-        User loggedInUser = accounts.get(username);
-    }
-
     public String createAccount(String username, String password, String confirmPassword, String displayName)
     {
         String errorMessage = "";
-
-        //Check if username is already taken
-        if(accounts.containsKey(username))
-        {
-            errorMessage = "Username \"" + username + "\" is already taken, please enter another one";
-        }
 
         //Check limit on display name
         if(displayName.length() > 30)
@@ -114,7 +96,7 @@ public class Account {
             e.printStackTrace();
         }
     }
-    public HashMap<String, User> getAccounts() {
-        return accounts;
+    public User getUser() {
+        return user;
     }
 }
