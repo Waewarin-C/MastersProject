@@ -14,7 +14,6 @@ package Model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Login {
 
@@ -51,7 +50,7 @@ public class Login {
         //Check limit on display name
         if(displayName.length() > 30)
         {
-            errorMessage += "\nDisplay name cannot be more than 30 characters";
+            errorMessage += "Display name cannot be more than 30 characters";
         }
 
         //Check if password has at least 8 characters
@@ -80,15 +79,23 @@ public class Login {
         //When writing to events file, need to specify that append is true
         try
         {
-            String fileName = "../Accounts/" + username;
-            FileWriter newFile = new FileWriter(new File(fileName));
+            String fileName = "../Account/" + username + "_info";
+            FileWriter newUserFile = new FileWriter(new File(fileName));
 
-            newFile.write(String.format("%s,%s\n", "Setting", "Value"));
-            newFile.write(String.format("%s,%s\n", "Username", username));
-            newFile.write(String.format("%s,%s\n", "Password", password));
-            newFile.write(String.format("%s,%s", "Display Name", displayName));
+            newUserFile.write(String.format("%s,%s\n", "Setting", "Value"));
+            newUserFile.write(String.format("%s,%s\n", "Username", username));
+            newUserFile.write(String.format("%s,%s\n", "Password", password));
+            newUserFile.write(String.format("%s,%s", "Display Name", displayName));
 
-            newFile.close();
+            newUserFile.close();
+
+            String eventFileName = "../Account/" + username + "_events";
+            FileWriter newEventsFile = new FileWriter(new File(eventFileName));
+            newEventsFile.write(String.format("%s,%s,%s,%s,%s\n", "Event", "Date", "Location", "Category", "Description"));
+
+            String categoryFileName = "../Account/" + username + "_categories";
+            FileWriter newCategoriesFile = new FileWriter(new File(categoryFileName));
+            newCategoriesFile.write(String.format("%s,%s\n", "Category", "Color"));
         }
         catch(IOException e)
         {

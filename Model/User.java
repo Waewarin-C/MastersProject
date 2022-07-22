@@ -17,10 +17,12 @@ public class User {
     String notesFont;
     List<Event> events;
     List<Note> notes;
+    HashMap<String, String> categories;
 
     public User()
     {
         this.events = new ArrayList<Event>();
+        this.categories = new HashMap<String, String>();
     }
 
     public String getUsername()
@@ -61,5 +63,15 @@ public class User {
     public void setEvents(List<Event> events)
     {
         this.events = events;
+    }
+
+    public HashMap<String, String> getCategories()
+    {
+        return this.categories;
+    }
+
+    public void setCategories(HashMap<String, String> categories)
+    {
+        this.categories = categories;
     }
 }

@@ -1,6 +1,5 @@
 import Model.Event;
 import Model.Login;
-import Model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,9 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -53,8 +50,9 @@ public class Main extends Application {
             //If there is already an account, i.e., not the first time running program
             if(files.length != 0)
             {
-                storeUserInfo(files[0]);
+                storeUserInfo(files[2]);
                 storeUserEvents(files[1]);
+                storeUserCategories(files[0]);
             }
         }
         catch(NullPointerException e) {
@@ -117,6 +115,39 @@ public class Main extends Application {
         catch(IOException e)
         {
             System.out.println("Error: unable to load the events of the user " + login.getUser().getUsername());
+            e.printStackTrace();
+        }
+        finally
+        {
+            scan.close();
+        }
+    }
+
+    public static void storeUserCategories(File file)
+    {
+        Scanner scan = null;
+
+        try
+        {
+            HashMap<String, String> categories = new HashMap<String, String>();
+
+            scan = new Scanner(file);
+            //Skip first line
+            scan.nextLine();
+
+            while(scan.hasNextLine())
+            {
+                String[] categoryInfo = scan.nextLine().split(",");
+
+                categories.put(categoryInfo[0], categoryInfo[1]);
+            }
+
+            //Add the list of events to the user object
+            login.getUser().setCategories(categories);
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error: unable to load the categories of the user " + login.getUser().getUsername());
             e.printStackTrace();
         }
         finally

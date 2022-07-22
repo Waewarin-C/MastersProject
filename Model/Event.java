@@ -14,13 +14,13 @@ public class Event {
     String eventDescription;
     String eventCategory;
 
-    public Event(String eventName, String eventDate, String eventLocation, String eventDescription, String eventCategory)
+    public Event(String eventName, String eventDate, String eventLocation, String eventCategory, String eventDescription)
     {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
-        this.eventDescription = eventDescription;
         this.eventCategory = eventCategory;
+        this.eventDescription = eventDescription;
     }
 
     public String getEventName() {
@@ -48,6 +48,14 @@ public class Event {
         this.eventLocation = eventLocation;
     }
 
+    public String getEventCategory() {
+        return this.eventCategory;
+    }
+
+    public void setEventCategory(String eventCategory) {
+        this.eventName = eventCategory;
+    }
+
     public String getEventDescription() {
         return this.eventDescription;
     }
@@ -56,12 +64,6 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventCategory() {
-        return this.eventCategory;
-    }
 
-    public void setEventCategory(String eventCategory) {
-        this.eventName = eventCategory;
-    }
 }
 
