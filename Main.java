@@ -44,33 +44,25 @@ public class Main extends Application {
     {
         try
         {
-            //for each loop to read every file in the Accounts folder
-            File[] files = new File("./Accounts").listFiles();
+            File[] files = new File("./Account").listFiles();
 
-            for(File file : files)
-            {
-                if(!file.getName().contains("Events"))
-                {
-                    storeUserInfo(file.getName());
-                }
-                else {
-                    storeUserEvents(file.getName());
-                }
-            }
+            storeUserInfo(files[0]);
+            storeUserEvents(files[1]);
+
         }
         catch(NullPointerException e) {
-            System.out.println("Error: unable to load existing accounts");
+            System.out.println("Error: unable to load existing account");
             e.printStackTrace();
         }
     }
 
-    public static void storeUserInfo(String fileName)
+    public static void storeUserInfo(File file)
     {
         Scanner scan = null;
 
         try
         {
-            scan = new Scanner(new File(fileName));
+            scan = new Scanner(file);
             //Skip the first line
             scan.nextLine();
             String[] usernameInfo = scan.nextLine().split(",");
@@ -81,7 +73,7 @@ public class Main extends Application {
         }
         catch(IOException e)
         {
-            System.out.println("Error: unable to load information of the user " + fileName);
+            System.out.println("Error: unable to load information of the user " + file.getName());
             e.printStackTrace();
         }
         finally
@@ -90,17 +82,15 @@ public class Main extends Application {
         }
     }
 
-    public static void storeUserEvents(String fileName)
+    public static void storeUserEvents(File file)
     {
         Scanner scan = null;
 
         try
         {
-            //Get user the events are associated with
-            String username = fileName.split("_")[0];
             List<Event> events = new ArrayList<Event>();
 
-            scan = new Scanner(new File(fileName));
+            scan = new Scanner(file);
             //Skip first line
             scan.nextLine();
 
