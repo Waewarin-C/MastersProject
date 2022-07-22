@@ -4,9 +4,7 @@ package Model;
     //Username
     //Password
     //Display Name
-    //Notes font
     //Events
-    //Notes
 
 import java.util.*;
 
@@ -14,9 +12,8 @@ public class User {
     String username;
     String password;
     String displayName;
-    String notesFont;
     List<Event> events;
-    List<Note> notes;
+
     HashMap<String, String> categories;
 
     public User()
