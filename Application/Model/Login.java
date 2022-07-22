@@ -85,7 +85,8 @@ public class Login {
             newUserFile.write(String.format("%s,%s\n", "Setting", "Value"));
             newUserFile.write(String.format("%s,%s\n", "Username", username));
             newUserFile.write(String.format("%s,%s\n", "Password", password));
-            newUserFile.write(String.format("%s,%s", "Display Name", displayName));
+            newUserFile.write(String.format("%s,%s\n", "Display Name", displayName));
+            newUserFile.write(String.format("%s,%s\n", "Welcome Page Shown", "false"));
 
             newUserFile.close();
 

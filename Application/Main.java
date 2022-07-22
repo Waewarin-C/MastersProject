@@ -24,7 +24,7 @@ public class Main extends Application {
 
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("Application/View/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Application/View/Welcome.fxml"));
             stage.setScene(new Scene(root));
             stage.show();
         }
@@ -75,10 +75,12 @@ public class Main extends Application {
             String username = scan.nextLine().split(",")[1];
             String password = scan.nextLine().split(",")[1];
             String displayName = scan.nextLine().split(",")[1];
+            String welcomePageShown = scan.nextLine().split(",")[1];
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
             login.getUser().setDisplayName(displayName);
+            login.getUser().setWelcomePageShown(Boolean.parseBoolean(welcomePageShown));
         }
         catch(IOException e)
         {

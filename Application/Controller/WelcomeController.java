@@ -17,11 +17,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        //Load SVG paths
+    }
+
     public void continueToHome(ActionEvent event)
     {
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("./view/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("./view/Home.fxml"));
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -31,9 +37,5 @@ public class WelcomeController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        //Load SVG paths
-    }
+
 }

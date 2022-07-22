@@ -13,13 +13,14 @@ public class User {
     String password;
     String displayName;
     List<Event> events;
-
     HashMap<String, String> categories;
+    boolean welcomePageShown;
 
     public User()
     {
         this.events = new ArrayList<Event>();
         this.categories = new HashMap<String, String>();
+        this.welcomePageShown = false;
     }
 
     public String getUsername()
@@ -70,5 +71,15 @@ public class User {
     public void setCategories(HashMap<String, String> categories)
     {
         this.categories = categories;
+    }
+
+    public boolean getWelcomePageShown()
+    {
+        return this.welcomePageShown;
+    }
+
+    public void setWelcomePageShown(boolean welcomePageShown)
+    {
+        this.welcomePageShown = welcomePageShown;
     }
 }
