@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Settings view
+//Application.Controller for the Settings view
 //Settings view will include
     //Editable fields
         //Username

@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Toolbar view
+//Application.Controller for the Toolbar view
 //Toolbar view will include
     //Home
     //Events Calendar

@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Events view
+//Application.Controller for the Events view
 //Events view will include
     //List of events for the selected date, week, month, or year
     //Option for user to select if they want day, week, month, or year?

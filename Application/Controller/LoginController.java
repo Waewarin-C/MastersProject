@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Login view
+//Application.Controller for the Login view
 //Login view will include
     //Textfield
         //Username

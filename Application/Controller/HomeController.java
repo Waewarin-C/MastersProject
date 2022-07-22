@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Home view
+//Application.Controller for the Home view
 //Home view will include
     //Add Event button
     //Settings button

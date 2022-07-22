@@ -6,16 +6,15 @@
 
 ### Calendar Program
 
-Users can add events and/or take notes
+Users can add events
 * Each will be separate (shown on separate calendars)
-* Different ways users can add events and notes
+* Different ways users can add events
   * On Home page
-  * On their own individual calendar pages
+  * On the Event Calendar page
 
 These options may be turned into a bottom bar and displayed on every view
 * Home
 * Events Calendar
-* Notes Calendar (This may be taken out of project scope)
 * Add Event
 * Categories
 * Settings

@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Add Category view
+//Application.Controller for the Add Category view
 //Add Category view will include
     //Color picker
     //Name of category

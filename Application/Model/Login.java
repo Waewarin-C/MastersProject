@@ -1,4 +1,4 @@
-package Model;
+package Application.Model;
 
 //Takes care of
     //Login

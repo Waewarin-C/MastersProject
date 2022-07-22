@@ -1,6 +1,6 @@
-package Controller;
+package Application.Controller;
 
-//Controller for the Add Event view
+//Application.Controller for the Add Event view
 //Add Event view will include
     //Date picker
     //Name of event

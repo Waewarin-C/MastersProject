@@ -1,4 +1,4 @@
-package Model;
+package Application.Model;
 
 //Keeps the information about a single note
     //Note

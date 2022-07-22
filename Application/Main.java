@@ -1,5 +1,7 @@
-import Model.Event;
-import Model.Login;
+package Application;
+
+import Application.Model.Event;
+import Application.Model.Login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +24,7 @@ public class Main extends Application {
 
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("./view/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Application/View/Login.fxml"));
             stage.setScene(new Scene(root));
             stage.show();
         }
