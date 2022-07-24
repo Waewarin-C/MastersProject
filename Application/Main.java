@@ -24,7 +24,7 @@ public class Main extends Application {
 
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Welcome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("./View/Login.fxml"));
             stage.setScene(new Scene(root));
             stage.show();
         }

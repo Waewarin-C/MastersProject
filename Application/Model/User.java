@@ -5,6 +5,8 @@ package Application.Model;
     //Password
     //Display Name
     //Events
+    //Categories
+    //If Welcome page is shown everytime user logins
 
 import java.util.*;
 

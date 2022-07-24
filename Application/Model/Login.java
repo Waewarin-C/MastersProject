@@ -47,22 +47,28 @@ public class Login {
     {
         String errorMessage = "";
 
+        //Check if any field is empty
+        if(username.equals("") || password.equals("") || confirmPassword.equals("") || displayName.equals(""))
+        {
+            errorMessage += "One or more fields is empty\n";
+        }
+
         //Check limit on display name
         if(displayName.length() > 30)
         {
-            errorMessage += "Display name cannot be more than 30 characters";
+            errorMessage += "Display name cannot be more than 30 characters\n";
         }
 
         //Check if password has at least 8 characters
         if(password.length() < 8)
         {
-            errorMessage += "\nPassword needs to be at least 8 characters";
+            errorMessage += "Password needs to be at least 8 characters\n";
         }
 
         //Check if password and confirm password are the same
         if(!password.equals(confirmPassword))
         {
-            errorMessage += "\nPassword and Confirm Password not the same";
+            errorMessage += "Password and Confirm Password not the same";
         }
 
         //Save new account information with default settings if everything is good to go
