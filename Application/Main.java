@@ -38,12 +38,12 @@ public class Main extends Application {
     {
         login = new Login();
 
-        loadExistingAccounts();
+        loadExistingAccount();
 
         launch(args);
     }
 
-    public static void loadExistingAccounts()
+    public static void loadExistingAccount()
     {
         try
         {

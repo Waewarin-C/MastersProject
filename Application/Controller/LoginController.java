@@ -68,7 +68,6 @@ public class LoginController implements Initializable {
         String displayName = signUpNameField.getText();
 
         String errorMessage = Main.login.createAccount(username, password, confirmPassword, displayName);
-        System.out.println(errorMessage);
         if(!errorMessage.equals(""))
         {
             signUpErrorMessage.setText(errorMessage);
@@ -77,7 +76,6 @@ public class LoginController implements Initializable {
         {
             continueToNextPage();
         }
-
     }
 
     public void continueToNextPage()

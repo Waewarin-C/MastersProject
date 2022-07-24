@@ -32,12 +32,14 @@ public class Login {
         if(!this.user.getUsername().equals(username))
         {
             errorMessage = "Incorrect username entered";
+            return errorMessage;
         }
 
         //Check if password is incorrect
         if(!this.user.getPassword().equals(password))
         {
             errorMessage = "Incorrect password entered";
+            return errorMessage;
         }
 
         return errorMessage;
@@ -85,7 +87,7 @@ public class Login {
         //When writing to events file, need to specify that append is true
         try
         {
-            String fileName = "../Account/" + username + "_info";
+            String fileName = "Account/" + username + "_info.csv";
             FileWriter newUserFile = new FileWriter(new File(fileName));
 
             newUserFile.write(String.format("%s,%s\n", "Setting", "Value"));
@@ -96,13 +98,15 @@ public class Login {
 
             newUserFile.close();
 
-            String eventFileName = "../Account/" + username + "_events";
+            String eventFileName = "Account/" + username + "_events.csv";
             FileWriter newEventsFile = new FileWriter(new File(eventFileName));
             newEventsFile.write(String.format("%s,%s,%s,%s,%s\n", "Event", "Date", "Location", "Category", "Description"));
+            newEventsFile.close();
 
-            String categoryFileName = "../Account/" + username + "_categories";
+            String categoryFileName = "Account/" + username + "_categories.csv";
             FileWriter newCategoriesFile = new FileWriter(new File(categoryFileName));
             newCategoriesFile.write(String.format("%s,%s\n", "Category", "Color"));
+            newCategoriesFile.close();
         }
         catch(IOException e)
         {
