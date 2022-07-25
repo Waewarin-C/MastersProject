@@ -19,7 +19,7 @@
             <Font name="Berlin Sans FB" size="36.0" />
          </font>
       </Label>
-      <Separator layoutX="417.0" layoutY="120.0" orientation="VERTICAL" prefHeight="400.0" />
+      <Separator layoutX="417.0" layoutY="120.0" orientation="VERTICAL" prefHeight="445.0" />
       <Label layoutX="138.0" layoutY="150.0" text="Welcome Back!">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
