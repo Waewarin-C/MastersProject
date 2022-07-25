@@ -17,7 +17,7 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="300.0" layoutY="109.0" text="Events for the Next 7 Days">
+      <Label layoutX="293.0" layoutY="110.0" text="Your Events for the Next 7 Days">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font></Label>
