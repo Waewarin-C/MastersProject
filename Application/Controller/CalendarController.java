@@ -6,5 +6,5 @@ package Application.Controller;
     //Option for user to pick view they want to view the calendar (weekly or monthly)
     //The events for each date displayed in each date
 
-public class EventCalendarController {
+public class CalendarController {
 }

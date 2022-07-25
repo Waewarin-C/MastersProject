@@ -9,8 +9,12 @@ package Application.Controller;
     //Settings
     //This will be a bottom navigation bar on each of the main pages
 
+import Application.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 
@@ -19,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class ToolbarController implements Initializable {
     @FXML
-    Pane homeIcon, eventsCalendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
+    Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -35,7 +39,7 @@ public class ToolbarController implements Initializable {
         calendarIconPath.setContent("M17,2c-0.55,0-1,0.45-1,1v1H8V3c0-0.55-0.45-1-1-1S6,2.45,6,3v1H5C3.89,4,3.01,4.9,3.01,6L3,20c0,1.1,0.89,2,2,2h14 c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-1V3C18,2.45,17.55,2,17,2z M19,20H5V10h14V20z M11,13c0-0.55,0.45-1,1-1s1,0.45,1,1 s-0.45,1-1,1S11,13.55,11,13z M7,13c0-0.55,0.45-1,1-1s1,0.45,1,1s-0.45,1-1,1S7,13.55,7,13z M15,13c0-0.55,0.45-1,1-1s1,0.45,1,1 s-0.45,1-1,1S15,13.55,15,13z M11,17c0-0.55,0.45-1,1-1s1,0.45,1,1s-0.45,1-1,1S11,17.55,11,17z M7,17c0-0.55,0.45-1,1-1 s1,0.45,1,1s-0.45,1-1,1S7,17.55,7,17z M15,17c0-0.55,0.45-1,1-1s1,0.45,1,1s-0.45,1-1,1S15,17.55,15,17z");
         calendarIconPath.setScaleX(2.5);
         calendarIconPath.setScaleY(2.5);
-        eventsCalendarIcon.getChildren().add(calendarIconPath);
+        calendarIcon.getChildren().add(calendarIconPath);
 
         SVGPath addEventIconPath = new SVGPath();
         addEventIconPath.setContent("M12,22H5c-1.11,0-2-0.9-2-2L3.01,6c0-1.1,0.88-2,1.99-2h1V3c0-0.55,0.45-1,1-1s1,0.45,1,1v1h8V3c0-0.55,0.45-1,1-1 s1,0.45,1,1v1h1c1.1,0,2,0.9,2,2v6h-2v-2H5v10h7V22z M22.13,16.99l0.71-0.71c0.39-0.39,0.39-1.02,0-1.41l-0.71-0.71 c-0.39-0.39-1.02-0.39-1.41,0l-0.71,0.71L22.13,16.99z M21.42,17.7l-5.01,5.01c-0.18,0.18-0.44,0.29-0.7,0.29H14.5 c-0.28,0-0.5-0.22-0.5-0.5v-1.21c0-0.27,0.11-0.52,0.29-0.71l5.01-5.01L21.42,17.7z");
@@ -54,5 +58,75 @@ public class ToolbarController implements Initializable {
         settingsIconPath.setScaleX(2.5);
         settingsIconPath.setScaleY(2.5);
         settingsIcon.getChildren().add(settingsIconPath);
+    }
+
+    public void goToHome()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToCalendar()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Calendar.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToAddEvents()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/AddEvents.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToCategories()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Categories.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToSettings()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

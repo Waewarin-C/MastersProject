@@ -40,7 +40,7 @@
                   <Insets top="15.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="eventsCalendarIcon" prefHeight="60.0" prefWidth="60.0" GridPane.rowIndex="1">
+            <Pane fx:id="calendarIcon" prefHeight="60.0" prefWidth="60.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="15.0" />
                </GridPane.margin>
