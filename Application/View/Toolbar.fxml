@@ -1,24 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.ToolbarController">
    <children>
-      <GridPane hgap="70.0" layoutX="20.0" layoutY="25.0">
+      <GridPane hgap="70.0" layoutX="16.0" layoutY="3.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" />
+            <RowConstraints minHeight="10.0" />
+         </rowConstraints>
+         <children>
+            <Pane fx:id="homeIcon" prefHeight="40.0" prefWidth="40.0">
+               <GridPane.margin>
+                  <Insets left="37.0" top="12.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane fx:id="eventsCalendarIcon" prefHeight="50.0" prefWidth="40.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="37.0" top="12.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane fx:id="addEventsIcon" prefHeight="50.0" prefWidth="40.0" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="37.0" top="12.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane fx:id="categoriesIcon" prefHeight="50.0" prefWidth="40.0" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="37.0" top="12.0" />
+               </GridPane.margin>
+            </Pane>
+            <Pane fx:id="settingsIcon" prefHeight="40.0" prefWidth="40.0" GridPane.columnIndex="4">
+               <GridPane.margin>
+                  <Insets left="37.0" top="12.0" />
+               </GridPane.margin>
+            </Pane>
+            <Label text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Events Calendar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Add Events" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Categories" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Settings" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="15.0" />
+               </font>
+            </Label>
+         </children>
       </GridPane>
    </children>
 </AnchorPane>
