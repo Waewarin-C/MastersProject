@@ -45,7 +45,7 @@
                   <Insets top="15.0" />
                </GridPane.margin>
             </Pane>
-            <Pane fx:id="addEventIcon" prefHeight="60.0" prefWidth="60.0" GridPane.rowIndex="2">
+            <Pane fx:id="addEventsIcon" prefHeight="60.0" prefWidth="60.0" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets top="15.0" />
                </GridPane.margin>
