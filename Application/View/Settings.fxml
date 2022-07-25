@@ -98,7 +98,7 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <Label fx:id="displayNameSettingError" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label fx:id="displayNameSettingsError" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
