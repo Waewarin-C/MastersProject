@@ -11,9 +11,13 @@ package Application.Controller;
 import Application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -45,19 +49,42 @@ public class SettingsController implements Initializable {
     @FXML
     Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
 
+    @FXML
+    Pane toolbarPane;
+
     private String username = Main.login.getUser().getUsername();
     private String password = Main.login.getUser().getPassword();
     private String displayName = Main.login.getUser().getDisplayName();
 
+    private boolean isWelcomePageShown = Main.login.getUser().getWelcomePageShown();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        try
+        {
+            Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
+            toolbarPane.getChildren().add(toolbar);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
         usernameSettings.setText(username);
         passwordSettings.setText(password);
         displayNameSettings.setText(displayName);
 
-        //Add more logic to this
-        welcomePage.selectToggle(welcomePageShow);
+        if(isWelcomePageShown)
+        {
+            welcomePage.selectToggle(welcomePageShow);
+        }
+        else
+        {
+            welcomePage.selectToggle(welcomePageNotShow);
+        }
+
+
     }
 
     public void showPassword(ActionEvent event)
