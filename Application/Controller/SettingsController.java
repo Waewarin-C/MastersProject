@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,16 +31,19 @@ public class SettingsController implements Initializable {
     PasswordField passwordSettings;
 
     @FXML
+    CheckBox showPasswordCheckBox;
+
+    @FXML
     RadioButton welcomePageShow, welcomePageNotShow;
+
+    @FXML
+    ToggleGroup welcomePage;
 
     @FXML
     Label passwordSettingsError, displayNameSettingsError;
 
     @FXML
     Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
-
-    @FXML
-    CheckBox showPasswordCheckBox;
 
     private String username = Main.login.getUser().getUsername();
     private String password = Main.login.getUser().getPassword();
@@ -51,6 +55,9 @@ public class SettingsController implements Initializable {
         usernameSettings.setText(username);
         passwordSettings.setText(password);
         displayNameSettings.setText(displayName);
+
+        //Add more logic to this
+        welcomePage.selectToggle(welcomePageShow);
     }
 
     public void showPassword(ActionEvent event)
@@ -62,6 +69,7 @@ public class SettingsController implements Initializable {
             settingsGrid.getChildren().remove(passwordSettings);
 
             TextField passwordShow = new TextField(password);
+            passwordShow.setFont(Font.font("Berlin Sans FB", 14));
             passwordShow.setPrefWidth(350);
             passwordShow.setPrefHeight(30);
             settingsGrid.add(passwordShow, 1,1);
@@ -89,12 +97,16 @@ public class SettingsController implements Initializable {
         usernameSettings.setDisable(false);
         passwordSettings.setDisable(false);
         displayNameSettings.setDisable(false);
+        welcomePageShow.setDisable(false);
+        welcomePageNotShow.setDisable(false);
     }
 
     public void saveSettings(ActionEvent event)
     {
+        String username = usernameSettings.getText();
         String password = passwordSettings.getText();
         String displayName = displayNameSettings.getText();
+        RadioButton button = (RadioButton) welcomePage.getSelectedToggle();
 
         //Check if credentials are correct
         if(password.length() < 8)
@@ -112,16 +124,20 @@ public class SettingsController implements Initializable {
 
     public void cancelSettings(ActionEvent event)
     {
-        usernameSettings.setDisable(false);
-        passwordSettings.setDisable(false);
-        displayNameSettings.setDisable(false);
+        usernameSettings.setDisable(true);
+        passwordSettings.setDisable(true);
+        displayNameSettings.setDisable(true);
+        welcomePageShow.setDisable(true);
+        welcomePageNotShow.setDisable(true);
 
         usernameSettings.setText(username);
         passwordSettings.setText(password);
         displayNameSettings.setText(displayName);
 
-        passwordSettingsError.setText("");
-        displayNameSettingsError.setText("");
+        passwordSettingsError.setText("Password must be at least 8 characters");
+        passwordSettingsError.setTextFill(Color.color(0, 0, 0));
+        displayNameSettingsError.setText("Display Name must be at most 30 characters");
+        displayNameSettingsError.setTextFill(Color.color(0, 0, 0));
     }
 
     public void logout(ActionEvent event)
