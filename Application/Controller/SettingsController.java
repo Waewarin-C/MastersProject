@@ -7,12 +7,11 @@ package Application.Controller;
         //Password
         //Name
 
+import Application.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,13 +29,32 @@ public class SettingsController implements Initializable {
     @FXML
     Label passwordSettingsError, displayNameSettingsError;
 
+    @FXML
+    Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
+
+    private String username = Main.login.getUser().getUsername();
+    private String password = Main.login.getUser().getPassword();
+    private String displayName = Main.login.getUser().getDisplayName();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        usernameSettings.setText(username);
+        passwordSettings.setText(password);
+        displayNameSettings.setText(displayName);
+
         passwordSettingsError.setText("");
         displayNameSettingsError.setText("");
     }
-    public void saveSettings()
+
+    public void editSettings(ActionEvent event)
+    {
+        usernameSettings.setDisable(false);
+        passwordSettings.setDisable(false);
+        displayNameSettings.setDisable(false);
+    }
+
+    public void saveSettings(ActionEvent event)
     {
         String password = passwordSettings.getText();
         String displayName = displayNameSettings.getText();
@@ -53,10 +71,22 @@ public class SettingsController implements Initializable {
         }
     }
 
-    public void cancelSettings()
+    public void cancelSettings(ActionEvent event)
+    {
+        usernameSettings.setDisable(false);
+        passwordSettings.setDisable(false);
+        displayNameSettings.setDisable(false);
+
+        usernameSettings.setText(username);
+        passwordSettings.setText(password);
+        displayNameSettings.setText(displayName);
+
+        passwordSettingsError.setText("");
+        displayNameSettingsError.setText("");
+    }
+
+    public void logout(ActionEvent event)
     {
 
     }
-
-
 }

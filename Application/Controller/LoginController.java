@@ -10,7 +10,7 @@ package Application.Controller;
     //Redirects to Home view
 
 import Application.Main;
-import com.sun.deploy.security.SelectableSecurityManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
         signUpErrorMessage.setText("");
     }
 
-    public void login()
+    public void login(ActionEvent event)
     {
         String username = loginUsernameField.getText();
         String password = loginPasswordField.getText();
@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void signUp()
+    public void signUp(ActionEvent event)
     {
         String username = signUpUsernameField.getText();
         String password = signUpPasswordField.getText();
