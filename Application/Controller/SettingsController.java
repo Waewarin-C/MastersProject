@@ -31,7 +31,7 @@ public class SettingsController implements Initializable {
     GridPane settingsGrid;
 
     @FXML
-    TextField usernameSettings, displayNameSettings;
+    TextField usernameSettings, displayNameSettings, passwordShow;
 
     @FXML
     PasswordField passwordSettings;
@@ -54,6 +54,8 @@ public class SettingsController implements Initializable {
     @FXML
     Pane toolbarPane;
 
+    //TextField passwordShow;
+
     private String oldUsername = Main.login.getUser().getUsername();
     private String oldPassword = Main.login.getUser().getPassword();
     private String oldDisplayName = Main.login.getUser().getDisplayName();
@@ -72,51 +74,30 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        usernameSettings.setText(oldUsername);
-        passwordSettings.setText(oldPassword);
-        displayNameSettings.setText(oldDisplayName);
+        fillFields();
+        disableFields();
 
-        if(oldWelcomePageShown.equals("Yes"))
-        {
-            welcomePage.selectToggle(welcomePageShow);
-        }
-        else
-        {
-            welcomePage.selectToggle(welcomePageNotShow);
-        }
-
-
+        passwordShow.setVisible(false);
     }
 
     public void showPassword(ActionEvent event)
     {
-        boolean isFieldDisabled = passwordSettings.isDisable();
-
         if(showPasswordCheckBox.isSelected())
         {
             settingsGrid.getChildren().remove(passwordSettings);
 
-            TextField passwordShow = new TextField(oldPassword);
+            passwordShow = new TextField(oldPassword);
             passwordShow.setFont(Font.font("Berlin Sans FB", 14));
             passwordShow.setPrefWidth(350);
             passwordShow.setPrefHeight(30);
-            settingsGrid.add(passwordShow, 1,1);
 
-            if(isFieldDisabled)
-            {
-                passwordShow.setDisable(true);
-            }
+            settingsGrid.add(passwordShow, 1,1);
         }
         else
         {
             int index = settingsGrid.getChildren().size()-1;
             settingsGrid.getChildren().remove(index);
             settingsGrid.add(passwordSettings, 1,1);
-
-            if(isFieldDisabled)
-            {
-                passwordSettings.setDisable(true);
-            }
         }
     }
 
@@ -124,6 +105,7 @@ public class SettingsController implements Initializable {
     {
         usernameSettings.setDisable(false);
         passwordSettings.setDisable(false);
+        passwordShow.setDisable(false);
         displayNameSettings.setDisable(false);
         welcomePageShow.setDisable(false);
         welcomePageNotShow.setDisable(false);
@@ -166,6 +148,7 @@ public class SettingsController implements Initializable {
     {
         try
         {
+            //Change the info file name
             String oldFileName = "Account/" + oldUsername + "_info.csv";
             File oldFile = new File(oldFileName);
 
@@ -181,6 +164,22 @@ public class SettingsController implements Initializable {
             save.write(String.format("%s,%s\n", "Welcome Page Shown", newWelcomePageShown));
 
             save.close();
+
+            //Change the events file name
+            oldFileName = "Account/" + oldUsername + "_events.csv";
+            oldFile = new File(oldFileName);
+
+            newFileName = "Account/" + newUsername + "_events.csv";
+            newFile = new File(newFileName);
+            oldFile.renameTo(newFile);
+
+            //Change the categories file name
+            oldFileName = "Account/" + oldUsername + "_categories.csv";
+            oldFile = new File(oldFileName);
+
+            newFileName = "Account/" + newUsername + "_categories.csv";
+            newFile = new File(newFileName);
+            oldFile.renameTo(newFile);
         }
         catch(IOException e)
         {
@@ -199,11 +198,7 @@ public class SettingsController implements Initializable {
 
     public void cancelSettings(ActionEvent event)
     {
-        usernameSettings.setDisable(true);
-        passwordSettings.setDisable(true);
-        displayNameSettings.setDisable(true);
-        welcomePageShow.setDisable(true);
-        welcomePageNotShow.setDisable(true);
+        disableFields();
 
         usernameSettings.setText(oldUsername);
         passwordSettings.setText(oldPassword);
@@ -218,5 +213,31 @@ public class SettingsController implements Initializable {
     public void logout(ActionEvent event)
     {
 
+    }
+
+    private void fillFields()
+    {
+        usernameSettings.setText(oldUsername);
+        passwordSettings.setText(oldPassword);
+        passwordShow.setText(oldPassword);
+        displayNameSettings.setText(oldDisplayName);
+
+        if(oldWelcomePageShown.equals("Yes"))
+        {
+            welcomePage.selectToggle(welcomePageShow);
+        }
+        else
+        {
+            welcomePage.selectToggle(welcomePageNotShow);
+        }
+    }
+    private void disableFields()
+    {
+        usernameSettings.setDisable(true);
+        passwordSettings.setDisable(true);
+        passwordShow.setDisable(true);
+        displayNameSettings.setDisable(true);
+        welcomePageShow.setDisable(true);
+        welcomePageNotShow.setDisable(true);
     }
 }

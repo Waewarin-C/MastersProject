@@ -80,9 +80,9 @@ public class LoginController implements Initializable {
 
     public void continueToNextPage()
     {
-        boolean welcomePageShown = Main.login.getUser().getWelcomePageShown();
+        String welcomePageShown = Main.login.getUser().getWelcomePageShown();
 
-        if(welcomePageShown)
+        if(welcomePageShown.equals("Yes"))
         {
             try
             {
