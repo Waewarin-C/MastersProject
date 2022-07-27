@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
@@ -25,14 +26,15 @@
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="96.0" layoutY="190.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="41.0" layoutY="190.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -55,16 +57,26 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefWidth="100.0" text="Login" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <TextField fx:id="loginShowPassword" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="loginErrorMessage" text="Label" textFill="RED" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Label fx:id="loginErrorMessage" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
+            <CheckBox fx:id="loginShowPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </CheckBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -80,18 +92,19 @@
             <Font name="Berlin Sans FB" size="20.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="421.0" layoutY="210.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="427.0" layoutY="210.0" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
@@ -124,7 +137,12 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
-            <Label text="Password must be at least 8 characters" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="signUpShowPassword" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextField>
+            <Label text="Password must be at least 8 characters" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -133,25 +151,40 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
+            <TextField fx:id="confirmPasswordShow" onAction="#showPassword" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextField>
             <TextField fx:id="signUpNameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <Label text="Display name can have a max of 30 characters" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label text="Display name can have a max of 30 characters" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUp" prefWidth="100.0" text="Sign Up" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUp" prefWidth="100.0" text="Sign Up" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="signUpErrorMessage" text="Label" textFill="RED" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+            <Label fx:id="signUpErrorMessage" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
+            <CheckBox fx:id="signUpShowPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="showConfirmPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </CheckBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

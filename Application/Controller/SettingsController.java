@@ -18,7 +18,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,7 +30,7 @@ public class SettingsController implements Initializable {
     GridPane settingsGrid;
 
     @FXML
-    TextField usernameSettings, displayNameSettings, passwordShow;
+    TextField usernameSettings, displayNameSettings, showPassword;
 
     @FXML
     PasswordField passwordSettings;
@@ -77,7 +76,7 @@ public class SettingsController implements Initializable {
         fillFields();
         disableFields();
 
-        passwordShow.setVisible(false);
+        showPassword.setVisible(false);
         saveMessage.setText("");
     }
 
@@ -86,13 +85,13 @@ public class SettingsController implements Initializable {
         if(showPasswordCheckBox.isSelected())
         {
             passwordSettings.setVisible(false);
-            passwordShow.setText(passwordSettings.getText());
-            passwordShow.setVisible(true);
+            showPassword.setText(passwordSettings.getText());
+            showPassword.setVisible(true);
         }
         else
         {
-            passwordShow.setVisible(false);
-            passwordSettings.setText(passwordShow.getText());
+            showPassword.setVisible(false);
+            passwordSettings.setText(showPassword.getText());
             passwordSettings.setVisible(true);
         }
     }
@@ -101,7 +100,7 @@ public class SettingsController implements Initializable {
     {
         usernameSettings.setDisable(false);
         passwordSettings.setDisable(false);
-        passwordShow.setDisable(false);
+        showPassword.setDisable(false);
         displayNameSettings.setDisable(false);
         welcomePageShow.setDisable(false);
         welcomePageNotShow.setDisable(false);
@@ -121,7 +120,7 @@ public class SettingsController implements Initializable {
         }
         else
         {
-            newPassword = passwordShow.getText();
+            newPassword = showPassword.getText();
         }
 
         boolean error = requirementsCheck(newPassword, newDisplayName);
@@ -247,7 +246,7 @@ public class SettingsController implements Initializable {
     {
         usernameSettings.setText(oldUsername);
         passwordSettings.setText(oldPassword);
-        passwordShow.setText(oldPassword);
+        showPassword.setText(oldPassword);
         displayNameSettings.setText(oldDisplayName);
 
         if(oldWelcomePageShown.equals("Yes"))
@@ -263,7 +262,7 @@ public class SettingsController implements Initializable {
     {
         usernameSettings.setDisable(true);
         passwordSettings.setDisable(true);
-        passwordShow.setDisable(true);
+        showPassword.setDisable(true);
         displayNameSettings.setDisable(true);
         welcomePageShow.setDisable(true);
         welcomePageNotShow.setDisable(true);

@@ -16,10 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,10 +24,16 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    TextField loginUsernameField, signUpUsernameField, signUpNameField;
+    TextField loginUsernameField, loginShowPassword;
+
+    @FXML
+    TextField signUpUsernameField, signUpNameField, signUpShowPassword, confirmPasswordShow;
 
     @FXML
     PasswordField loginPasswordField, signUpPasswordField, confirmPasswordField;
+
+    @FXML
+    CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox, showConfirmPasswordCheckBox;
 
     @FXML
     Button loginButton, signUpButton;
@@ -40,14 +43,70 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loginShowPassword.setVisible(false);
+        signUpShowPassword.setVisible(false);
+        confirmPasswordShow.setVisible(false);
+
         loginErrorMessage.setText("");
         signUpErrorMessage.setText("");
+    }
+
+    public void showPassword(ActionEvent event)
+    {
+        if(loginShowPasswordCheckBox.isSelected())
+        {
+            loginPasswordField.setVisible(false);
+            loginShowPassword.setText(loginPasswordField.getText());
+            loginShowPassword.setVisible(true);
+        }
+        else if(!loginShowPasswordCheckBox.isSelected())
+        {
+            loginShowPassword.setVisible(false);
+            loginPasswordField.setText(loginShowPassword.getText());
+            loginPasswordField.setVisible(true);
+        }
+
+        if(signUpShowPasswordCheckBox.isSelected())
+        {
+            signUpPasswordField.setVisible(false);
+            signUpShowPassword.setText(signUpPasswordField.getText());
+            signUpShowPassword.setVisible(true);
+        }
+        else if(!signUpShowPasswordCheckBox.isSelected())
+        {
+            signUpShowPassword.setVisible(false);
+            signUpPasswordField.setText(signUpShowPassword.getText());
+            signUpPasswordField.setVisible(true);
+        }
+
+        if(showConfirmPasswordCheckBox.isSelected())
+        {
+            confirmPasswordField.setVisible(false);
+            confirmPasswordShow.setText(confirmPasswordField.getText());
+            confirmPasswordShow.setVisible(true);
+        }
+        else if(!showConfirmPasswordCheckBox.isSelected())
+        {
+            confirmPasswordShow.setVisible(false);
+            confirmPasswordField.setText(confirmPasswordShow.getText());
+            confirmPasswordField.setVisible(true);
+        }
     }
 
     public void login(ActionEvent event)
     {
         String username = loginUsernameField.getText();
-        String password = loginPasswordField.getText();
+        String password = "";
+
+        //Get the password from the field that is visible to get the latest change
+        if(loginPasswordField.isVisible())
+        {
+            password = loginPasswordField.getText();
+        }
+        else
+        {
+            password = loginShowPassword.getText();
+        }
 
         String errorMessage = Main.login.login(username, password);
         if(!errorMessage.equals(""))
@@ -63,9 +122,28 @@ public class LoginController implements Initializable {
     public void signUp(ActionEvent event)
     {
         String username = signUpUsernameField.getText();
-        String password = signUpPasswordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
         String displayName = signUpNameField.getText();
+
+        String password = "";
+        String confirmPassword = "";
+        //Get the password from the field that is visible to get the latest change
+        if(signUpPasswordField.isVisible())
+        {
+            password = signUpPasswordField.getText();
+        }
+        else
+        {
+            password = signUpShowPassword.getText();
+        }
+        //Get the confirm password from the field that is visible to get the latest change
+        if(confirmPasswordField.isVisible())
+        {
+            confirmPassword = confirmPasswordField.getText();
+        }
+        else
+        {
+            confirmPassword = confirmPasswordShow.getText();
+        }
 
         String errorMessage = Main.login.createAccount(username, password, confirmPassword, displayName);
         if(!errorMessage.equals(""))
