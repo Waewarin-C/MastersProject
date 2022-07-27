@@ -46,7 +46,7 @@ public class SettingsController implements Initializable {
     ToggleGroup welcomePage;
 
     @FXML
-    Label passwordSettingsError, displayNameSettingsError;
+    Label passwordSettingsError, displayNameSettingsError, saveMessage;
 
     @FXML
     Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
@@ -78,26 +78,22 @@ public class SettingsController implements Initializable {
         disableFields();
 
         passwordShow.setVisible(false);
+        saveMessage.setText("");
     }
 
     public void showPassword(ActionEvent event)
     {
         if(showPasswordCheckBox.isSelected())
         {
-            settingsGrid.getChildren().remove(passwordSettings);
-
-            passwordShow = new TextField(oldPassword);
-            passwordShow.setFont(Font.font("Berlin Sans FB", 14));
-            passwordShow.setPrefWidth(350);
-            passwordShow.setPrefHeight(30);
-
-            settingsGrid.add(passwordShow, 1,1);
+            passwordSettings.setVisible(false);
+            passwordShow.setText(passwordSettings.getText());
+            passwordShow.setVisible(true);
         }
         else
         {
-            int index = settingsGrid.getChildren().size()-1;
-            settingsGrid.getChildren().remove(index);
-            settingsGrid.add(passwordSettings, 1,1);
+            passwordShow.setVisible(false);
+            passwordSettings.setText(passwordShow.getText());
+            passwordSettings.setVisible(true);
         }
     }
 
@@ -114,34 +110,62 @@ public class SettingsController implements Initializable {
     public void saveSettings(ActionEvent event)
     {
         String newUsername = usernameSettings.getText();
-        String newPassword = passwordSettings.getText();
         String newDisplayName = displayNameSettings.getText();
-        RadioButton newWelcomePageShown = (RadioButton) welcomePage.getSelectedToggle();
+        String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
 
+        //Get the new password from the field that is visible to get the latest change
+        String newPassword;
+        if(passwordSettings.isVisible())
+        {
+            newPassword = passwordSettings.getText();
+        }
+        else
+        {
+            newPassword = passwordShow.getText();
+        }
+
+        boolean error = requirementsCheck(newPassword, newDisplayName);
+        if(error)
+        {
+            return;
+        }
+
+        saveSettingsToFile(newUsername, newPassword, newDisplayName, newWelcomePageShown);
+        saveSettingsToUser(newUsername, newPassword, newDisplayName, newWelcomePageShown);
+
+        disableFields();
+    }
+
+    private boolean requirementsCheck(String newPassword, String newDisplayName)
+    {
         boolean error = false;
 
         //Check if credentials are correct
         if(newPassword.length() < 8)
         {
             passwordSettingsError.setText("Error: Password must be at least 8 characters");
-            passwordSettingsError.setTextFill(Color.color(255,0,0));
+            passwordSettingsError.setTextFill(Color.color(1,0,0));
             error = true;
+        }
+        else
+        {
+            passwordSettingsError.setText("Password length satisfied");
+            passwordSettingsError.setTextFill(Color.color(0,1,0));
         }
 
         if(newDisplayName.length() > 30)
         {
-            displayNameSettingsError.setText("Error: Display Name can be at most 30 characters");
-            displayNameSettingsError.setTextFill(Color.color(255, 0, 0));
+            displayNameSettingsError.setText("Error: Display Name must be at most 30 characters");
+            displayNameSettingsError.setTextFill(Color.color(1, 0, 0));
             error = true;
         }
-
-        if(error)
+        else
         {
-            return;
+            displayNameSettingsError.setText("Display Name is within length limits");
+            displayNameSettingsError.setTextFill(Color.color(0, 1, 0));
         }
 
-        saveSettingsToFile(newUsername, newPassword, newDisplayName, newWelcomePageShown.getText());
-        saveSettingsToUser(newUsername, newPassword, newDisplayName, newWelcomePageShown.getText());
+        return error;
     }
 
     private void saveSettingsToFile(String newUsername, String newPassword, String newDisplayName, String newWelcomePageShown)
@@ -180,10 +204,14 @@ public class SettingsController implements Initializable {
             newFileName = "Account/" + newUsername + "_categories.csv";
             newFile = new File(newFileName);
             oldFile.renameTo(newFile);
+
+            saveMessage.setText("Saved successfully!");
         }
         catch(IOException e)
         {
-            System.out.println("Error: cannot save new account");
+            saveMessage.setText("Error: something went wrong, please try again");
+            saveMessage.setTextFill(Color.color(1, 0, 0));
+            System.out.println("Error: cannot save account settings");
             e.printStackTrace();
         }
     }
@@ -206,7 +234,7 @@ public class SettingsController implements Initializable {
 
         passwordSettingsError.setText("Password must be at least 8 characters");
         passwordSettingsError.setTextFill(Color.color(0, 0, 0));
-        displayNameSettingsError.setText("Display Name must be at most 30 characters");
+        displayNameSettingsError.setText("Display Name can be at most 30 characters");
         displayNameSettingsError.setTextFill(Color.color(0, 0, 0));
     }
 

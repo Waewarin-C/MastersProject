@@ -101,7 +101,7 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <Label fx:id="displayNameSettingsError" text="Display Name must be at most 30 characters" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label fx:id="displayNameSettingsError" text="Display Name can be at most 30 characters" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -141,6 +141,7 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" text="Save">
@@ -153,6 +154,11 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="saveMessage" text="Label" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
