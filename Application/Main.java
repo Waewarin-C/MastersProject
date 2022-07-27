@@ -81,7 +81,7 @@ public class Main extends Application {
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
             login.getUser().setDisplayName(displayName);
-            login.getUser().setWelcomePageShown(Boolean.parseBoolean(welcomePageShown));
+            login.getUser().setWelcomePageShown(welcomePageShown);
         }
         catch(IOException e)
         {
