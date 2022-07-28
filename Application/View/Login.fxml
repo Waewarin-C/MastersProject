@@ -156,7 +156,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="signUpNameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="signUpDisplayNameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
@@ -170,17 +170,12 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="signUpErrorMessage" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+            <Label fx:id="signUpErrorMessage" text="Label" textFill="RED" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
             <CheckBox fx:id="signUpShowPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="showConfirmPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
