@@ -6,5 +6,34 @@ package Application.Controller;
     //Option for user to pick view they want to view the calendar (weekly or monthly)
     //The events for each date displayed in each date
 
-public class CalendarController {
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CalendarController implements Initializable {
+    @FXML
+    Pane toolbarPane;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try
+        {
+            Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
+            toolbarPane.getChildren().add(toolbar);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToDate()
+    {
+
+    }
 }
