@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.AddEventController">
+<AnchorPane prefHeight="640.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.AddEventController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -23,7 +24,7 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="425.0" layoutY="48.0">
+      <GridPane hgap="10.0" layoutX="685.0" layoutY="47.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -32,12 +33,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Save">
+            <Button fx:id="saveAddEventButton" mnemonicParsing="false" onAction="#saveAddEvent" prefHeight="30.0" prefWidth="65.0" text="Save">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelEventButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
+            <Button fx:id="cancelAddEventButton" mnemonicParsing="false" onAction="#cancelAddEvent" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -47,7 +48,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <GridPane hgap="10.0" layoutX="118.0" layoutY="98.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="110.0" layoutY="97.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -57,6 +58,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -65,17 +67,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="eventNameField" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font></TextField>
             <Label text="Date" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Category" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -85,25 +77,42 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Berlin Sans FB" size="14.0" />
-               </font></TextField>
-            <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Description" GridPane.rowIndex="4">
+            <Label text="Category" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
+            <Label text="Description" GridPane.rowIndex="4" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="saveEventMessage" text="Label" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="eventNameField" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextField>
+            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></TextField>
+            <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextArea>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <TextArea fx:id="eventDescriptionField" layoutX="174.0" layoutY="299.0" prefHeight="200.0" prefWidth="305.0">
-         <font>
-            <Font name="Berlin Sans FB" size="14.0" />
-         </font>
-      </TextArea>
+      <Pane fx:id="toolbarPane" layoutX="20.0" layoutY="552.0" prefHeight="80.0" prefWidth="820.0" />
    </children>
 </AnchorPane>

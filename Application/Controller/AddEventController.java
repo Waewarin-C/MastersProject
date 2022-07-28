@@ -15,12 +15,31 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddEventController implements Initializable {
+    @FXML
+    Button saveAddEventButton, cancelAddEventButton;
+
+    @FXML
+    TextField eventNameField, eventLocationField;
+
+    @FXML
+    DatePicker eventDatePicker;
+
+    @FXML
+    ComboBox eventCategoryField;
+
+    @FXML
+    TextArea eventDescriptionField;
+
+    @FXML
+    Label saveEventMessage;
+
     @FXML
     Pane toolbarPane;
 
@@ -35,5 +54,17 @@ public class AddEventController implements Initializable {
         {
             e.printStackTrace();
         }
+
+        saveEventMessage.setText("");
+    }
+
+    public void saveAddEvent()
+    {
+
+    }
+
+    public void cancelAddEvent()
+    {
+
     }
 }
