@@ -11,6 +11,7 @@ package Application.Controller;
     //Save event button
     //Cancel button
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,16 +56,25 @@ public class AddEventController implements Initializable {
             e.printStackTrace();
         }
 
+        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         saveEventMessage.setText("");
     }
 
-    public void saveAddEvent()
+    public void saveAddEvent(ActionEvent event)
     {
+        String eventName = eventNameField.getText();
+        String eventDescription = eventDescriptionField.getText();
 
+        if(eventName.equals("") || eventDescription.equals(""))
+        {
+            saveEventMessage.setText("One or more fields is empty");
+        }
     }
 
-    public void cancelAddEvent()
+    public void cancelAddEvent(ActionEvent event)
     {
-
+        eventNameField.clear();
+        eventDescriptionField.clear();
     }
 }
