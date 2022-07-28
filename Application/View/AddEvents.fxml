@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
@@ -19,12 +21,12 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Add Event">
+      <Label fx:id="addEventPageLabel" layoutX="14.0" layoutY="14.0" text="Add Event">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="685.0" layoutY="47.0">
+      <GridPane fx:id="addEventButtons" hgap="10.0" layoutX="685.0" layoutY="47.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -48,7 +50,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <GridPane hgap="10.0" layoutX="110.0" layoutY="97.0" vgap="10.0">
+      <GridPane fx:id="addEventGridPane" hgap="10.0" layoutX="146.0" layoutY="105.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -102,7 +104,21 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="450.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" style="-fx-font-size: 14px;" />
+                  <Label text="or">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addNewEventCategoryButton" mnemonicParsing="false" onAction="#addNewEventCategory" prefHeight="30.0" text="Add a New Category">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
             <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
@@ -114,5 +130,80 @@
          </padding>
       </GridPane>
       <Pane fx:id="toolbarPane" layoutX="20.0" layoutY="552.0" prefHeight="80.0" prefWidth="820.0" />
+      <AnchorPane fx:id="addCategoryPopUp" layoutX="260.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0">
+         <children>
+            <Label fx:id="addCategoryLabel" layoutX="14.0" layoutY="14.0" text="Add Category">
+               <font>
+                  <Font name="Berlin Sans FB" size="24.0" />
+               </font>
+            </Label>
+            <GridPane hgap="10.0" layoutX="225.0" layoutY="16.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="saveAddCategoryButton" mnemonicParsing="false" onAction="#saveAddCategory" prefHeight="30.0" prefWidth="65.0" text="Save">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cancelAddCategoryButton" mnemonicParsing="false" onAction="#cancelAddCategory" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="doneAddCategoryButton" mnemonicParsing="false" onAction="#doneAddCategory" prefHeight="30.0" prefWidth="65.0" text="Done" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <GridPane hgap="10.0" layoutX="38.0" layoutY="56.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="Category Name">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Category Color" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="addCategoryMessage" text="Label" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="categoryNameField" prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ColorPicker fx:id="categoryColorPicker" prefHeight="30.0" prefWidth="200.0" promptText="Select" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
