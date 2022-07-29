@@ -3,6 +3,8 @@ package Application.Model;
 //Takes care of
     //Login
         //Checks that the credentials are correct
+        //Forgot password
+            //Presents user with the security question they have in their settings
     //Create account
         //Checks all fields are entered
         //Checks all fields are correct

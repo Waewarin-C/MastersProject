@@ -4,6 +4,8 @@ package Application.Model;
     //Username
     //Password
     //Display Name
+    //Security question
+    //Answer to security question
     //Events
     //Categories
     //If Welcome page is shown everytime user logins
@@ -14,6 +16,8 @@ public class User {
     String username;
     String password;
     String displayName;
+    String securityQuestion;
+    String securityQuestionAnswer;
     List<Event> events;
     HashMap<String, String> categories;
     String welcomePageShown;
@@ -53,6 +57,26 @@ public class User {
     public void setDisplayName(String displayNamename)
     {
         this.displayName = displayNamename;
+    }
+
+    public String getSecurityQuestion()
+    {
+        return this.securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion)
+    {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityQuestionAnswer()
+    {
+        return this.securityQuestionAnswer;
+    }
+
+    public void setSecurityQuestionAnswer(String securityQuestionAnswer)
+    {
+        this.securityQuestionAnswer = securityQuestionAnswer;
     }
 
     public List<Event> getEvents()

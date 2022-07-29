@@ -10,13 +10,13 @@ package Application.Controller;
     //Redirects to Home view
 
 import Application.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    TextField loginUsernameField, loginShowPassword;
+    TextField loginUsernameField, loginShowPassword, loginSecurityQuestionAnswer;
 
     @FXML
     TextField signUpUsernameField, signUpDisplayNameField, signUpShowPassword, confirmPasswordShow;
@@ -36,16 +36,20 @@ public class LoginController implements Initializable {
     CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox;
 
     @FXML
-    Button loginButton, signUpButton;
+    Button loginButton, signUpButton, securityQuestionSubmitButton;
 
     @FXML
-    Label loginErrorMessage, signUpErrorMessage;
+    Label loginErrorMessage, signUpErrorMessage, loginSecurityQuestion, securityQuestionMessage;
+
+    @FXML
+    GridPane securityQuestionGrid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);
         confirmPasswordShow.setVisible(false);
+        securityQuestionGrid.setVisible(false);
 
         loginErrorMessage.setText("");
         signUpErrorMessage.setText("");
@@ -90,8 +94,25 @@ public class LoginController implements Initializable {
 
     public void forgotPassword()
     {
-
+        securityQuestionGrid.setVisible(true);
+        securityQuestionMessage.setText("");
     }
+
+    public void checkSecurityQuestionAnswer()
+    {
+        String answerEntered = loginSecurityQuestionAnswer.getText();
+        String answerSaved = Main.login.getUser().getSecurityQuestionAnswer();
+
+        if(answerEntered.equalsIgnoreCase(answerSaved))
+        {
+            continueToNextPage();
+        }
+        else
+        {
+            securityQuestionMessage.setText("Sorry, incorrect answer");
+        }
+    }
+
     public void login()
     {
         String username = loginUsernameField.getText();
@@ -148,7 +169,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void continueToNextPage()
+    private void continueToNextPage()
     {
         String welcomePageShown = Main.login.getUser().getWelcomePageShown();
 
