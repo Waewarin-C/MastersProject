@@ -110,7 +110,11 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="loginSecurityQuestionAnswer" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="2" />
+            <TextField fx:id="loginSecurityQuestionAnswer" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </TextField>
             <Button fx:id="securityQuestionSubmitButton" mnemonicParsing="false" onAction="#checkSecurityQuestionAnswer" text="Submit Answer" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
@@ -136,7 +140,7 @@
             <Font name="Berlin Sans FB" size="20.0" />
          </font>
       </Label>
-      <GridPane hgap="5.0" layoutX="415.0" layoutY="215.0" vgap="8.0">
+      <GridPane hgap="5.0" layoutX="420.0" layoutY="215.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -236,7 +240,11 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="signUpAnswerField" prefHeight="30.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+            <TextField fx:id="signUpAnswerField" prefHeight="30.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="14.0" />
+               </font>
+            </TextField>
             <CheckBox fx:id="signUpShowPasswordCheckBox" mnemonicParsing="false" onAction="#showPassword" text="Show Password" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />

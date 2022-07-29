@@ -33,14 +33,14 @@ public class Login {
         //Check if username is incorrect
         if(!this.user.getUsername().equals(username))
         {
-            errorMessage = "Incorrect username entered";
+            errorMessage = "Wrong username entered";
             return errorMessage;
         }
 
         //Check if password is incorrect
         if(!this.user.getPassword().equals(password))
         {
-            errorMessage = "Incorrect password entered";
+            errorMessage = "Wrong password entered";
             return errorMessage;
         }
 

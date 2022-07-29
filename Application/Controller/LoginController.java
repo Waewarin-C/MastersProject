@@ -95,6 +95,7 @@ public class LoginController implements Initializable {
     public void forgotPassword()
     {
         securityQuestionGrid.setVisible(true);
+        loginSecurityQuestion.setText(Main.login.getUser().getSecurityQuestion());
         securityQuestionMessage.setText("");
     }
 
