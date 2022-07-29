@@ -80,7 +80,7 @@ public class SettingsController implements Initializable {
         saveMessage.setText("");
     }
 
-    public void showPassword(ActionEvent event)
+    public void showPassword()
     {
         if(showPasswordCheckBox.isSelected())
         {
@@ -96,7 +96,7 @@ public class SettingsController implements Initializable {
         }
     }
 
-    public void editSettings(ActionEvent event)
+    public void editSettings()
     {
         usernameSettings.setDisable(false);
         passwordSettings.setDisable(false);
@@ -106,7 +106,7 @@ public class SettingsController implements Initializable {
         welcomePageNotShow.setDisable(false);
     }
 
-    public void saveSettings(ActionEvent event)
+    public void saveSettings()
     {
         String newUsername = usernameSettings.getText();
         String newDisplayName = displayNameSettings.getText();
@@ -133,6 +133,51 @@ public class SettingsController implements Initializable {
         saveSettingsToUser(newUsername, newPassword, newDisplayName, newWelcomePageShown);
 
         disableFields();
+    }
+
+    public void cancelSettings()
+    {
+        disableFields();
+
+        usernameSettings.setText(oldUsername);
+        passwordSettings.setText(oldPassword);
+        displayNameSettings.setText(oldDisplayName);
+
+        passwordSettingsError.setText("Password must be at least 8 characters");
+        passwordSettingsError.setTextFill(Color.color(0, 0, 0));
+        displayNameSettingsError.setText("Display Name can be at most 30 characters");
+        displayNameSettingsError.setTextFill(Color.color(0, 0, 0));
+    }
+
+    public void logout()
+    {
+
+    }
+
+    private void fillFields()
+    {
+        usernameSettings.setText(oldUsername);
+        passwordSettings.setText(oldPassword);
+        showPassword.setText(oldPassword);
+        displayNameSettings.setText(oldDisplayName);
+
+        if(oldWelcomePageShown.equals("Yes"))
+        {
+            welcomePage.selectToggle(welcomePageShow);
+        }
+        else
+        {
+            welcomePage.selectToggle(welcomePageNotShow);
+        }
+    }
+    private void disableFields()
+    {
+        usernameSettings.setDisable(true);
+        passwordSettings.setDisable(true);
+        showPassword.setDisable(true);
+        displayNameSettings.setDisable(true);
+        welcomePageShow.setDisable(true);
+        welcomePageNotShow.setDisable(true);
     }
 
     private boolean requirementsCheck(String newPassword, String newDisplayName)
@@ -221,50 +266,5 @@ public class SettingsController implements Initializable {
         Main.login.getUser().setPassword(newPassword);
         Main.login.getUser().setDisplayName(newDisplayName);
         Main.login.getUser().setWelcomePageShown(newWelcomePageShown);
-    }
-
-    public void cancelSettings(ActionEvent event)
-    {
-        disableFields();
-
-        usernameSettings.setText(oldUsername);
-        passwordSettings.setText(oldPassword);
-        displayNameSettings.setText(oldDisplayName);
-
-        passwordSettingsError.setText("Password must be at least 8 characters");
-        passwordSettingsError.setTextFill(Color.color(0, 0, 0));
-        displayNameSettingsError.setText("Display Name can be at most 30 characters");
-        displayNameSettingsError.setTextFill(Color.color(0, 0, 0));
-    }
-
-    public void logout(ActionEvent event)
-    {
-
-    }
-
-    private void fillFields()
-    {
-        usernameSettings.setText(oldUsername);
-        passwordSettings.setText(oldPassword);
-        showPassword.setText(oldPassword);
-        displayNameSettings.setText(oldDisplayName);
-
-        if(oldWelcomePageShown.equals("Yes"))
-        {
-            welcomePage.selectToggle(welcomePageShow);
-        }
-        else
-        {
-            welcomePage.selectToggle(welcomePageNotShow);
-        }
-    }
-    private void disableFields()
-    {
-        usernameSettings.setDisable(true);
-        passwordSettings.setDisable(true);
-        showPassword.setDisable(true);
-        displayNameSettings.setDisable(true);
-        welcomePageShow.setDisable(true);
-        welcomePageNotShow.setDisable(true);
     }
 }

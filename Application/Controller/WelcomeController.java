@@ -68,7 +68,7 @@ public class WelcomeController implements Initializable {
         settingsIcon.getChildren().add(settingsIconPath);
     }
 
-    public void continueToHome(ActionEvent event)
+    public void continueToHome()
     {
         try
         {

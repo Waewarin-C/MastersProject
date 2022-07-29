@@ -80,7 +80,7 @@ public class AddEventController implements Initializable {
         saveEventMessage.setText("");
     }
 
-    public void saveAddEvent(ActionEvent event)
+    public void saveAddEvent()
     {
         String eventName = eventNameField.getText();
         String eventDescription = eventDescriptionField.getText();
@@ -91,7 +91,7 @@ public class AddEventController implements Initializable {
         }
     }
 
-    public void cancelAddEvent(ActionEvent event)
+    public void cancelAddEvent()
     {
         eventNameField.clear();
         eventDescriptionField.clear();

@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
         signUpErrorMessage.setText("");
     }
 
-    public void showPassword(ActionEvent event)
+    public void showPassword()
     {
         if(loginShowPasswordCheckBox.isSelected())
         {
@@ -88,7 +88,11 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void login(ActionEvent event)
+    public void forgotPassword()
+    {
+
+    }
+    public void login()
     {
         String username = loginUsernameField.getText();
         String password = "";
@@ -114,7 +118,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void signUp(ActionEvent event)
+    public void signUp()
     {
         String username = signUpUsernameField.getText();
         String displayName = signUpDisplayNameField.getText();
