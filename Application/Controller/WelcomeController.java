@@ -7,7 +7,6 @@ package Application.Controller;
     //A checkbox option to not display again
 
 import Application.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
