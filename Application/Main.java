@@ -76,11 +76,15 @@ public class Main extends Application {
             String username = scan.nextLine().split(",")[1];
             String password = scan.nextLine().split(",")[1];
             String displayName = scan.nextLine().split(",")[1];
+            String securityQuestion = scan.nextLine().split(",")[1];
+            String securityQuestionAnswer = scan.nextLine().split(",")[1];
             String welcomePageShown = scan.nextLine().split(",")[1];
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
             login.getUser().setDisplayName(displayName);
+            login.getUser().setSecurityQuestion(securityQuestion);
+            login.getUser().setSecurityQuestionAnswer(securityQuestionAnswer);
             login.getUser().setWelcomePageShown(welcomePageShown);
         }
         catch(IOException e)
