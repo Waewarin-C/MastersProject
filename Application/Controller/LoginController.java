@@ -27,7 +27,7 @@ public class LoginController implements Initializable {
     TextField loginUsernameField, loginShowPassword, loginSecurityQuestionAnswer;
 
     @FXML
-    TextField signUpUsernameField, signUpDisplayNameField, signUpShowPassword, confirmPasswordShow;
+    TextField signUpUsernameField, signUpDisplayNameField, signUpShowPassword, confirmPasswordShow, signUpSecurityQuestionField, signUpAnswerField;
 
     @FXML
     PasswordField loginPasswordField, signUpPasswordField, confirmPasswordField;
@@ -143,6 +143,8 @@ public class LoginController implements Initializable {
     {
         String username = signUpUsernameField.getText();
         String displayName = signUpDisplayNameField.getText();
+        String securityQuestion = signUpSecurityQuestionField.getText();
+        String securityQuestionAnswer = signUpAnswerField.getText();
 
         String password = "";
         String confirmPassword = "";
@@ -158,7 +160,7 @@ public class LoginController implements Initializable {
             confirmPassword = confirmPasswordShow.getText();
         }
 
-        String errorMessage = Main.login.createAccount(username, password, confirmPassword, displayName);
+        String errorMessage = Main.login.createAccount(username, password, confirmPassword, displayName, securityQuestion, securityQuestionAnswer);
         if(!errorMessage.equals(""))
         {
             signUpErrorMessage.setText(errorMessage);

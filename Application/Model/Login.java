@@ -47,12 +47,12 @@ public class Login {
         return errorMessage;
     }
 
-    public String createAccount(String username, String password, String confirmPassword, String displayName)
+    public String createAccount(String username, String password, String confirmPassword, String displayName, String securityQuestion, String securityQuestionAnswer)
     {
         String errorMessage = "";
-
+        boolean emptyField = username.equals("") || password.equals("") || confirmPassword.equals("") || displayName.equals("") || securityQuestion.equals("") || securityQuestionAnswer.equals("");
         //Check if any field is empty
-        if(username.equals("") || password.equals("") || confirmPassword.equals("") || displayName.equals(""))
+        if(emptyField)
         {
             errorMessage += "One or more fields is empty\n";
         }
@@ -78,15 +78,15 @@ public class Login {
         //Save new account information with default settings if everything is good to go
         if(errorMessage.equals(""))
         {
-            saveNewAccount(username, password, displayName);
+            saveNewAccount(username, password, displayName, securityQuestion, securityQuestionAnswer);
         }
 
         return errorMessage;
     }
 
-    public void saveNewAccount(String username, String password, String displayName)
+    public void saveNewAccount(String username, String password, String displayName, String securityQuestion, String securityQuestionAnswer)
     {
-        //When writing to events file, need to specify that append is true
+        //When writing to events and categories file, need to specify that append is true
         try
         {
             String fileName = "Account/" + username + "_info.csv";
@@ -96,6 +96,8 @@ public class Login {
             newUserFile.write(String.format("%s,%s\n", "Username", username));
             newUserFile.write(String.format("%s,%s\n", "Password", password));
             newUserFile.write(String.format("%s,%s\n", "Display Name", displayName));
+            newUserFile.write(String.format("%s,%s\n", "Security Question", securityQuestion));
+            newUserFile.write(String.format("%s,%s\n", "Security Question Answer", securityQuestionAnswer));
             newUserFile.write(String.format("%s,%s\n", "Welcome Page Shown", "No"));
 
             newUserFile.close();
