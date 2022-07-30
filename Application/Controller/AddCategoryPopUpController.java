@@ -29,15 +29,16 @@ public class AddCategoryPopUpController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        categoryErrorMessagePopUp.setText("");
+        //addEventController = new AddEventController();
+
+        doneAddCategory.setVisible(false);
+        categoryErrorMessagePopUp.setText("hello");
         categoryColorPopUp.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
     }
 
     public void saveCategory()
     {
-        saveCategoryPopUp.setVisible(false);
-        cancelCategoryPopUp.setVisible(false);
-        doneAddCategory.setVisible(true);
+
     }
 
     public void cancelAddCategory()
@@ -47,9 +48,6 @@ public class AddCategoryPopUpController implements Initializable {
 
     public void doneAddCategory()
     {
-        saveCategoryPopUp.setVisible(true);
-        cancelCategoryPopUp.setVisible(true);
-        doneAddCategory.setVisible(true);
-        addEventController.closeAddCategoryPopUp();
+
     }
 }
