@@ -31,7 +31,10 @@ public class AddEventController implements Initializable {
     Button saveAddEventButton, cancelAddEventButton, addNewEventCategoryButton;
 
     @FXML
-    TextField eventNameField, eventLocationField;
+    Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
+
+    @FXML
+    TextField eventNameField, eventLocationField, categoryNamePopUpField;
 
     @FXML
     DatePicker eventDatePicker;
@@ -43,22 +46,19 @@ public class AddEventController implements Initializable {
     TextArea eventDescriptionField;
 
     @FXML
-    Label addEventPageLabel, saveEventMessage;
+    Label addEventPageLabel, saveEventMessage, categoryErrorMessagePopUp;
 
     @FXML
-    AnchorPane addCategoryPopUp;
+    GridPane addEventButtons, addEventGridPane, addCategoryPopUp;
+
+    @FXML
+    ColorPicker categoryColorPopUpField;
 
     @FXML
     Pane toolbarPane;
 
-    @FXML
-    GridPane addEventButtons, addEventGridPane;
-
-    AddCategoryPopUpController addCategory;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addCategory = new AddCategoryPopUpController();
         try
         {
             Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
@@ -111,9 +111,26 @@ public class AddEventController implements Initializable {
         addCategoryPopUp.setVisible(true);
     }
 
-    public void closeAddCategoryPopUp()
+    public void saveAddCategory()
     {
         addCategoryPopUp.setVisible(false);
+
+        setEffect(null);
+    }
+
+    public void cancelAddCategory()
+    {
+        addCategoryPopUp.setVisible(true);
+
+        setEffect(null);
+    }
+
+    public void doneAddCategory()
+    {
+        saveCategoryPopUpButton.setVisible(true);
+        cancelCategoryPopUpButton.setVisible(true);
+        doneAddCategoryButton.setVisible(false);
+        addCategoryPopUp.setVisible(true);
 
         setEffect(null);
     }
