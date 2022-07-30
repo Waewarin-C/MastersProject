@@ -49,8 +49,10 @@ public class AddEventController implements Initializable {
     Label addEventPageLabel, saveEventMessage, categoryErrorMessagePopUp;
 
     @FXML
-    GridPane addEventButtons, addEventGridPane, addCategoryPopUp;
+    GridPane addEventButtons, addEventGridPane;
 
+    @FXML
+    AnchorPane addCategoryPopUp;
     @FXML
     ColorPicker categoryColorPopUpField;
 
@@ -69,6 +71,7 @@ public class AddEventController implements Initializable {
             e.printStackTrace();
         }
 
+        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         addCategoryPopUp.setVisible(false);
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
@@ -98,29 +101,19 @@ public class AddEventController implements Initializable {
         GaussianBlur blur = new GaussianBlur();
         setEffect(blur);
 
-        try
-        {
-            Parent addCategory = FXMLLoader.load(getClass().getResource("../View/AddCategoryPopUp.fxml"));
-            addCategoryPopUp.getChildren().add(addCategory);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
         addCategoryPopUp.setVisible(true);
     }
 
     public void saveAddCategory()
     {
-        addCategoryPopUp.setVisible(false);
-
-        setEffect(null);
+        saveCategoryPopUpButton.setVisible(false);
+        cancelCategoryPopUpButton.setVisible(false);
+        doneAddCategoryButton.setVisible(true);
     }
 
     public void cancelAddCategory()
     {
-        addCategoryPopUp.setVisible(true);
+        addCategoryPopUp.setVisible(false);
 
         setEffect(null);
     }
@@ -130,7 +123,7 @@ public class AddEventController implements Initializable {
         saveCategoryPopUpButton.setVisible(true);
         cancelCategoryPopUpButton.setVisible(true);
         doneAddCategoryButton.setVisible(false);
-        addCategoryPopUp.setVisible(true);
+        addCategoryPopUp.setVisible(false);
 
         setEffect(null);
     }
