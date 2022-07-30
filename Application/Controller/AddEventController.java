@@ -14,6 +14,7 @@ package Application.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
@@ -30,10 +31,7 @@ public class AddEventController implements Initializable {
     Button saveAddEventButton, cancelAddEventButton, addNewEventCategoryButton;
 
     @FXML
-    Button saveAddCategoryButton, doneAddCategoryButton, cancelAddCategoryButton;
-
-    @FXML
-    TextField eventNameField, eventLocationField, categoryNameField;
+    TextField eventNameField, eventLocationField;
 
     @FXML
     DatePicker eventDatePicker;
@@ -45,7 +43,7 @@ public class AddEventController implements Initializable {
     TextArea eventDescriptionField;
 
     @FXML
-    Label addEventPageLabel, saveEventMessage, addCategoryMessage;
+    Label addEventPageLabel, saveEventMessage;
 
     @FXML
     AnchorPane addCategoryPopUp;
@@ -54,13 +52,13 @@ public class AddEventController implements Initializable {
     Pane toolbarPane;
 
     @FXML
-    ColorPicker categoryColorPicker;
-
-    @FXML
     GridPane addEventButtons, addEventGridPane;
+
+    AddCategoryPopUpController addCategory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addCategory = new AddCategoryPopUpController();
         try
         {
             Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
@@ -73,7 +71,6 @@ public class AddEventController implements Initializable {
 
         addCategoryPopUp.setVisible(false);
 
-        categoryColorPicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         saveEventMessage.setText("");
@@ -101,28 +98,20 @@ public class AddEventController implements Initializable {
         GaussianBlur blur = new GaussianBlur();
         setEffect(blur);
 
+        try
+        {
+            Parent addCategory = FXMLLoader.load(getClass().getResource("../View/AddCategoryPopUp.fxml"));
+            addCategoryPopUp.getChildren().add(addCategory);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
         addCategoryPopUp.setVisible(true);
-        saveAddCategoryButton.setVisible(true);
-        cancelAddCategoryButton.setVisible(true);
-        doneAddCategoryButton.setVisible(false);
     }
 
-    public void saveAddCategory()
-    {
-        saveAddCategoryButton.setVisible(false);
-        cancelAddCategoryButton.setVisible(false);
-        doneAddCategoryButton.setVisible(true);
-    }
-
-    public void doneAddCategory()
-    {
-        addCategoryPopUp.setVisible(false);
-        doneAddCategoryButton.setVisible(false);
-
-        setEffect(null);
-    }
-
-    public void cancelAddCategory()
+    public void closeAddCategoryPopUp()
     {
         addCategoryPopUp.setVisible(false);
 
