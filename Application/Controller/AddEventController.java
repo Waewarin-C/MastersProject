@@ -11,80 +11,73 @@ package Application.Controller;
     //Save event button
     //Cancel button
 
+import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddEventController implements Initializable {
     @FXML
-    Button saveAddEventButton, cancelAddEventButton, addNewEventCategoryButton;
+    private TextField eventNameField, eventLocationField;
 
     @FXML
-    Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
+    private DatePicker eventDatePicker;
 
     @FXML
-    TextField eventNameField, eventLocationField, categoryNamePopUpField;
+    private ComboBox eventCategoryField;
 
     @FXML
-    DatePicker eventDatePicker;
+    private TextArea eventDescriptionField;
 
     @FXML
-    ComboBox eventCategoryField;
+    private Label addEventPageLabel;
 
     @FXML
-    TextArea eventDescriptionField;
+    private Label saveEventMessage;
 
     @FXML
-    Label addEventPageLabel, saveEventMessage, categoryErrorMessagePopUp;
+    private GridPane addEventButtons, addEventGridPane;
 
     @FXML
-    GridPane addEventButtons, addEventGridPane;
+    AnchorPane addCategoryPopUp;
 
     @FXML
-    AnchorPane addCategoryPopUp, anchorPane;
-    @FXML
-    private static AnchorPane anchor;
-    @FXML
-    ColorPicker categoryColorPopUpField;
-
-    @FXML
-    Pane toolbarPane;
+    private Pane toolbarPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try
         {
-            Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
+            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
 
-            anchor = FXMLLoader.load(getClass().getResource("../View/AddCategoryPopUp.fxml"));
-            //anchor.getChildren().add(pop);
-            anchorPane.getChildren().add(anchor);
+            Node popUp = FXMLLoader.load(getClass().getResource("../View/AddCategoryPopUp.fxml"));
+            addCategoryPopUp.getChildren().add(popUp);
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
 
-        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         addCategoryPopUp.setVisible(false);
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         saveEventMessage.setText("");
-
-        anchor.setVisible(false);
     }
 
     public void saveAddEvent()
@@ -109,32 +102,13 @@ public class AddEventController implements Initializable {
         GaussianBlur blur = new GaussianBlur();
         setEffect(blur);
 
-        //addCategoryPopUp.setVisible(true);
-        anchor.setVisible(true);
+        addCategoryPopUp.setVisible(true);
     }
 
-    public void saveAddCategory()
+    public void closeAddCategory()
     {
-        saveCategoryPopUpButton.setVisible(false);
-        cancelCategoryPopUpButton.setVisible(false);
-        doneAddCategoryButton.setVisible(true);
-    }
-
-    public static void cancelAddCategory()
-    {
-        //addCategoryPopUp.setVisible(false);
-        anchor.setVisible(false);
-        //setEffect(null);
-    }
-    public void cancelAdd(){}
-
-    public void doneAddCategory()
-    {
-        saveCategoryPopUpButton.setVisible(true);
-        cancelCategoryPopUpButton.setVisible(true);
-        doneAddCategoryButton.setVisible(false);
+        System.out.println("In close add category");
         addCategoryPopUp.setVisible(false);
-
         setEffect(null);
     }
 
