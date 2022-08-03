@@ -12,7 +12,7 @@ import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -26,33 +26,31 @@ import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
     @FXML
-    GridPane settingsGrid;
+    private GridPane settingsGrid;
 
     @FXML
-    TextField usernameSettings, displayNameSettings, showPassword;
+    private TextField usernameSettings, displayNameSettings, showPassword;
 
     @FXML
-    PasswordField passwordSettings;
+    private PasswordField passwordSettings;
 
     @FXML
-    CheckBox showPasswordCheckBox;
+    private CheckBox showPasswordCheckBox;
 
     @FXML
-    RadioButton welcomePageShow, welcomePageNotShow;
+    private RadioButton welcomePageShow, welcomePageNotShow;
 
     @FXML
-    ToggleGroup welcomePage;
+    private ToggleGroup welcomePage;
 
     @FXML
-    Label passwordSettingsError, displayNameSettingsError, saveMessage;
+    private Label passwordSettingsError, displayNameSettingsError, saveMessage;
 
     @FXML
-    Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
+    private Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
 
     @FXML
-    Pane toolbarPane;
-
-    //TextField passwordShow;
+    private Pane toolbarPane;
 
     private String oldUsername = Main.login.getUser().getUsername();
     private String oldPassword = Main.login.getUser().getPassword();
@@ -64,7 +62,7 @@ public class SettingsController implements Initializable {
     {
         try
         {
-            Parent toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
+            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
         }
         catch(Exception e)

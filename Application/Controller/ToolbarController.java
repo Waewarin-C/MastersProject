@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class ToolbarController implements Initializable {
     @FXML
-    Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
+    private Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)

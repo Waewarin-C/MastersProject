@@ -22,13 +22,13 @@ import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
     @FXML
-    Label welcomeMessage;
+    private Label welcomeMessage;
 
     @FXML
-    Button beginButton;
+    private Button beginButton;
 
     @FXML
-    Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
+    private Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)

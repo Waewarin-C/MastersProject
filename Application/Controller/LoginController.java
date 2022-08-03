@@ -24,28 +24,29 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    TextField loginUsernameField, loginShowPassword, loginSecurityQuestionAnswer;
+    private TextField loginUsernameField, loginShowPassword, loginSecurityQuestionAnswer;
 
     @FXML
-    TextField signUpUsernameField, signUpDisplayNameField, signUpShowPassword, confirmPasswordShow, signUpSecurityQuestionField, signUpAnswerField;
+    private TextField signUpUsernameField, signUpDisplayNameField, signUpShowPassword, confirmPasswordShow, signUpSecurityQuestionField, signUpAnswerField;
 
     @FXML
-    PasswordField loginPasswordField, signUpPasswordField, confirmPasswordField;
+    private PasswordField loginPasswordField, signUpPasswordField, confirmPasswordField;
 
     @FXML
-    CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox;
+    private CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox;
 
     @FXML
-    Button loginButton, signUpButton, securityQuestionSubmitButton;
+    private Button loginButton, signUpButton, securityQuestionSubmitButton;
 
     @FXML
-    Label loginErrorMessage, signUpErrorMessage, loginSecurityQuestion, securityQuestionMessage;
+    private Label loginErrorMessage, signUpErrorMessage, loginSecurityQuestion, securityQuestionMessage;
 
     @FXML
-    GridPane securityQuestionGrid;
+    private GridPane securityQuestionGrid;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);
         confirmPasswordShow.setVisible(false);
