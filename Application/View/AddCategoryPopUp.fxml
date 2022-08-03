@@ -76,7 +76,10 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="categoryNamePopUpField" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
+            <TextField fx:id="categoryNamePopUpField" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></TextField>
             <ColorPicker fx:id="categoryColorPopUpField" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
