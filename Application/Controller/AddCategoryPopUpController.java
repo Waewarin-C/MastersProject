@@ -16,40 +16,32 @@ import java.util.ResourceBundle;
 
 public class AddCategoryPopUpController implements Initializable {
     @FXML
-    Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
+    private Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
 
     @FXML
-    TextField categoryNamePopUpField;
+    private TextField categoryNamePopUpField;
 
     @FXML
-    ColorPicker categoryColorPopUpField;
+    private ColorPicker categoryColorPopUpField;
 
     @FXML
-    Label categoryErrorMessagePopUp;
+    private Label categoryErrorMessagePopUp;
 
-    AddEventController addEventController;
+    private AddEventController addEventController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        try
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddEvent.fxml"));
-            loader.load(); //This causes infinite loop
-            addEventController = loader.getController();
-
-            System.out.println(addEventController);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
         //addEventController = new AddEventController();
 
         doneAddCategoryButton.setVisible(false);
 
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+    }
+
+    public void setParentController(AddEventController addEventController)
+    {
+        this.addEventController = addEventController;
     }
 
     public void saveAddCategory()
@@ -72,6 +64,4 @@ public class AddCategoryPopUpController implements Initializable {
 
         addEventController.closeAddCategory();
     }
-
-
 }

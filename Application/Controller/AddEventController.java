@@ -11,20 +11,16 @@ package Application.Controller;
     //Save event button
     //Cancel button
 
-import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +48,7 @@ public class AddEventController implements Initializable {
     private GridPane addEventButtons, addEventGridPane;
 
     @FXML
-    AnchorPane addCategoryPopUp;
+    private AnchorPane addCategoryPopUp;
 
     @FXML
     private Pane toolbarPane;
@@ -65,8 +61,11 @@ public class AddEventController implements Initializable {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
 
-            Node popUp = FXMLLoader.load(getClass().getResource("../View/AddCategoryPopUp.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCategoryPopUp.fxml"));
+            Node popUp = loader.load();
             addCategoryPopUp.getChildren().add(popUp);
+
+            ((AddCategoryPopUpController)loader.getController()).setParentController(this);
         }
         catch(Exception e)
         {
@@ -107,7 +106,6 @@ public class AddEventController implements Initializable {
 
     public void closeAddCategory()
     {
-        System.out.println("In close add category");
         addCategoryPopUp.setVisible(false);
         setEffect(null);
     }
