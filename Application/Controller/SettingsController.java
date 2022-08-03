@@ -14,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -22,14 +21,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
     @FXML
-    private GridPane settingsGrid;
-
-    @FXML
-    private TextField usernameSettings, displayNameSettings, showPassword;
+    private TextField usernameSettings, displayNameSettings, showPassword, securityQuestionSettings, securityQuestionAnswerSettings;
 
     @FXML
     private PasswordField passwordSettings;
@@ -55,6 +53,8 @@ public class SettingsController implements Initializable {
     private String oldUsername = Main.login.getUser().getUsername();
     private String oldPassword = Main.login.getUser().getPassword();
     private String oldDisplayName = Main.login.getUser().getDisplayName();
+    private String oldSecurityQuestion = Main.login.getUser().getSecurityQuestion();
+    private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
     private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
 
     @Override
@@ -71,7 +71,7 @@ public class SettingsController implements Initializable {
         }
 
         fillFields();
-        disableFields();
+        setFieldsDisable(true);
 
         showPassword.setVisible(false);
         saveMessage.setText("");
@@ -95,18 +95,17 @@ public class SettingsController implements Initializable {
 
     public void editSettings()
     {
-        usernameSettings.setDisable(false);
-        passwordSettings.setDisable(false);
-        showPassword.setDisable(false);
-        displayNameSettings.setDisable(false);
-        welcomePageShow.setDisable(false);
-        welcomePageNotShow.setDisable(false);
+        setFieldsDisable(false);
     }
 
     public void saveSettings()
     {
+        List<String> newSettings = new ArrayList<String>();
+
         String newUsername = usernameSettings.getText();
         String newDisplayName = displayNameSettings.getText();
+        String newSecurityQuestion = securityQuestionSettings.getText();
+        String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
         String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
@@ -126,19 +125,28 @@ public class SettingsController implements Initializable {
             return;
         }
 
-        saveSettingsToFile(newUsername, newPassword, newDisplayName, newWelcomePageShown);
-        saveSettingsToUser(newUsername, newPassword, newDisplayName, newWelcomePageShown);
+        newSettings.add(newUsername);
+        newSettings.add(newPassword);
+        newSettings.add(newDisplayName);
+        newSettings.add(newSecurityQuestion);
+        newSettings.add(newSecurityQuestionAnswer);
+        newSettings.add(newWelcomePageShown);
 
-        disableFields();
+        saveSettingsToFile(newSettings);
+        saveSettingsToUser(newSettings);
+
+        setFieldsDisable(true);
     }
 
     public void cancelSettings()
     {
-        disableFields();
+        setFieldsDisable(true);
 
         usernameSettings.setText(oldUsername);
         passwordSettings.setText(oldPassword);
         displayNameSettings.setText(oldDisplayName);
+        securityQuestionSettings.setText(oldSecurityQuestion);
+        securityQuestionAnswerSettings.setText(oldSecurityQuestionAnswer);
 
         passwordSettingsError.setText("Password must be at least 8 characters");
         passwordSettingsError.setTextFill(Color.color(0, 0, 0));
@@ -157,6 +165,8 @@ public class SettingsController implements Initializable {
         passwordSettings.setText(oldPassword);
         showPassword.setText(oldPassword);
         displayNameSettings.setText(oldDisplayName);
+        securityQuestionSettings.setText(oldSecurityQuestion);
+        securityQuestionAnswerSettings.setText(oldSecurityQuestionAnswer);
 
         if(oldWelcomePageShown.equals("Yes"))
         {
@@ -167,14 +177,16 @@ public class SettingsController implements Initializable {
             welcomePage.selectToggle(welcomePageNotShow);
         }
     }
-    private void disableFields()
+    private void setFieldsDisable(boolean disable)
     {
-        usernameSettings.setDisable(true);
-        passwordSettings.setDisable(true);
-        showPassword.setDisable(true);
-        displayNameSettings.setDisable(true);
-        welcomePageShow.setDisable(true);
-        welcomePageNotShow.setDisable(true);
+        usernameSettings.setDisable(disable);
+        passwordSettings.setDisable(disable);
+        showPassword.setDisable(disable);
+        displayNameSettings.setDisable(disable);
+        securityQuestionSettings.setDisable(disable);
+        securityQuestionAnswerSettings.setDisable(disable);
+        welcomePageShow.setDisable(disable);
+        welcomePageNotShow.setDisable(disable);
     }
 
     private boolean requirementsCheck(String newPassword, String newDisplayName)
@@ -209,7 +221,7 @@ public class SettingsController implements Initializable {
         return error;
     }
 
-    private void saveSettingsToFile(String newUsername, String newPassword, String newDisplayName, String newWelcomePageShown)
+    private void saveSettingsToFile(List<String> newSettings)
     {
         try
         {
@@ -217,16 +229,18 @@ public class SettingsController implements Initializable {
             String oldFileName = "Account/" + oldUsername + "_info.csv";
             File oldFile = new File(oldFileName);
 
-            String newFileName = "Account/" + newUsername + "_info.csv";
+            String newFileName = "Account/" + newSettings.get(0) + "_info.csv";
             File newFile = new File(newFileName);
             oldFile.renameTo(newFile);
 
             FileWriter save = new FileWriter(oldFile);
             save.write(String.format("%s,%s\n", "Setting", "Value"));
-            save.write(String.format("%s,%s\n", "Username", newUsername));
-            save.write(String.format("%s,%s\n", "Password", newPassword));
-            save.write(String.format("%s,%s\n", "Display Name", newDisplayName));
-            save.write(String.format("%s,%s\n", "Welcome Page Shown", newWelcomePageShown));
+            save.write(String.format("%s,%s\n", "Username", newSettings.get(0)));
+            save.write(String.format("%s,%s\n", "Password", newSettings.get(1)));
+            save.write(String.format("%s,%s\n", "Display Name", newSettings.get(2)));
+            save.write(String.format("%s,%s\n", "Security Question", newSettings.get(3)));
+            save.write(String.format("%s,%s\n", "Security Question Answer", newSettings.get(4)));
+            save.write(String.format("%s,%s\n", "Welcome Page Shown", newSettings.get(5)));
 
             save.close();
 
@@ -234,7 +248,7 @@ public class SettingsController implements Initializable {
             oldFileName = "Account/" + oldUsername + "_events.csv";
             oldFile = new File(oldFileName);
 
-            newFileName = "Account/" + newUsername + "_events.csv";
+            newFileName = "Account/" + newSettings.get(0) + "_events.csv";
             newFile = new File(newFileName);
             oldFile.renameTo(newFile);
 
@@ -242,7 +256,7 @@ public class SettingsController implements Initializable {
             oldFileName = "Account/" + oldUsername + "_categories.csv";
             oldFile = new File(oldFileName);
 
-            newFileName = "Account/" + newUsername + "_categories.csv";
+            newFileName = "Account/" + newSettings.get(0) + "_categories.csv";
             newFile = new File(newFileName);
             oldFile.renameTo(newFile);
 
@@ -257,11 +271,13 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void saveSettingsToUser(String newUsername, String newPassword, String newDisplayName, String newWelcomePageShown)
+    private void saveSettingsToUser(List<String> newSettings)
     {
-        Main.login.getUser().setUsername(newUsername);
-        Main.login.getUser().setPassword(newPassword);
-        Main.login.getUser().setDisplayName(newDisplayName);
-        Main.login.getUser().setWelcomePageShown(newWelcomePageShown);
+        Main.login.getUser().setUsername(newSettings.get(0));
+        Main.login.getUser().setPassword(newSettings.get(1));
+        Main.login.getUser().setDisplayName(newSettings.get(2));
+        Main.login.getUser().setSecurityQuestion(newSettings.get(3));
+        Main.login.getUser().setSecurityQuestionAnswer(newSettings.get(4));
+        Main.login.getUser().setWelcomePageShown(newSettings.get(5));
     }
 }
