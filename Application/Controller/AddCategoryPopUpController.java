@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -74,15 +73,53 @@ public class AddCategoryPopUpController implements Initializable {
         String categoryName = categoryNamePopUpField.getText();
         String categoryColor = categoryColorPopUpField.getValue().toString();
 
+        boolean isUniqueCategory = checkIfNewCategory(categoryName);
+        if(isUniqueCategory)
+        {
+            boolean isUniqueColor = checkIfNewColor(categoryColor);
+            if(!isUniqueColor)
+            {
+                categoryErrorMessagePopUp.setText("This color already associates with an existing category, please choose another color");
+                return;
+            }
+        }
+        else
+        {
+            String message = "The category \"" + categoryName + "\" already exists";
+            categoryErrorMessagePopUp.setText(message);
+            return;
+        }
+
         try
         {
             file = new FileWriter(new File(fileName), true);
             file.write(String.format("%s,%s\n", categoryName, categoryColor));
+            file.close();
         }
         catch(IOException e)
         {
             System.out.println("Error: unable to save the category");
             e.printStackTrace();
         }
+    }
+
+    private boolean checkIfNewCategory(String category)
+    {
+        if(Main.login.getUser().getCategories().containsKey(category))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkIfNewColor(String color)
+    {
+        if(Main.login.getUser().getCategories().containsValue(color))
+        {
+            return false;
+        }
+
+        return true;
     }
 }

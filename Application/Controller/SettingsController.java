@@ -149,9 +149,9 @@ public class SettingsController implements Initializable {
         securityQuestionAnswerSettings.setText(oldSecurityQuestionAnswer);
 
         passwordSettingsError.setText("Password must be at least 8 characters");
-        passwordSettingsError.setTextFill(Color.color(0, 0, 0));
+        passwordSettingsError.setTextFill(Color.rgb(0, 0, 0));
         displayNameSettingsError.setText("Display Name can be at most 30 characters");
-        displayNameSettingsError.setTextFill(Color.color(0, 0, 0));
+        displayNameSettingsError.setTextFill(Color.rgb(0, 0, 0));
     }
 
     public void logout()
@@ -197,25 +197,25 @@ public class SettingsController implements Initializable {
         if(newPassword.length() < 8)
         {
             passwordSettingsError.setText("Error: Password must be at least 8 characters");
-            passwordSettingsError.setTextFill(Color.color(1,0,0));
+            passwordSettingsError.setTextFill(Color.rgb(255,0,0));
             error = true;
         }
         else
         {
             passwordSettingsError.setText("Password length satisfied");
-            passwordSettingsError.setTextFill(Color.color(0,1,0));
+            passwordSettingsError.setTextFill(Color.rgb(0,255,0));
         }
 
         if(newDisplayName.length() > 30)
         {
             displayNameSettingsError.setText("Error: Display Name must be at most 30 characters");
-            displayNameSettingsError.setTextFill(Color.color(1, 0, 0));
+            displayNameSettingsError.setTextFill(Color.rgb(255, 0, 0));
             error = true;
         }
         else
         {
             displayNameSettingsError.setText("Display Name is within length limits");
-            displayNameSettingsError.setTextFill(Color.color(0, 1, 0));
+            displayNameSettingsError.setTextFill(Color.rgb(0, 255, 0));
         }
 
         return error;
@@ -265,7 +265,7 @@ public class SettingsController implements Initializable {
         catch(IOException e)
         {
             saveMessage.setText("Error: something went wrong, please try again");
-            saveMessage.setTextFill(Color.color(1, 0, 0));
+            saveMessage.setTextFill(Color.rgb(255, 0, 0));
             System.out.println("Error: cannot save account settings");
             e.printStackTrace();
         }
