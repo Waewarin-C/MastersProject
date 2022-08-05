@@ -68,6 +68,7 @@ public class AddCategoryPopUpController implements Initializable {
         {
             saveCategoryToFile(categoryNameCamelCase, categoryColor);
             saveCategoryToUser(categoryNameCamelCase, categoryColor);
+
             saveCategoryPopUpButton.setVisible(false);
             cancelCategoryPopUpButton.setVisible(false);
             doneAddCategoryButton.setVisible(true);
@@ -76,7 +77,7 @@ public class AddCategoryPopUpController implements Initializable {
 
     public void cancelAddCategory()
     {
-        addEventController.closeAddCategory();
+        addEventController.closeAddCategory("");
     }
 
     public void doneAddCategory()
@@ -85,7 +86,9 @@ public class AddCategoryPopUpController implements Initializable {
         cancelCategoryPopUpButton.setVisible(true);
         doneAddCategoryButton.setVisible(false);
 
-        addEventController.closeAddCategory();
+        String categoryName = categoryNamePopUpField.getText().substring(0,1).toUpperCase();
+        categoryName += categoryNamePopUpField.getText().substring(1);
+        addEventController.closeAddCategory(categoryName);
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)

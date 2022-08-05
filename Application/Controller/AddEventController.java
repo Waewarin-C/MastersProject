@@ -39,10 +39,10 @@ public class AddEventController implements Initializable {
     private TextArea eventDescriptionField;
 
     @FXML
-    private Label addEventPageLabel;
+    private Label addEventPageLabel, saveEventMessage, newCategory;
 
     @FXML
-    private Label saveEventMessage;
+    private Button addNewEventCategoryButton;
 
     @FXML
     private GridPane addEventButtons, addEventGridPane;
@@ -79,23 +79,31 @@ public class AddEventController implements Initializable {
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        newCategory.setText("");
+        newCategory.setVisible(false);
         saveEventMessage.setText("");
     }
 
     public void saveAddEvent()
     {
         String eventName = eventNameField.getText();
+        String eventLocation = eventLocationField.getText();
+        String eventCategory = eventCategoryField.getValue().toString();
         String eventDescription = eventDescriptionField.getText();
 
         if(eventName.equals("") || eventDescription.equals(""))
         {
             saveEventMessage.setText("One or more fields is empty");
+            return;
         }
     }
 
     public void cancelAddEvent()
     {
         eventNameField.clear();
+        eventDatePicker.setValue(null);
+        eventLocationField.clear();
+        eventCategoryField.getSelectionModel().clearSelection();
         eventDescriptionField.clear();
     }
 
@@ -108,9 +116,16 @@ public class AddEventController implements Initializable {
         addCategoryPopUp.setVisible(true);
     }
 
-    public void closeAddCategory()
+    public void closeAddCategory(String category)
     {
         addCategoryPopUp.setVisible(false);
+        if(category.length() > 0)
+        {
+            addNewEventCategoryButton.setVisible(false);
+            newCategory.setText(category);
+            newCategory.setVisible(true);
+        }
+
         setEffect(null);
     }
 

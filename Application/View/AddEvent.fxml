@@ -98,7 +98,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" promptText="Select a Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" promptText="Type in or Select a Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
@@ -111,11 +111,20 @@
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="addNewEventCategoryButton" mnemonicParsing="false" onAction="#addNewEventCategory" prefHeight="30.0" text="Add a New Category">
-                     <font>
-                        <Font name="Berlin Sans FB" size="14.0" />
-                     </font>
-                  </Button>
+                  <AnchorPane prefHeight="200.0">
+                     <children>
+                        <Button fx:id="addNewEventCategoryButton" mnemonicParsing="false" onAction="#addNewEventCategory" prefHeight="30.0" text="Add a New Category">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="newCategory" layoutX="-2.0" layoutY="6.0" text="Label">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
             <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -129,6 +138,6 @@
          </padding>
       </GridPane>
       <Pane fx:id="toolbarPane" layoutX="20.0" layoutY="540.0" prefHeight="80.0" prefWidth="800.0" />
-      <AnchorPane fx:id="addCategoryPopUp" layoutX="240.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" />
+      <AnchorPane fx:id="addCategoryPopUp" layoutX="230.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" />
    </children>
 </AnchorPane>
