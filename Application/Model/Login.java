@@ -86,7 +86,6 @@ public class Login {
 
     public void saveNewAccount(String username, String password, String displayName, String securityQuestion, String securityQuestionAnswer)
     {
-        //When writing to events and categories file, need to specify that append is true
         try
         {
             String fileName = "Account/" + username + "_info.csv";

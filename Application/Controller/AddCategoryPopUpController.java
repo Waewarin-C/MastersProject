@@ -44,11 +44,18 @@ public class AddCategoryPopUpController implements Initializable {
 
     public void saveAddCategory()
     {
-        saveCategoryToFile();
+        String categoryName = categoryNamePopUpField.getText();
+        String categoryColor = categoryColorPopUpField.getValue().toString();
 
-        saveCategoryPopUpButton.setVisible(false);
-        cancelCategoryPopUpButton.setVisible(false);
-        doneAddCategoryButton.setVisible(true);
+        boolean isUnique = checkIfUnique(categoryName, categoryColor);
+        if(isUnique)
+        {
+            saveCategoryToFile(categoryName, categoryColor);
+            saveCategoryToUser(categoryName, categoryColor);
+            saveCategoryPopUpButton.setVisible(false);
+            cancelCategoryPopUpButton.setVisible(false);
+            doneAddCategoryButton.setVisible(true);
+        }
     }
 
     public void cancelAddCategory()
@@ -65,14 +72,8 @@ public class AddCategoryPopUpController implements Initializable {
         addEventController.closeAddCategory();
     }
 
-    private void saveCategoryToFile()
+    private boolean checkIfUnique(String categoryName, String categoryColor)
     {
-        FileWriter file = null;
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
-
-        String categoryName = categoryNamePopUpField.getText();
-        String categoryColor = categoryColorPopUpField.getValue().toString();
-
         boolean isUniqueCategory = checkIfNewCategory(categoryName);
         if(isUniqueCategory)
         {
@@ -80,27 +81,17 @@ public class AddCategoryPopUpController implements Initializable {
             if(!isUniqueColor)
             {
                 categoryErrorMessagePopUp.setText("This color already associates with an existing category, please choose another color");
-                return;
+                return false;
             }
         }
         else
         {
             String message = "The category \"" + categoryName + "\" already exists";
             categoryErrorMessagePopUp.setText(message);
-            return;
+            return false;
         }
 
-        try
-        {
-            file = new FileWriter(new File(fileName), true);
-            file.write(String.format("%s,%s\n", categoryName, categoryColor));
-            file.close();
-        }
-        catch(IOException e)
-        {
-            System.out.println("Error: unable to save the category");
-            e.printStackTrace();
-        }
+        return true;
     }
 
     private boolean checkIfNewCategory(String category)
@@ -121,5 +112,28 @@ public class AddCategoryPopUpController implements Initializable {
         }
 
         return true;
+    }
+
+    private void saveCategoryToFile(String categoryName, String categoryColor)
+    {
+        FileWriter file = null;
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
+
+        try
+        {
+            file = new FileWriter(new File(fileName), true);
+            file.write(String.format("%s,%s\n", categoryName, categoryColor));
+            file.close();
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error: unable to save the category");
+            e.printStackTrace();
+        }
+    }
+
+    private void saveCategoryToUser(String categoryName, String categoryColor)
+    {
+        Main.login.getUser().addCategory(categoryName, categoryColor);
     }
 }

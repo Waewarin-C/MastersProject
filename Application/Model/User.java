@@ -29,6 +29,16 @@ public class User {
         this.welcomePageShown = "No";
     }
 
+    public void addEvent(Event event)
+    {
+        this.events.add(event);
+    }
+
+    public void addCategory(String categoryName, String categoryColor)
+    {
+        this.categories.put(categoryName, categoryColor);
+    }
+
     public String getUsername()
     {
         return this.username;
