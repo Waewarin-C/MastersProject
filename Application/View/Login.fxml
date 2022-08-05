@@ -199,7 +199,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="signUpUsernameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1">
+            <TextField fx:id="signUpUsernameField" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>

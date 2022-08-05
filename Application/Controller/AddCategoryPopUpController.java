@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -33,8 +34,8 @@ public class AddCategoryPopUpController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         doneAddCategoryButton.setVisible(false);
-
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        categoryErrorMessagePopUp.setText("");
     }
 
     public void setParentController(AddEventController addEventController)
@@ -42,16 +43,31 @@ public class AddCategoryPopUpController implements Initializable {
         this.addEventController = addEventController;
     }
 
+    public void setUp()
+    {
+        categoryNamePopUpField.clear();
+        categoryColorPopUpField.setValue(Color.WHITE);
+        categoryErrorMessagePopUp.setText("");
+    }
+
     public void saveAddCategory()
     {
         String categoryName = categoryNamePopUpField.getText();
+        if(categoryName.equals(""))
+        {
+            categoryErrorMessagePopUp.setText("Category Name is empty");
+            return;
+        }
+
+        String categoryNameCamelCase = categoryName.substring(0,1).toUpperCase() + categoryName.substring(1);
+
         String categoryColor = categoryColorPopUpField.getValue().toString();
 
-        boolean isUnique = checkIfUnique(categoryName, categoryColor);
+        boolean isUnique = checkIfUnique(categoryNameCamelCase, categoryColor);
         if(isUnique)
         {
-            saveCategoryToFile(categoryName, categoryColor);
-            saveCategoryToUser(categoryName, categoryColor);
+            saveCategoryToFile(categoryNameCamelCase, categoryColor);
+            saveCategoryToUser(categoryNameCamelCase, categoryColor);
             saveCategoryPopUpButton.setVisible(false);
             cancelCategoryPopUpButton.setVisible(false);
             doneAddCategoryButton.setVisible(true);
@@ -80,7 +96,7 @@ public class AddCategoryPopUpController implements Initializable {
             boolean isUniqueColor = checkIfNewColor(categoryColor);
             if(!isUniqueColor)
             {
-                categoryErrorMessagePopUp.setText("This color already associates with an existing category, please choose another color");
+                categoryErrorMessagePopUp.setText("This color is already with an existing category");
                 return false;
             }
         }

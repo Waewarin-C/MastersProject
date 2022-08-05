@@ -53,6 +53,8 @@ public class AddEventController implements Initializable {
     @FXML
     private Pane toolbarPane;
 
+    private AddCategoryPopUpController popUpController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -65,7 +67,8 @@ public class AddEventController implements Initializable {
             Node popUp = loader.load();
             addCategoryPopUp.getChildren().add(popUp);
 
-            ((AddCategoryPopUpController)loader.getController()).setParentController(this);
+            popUpController = ((AddCategoryPopUpController)loader.getController());
+            popUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -101,6 +104,7 @@ public class AddEventController implements Initializable {
         GaussianBlur blur = new GaussianBlur();
         setEffect(blur);
 
+        popUpController.setUp();
         addCategoryPopUp.setVisible(true);
     }
 
