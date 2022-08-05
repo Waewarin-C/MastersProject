@@ -11,6 +11,8 @@ package Application.Controller;
     //Save event button
     //Cancel button
 
+import Application.Main;
+import Application.Model.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +24,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddEventController implements Initializable {
@@ -87,15 +96,27 @@ public class AddEventController implements Initializable {
     public void saveAddEvent()
     {
         String eventName = eventNameField.getText();
+        String eventDate = formatDate();
         String eventLocation = eventLocationField.getText();
         String eventCategory = eventCategoryField.getValue().toString();
         String eventDescription = eventDescriptionField.getText();
 
-        if(eventName.equals("") || eventDescription.equals(""))
+        boolean emptyField = eventName.equals("") || eventDate.equals("") || eventLocation.equals("") || eventCategory.equals("") || eventDescription.equals("");
+        if(emptyField)
         {
             saveEventMessage.setText("One or more fields is empty");
             return;
         }
+
+        List<String> event = new ArrayList<String>();
+        event.add(eventName);
+        event.add(eventDate);
+        event.add(eventLocation);
+        event.add(eventCategory);
+        event.add(eventDescription);
+
+        saveEventToFile(event);
+        saveEventToUser(event);
     }
 
     public void cancelAddEvent()
@@ -104,6 +125,9 @@ public class AddEventController implements Initializable {
         eventDatePicker.setValue(null);
         eventLocationField.clear();
         eventCategoryField.getSelectionModel().clearSelection();
+        addNewEventCategoryButton.setVisible(true);
+        newCategory.setText("");
+        newCategory.setVisible(false);
         eventDescriptionField.clear();
     }
 
@@ -135,5 +159,49 @@ public class AddEventController implements Initializable {
         addEventGridPane.setEffect(effect);
         addEventButtons.setEffect(effect);
         toolbarPane.setEffect(effect);
+    }
+
+    private String formatDate()
+    {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yy");
+        LocalDate date = eventDatePicker.getValue();
+
+        return date.format(format);
+    }
+
+    private void saveEventToFile(List<String> event)
+    {
+        String eventName = event.get(0);
+        String eventDate = event.get(1);
+        String eventLocation = event.get(2);
+        String eventCategory = event.get(3);
+        String eventDescription = event.get(4);
+
+        FileWriter file = null;
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
+
+        try
+        {
+            file = new FileWriter(new File(fileName), true);
+            file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
+            file.close();
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error: unable to save the event");
+            e.printStackTrace();
+        }
+    }
+
+    private void saveEventToUser(List<String> event)
+    {
+        String eventName = event.get(0);
+        String eventDate = event.get(1);
+        String eventLocation = event.get(2);
+        String eventCategory = event.get(3);
+        String eventDescription = event.get(4);
+
+        Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
+        Main.login.getUser().addEvent(newEvent);
     }
 }
