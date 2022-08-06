@@ -87,9 +87,14 @@ public class AddEventController implements Initializable {
         addCategoryPopUp.setVisible(false);
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+
+        List<String> categories = new ArrayList<String>();
+        categories.addAll(Main.login.getUser().getCategories().keySet());
+        eventCategoryField.getItems().addAll(categories);
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         newCategory.setText("");
         newCategory.setVisible(false);
+
         saveEventMessage.setText("");
     }
 
@@ -98,8 +103,16 @@ public class AddEventController implements Initializable {
         String eventName = eventNameField.getText();
         String eventDate = formatDate();
         String eventLocation = eventLocationField.getText();
-        String eventCategory = eventCategoryField.getValue().toString();
         String eventDescription = eventDescriptionField.getText();
+        String eventCategory = "";
+        if(eventCategoryField.getValue() != null)
+        {
+            eventCategory = eventCategoryField.getValue().toString();
+        }
+        else
+        {
+            eventCategory = newCategory.getText();
+        }
 
         boolean emptyField = eventName.equals("") || eventDate.equals("") || eventLocation.equals("") || eventCategory.equals("") || eventDescription.equals("");
         if(emptyField)
@@ -163,7 +176,7 @@ public class AddEventController implements Initializable {
 
     private String formatDate()
     {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
         LocalDate date = eventDatePicker.getValue();
 
         return date.format(format);
