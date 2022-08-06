@@ -19,6 +19,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -162,7 +164,16 @@ public class LoginController implements Initializable {
             confirmPassword = confirmPasswordShow.getText();
         }
 
-        String errorMessage = Main.login.createAccount(username, password, confirmPassword, displayName, securityQuestion, securityQuestionAnswer);
+        //Make this a list and pass it in instead
+        List<String> information = new ArrayList<String>();
+        information.add(username);
+        information.add(password);
+        information.add(confirmPassword);
+        information.add(displayName);
+        information.add(securityQuestion);
+        information.add(securityQuestionAnswer);
+
+        String errorMessage = Main.login.createAccount(information);
         if(!errorMessage.equals(""))
         {
             signUpErrorMessage.setText(errorMessage);
