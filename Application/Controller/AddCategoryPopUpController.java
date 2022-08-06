@@ -26,7 +26,7 @@ public class AddCategoryPopUpController implements Initializable {
     private ColorPicker categoryColorPopUpField;
 
     @FXML
-    private Label categoryErrorMessagePopUp;
+    private Label categoryMessagePopUp;
 
     private AddEventController addEventController;
 
@@ -35,7 +35,7 @@ public class AddCategoryPopUpController implements Initializable {
     {
         doneAddCategoryButton.setVisible(false);
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        categoryErrorMessagePopUp.setText("");
+        categoryMessagePopUp.setText("");
     }
 
     public void setParentController(AddEventController addEventController)
@@ -47,7 +47,7 @@ public class AddCategoryPopUpController implements Initializable {
     {
         categoryNamePopUpField.clear();
         categoryColorPopUpField.setValue(Color.WHITE);
-        categoryErrorMessagePopUp.setText("");
+        categoryMessagePopUp.setText("");
     }
 
     public void saveAddCategory()
@@ -55,7 +55,7 @@ public class AddCategoryPopUpController implements Initializable {
         String categoryName = categoryNamePopUpField.getText();
         if(categoryName.equals(""))
         {
-            categoryErrorMessagePopUp.setText("Category Name is empty");
+            categoryMessagePopUp.setText("Category Name is empty");
             return;
         }
 
@@ -99,14 +99,14 @@ public class AddCategoryPopUpController implements Initializable {
             boolean isUniqueColor = checkIfNewColor(categoryColor);
             if(!isUniqueColor)
             {
-                categoryErrorMessagePopUp.setText("This color is already with an existing category");
+                categoryMessagePopUp.setText("This color is already with an existing category");
                 return false;
             }
         }
         else
         {
             String message = "The category \"" + categoryName + "\" already exists";
-            categoryErrorMessagePopUp.setText(message);
+            categoryMessagePopUp.setText(message);
             return false;
         }
 
@@ -143,9 +143,13 @@ public class AddCategoryPopUpController implements Initializable {
             file = new FileWriter(new File(fileName), true);
             file.write(String.format("%s,%s\n", categoryName, categoryColor));
             file.close();
+
+            categoryMessagePopUp.setText("Saved successfully!");
         }
         catch(IOException e)
         {
+            categoryMessagePopUp.setText("Error: something went wrong, please try again");
+            categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
             System.out.println("Error: unable to save the category");
             e.printStackTrace();
         }

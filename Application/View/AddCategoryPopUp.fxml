@@ -76,7 +76,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
             <ColorPicker fx:id="categoryColorPopUpField" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="categoryErrorMessagePopUp" alignment="CENTER" text="Label" textFill="RED" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Label fx:id="categoryMessagePopUp" alignment="CENTER" text="Label" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

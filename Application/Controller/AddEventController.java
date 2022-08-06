@@ -23,6 +23,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -130,18 +131,13 @@ public class AddEventController implements Initializable {
 
         saveEventToFile(event);
         saveEventToUser(event);
+
+        resetFields();
     }
 
     public void cancelAddEvent()
     {
-        eventNameField.clear();
-        eventDatePicker.setValue(null);
-        eventLocationField.clear();
-        eventCategoryField.getSelectionModel().clearSelection();
-        addNewEventCategoryButton.setVisible(true);
-        newCategory.setText("");
-        newCategory.setVisible(false);
-        eventDescriptionField.clear();
+        resetFields();
     }
 
     public void addNewEventCategory()
@@ -198,9 +194,13 @@ public class AddEventController implements Initializable {
             file = new FileWriter(new File(fileName), true);
             file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
             file.close();
+
+            saveEventMessage.setText("Saved successfully!");
         }
         catch(IOException e)
         {
+            saveEventMessage.setText("Error: something went wrong, please try again");
+            saveEventMessage.setTextFill(Color.rgb(255,0,0));
             System.out.println("Error: unable to save the event");
             e.printStackTrace();
         }
@@ -216,5 +216,17 @@ public class AddEventController implements Initializable {
 
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
         Main.login.getUser().addEvent(newEvent);
+    }
+
+    private void resetFields()
+    {
+        eventNameField.clear();
+        eventDatePicker.setValue(null);
+        eventLocationField.clear();
+        eventCategoryField.getSelectionModel().clearSelection();
+        newCategory.setText("");
+        eventDescriptionField.clear();
+        addNewEventCategoryButton.setVisible(true);
+        newCategory.setVisible(false);
     }
 }
