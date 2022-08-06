@@ -32,6 +32,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -91,6 +92,7 @@ public class AddEventController implements Initializable {
 
         List<String> categories = new ArrayList<String>();
         categories.addAll(Main.login.getUser().getCategories().keySet());
+        Collections.sort(categories);
         eventCategoryField.getItems().addAll(categories);
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         newCategory.setText("");
