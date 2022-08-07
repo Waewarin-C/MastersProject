@@ -74,6 +74,10 @@ public class CategoriesController implements Initializable {
         {
             numRows = 1;
             numCols = numCategories;
+            for(int i = 1; i < numCols; i++)
+            {
+                categoriesGrid.addColumn(i, null);
+            }
         }
 
         int categoryIndex = 0;
@@ -97,11 +101,12 @@ public class CategoriesController implements Initializable {
 
                 box.getChildren().add(categoryName);
                 box.getChildren().add(categoryColor);
-
+                System.out.println(box.getPrefWidth());
                 categoriesGrid.add(box, col, row);
 
                 categoryIndex++;
             }
-        }
+        }categoriesGrid.setMaxWidth(categoriesGrid.getPrefWidth());
+        System.out.println(categoriesGrid.getMaxWidth());
     }
 }

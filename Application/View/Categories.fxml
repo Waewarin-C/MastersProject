@@ -42,8 +42,11 @@
          </children>
       </GridPane>
       <Pane fx:id="toolbarPane" layoutX="20.0" layoutY="540.0" prefHeight="80.0" prefWidth="800.0" />
-      <GridPane fx:id="categoriesGrid" hgap="10.0" layoutX="180.0" layoutY="150.0" vgap="10.0">
+      <GridPane fx:id="categoriesGrid" hgap="10.0" layoutX="90.0" layoutY="154.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="660.0" vgap="10.0">
         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
