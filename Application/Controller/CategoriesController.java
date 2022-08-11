@@ -15,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -32,7 +34,10 @@ public class CategoriesController implements Initializable, CategoryParentContro
     private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
-    private Label saveEditMessage;
+    private Label categoriesPageLabel, saveEditMessage;
+
+    @FXML
+    private GridPane buttons;
 
     @FXML
     private Pane toolbarPane;
@@ -63,11 +68,24 @@ public class CategoriesController implements Initializable, CategoryParentContro
         }
 
         displayCategories();
-
+        saveEditMessage.setText("");
+        addCategoryPopUp.setVisible(false);
     }
-    
-    public void closeAddCategory(String category) {
 
+    public void closeAddCategory(String category)
+    {
+        anchorPane.getChildren().remove(categoriesGrid);
+        displayCategories();
+        setEffect(null);
+    }
+
+    public void setEffect(Effect effect)
+    {
+        categoriesPageLabel.setEffect(effect);
+        buttons.setEffect(effect);
+        categoriesGrid.setEffect(effect);
+        saveEditMessage.setEffect(effect);
+        toolbarPane.setEffect(effect);
     }
 
     public void saveEditCategories()
@@ -104,7 +122,11 @@ public class CategoriesController implements Initializable, CategoryParentContro
 
     public void addNewCategory()
     {
+        GaussianBlur blur = new GaussianBlur();
+        setEffect(blur);
 
+        popUpController.setUp();
+        addCategoryPopUp.setVisible(true);
     }
 
     private void displayCategories()

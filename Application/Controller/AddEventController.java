@@ -164,7 +164,7 @@ public class AddEventController implements Initializable, CategoryParentControll
         setEffect(null);
     }
 
-    private void setEffect(Effect effect)
+    public void setEffect(Effect effect)
     {
         addEventPageLabel.setEffect(effect);
         addEventGridPane.setEffect(effect);
