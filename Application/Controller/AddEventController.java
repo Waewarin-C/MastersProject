@@ -36,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AddEventController implements Initializable {
+public class AddEventController implements Initializable, CategoryParentController {
     @FXML
     private TextField eventNameField, eventLocationField;
 

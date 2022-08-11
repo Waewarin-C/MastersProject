@@ -28,7 +28,7 @@ public class AddCategoryPopUpController implements Initializable {
     @FXML
     private Label categoryMessagePopUp;
 
-    private AddEventController addEventController;
+    private CategoryParentController parentController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -38,9 +38,9 @@ public class AddCategoryPopUpController implements Initializable {
         categoryMessagePopUp.setText("");
     }
 
-    public void setParentController(AddEventController addEventController)
+    public void setParentController(CategoryParentController parentController)
     {
-        this.addEventController = addEventController;
+        this.parentController = parentController;
     }
 
     public void setUp()
@@ -77,7 +77,7 @@ public class AddCategoryPopUpController implements Initializable {
 
     public void cancelAddCategory()
     {
-        addEventController.closeAddCategory("");
+        parentController.closeAddCategory("");
     }
 
     public void doneAddCategory()
@@ -88,7 +88,7 @@ public class AddCategoryPopUpController implements Initializable {
 
         String categoryName = categoryNamePopUpField.getText().substring(0,1).toUpperCase();
         categoryName += categoryNamePopUpField.getText().substring(1);
-        addEventController.closeAddCategory(categoryName);
+        parentController.closeAddCategory(categoryName);
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)

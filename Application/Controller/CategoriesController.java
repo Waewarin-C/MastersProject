@@ -27,9 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CategoriesController implements Initializable {
+public class CategoriesController implements Initializable, CategoryParentController {
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
     private Label saveEditMessage;
@@ -41,6 +41,7 @@ public class CategoriesController implements Initializable {
 
     final int categoriesPerRow = 4;
     final int layoutXInterval = 80;
+    private AddCategoryPopUpController popUpController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,6 +49,13 @@ public class CategoriesController implements Initializable {
         {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCategoryPopUp.fxml"));
+            Node popUp = loader.load();
+            addCategoryPopUp.getChildren().add(popUp);
+
+            popUpController = ((AddCategoryPopUpController)loader.getController());
+            popUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -55,6 +63,10 @@ public class CategoriesController implements Initializable {
         }
 
         displayCategories();
+
+    }
+    
+    public void closeAddCategory(String category) {
 
     }
 
