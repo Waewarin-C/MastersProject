@@ -9,17 +9,14 @@ import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import javax.swing.text.AbstractDocument;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,12 +28,12 @@ public class CategoriesController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private GridPane categoriesGrid;
-
-    @FXML
     private Pane toolbarPane;
 
+    private GridPane categoriesGrid;
+
     final int categoriesPerRow = 4;
+    final int layoutXInterval = 80;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +58,7 @@ public class CategoriesController implements Initializable {
         Collections.sort(categories);
 
         int numCategories = categories.size();
-        int numRows = numCategories / 4;
+        int numRows = numCategories / categoriesPerRow;
         int numCols = 0;
         if(numCategories > categoriesPerRow)
         {
@@ -74,12 +71,34 @@ public class CategoriesController implements Initializable {
         {
             numRows = 1;
             numCols = numCategories;
-            for(int i = 1; i < numCols; i++)
-            {
-                categoriesGrid.addColumn(i, null);
-            }
         }
 
+        setUpGrid(numCols);
+        fillGrid(categories, numRows, numCols);
+    }
+
+    private void setUpGrid(int numCols)
+    {
+        categoriesGrid = new GridPane();
+        categoriesGrid.setPadding(new Insets(10, 10, 10, 10));
+        categoriesGrid.setHgap(10);
+        categoriesGrid.setVgap(10);
+
+        int layoutX = 335;
+        categoriesGrid.setLayoutY(130);
+        for(int i = 0; i < numCols; i++)
+        {
+            categoriesGrid.getColumnConstraints().add(new ColumnConstraints(150));
+
+            layoutX -= (i * layoutXInterval);
+            categoriesGrid.setLayoutX(layoutX);
+        }
+
+        anchorPane.getChildren().add(categoriesGrid);
+    }
+
+    private void fillGrid(List<String> categories, int numRows, int numCols)
+    {
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
         {
@@ -101,12 +120,10 @@ public class CategoriesController implements Initializable {
 
                 box.getChildren().add(categoryName);
                 box.getChildren().add(categoryColor);
-                System.out.println(box.getPrefWidth());
                 categoriesGrid.add(box, col, row);
 
                 categoryIndex++;
             }
-        }categoriesGrid.setMaxWidth(categoriesGrid.getPrefWidth());
-        System.out.println(categoriesGrid.getMaxWidth());
+        }
     }
 }
