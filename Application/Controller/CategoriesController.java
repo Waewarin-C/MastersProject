@@ -14,9 +14,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +30,9 @@ import java.util.ResourceBundle;
 public class CategoriesController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
+
+    @FXML
+    private Label saveEditMessage;
 
     @FXML
     private Pane toolbarPane;
@@ -51,6 +58,43 @@ public class CategoriesController implements Initializable {
 
     }
 
+    public void saveEditCategories()
+    {
+        FileWriter file = null;
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
+
+        try
+        {
+            file = new FileWriter(new File(fileName));
+            file.write(String.format("%s,%s\n", "Category", "Color"));
+
+            for(Node node : categoriesGrid.getChildren())
+            {
+                HBox box = (HBox)node;
+                String categoryName = box.getChildren().get(0).toString();
+                String categoryColor = box.getChildren().get(1).toString();
+
+                file.write(String.format("%s,%s\n", categoryName, categoryColor));
+            }
+
+            file.close();
+
+            saveEditMessage.setText("Saved successfully!");
+        }
+        catch(IOException e)
+        {
+            saveEditMessage.setText("Error: something went wrong, please try again");
+            saveEditMessage.setTextFill(Color.rgb(255,0,0));
+            System.out.println("Error: unable to save the categories");
+            e.printStackTrace();
+        }
+    }
+
+    public void addNewCategory()
+    {
+
+    }
+
     private void displayCategories()
     {
         List<String> categories = new ArrayList<String>();
@@ -73,11 +117,11 @@ public class CategoriesController implements Initializable {
             numCols = numCategories;
         }
 
-        setUpGrid(numCols);
+        setUpGrid(numRows, numCols);
         fillGrid(categories, numRows, numCols);
     }
 
-    private void setUpGrid(int numCols)
+    private void setUpGrid(int numRows, int numCols)
     {
         categoriesGrid = new GridPane();
         categoriesGrid.setPadding(new Insets(10, 10, 10, 10));
@@ -86,14 +130,20 @@ public class CategoriesController implements Initializable {
 
         int layoutX = 335;
         categoriesGrid.setLayoutY(130);
-        for(int i = 0; i < numCols; i++)
-        {
-            categoriesGrid.getColumnConstraints().add(new ColumnConstraints(150));
 
-            layoutX -= (i * layoutXInterval);
-            categoriesGrid.setLayoutX(layoutX);
+        for(int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                categoriesGrid.getColumnConstraints().add(new ColumnConstraints(150));
+
+                layoutX -= (col * layoutXInterval);
+                categoriesGrid.setLayoutX(layoutX);
+
+                HBox box = new HBox();
+                box.setAlignment(Pos.CENTER);
+                box.setSpacing(10);
+                categoriesGrid.add(box, col, row);
+            }
         }
-
         anchorPane.getChildren().add(categoriesGrid);
     }
 
@@ -104,23 +154,20 @@ public class CategoriesController implements Initializable {
         {
             for(int col = 0; col < numCols; col++)
             {
-                HBox box = new HBox();
-                box.setAlignment(Pos.CENTER);
-                box.setSpacing(10);
-
-                Label categoryName = new Label();
+                TextField categoryName = new TextField(categories.get(categoryIndex));
                 categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-                categoryName.setText(categories.get(categoryIndex));
+                categoryName.setPrefWidth(75);
+                categoryName.setDisable(true);
 
                 ColorPicker categoryColor = new ColorPicker();
                 categoryColor.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
                 categoryColor.setStyle("-fx-color-label-visible: false;");
                 String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
                 categoryColor.setValue(Color.web(color));
+                categoryColor.setDisable(true);
 
-                box.getChildren().add(categoryName);
-                box.getChildren().add(categoryColor);
-                categoriesGrid.add(box, col, row);
+                ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
+                ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
 
                 categoryIndex++;
             }
