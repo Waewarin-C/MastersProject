@@ -72,12 +72,7 @@ public class CategoriesController implements Initializable, CategoryParentContro
         addCategoryPopUp.setVisible(false);
     }
 
-    public void closeAddCategory(String category)
-    {
-        anchorPane.getChildren().remove(categoriesGrid);
-        displayCategories();
-        setEffect(null);
-    }
+
 
     public void setEffect(Effect effect)
     {
@@ -101,8 +96,8 @@ public class CategoriesController implements Initializable, CategoryParentContro
             for(Node node : categoriesGrid.getChildren())
             {
                 HBox box = (HBox)node;
-                String categoryName = box.getChildren().get(0).toString();
-                String categoryColor = box.getChildren().get(1).toString();
+                String categoryName = ((TextField)box.getChildren().get(0)).getText();
+                String categoryColor = ((ColorPicker)box.getChildren().get(1)).getValue().toString();
 
                 file.write(String.format("%s,%s\n", categoryName, categoryColor));
             }
@@ -127,6 +122,14 @@ public class CategoriesController implements Initializable, CategoryParentContro
 
         popUpController.setUp();
         addCategoryPopUp.setVisible(true);
+    }
+
+    public void closeAddCategory(String category)
+    {
+        addCategoryPopUp.setVisible(false);
+        anchorPane.getChildren().remove(categoriesGrid);
+        displayCategories();
+        setEffect(null);
     }
 
     private void displayCategories()
@@ -165,11 +168,17 @@ public class CategoriesController implements Initializable, CategoryParentContro
         int layoutX = 335;
         categoriesGrid.setLayoutY(130);
 
-        for(int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numCols; col++) {
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
                 categoriesGrid.getColumnConstraints().add(new ColumnConstraints(150));
 
-                layoutX -= (col * layoutXInterval);
+                if(col != 0)
+                {
+                    layoutX -= layoutXInterval;
+                }
+
                 categoriesGrid.setLayoutX(layoutX);
 
                 HBox box = new HBox();
@@ -191,14 +200,12 @@ public class CategoriesController implements Initializable, CategoryParentContro
                 TextField categoryName = new TextField(categories.get(categoryIndex));
                 categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
                 categoryName.setPrefWidth(75);
-                categoryName.setDisable(true);
 
                 ColorPicker categoryColor = new ColorPicker();
                 categoryColor.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
                 categoryColor.setStyle("-fx-color-label-visible: false;");
                 String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
                 categoryColor.setValue(Color.web(color));
-                categoryColor.setDisable(true);
 
                 ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
                 ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);

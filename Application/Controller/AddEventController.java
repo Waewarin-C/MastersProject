@@ -151,6 +151,7 @@ public class AddEventController implements Initializable, CategoryParentControll
         addCategoryPopUp.setVisible(true);
     }
 
+    @Override
     public void closeAddCategory(String category)
     {
         addCategoryPopUp.setVisible(false);

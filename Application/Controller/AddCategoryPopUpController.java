@@ -100,6 +100,7 @@ public class AddCategoryPopUpController implements Initializable {
             if(!isUniqueColor)
             {
                 categoryMessagePopUp.setText("This color is already with an existing category");
+                categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
                 return false;
             }
         }
@@ -107,6 +108,7 @@ public class AddCategoryPopUpController implements Initializable {
         {
             String message = "The category \"" + categoryName + "\" already exists";
             categoryMessagePopUp.setText(message);
+            categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
             return false;
         }
 
