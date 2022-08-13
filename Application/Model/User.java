@@ -19,13 +19,13 @@ public class User {
     String securityQuestion;
     String securityQuestionAnswer;
     List<Event> events;
-    HashMap<String, String> categories;
+    TreeMap<String, String> categories;
     String welcomePageShown;
 
     public User()
     {
         this.events = new ArrayList<Event>();
-        this.categories = new HashMap<String, String>();
+        this.categories = new TreeMap<String, String>();
         this.welcomePageShown = "No";
     }
 
@@ -99,12 +99,12 @@ public class User {
         this.events = events;
     }
 
-    public HashMap<String, String> getCategories()
+    public TreeMap<String, String> getCategories()
     {
         return this.categories;
     }
 
-    public void setCategories(HashMap<String, String> categories)
+    public void setCategories(TreeMap<String, String> categories)
     {
         this.categories = categories;
     }

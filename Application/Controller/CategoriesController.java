@@ -24,10 +24,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CategoriesController implements Initializable, CategoryParentController {
     @FXML
@@ -71,8 +68,6 @@ public class CategoriesController implements Initializable, CategoryParentContro
         saveEditMessage.setText("");
         addCategoryPopUp.setVisible(false);
     }
-
-
 
     public void setEffect(Effect effect)
     {
@@ -134,9 +129,9 @@ public class CategoriesController implements Initializable, CategoryParentContro
 
     private void displayCategories()
     {
-        List<String> categories = new ArrayList<String>();
-        categories.addAll(Main.login.getUser().getCategories().keySet());
-        Collections.sort(categories);
+        List<String> categories = new ArrayList<>(Main.login.getUser().getCategories().keySet());
+        //categories.addAll(Main.login.getUser().getCategories().keySet());
+        //Collections.sort(categories);
 
         int numCategories = categories.size();
         int numRows = numCategories / categoriesPerRow;

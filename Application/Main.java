@@ -138,7 +138,7 @@ public class Main extends Application {
 
         try
         {
-            HashMap<String, String> categories = new HashMap<String, String>();
+            TreeMap<String, String> categories = new TreeMap<String, String>();
 
             scan = new Scanner(file);
             //Skip first line
