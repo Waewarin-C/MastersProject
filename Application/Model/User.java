@@ -10,6 +10,7 @@ package Application.Model;
     //Categories
     //If Welcome page is shown everytime user logins
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class User {
@@ -18,25 +19,15 @@ public class User {
     String displayName;
     String securityQuestion;
     String securityQuestionAnswer;
-    List<Event> events;
+    TreeMap<String, List<Event>> events;
     TreeMap<String, String> categories;
     String welcomePageShown;
 
     public User()
     {
-        this.events = new ArrayList<Event>();
+        this.events = new TreeMap<String, List<Event>>();
         this.categories = new TreeMap<String, String>();
         this.welcomePageShown = "No";
-    }
-
-    public void addEvent(Event event)
-    {
-        this.events.add(event);
-    }
-
-    public void addCategory(String categoryName, String categoryColor)
-    {
-        this.categories.put(categoryName, categoryColor);
     }
 
     public String getUsername()
@@ -89,14 +80,29 @@ public class User {
         this.securityQuestionAnswer = securityQuestionAnswer;
     }
 
-    public List<Event> getEvents()
+    public TreeMap<String, List<Event>> getEvents()
     {
         return this.events;
     }
 
-    public void setEvents(List<Event> events)
+    public void setEvents(TreeMap<String, List<Event>> events)
     {
         this.events = events;
+    }
+
+    public void addEvent(Event event)
+    {
+        String date = event.getEventDate();
+        if(this.events.containsKey(date))
+        {
+            this.events.get(date).add(event);
+        }
+        else
+        {
+            List<Event> events = new ArrayList<>();
+            events.add(event);
+            this.events.put(date, events);
+        }
     }
 
     public TreeMap<String, String> getCategories()
@@ -107,6 +113,11 @@ public class User {
     public void setCategories(TreeMap<String, String> categories)
     {
         this.categories = categories;
+    }
+
+    public void addCategory(String categoryName, String categoryColor)
+    {
+        this.categories.put(categoryName, categoryColor);
     }
 
     public String getWelcomePageShown()
