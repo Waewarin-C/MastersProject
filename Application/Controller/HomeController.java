@@ -9,6 +9,7 @@ package Application.Controller;
     //The week and month will have the events for each date displayed in each date
 
 import Application.Main;
+import Application.Model.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -29,13 +31,14 @@ public class HomeController implements Initializable {
     private Label helloMessage, todayDateLabel;
 
     @FXML
-    private Button logoutHomButton;
-
-    @FXML
     private VBox todayEvents, sevenDayEvents;
 
     @FXML
     private Pane toolbarPane;
+
+    private LocalDate today = LocalDate.now();
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private String date = today.format(format);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,11 +55,9 @@ public class HomeController implements Initializable {
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
 
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
-        String date = LocalDate.now().format(format);
+
         String dateLabel = "Your Events for Today: " + date;
         todayDateLabel.setText(dateLabel);
-        todayDateLabel.setAlignment(Pos.CENTER);
 
         displayEvents();
     }
@@ -74,7 +75,29 @@ public class HomeController implements Initializable {
 
     private void displayTodayEvents()
     {
+        Label firstEvent = new Label();
+        firstEvent.setStyle("-fx-font: 18px \"Berlin Sans FB\";");
 
+        if(!Main.login.getUser().getEvents().containsKey("08/22/22"))
+        {
+            firstEvent.setText("You have no events today");
+        }
+        else
+        {
+            List<Event> events = Main.login.getUser().getEvents().get("08/22/22");
+            String eventName = events.get(0).getEventName();
+            firstEvent.setText(eventName);
+
+            int numMoreEvents = events.size() - 1;
+            if(numMoreEvents > 0)
+            {
+                String moreEventText = "+ " + numMoreEvents + " more";
+                Label moreEvents = new Label(moreEventText);
+                todayEvents.getChildren().add(moreEvents);
+            }
+        }
+
+        todayEvents.getChildren().add(0, firstEvent);
     }
 
     private void displayNextSevenDayEvents()
