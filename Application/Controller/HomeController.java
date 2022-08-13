@@ -8,16 +8,32 @@ package Application.Controller;
     //Option for user to pick view they want to view the calendar
     //The week and month will have the events for each date displayed in each date
 
+import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+    @FXML
+    private Label helloMessage, todayDateLabel;
+
+    @FXML
+    private Button logoutHomButton;
+
+    @FXML
+    private VBox todayEvents, sevenDayEvents;
+
     @FXML
     private Pane toolbarPane;
 
@@ -32,5 +48,37 @@ public class HomeController implements Initializable {
         {
             e.printStackTrace();
         }
+
+        String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
+        helloMessage.setText(message);
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+        String date = LocalDate.now().format(format);
+        String dateLabel = "Your Events for Today: " + date;
+        todayDateLabel.setText(dateLabel);
+        todayDateLabel.setAlignment(Pos.CENTER);
+
+        displayEvents();
+    }
+
+    public void logout()
+    {
+
+    }
+
+    private void displayEvents()
+    {
+        displayTodayEvents();
+        displayNextSevenDayEvents();
+    }
+
+    private void displayTodayEvents()
+    {
+
+    }
+
+    private void displayNextSevenDayEvents()
+    {
+
     }
 }
