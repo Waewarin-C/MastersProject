@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class CategoriesController implements Initializable, CategoryParentController {
+public class CategoriesController implements Initializable, ParentController {
     @FXML
     private AnchorPane anchorPane, addCategoryPopUp;
 
@@ -119,7 +119,7 @@ public class CategoriesController implements Initializable, CategoryParentContro
         addCategoryPopUp.setVisible(true);
     }
 
-    public void closeAddCategory(String category)
+    public void closePopUp(String category)
     {
         addCategoryPopUp.setVisible(false);
         anchorPane.getChildren().remove(categoriesGrid);

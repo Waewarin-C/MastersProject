@@ -36,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AddEventController implements Initializable, CategoryParentController {
+public class AddEventController implements Initializable, ParentController {
     @FXML
     private TextField eventNameField, eventLocationField;
 
@@ -151,8 +151,7 @@ public class AddEventController implements Initializable, CategoryParentControll
         addCategoryPopUp.setVisible(true);
     }
 
-    @Override
-    public void closeAddCategory(String category)
+    public void closePopUp(String category)
     {
         addCategoryPopUp.setVisible(false);
         if(category.length() > 0)

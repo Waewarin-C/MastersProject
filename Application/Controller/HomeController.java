@@ -19,10 +19,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.effect.Effect;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -30,18 +28,24 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+public class HomeController implements Initializable, ParentController {
     @FXML
-    private Label helloMessage, todayDateLabel;
+    private Label helloMessage;
+
+    @FXML
+    private Button logoutButton;
 
     @FXML
     private GridPane upcomingEvents;
 
     @FXML
-    private VBox todayEvents, sevenDayEvents;
+    private Pane toolbarPane;
 
     @FXML
-    private Pane toolbarPane;
+    private AnchorPane eventDetails, eventsList;
+
+    private EventsController eventsPopUpController;
+    private EventDetailsController detailsPopUpController;
 
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
@@ -53,6 +57,20 @@ public class HomeController implements Initializable {
         {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
+
+            FXMLLoader detailLoader = new FXMLLoader(getClass().getResource("../View/EventDetails.fxml"));
+            Node detailPopUp = detailLoader.load();
+            eventDetails.getChildren().add(detailPopUp);
+
+            detailsPopUpController = ((EventDetailsController)detailLoader.getController());
+            detailsPopUpController.setParentController(this);
+
+            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("../View/Events.fxml"));
+            Node listPopUp = listLoader.load();
+            eventsList.getChildren().add(listPopUp);
+
+            eventsPopUpController = ((EventsController)listLoader.getController());
+            eventsPopUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -62,11 +80,25 @@ public class HomeController implements Initializable {
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
 
+        eventDetails.setVisible(false);
+        eventsList.setVisible(false);
 
-        String dateLabel = "Your Events for Today: " + date;
-        todayDateLabel.setText(dateLabel);
+        displayWeekEvents();
+    }
 
-        displayEvents();
+    public void closePopUp(String stringNeeded)
+    {
+        eventsList.setVisible(false);
+        eventDetails.setVisible(false);
+        setEffect(null);
+    }
+
+    public void setEffect(Effect effect)
+    {
+        helloMessage.setEffect(effect);
+        logoutButton.setEffect(effect);
+        upcomingEvents.setEffect(effect);
+        toolbarPane.setEffect(effect);
     }
 
     public void logout()
@@ -74,7 +106,7 @@ public class HomeController implements Initializable {
 
     }
 
-    private void displayEvents()
+    private void displayWeekEvents()
     {
         int week = 7;
 
@@ -118,50 +150,46 @@ public class HomeController implements Initializable {
                 {
                     String moreEventText = "+ " + numMoreEvents + " more";
                     eventLabel.setText(eventName + "\t.\t.\t.\t" + moreEventText);
-                    addViewAllEventsButton(i+1, next);
+                    addViewEventButton(i+1, next, true);
                 }
                 else
                 {
-                    addViewEventDetailsButton(i+1, next);
+                    addViewEventButton(i+1, next,  false);
                 }
             }
             upcomingEvents.add(dayEvents, 0, i+1);
         }
     }
 
-    private void addViewAllEventsButton(int row, String date)
+    private void addViewEventButton(int row, String eventDate, boolean multipleEvents)
     {
         Button viewEvents = new Button();
         viewEvents.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
         viewEvents.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        viewEvents.setText("View All Events for " + date);
+        viewEvents.setText("View All Events for " + eventDate);
 
-        EventHandler<ActionEvent> viewAllEvents = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
-        };
-        viewEvents.setOnAction(viewAllEvents);
-
+        if(multipleEvents)
+        {
+            EventHandler<ActionEvent> viewAllEvents = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    eventsPopUpController.displayEvents(eventDate);
+                    eventsList.setVisible(true);
+                }
+            };
+            viewEvents.setOnAction(viewAllEvents);
+        }
+        else
+        {
+            EventHandler<ActionEvent> viewEventDetails = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    detailsPopUpController.displayEventDetails(eventDate);
+                    eventDetails.setVisible(true);
+                }
+            };
+            viewEvents.setOnAction(viewEventDetails);
+        }
         upcomingEvents.add(viewEvents, 1, row);
-    }
-
-    private void addViewEventDetailsButton(int row, String date)
-    {
-        Button viewEventDetails = new Button();
-        viewEventDetails.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
-        viewEventDetails.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        viewEventDetails.setText("View Event Details for " + date);
-
-        EventHandler<ActionEvent> viewDetails = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
-        };
-        viewEventDetails.setOnAction(viewDetails);
-
-        upcomingEvents.add(viewEventDetails, 1, row);
     }
 }
