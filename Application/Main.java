@@ -115,11 +115,6 @@ public class Main extends Application {
                 String[] eventInfo = scan.nextLine().split(",");
                 Event event = new Event(eventInfo[0], eventInfo[1], eventInfo[2], eventInfo[3], eventInfo[4]);
 
-                if(login.getUser().getEvents().containsKey(eventInfo[1]))
-                {
-                    login.getUser().getEvents().put(eventInfo[1], new ArrayList<Event>());
-                }
-
                 login.getUser().addEvent(event);
             }
         }

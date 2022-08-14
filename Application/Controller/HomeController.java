@@ -78,13 +78,13 @@ public class HomeController implements Initializable {
         Label firstEvent = new Label();
         firstEvent.setStyle("-fx-font: 18px \"Berlin Sans FB\";");
 
-        if(!Main.login.getUser().getEvents().containsKey("08/22/22"))
+        if(!Main.login.getUser().getEvents().containsKey(date))
         {
             firstEvent.setText("You have no events today");
         }
         else
         {
-            List<Event> events = Main.login.getUser().getEvents().get("08/22/22");
+            List<Event> events = Main.login.getUser().getEvents().get(date);
             String eventName = events.get(0).getEventName();
             firstEvent.setText(eventName);
 
@@ -93,6 +93,7 @@ public class HomeController implements Initializable {
             {
                 String moreEventText = "+ " + numMoreEvents + " more";
                 Label moreEvents = new Label(moreEventText);
+                moreEvents.setStyle("-fx-font: 16px \"Berlin Sans FB\";");
                 todayEvents.getChildren().add(moreEvents);
             }
         }
@@ -102,6 +103,36 @@ public class HomeController implements Initializable {
 
     private void displayNextSevenDayEvents()
     {
+        int week = 7;
 
+        for(int i = 1; i <= week; i++)
+        {
+            LocalDate nextDate = today.plusDays(i);
+            String next = nextDate.format(format);
+
+            Label eventLabel = new Label();
+            eventLabel.setStyle("-fx-font: 18px \"Berlin Sans FB\";");
+
+            if(!Main.login.getUser().getEvents().containsKey(next))
+            {
+                String noEvents = next + ": You have no events";
+                eventLabel.setText(noEvents);
+                sevenDayEvents.getChildren().add(eventLabel);
+            }
+            else
+            {
+                List<Event> events = Main.login.getUser().getEvents().get(next);
+                String eventName = next + ": " + events.get(0).getEventName();
+                eventLabel.setText(eventName);
+                sevenDayEvents.getChildren().add(eventLabel);
+
+                int numMoreEvents = events.size() - 1;
+                if(numMoreEvents > 0)
+                {
+                    String moreEventText = "+ " + numMoreEvents + " more";
+                    eventLabel.setText(eventName + "\t.\t.\t.\t" + moreEventText);
+                }
+            }
+        }
     }
 }
