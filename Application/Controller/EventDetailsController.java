@@ -3,21 +3,12 @@ package Application.Controller;
 import Application.Main;
 import Application.Model.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class EventDetailsController implements Initializable {
+public class EventDetailsController {
     @FXML
     private Label eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
     private ParentController parentController;
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-
-    }
 
     public void setParentController(ParentController parentController)
     {

@@ -45,7 +45,7 @@ public class HomeController implements Initializable, ParentController {
     @FXML
     private AnchorPane eventDetails;
 
-    private EventsController eventsPopUpController;
+    private EventsListController eventsPopUpController;
     private EventDetailsController detailsPopUpController;
 
     private LocalDate today = LocalDate.now();
@@ -70,7 +70,7 @@ public class HomeController implements Initializable, ParentController {
             Node listPopUp = listLoader.load();
             eventsList.getChildren().add(listPopUp);
 
-            eventsPopUpController = ((EventsController)listLoader.getController());
+            eventsPopUpController = ((EventsListController)listLoader.getController());
             eventsPopUpController.setParentController(this);
         }
         catch(Exception e)

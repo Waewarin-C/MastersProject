@@ -64,6 +64,7 @@ public class AddEventController implements Initializable, ParentController {
     @FXML
     private Pane toolbarPane;
 
+    private ParentController parentController;
     private AddCategoryPopUpController popUpController;
 
     @Override
@@ -99,6 +100,11 @@ public class AddEventController implements Initializable, ParentController {
         newCategory.setVisible(false);
 
         saveEventMessage.setText("");
+    }
+
+    public void setParentController(ParentController parentController)
+    {
+        this.parentController = parentController;
     }
 
     public void saveAddEvent()
