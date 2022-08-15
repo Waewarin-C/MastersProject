@@ -13,10 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -42,17 +42,20 @@ public class EventsListController implements Initializable, ParentController {
     private AddEventController addEventController;
     //private EditEventController editEventController;
 
+    private final GaussianBlur blur = new GaussianBlur();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         try
         {
-            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/EventDetails.fxml"));
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/AddEvent.fxml"));
             Node addEventPopUp = addEventLoader.load();
             addEvent.getChildren().add(addEventPopUp);
 
             addEventController = ((AddEventController)addEventLoader.getController());
             addEventController.setParentController(this);
+            addEventController.adjustLayout();
 
             /*FXMLLoader editEventLoader = new FXMLLoader(getClass().getResource("../View/EditEvent.fxml"));
             Node editEventPopUp = editEventLoader.load();
@@ -67,7 +70,7 @@ public class EventsListController implements Initializable, ParentController {
         }
 
         addEvent.setVisible(false);
-        editEvent.setVisible(false);
+        //editEvent.setVisible(false);
     }
 
     public void setParentController(ParentController parentController)
@@ -95,12 +98,14 @@ public class EventsListController implements Initializable, ParentController {
 
     public void addEvent()
     {
-
+        setEffect(blur);
+        addEvent.setVisible(true);
     }
 
     public void editEvent()
     {
-
+        setEffect(blur);
+        //editEvent.setVisible(true);
     }
 
     public void closeListView()

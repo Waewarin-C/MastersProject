@@ -59,7 +59,7 @@ public class AddEventController implements Initializable, ParentController {
     private GridPane addEventButtons, addEventGridPane;
 
     @FXML
-    private AnchorPane addCategoryPopUp;
+    private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
     private Pane toolbarPane;
@@ -105,6 +105,15 @@ public class AddEventController implements Initializable, ParentController {
     public void setParentController(ParentController parentController)
     {
         this.parentController = parentController;
+    }
+
+    public void adjustLayout()
+    {
+        addEventGridPane.setLayoutX(66);
+        addEventButtons.setLayoutX(520);
+        eventDescriptionField.setPrefHeight(100);
+        anchorPane.getChildren().remove(toolbarPane);
+        anchorPane.setPrefSize(700, 450);
     }
 
     public void saveAddEvent()

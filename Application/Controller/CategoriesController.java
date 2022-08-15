@@ -41,8 +41,8 @@ public class CategoriesController implements Initializable, ParentController {
 
     private GridPane categoriesGrid;
 
-    final int categoriesPerRow = 4;
-    final int layoutXInterval = 80;
+    private final int categoriesPerRow = 4;
+    private final int layoutXInterval = 80;
     private AddCategoryPopUpController popUpController;
 
     @Override

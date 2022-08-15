@@ -66,7 +66,7 @@ public class HomeController implements Initializable, ParentController {
             detailsPopUpController = ((EventDetailsController)detailLoader.getController());
             detailsPopUpController.setParentController(this);
 
-            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("../View/Events.fxml"));
+            FXMLLoader listLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
             Node listPopUp = listLoader.load();
             eventsList.getChildren().add(listPopUp);
 
