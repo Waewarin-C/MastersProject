@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
 
 import java.net.URL;
@@ -39,10 +40,10 @@ public class HomeController implements Initializable, ParentController {
     private GridPane upcomingEvents;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane toolbarPane, eventsList;
 
     @FXML
-    private AnchorPane eventDetails, eventsList;
+    private AnchorPane eventDetails;
 
     private EventsController eventsPopUpController;
     private EventDetailsController detailsPopUpController;
@@ -166,14 +167,18 @@ public class HomeController implements Initializable, ParentController {
         Button viewEvents = new Button();
         viewEvents.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
         viewEvents.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        viewEvents.setText("View All Events for " + eventDate);
+
+        GaussianBlur blur = new GaussianBlur();
 
         if(multipleEvents)
         {
+            viewEvents.setText("View All Events for " + eventDate);
+
             EventHandler<ActionEvent> viewAllEvents = new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     eventsPopUpController.displayEvents(eventDate);
+                    setEffect(blur);
                     eventsList.setVisible(true);
                 }
             };
@@ -181,10 +186,13 @@ public class HomeController implements Initializable, ParentController {
         }
         else
         {
+            viewEvents.setText("View Events Details for " + eventDate);
+
             EventHandler<ActionEvent> viewEventDetails = new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     detailsPopUpController.displayEventDetails(eventDate);
+                    setEffect(blur);
                     eventDetails.setVisible(true);
                 }
             };
