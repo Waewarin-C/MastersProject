@@ -68,7 +68,7 @@ public class AddCategoryPopUpController implements Initializable {
         if(isUnique)
         {
             saveCategoryToUser(categoryNameCamelCase, categoryColor);
-            saveCategoryToFile(categoryNameCamelCase, categoryColor);
+            saveCategoryToFile();
 
             saveCategoryPopUpButton.setVisible(false);
             cancelCategoryPopUpButton.setVisible(false);
@@ -141,7 +141,7 @@ public class AddCategoryPopUpController implements Initializable {
         Main.login.getUser().addCategory(categoryName, categoryColor);
     }
 
-    private void saveCategoryToFile(String categoryName, String categoryColor)
+    public void saveCategoryToFile()
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
 

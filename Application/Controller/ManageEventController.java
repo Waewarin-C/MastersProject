@@ -212,6 +212,10 @@ public class ManageEventController implements Initializable, ParentController {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
         LocalDate date = eventDatePicker.getValue();
 
+        if(date == null)
+        {
+            return "";
+        }
         return date.format(format);
     }
 

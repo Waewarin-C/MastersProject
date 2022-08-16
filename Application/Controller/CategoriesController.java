@@ -80,34 +80,20 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void saveEditCategories()
     {
-        FileWriter file = null;
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
+        Main.login.getUser().getCategories().clear();
 
-        try
+        for(Node node : categoriesGrid.getChildren())
         {
-            file = new FileWriter(new File(fileName));
-            file.write(String.format("%s,%s\n", "Category", "Color"));
+            HBox box = (HBox)node;
+            String categoryName = ((TextField)box.getChildren().get(0)).getText();
+            String categoryColor = ((ColorPicker)box.getChildren().get(1)).getValue().toString();
 
-            for(Node node : categoriesGrid.getChildren())
-            {
-                HBox box = (HBox)node;
-                String categoryName = ((TextField)box.getChildren().get(0)).getText();
-                String categoryColor = ((ColorPicker)box.getChildren().get(1)).getValue().toString();
-
-                file.write(String.format("%s,%s\n", categoryName, categoryColor));
-            }
-
-            file.close();
-
-            saveEditMessage.setText("Saved successfully!");
+            Main.login.getUser().addCategory(categoryName, categoryColor);
         }
-        catch(IOException e)
-        {
-            saveEditMessage.setText("Error: something went wrong, please try again");
-            saveEditMessage.setTextFill(Color.rgb(255,0,0));
-            System.out.println("Error: unable to save the categories");
-            e.printStackTrace();
-        }
+
+        popUpController.saveCategoryToFile();
+
+        displayCategories();
     }
 
     public void addNewCategory()
@@ -130,8 +116,6 @@ public class CategoriesController implements Initializable, ParentController {
     private void displayCategories()
     {
         List<String> categories = new ArrayList<>(Main.login.getUser().getCategories().keySet());
-        //categories.addAll(Main.login.getUser().getCategories().keySet());
-        //Collections.sort(categories);
 
         int numCategories = categories.size();
         int numRows = numCategories / categoriesPerRow;
@@ -207,6 +191,29 @@ public class CategoriesController implements Initializable, ParentController {
 
                 categoryIndex++;
             }
+        }
+    }
+
+    private void saveToFile()
+    {
+        FileWriter file = null;
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
+
+        try
+        {
+            file = new FileWriter(new File(fileName));
+            file.write(String.format("%s,%s\n", "Category", "Color"));
+
+            file.close();
+
+            saveEditMessage.setText("Saved successfully!");
+        }
+        catch(IOException e)
+        {
+            saveEditMessage.setText("Error: something went wrong, please try again");
+            saveEditMessage.setTextFill(Color.rgb(255,0,0));
+            System.out.println("Error: unable to save the categories");
+            e.printStackTrace();
         }
     }
 }
