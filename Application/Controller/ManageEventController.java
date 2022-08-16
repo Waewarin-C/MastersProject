@@ -31,10 +31,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ManageEventController implements Initializable, ParentController {
 
@@ -109,13 +106,10 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void setIsPopUp(boolean isPopUp)
+    public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;
-    }
 
-    public void popUpSetUp()
-    {
         manageEventGridPane.setLayoutX(66);
         manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
@@ -153,20 +147,34 @@ public class ManageEventController implements Initializable, ParentController {
         event.add(eventCategory);
         event.add(eventDescription);
 
-        saveEventToFile(event);
         saveEventToUser(event);
+        saveEventToFile();
 
         resetFields();
+
+        if(isPopUp)
+        {
+            saveManageEvent.setVisible(false);
+            cancelManageEvent.setVisible(false);
+            doneManageEvent.setVisible(true);
+        }
     }
 
     public void cancelManageEvent()
     {
-        resetFields();
+        if(isPopUp)
+        {
+            parentController.closePopUp("");
+        }
+        else
+        {
+            resetFields();
+        }
     }
 
     public void doneManageEvent()
     {
-
+        parentController.closePopUp("");
     }
 
     public void addNewEventCategory()
@@ -207,34 +215,6 @@ public class ManageEventController implements Initializable, ParentController {
         return date.format(format);
     }
 
-    private void saveEventToFile(List<String> event)
-    {
-        String eventName = event.get(0);
-        String eventDate = event.get(1);
-        String eventLocation = event.get(2);
-        String eventCategory = event.get(3);
-        String eventDescription = event.get(4);
-
-        FileWriter file = null;
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
-
-        try
-        {
-            file = new FileWriter(new File(fileName), true);
-            file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
-            file.close();
-
-            saveEventMessage.setText("Saved successfully!");
-        }
-        catch(IOException e)
-        {
-            saveEventMessage.setText("Error: something went wrong, please try again");
-            saveEventMessage.setTextFill(Color.rgb(255,0,0));
-            System.out.println("Error: unable to save the event");
-            e.printStackTrace();
-        }
-    }
-
     private void saveEventToUser(List<String> event)
     {
         String eventName = event.get(0);
@@ -245,6 +225,44 @@ public class ManageEventController implements Initializable, ParentController {
 
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
         Main.login.getUser().addEvent(newEvent);
+    }
+
+    private void saveEventToFile()
+    {
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
+
+        try
+        {
+            FileWriter file = new FileWriter(new File(fileName));;
+            file.write(String.format("%s,%s,%s,%s,%s\n", "Event", "Date", "Location", "Category", "Description"));
+
+            Set<String> eventDates = Main.login.getUser().getEvents().keySet();
+            for(String date : eventDates)
+            {
+                List<Event> eventsList = Main.login.getUser().getEvents().get(date);
+
+                for(Event event : eventsList)
+                {
+                    String eventName = event.getEventName();
+                    String eventDate = event.getEventDate();
+                    String eventLocation = event.getEventLocation();
+                    String eventCategory = event.getEventCategory();
+                    String eventDescription = event.getEventDescription();
+
+                    file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
+                }
+            }
+
+            file.close();
+            saveEventMessage.setText("Saved successfully!");
+        }
+        catch (IOException e)
+        {
+            saveEventMessage.setText("Error: something went wrong, please try again");
+            saveEventMessage.setTextFill(Color.rgb(255, 0, 0));
+            System.out.println("Error: unable to save the event");
+            e.printStackTrace();
+        }
     }
 
     private void resetFields()

@@ -54,8 +54,8 @@ public class EventsListController implements Initializable, ParentController {
 
             manageEventController = ((ManageEventController)addEventLoader.getController());
             manageEventController.setParentController(this);
-            manageEventController.popUpSetUp();
-            manageEventController.setIsPopUp(true);
+            manageEventController.popUpSetUp(true);
+
         }
         catch (IOException e)
         {

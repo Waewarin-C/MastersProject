@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class AddCategoryPopUpController implements Initializable {
     @FXML
@@ -66,8 +67,8 @@ public class AddCategoryPopUpController implements Initializable {
         boolean isUnique = checkIfUnique(categoryNameCamelCase, categoryColor);
         if(isUnique)
         {
-            saveCategoryToFile(categoryNameCamelCase, categoryColor);
             saveCategoryToUser(categoryNameCamelCase, categoryColor);
+            saveCategoryToFile(categoryNameCamelCase, categoryColor);
 
             saveCategoryPopUpButton.setVisible(false);
             cancelCategoryPopUpButton.setVisible(false);
@@ -135,17 +136,27 @@ public class AddCategoryPopUpController implements Initializable {
         return true;
     }
 
+    private void saveCategoryToUser(String categoryName, String categoryColor)
+    {
+        Main.login.getUser().addCategory(categoryName, categoryColor);
+    }
+
     private void saveCategoryToFile(String categoryName, String categoryColor)
     {
-        FileWriter file = null;
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
 
         try
         {
-            file = new FileWriter(new File(fileName), true);
-            file.write(String.format("%s,%s\n", categoryName, categoryColor));
-            file.close();
+            FileWriter file = new FileWriter(new File(fileName));
+            file.write(String.format("%s,%s\n", "Category", "Color"));
 
+            Set<String> categories = Main.login.getUser().getCategories().keySet();
+            for(String category : categories)
+            {
+                file.write(String.format("%s,%s\n", category, Main.login.getUser().getCategories().get(category)));
+            }
+
+            file.close();
             categoryMessagePopUp.setText("Saved successfully!");
         }
         catch(IOException e)
@@ -155,10 +166,5 @@ public class AddCategoryPopUpController implements Initializable {
             System.out.println("Error: unable to save the category");
             e.printStackTrace();
         }
-    }
-
-    private void saveCategoryToUser(String categoryName, String categoryColor)
-    {
-        Main.login.getUser().addCategory(categoryName, categoryColor);
     }
 }
