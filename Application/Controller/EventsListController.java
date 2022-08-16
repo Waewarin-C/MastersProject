@@ -22,6 +22,8 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EventsListController implements Initializable, ParentController {
@@ -97,6 +99,15 @@ public class EventsListController implements Initializable, ParentController {
     public void editEvent()
     {
         setEffect(blur);
+
+        List<String> eventDetails = new ArrayList<String>();
+        eventDetails.add(eventNameDetails.getText());
+        eventDetails.add(eventDateDetails.getText());
+        eventDetails.add(eventLocationDetails.getText());
+        eventDetails.add(eventCategoryDetails.getText());
+        eventDetails.add(eventDescriptionDetails.getText());
+
+        manageEventController.setUpForEdit(eventDetails);
         manageEvent.setVisible(true);
     }
 
@@ -104,6 +115,4 @@ public class EventsListController implements Initializable, ParentController {
     {
         parentController.closePopUp("");
     }
-
-
 }

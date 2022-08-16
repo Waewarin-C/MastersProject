@@ -117,6 +117,18 @@ public class ManageEventController implements Initializable, ParentController {
         anchorPane.setPrefSize(700, 450);
     }
 
+    public void setUpForEdit(List<String> eventDetails)
+    {
+        eventNameField.setText(eventDetails.get(0));
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+        eventDatePicker.setValue(LocalDate.parse(eventDetails.get(1), format));
+
+        eventLocationField.setText(eventDetails.get(2));
+        eventCategoryField.setValue(eventDetails.get(3));
+        eventDescriptionField.setText(eventDetails.get(4));
+    }
+
     public void saveManageEvent()
     {
         String eventName = eventNameField.getText();
