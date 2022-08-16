@@ -9,12 +9,16 @@ package Application.Controller;
         //Edit event button
         //Delete event button
 
+import Application.Main;
+import Application.Model.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
@@ -32,13 +36,16 @@ public class EventsListController implements Initializable, ParentController {
     private Label eventsListLabel, eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
 
     @FXML
-    private ListView eventsListView;
+    private Button addEventButton;
+
+    @FXML
+    private ListView<String> eventsListView;
 
     @FXML
     private GridPane topButtons;
 
     @FXML
-    private AnchorPane eventDetails, manageEvent, editEvent;
+    private AnchorPane eventDetails, manageEvent;
 
     private ParentController parentController;
     private ManageEventController manageEventController;
@@ -87,7 +94,20 @@ public class EventsListController implements Initializable, ParentController {
 
     public void displayEvents(String date)
     {
+        addEventButton.setText("Add Event for " + date);
+        List<Event> events = Main.login.getUser().getEvents().get(date);
 
+        for(Event event : events)
+        {
+            eventsListView.getItems().add(event.getEventName());
+        }
+        eventsListView.getSelectionModel().select(0);
+
+        eventNameDetails.setText(events.get(0).getEventName());
+        eventDateDetails.setText(events.get(0).getEventDate());
+        eventLocationDetails.setText(events.get(0).getEventLocation());
+        eventCategoryDetails.setText(events.get(0).getEventCategory());
+        eventDescriptionDetails.setText(events.get(0).getEventDescription());
     }
 
     public void addEvent()

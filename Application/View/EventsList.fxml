@@ -34,7 +34,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#addEvent" prefHeight="30.0" text="Add Event for 08/20/22">
+            <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" prefHeight="30.0" text="Button">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -44,11 +44,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <ListView fx:id="eventsListView" layoutX="49.0" layoutY="77.0" prefHeight="450.0" prefWidth="250.0">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </ListView>
       <AnchorPane fx:id="eventDetails" layoutX="299.0" layoutY="77.0" prefHeight="450.0" prefWidth="400.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -132,5 +127,10 @@
       </AnchorPane>
       <AnchorPane fx:id="manageEvent" layoutX="20.0" layoutY="50.0" prefHeight="450.0" prefWidth="700.0" />
       <AnchorPane fx:id="editEvent" layoutX="20.0" layoutY="50.0" prefHeight="450.0" prefWidth="700.0" />
+      <ListView fx:id="eventsListView" layoutX="49.0" layoutY="77.0" prefHeight="450.0" prefWidth="250.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ListView>
    </children>
 </AnchorPane>
