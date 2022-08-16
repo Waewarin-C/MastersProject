@@ -42,11 +42,7 @@ public class HomeController implements Initializable, ParentController {
     @FXML
     private Pane toolbarPane, eventsList;
 
-    @FXML
-    private AnchorPane eventDetails;
-
     private EventsListController eventsPopUpController;
-    private EventDetailsController detailsPopUpController;
 
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
@@ -58,13 +54,6 @@ public class HomeController implements Initializable, ParentController {
         {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
-
-            FXMLLoader detailLoader = new FXMLLoader(getClass().getResource("../View/EventDetails.fxml"));
-            Node detailPopUp = detailLoader.load();
-            eventDetails.getChildren().add(detailPopUp);
-
-            detailsPopUpController = ((EventDetailsController)detailLoader.getController());
-            detailsPopUpController.setParentController(this);
 
             FXMLLoader listLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
             Node listPopUp = listLoader.load();
@@ -81,7 +70,6 @@ public class HomeController implements Initializable, ParentController {
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
 
-        eventDetails.setVisible(false);
         eventsList.setVisible(false);
 
         displayWeekEvents();
@@ -90,7 +78,6 @@ public class HomeController implements Initializable, ParentController {
     public void closePopUp(String stringNeeded)
     {
         eventsList.setVisible(false);
-        eventDetails.setVisible(false);
         setEffect(null);
     }
 
@@ -151,53 +138,33 @@ public class HomeController implements Initializable, ParentController {
                 {
                     String moreEventText = "+ " + numMoreEvents + " more";
                     eventLabel.setText(eventName + "\t.\t.\t.\t" + moreEventText);
-                    addViewEventButton(i+1, next, true);
                 }
-                else
-                {
-                    addViewEventButton(i+1, next,  false);
-                }
+
+                addViewEventsButton(i+1, next);
             }
             upcomingEvents.add(dayEvents, 0, i+1);
         }
     }
 
-    private void addViewEventButton(int row, String eventDate, boolean multipleEvents)
+    private void addViewEventsButton(int row, String eventDate)
     {
-        Button viewEvents = new Button();
-        viewEvents.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
-        viewEvents.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        Button viewEventsButton = new Button();
+        viewEventsButton.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
+        viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        viewEventsButton.setText("View Events for " + eventDate);
 
         GaussianBlur blur = new GaussianBlur();
 
-        if(multipleEvents)
-        {
-            viewEvents.setText("View All Events for " + eventDate);
+        EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                eventsPopUpController.displayEvents(eventDate);
+                setEffect(blur);
+                eventsList.setVisible(true);
+            }
+        };
+        viewEventsButton.setOnAction(viewEvents);
 
-            EventHandler<ActionEvent> viewAllEvents = new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    eventsPopUpController.displayEvents(eventDate);
-                    setEffect(blur);
-                    eventsList.setVisible(true);
-                }
-            };
-            viewEvents.setOnAction(viewAllEvents);
-        }
-        else
-        {
-            viewEvents.setText("View Events Details for " + eventDate);
-
-            EventHandler<ActionEvent> viewEventDetails = new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    detailsPopUpController.displayEventDetails(eventDate);
-                    setEffect(blur);
-                    eventDetails.setVisible(true);
-                }
-            };
-            viewEvents.setOnAction(viewEventDetails);
-        }
-        upcomingEvents.add(viewEvents, 1, row);
+        upcomingEvents.add(viewEventsButton, 1, row);
     }
 }
