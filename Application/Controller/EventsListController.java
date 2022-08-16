@@ -36,11 +36,10 @@ public class EventsListController implements Initializable, ParentController {
     private GridPane topButtons;
 
     @FXML
-    private AnchorPane eventDetails, addEvent, editEvent;
+    private AnchorPane eventDetails, manageEvent, editEvent;
 
     private ParentController parentController;
-    private AddEventController addEventController;
-    //private EditEventController editEventController;
+    private ManageEventController manageEventController;
 
     private final GaussianBlur blur = new GaussianBlur();
 
@@ -49,28 +48,21 @@ public class EventsListController implements Initializable, ParentController {
     {
         try
         {
-            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/AddEvent.fxml"));
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvent.fxml"));
             Node addEventPopUp = addEventLoader.load();
-            addEvent.getChildren().add(addEventPopUp);
+            manageEvent.getChildren().add(addEventPopUp);
 
-            addEventController = ((AddEventController)addEventLoader.getController());
-            addEventController.setParentController(this);
-            addEventController.adjustLayout();
-
-            /*FXMLLoader editEventLoader = new FXMLLoader(getClass().getResource("../View/EditEvent.fxml"));
-            Node editEventPopUp = editEventLoader.load();
-            editEvent.getChildren().add(editEventPopUp);
-
-            editEventController = ((EditEventController)editEventLoader.getController());
-            editEventController.setParentController(this);*/
+            manageEventController = ((ManageEventController)addEventLoader.getController());
+            manageEventController.setParentController(this);
+            manageEventController.popUpSetUp();
+            manageEventController.setIsPopUp(true);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        addEvent.setVisible(false);
-        //editEvent.setVisible(false);
+        manageEvent.setVisible(false);
     }
 
     public void setParentController(ParentController parentController)
@@ -99,13 +91,13 @@ public class EventsListController implements Initializable, ParentController {
     public void addEvent()
     {
         setEffect(blur);
-        addEvent.setVisible(true);
+        manageEvent.setVisible(true);
     }
 
     public void editEvent()
     {
         setEffect(blur);
-        //editEvent.setVisible(true);
+        manageEvent.setVisible(true);
     }
 
     public void closeListView()

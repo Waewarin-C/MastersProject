@@ -36,7 +36,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AddEventController implements Initializable, ParentController {
+public class ManageEventController implements Initializable, ParentController {
+
+    @FXML
+    private Button saveManageEvent, cancelManageEvent, doneManageEvent, addNewEventCategoryButton;
+
     @FXML
     private TextField eventNameField, eventLocationField;
 
@@ -50,13 +54,10 @@ public class AddEventController implements Initializable, ParentController {
     private TextArea eventDescriptionField;
 
     @FXML
-    private Label addEventPageLabel, saveEventMessage, newCategory;
+    private Label manageEventPageLabel, saveEventMessage, newCategory;
 
     @FXML
-    private Button addNewEventCategoryButton;
-
-    @FXML
-    private GridPane addEventButtons, addEventGridPane;
+    private GridPane manageEventButtons, manageEventGridPane;
 
     @FXML
     private AnchorPane anchorPane, addCategoryPopUp;
@@ -64,6 +65,7 @@ public class AddEventController implements Initializable, ParentController {
     @FXML
     private Pane toolbarPane;
 
+    private boolean isPopUp = false;
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
 
@@ -87,12 +89,12 @@ public class AddEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        doneManageEvent.setVisible(false);
         addCategoryPopUp.setVisible(false);
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
-        List<String> categories = new ArrayList<String>();
-        categories.addAll(Main.login.getUser().getCategories().keySet());
+        List<String> categories = new ArrayList<String>(Main.login.getUser().getCategories().keySet());
         Collections.sort(categories);
         eventCategoryField.getItems().addAll(categories);
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
@@ -107,16 +109,21 @@ public class AddEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void adjustLayout()
+    public void setIsPopUp(boolean isPopUp)
     {
-        addEventGridPane.setLayoutX(66);
-        addEventButtons.setLayoutX(520);
+        this.isPopUp = isPopUp;
+    }
+
+    public void popUpSetUp()
+    {
+        manageEventGridPane.setLayoutX(66);
+        manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
         anchorPane.getChildren().remove(toolbarPane);
         anchorPane.setPrefSize(700, 450);
     }
 
-    public void saveAddEvent()
+    public void saveManageEvent()
     {
         String eventName = eventNameField.getText();
         String eventDate = formatDate();
@@ -152,9 +159,14 @@ public class AddEventController implements Initializable, ParentController {
         resetFields();
     }
 
-    public void cancelAddEvent()
+    public void cancelManageEvent()
     {
         resetFields();
+    }
+
+    public void doneManageEvent()
+    {
+
     }
 
     public void addNewEventCategory()
@@ -181,9 +193,9 @@ public class AddEventController implements Initializable, ParentController {
 
     public void setEffect(Effect effect)
     {
-        addEventPageLabel.setEffect(effect);
-        addEventGridPane.setEffect(effect);
-        addEventButtons.setEffect(effect);
+        manageEventPageLabel.setEffect(effect);
+        manageEventGridPane.setEffect(effect);
+        manageEventButtons.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
 

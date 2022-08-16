@@ -92,7 +92,7 @@ public class ToolbarController implements Initializable {
     {
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/AddEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvent.fxml"));
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
