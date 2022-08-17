@@ -11,8 +11,6 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,11 +18,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +33,7 @@ import java.util.ResourceBundle;
 public class EventsListController implements Initializable, ParentController {
 
     @FXML
-    private Label eventsListLabel, selectMessage;
+    private Label eventsListLabel, selectMessage, deleteSuccessfulMessage, deleteFailMessage;
 
     @FXML
     private Label eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
@@ -78,6 +76,8 @@ public class EventsListController implements Initializable, ParentController {
         }
 
         eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+
+        eventDetailsGrid.setVisible(false);
         manageEvent.setVisible(false);
     }
 
@@ -106,7 +106,7 @@ public class EventsListController implements Initializable, ParentController {
 
         addEventsToList(date);
 
-        eventDetailsGrid.setVisible(false);
+        deleteSuccessfulMessage.setVisible(false);
     }
 
     public void displaySelectedEventDetails()
@@ -121,6 +121,7 @@ public class EventsListController implements Initializable, ParentController {
         eventCategoryDetails.setText(events.get(index).getEventCategory());
         eventDescriptionDetails.setText(events.get(index).getEventDescription());
 
+        deleteFailMessage.setVisible(false);
         eventDetailsGrid.setVisible(true);
     }
 
@@ -143,6 +144,26 @@ public class EventsListController implements Initializable, ParentController {
 
         manageEventController.setUpForEdit(eventDetails);
         manageEvent.setVisible(true);
+    }
+
+    public void deleteEvent()
+    {
+        String date = eventDateDetails.getText();
+        int index = eventsListView.getSelectionModel().selectedIndexProperty().get();
+        Main.login.getUser().deleteEvent(date, index);
+
+        boolean isDeleted = manageEventController.saveToFile(true);
+        if(isDeleted)
+        {
+            deleteSuccessfulMessage.setVisible(true);
+            eventsListView.getSelectionModel().select(null);
+            eventDetailsGrid.setVisible(false);
+            selectMessage.setVisible(true);
+        }
+        else
+        {
+            deleteFailMessage.setVisible(true);
+        }
     }
 
     public void closeListView()

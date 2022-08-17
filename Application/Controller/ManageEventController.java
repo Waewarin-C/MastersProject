@@ -162,7 +162,7 @@ public class ManageEventController implements Initializable, ParentController {
         event.add(eventDescription);
 
         saveEventToUser(event);
-        saveEventToFile();
+        saveToFile(false);
 
         resetFields();
 
@@ -221,31 +221,7 @@ public class ManageEventController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
-    private String formatDate()
-    {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
-        LocalDate date = eventDatePicker.getValue();
-
-        if(date == null)
-        {
-            return "";
-        }
-        return date.format(format);
-    }
-
-    private void saveEventToUser(List<String> event)
-    {
-        String eventName = event.get(0);
-        String eventDate = event.get(1);
-        String eventLocation = event.get(2);
-        String eventCategory = event.get(3);
-        String eventDescription = event.get(4);
-
-        Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
-        Main.login.getUser().addEvent(newEvent);
-    }
-
-    private void saveEventToFile()
+    public boolean saveToFile(boolean isDelete)
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
 
@@ -273,6 +249,11 @@ public class ManageEventController implements Initializable, ParentController {
 
             file.close();
             saveEventMessage.setText("Saved successfully!");
+
+            if(isDelete)
+            {
+                return true;
+            }
         }
         catch (IOException e)
         {
@@ -280,8 +261,41 @@ public class ManageEventController implements Initializable, ParentController {
             saveEventMessage.setTextFill(Color.rgb(255, 0, 0));
             System.out.println("Error: unable to save the event");
             e.printStackTrace();
+
+            if(isDelete)
+            {
+                return false;
+            }
         }
+
+        return true;
     }
+
+    private String formatDate()
+    {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+        LocalDate date = eventDatePicker.getValue();
+
+        if(date == null)
+        {
+            return "";
+        }
+        return date.format(format);
+    }
+
+    private void saveEventToUser(List<String> event)
+    {
+        String eventName = event.get(0);
+        String eventDate = event.get(1);
+        String eventLocation = event.get(2);
+        String eventCategory = event.get(3);
+        String eventDescription = event.get(4);
+
+        Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
+        Main.login.getUser().addEvent(newEvent);
+    }
+
+
 
     private void resetFields()
     {
