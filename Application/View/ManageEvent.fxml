@@ -34,17 +34,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#saveManageEvent" prefHeight="30.0" prefWidth="65.0" text="Save">
+            <Button fx:id="saveManageEventButton" mnemonicParsing="false" onAction="#saveManageEvent" prefHeight="30.0" prefWidth="65.0" text="Save">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cancelManageEvent" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
+            <Button fx:id="cancelManageEventButton" mnemonicParsing="false" onAction="#cancelManageEvent" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="doneManageEvent" mnemonicParsing="false" onAction="#doneManageEvent" prefHeight="30.0" prefWidth="65.0" text="Done" GridPane.columnIndex="1">
+            <Button fx:id="doneManageEventButton" mnemonicParsing="false" onAction="#doneManageEvent" prefHeight="30.0" prefWidth="65.0" text="Done" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

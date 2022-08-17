@@ -36,7 +36,7 @@ import java.util.*;
 public class ManageEventController implements Initializable, ParentController {
 
     @FXML
-    private Button saveManageEvent, cancelManageEvent, doneManageEvent, addNewEventCategoryButton;
+    private Button saveManageEventButton, cancelManageEventButton, doneManageEventButton, addNewEventCategoryButton;
 
     @FXML
     private TextField eventNameField, eventLocationField;
@@ -86,7 +86,7 @@ public class ManageEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        doneManageEvent.setVisible(false);
+        doneManageEventButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
@@ -119,6 +119,8 @@ public class ManageEventController implements Initializable, ParentController {
 
     public void setUpForEdit(List<String> eventDetails)
     {
+        manageEventPageLabel.setText("Edit Event");
+
         eventNameField.setText(eventDetails.get(0));
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
@@ -166,9 +168,9 @@ public class ManageEventController implements Initializable, ParentController {
 
         if(isPopUp)
         {
-            saveManageEvent.setVisible(false);
-            cancelManageEvent.setVisible(false);
-            doneManageEvent.setVisible(true);
+            saveManageEventButton.setVisible(false);
+            cancelManageEventButton.setVisible(false);
+            doneManageEventButton.setVisible(true);
         }
     }
 

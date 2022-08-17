@@ -35,7 +35,10 @@ import java.util.ResourceBundle;
 public class EventsListController implements Initializable, ParentController {
 
     @FXML
-    private Label eventsListLabel, eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
+    private Label eventsListLabel, selectMessage;
+
+    @FXML
+    private Label eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
 
     @FXML
     private Button addEventButton;
@@ -44,7 +47,7 @@ public class EventsListController implements Initializable, ParentController {
     private ListView<String> eventsListView;
 
     @FXML
-    private GridPane topButtons;
+    private GridPane topButtons, eventDetailsGrid;
 
     @FXML
     private AnchorPane eventDetails, manageEvent;
@@ -53,6 +56,7 @@ public class EventsListController implements Initializable, ParentController {
     private ManageEventController manageEventController;
 
     private final GaussianBlur blur = new GaussianBlur();
+    private List<Event> events;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -73,6 +77,7 @@ public class EventsListController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         manageEvent.setVisible(false);
     }
 
@@ -83,6 +88,7 @@ public class EventsListController implements Initializable, ParentController {
 
     public void closePopUp(String neededString)
     {
+        manageEvent.setVisible(false);
         setEffect(null);
     }
 
@@ -97,31 +103,25 @@ public class EventsListController implements Initializable, ParentController {
     public void displayEvents(String date)
     {
         addEventButton.setText("Add Event for " + date);
-        List<Event> events = Main.login.getUser().getEvents().get(date);
 
-        for(Event event : events)
-        {
-            eventsListView.getItems().add(event.getEventName());
-        }
-        eventsListView.getSelectionModel().select(0);
-        eventNameDetails.setText(events.get(0).getEventName());
-        eventDateDetails.setText(events.get(0).getEventDate());
-        eventLocationDetails.setText(events.get(0).getEventLocation());
-        eventCategoryDetails.setText(events.get(0).getEventCategory());
-        eventDescriptionDetails.setText(events.get(0).getEventDescription());
+        addEventsToList(date);
 
-        eventsListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                int index = (int)newValue;
+        eventDetailsGrid.setVisible(false);
+    }
 
-                eventNameDetails.setText(events.get(index).getEventName());
-                eventDateDetails.setText(events.get(index).getEventDate());
-                eventLocationDetails.setText(events.get(index).getEventLocation());
-                eventCategoryDetails.setText(events.get(index).getEventCategory());
-                eventDescriptionDetails.setText(events.get(index).getEventDescription());
-            }
-        });
+    public void displaySelectedEventDetails()
+    {
+        selectMessage.setVisible(false);
+
+        int index = eventsListView.getSelectionModel().selectedIndexProperty().get();
+
+        eventNameDetails.setText(events.get(index).getEventName());
+        eventDateDetails.setText(events.get(index).getEventDate());
+        eventLocationDetails.setText(events.get(index).getEventLocation());
+        eventCategoryDetails.setText(events.get(index).getEventCategory());
+        eventDescriptionDetails.setText(events.get(index).getEventDescription());
+
+        eventDetailsGrid.setVisible(true);
     }
 
     public void addEvent()
@@ -148,5 +148,16 @@ public class EventsListController implements Initializable, ParentController {
     public void closeListView()
     {
         parentController.closePopUp("");
+    }
+
+    private void addEventsToList(String date)
+    {
+        eventsListView.getItems().clear();
+
+        events = Main.login.getUser().getEvents().get(date);
+        for(Event event : events)
+        {
+            eventsListView.getItems().add(event.getEventName());
+        }
     }
 }
