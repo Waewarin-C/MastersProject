@@ -11,6 +11,8 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -102,12 +104,24 @@ public class EventsListController implements Initializable, ParentController {
             eventsListView.getItems().add(event.getEventName());
         }
         eventsListView.getSelectionModel().select(0);
-
         eventNameDetails.setText(events.get(0).getEventName());
         eventDateDetails.setText(events.get(0).getEventDate());
         eventLocationDetails.setText(events.get(0).getEventLocation());
         eventCategoryDetails.setText(events.get(0).getEventCategory());
         eventDescriptionDetails.setText(events.get(0).getEventDescription());
+
+        eventsListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int index = (int)newValue;
+
+                eventNameDetails.setText(events.get(index).getEventName());
+                eventDateDetails.setText(events.get(index).getEventDate());
+                eventLocationDetails.setText(events.get(index).getEventLocation());
+                eventCategoryDetails.setText(events.get(index).getEventCategory());
+                eventDescriptionDetails.setText(events.get(index).getEventDescription());
+            }
+        });
     }
 
     public void addEvent()
