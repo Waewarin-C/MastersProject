@@ -158,7 +158,8 @@ public class HomeController implements Initializable, ParentController {
         EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                eventsPopUpController.displayEvents(eventDate);
+                eventsPopUpController.setDate(eventDate);
+                eventsPopUpController.displayEvents();
                 setEffect(blur);
                 eventsList.setVisible(true);
             }

@@ -54,6 +54,7 @@ public class EventsListController implements Initializable, ParentController {
     private ManageEventController manageEventController;
 
     private final GaussianBlur blur = new GaussianBlur();
+    private String date;
     private List<Event> events;
 
     @Override
@@ -86,6 +87,11 @@ public class EventsListController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
     public void closePopUp(String neededString)
     {
         manageEvent.setVisible(false);
@@ -100,7 +106,7 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.setEffect(effect);
     }
 
-    public void displayEvents(String date)
+    public void displayEvents()
     {
         addEventButton.setText("Add Event for " + date);
 
@@ -159,6 +165,7 @@ public class EventsListController implements Initializable, ParentController {
             eventsListView.getSelectionModel().select(null);
             eventDetailsGrid.setVisible(false);
             selectMessage.setVisible(true);
+            displayEvents();
         }
         else
         {
