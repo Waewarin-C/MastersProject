@@ -45,9 +45,6 @@ public class SettingsController implements Initializable {
     private Label passwordSettingsError, displayNameSettingsError, saveMessage;
 
     @FXML
-    private Button editSettingsButton, saveSettingsButton, cancelSettingsButton, logoutButton;
-
-    @FXML
     private Pane toolbarPane;
 
     private String oldUsername = Main.login.getUser().getUsername();
@@ -142,11 +139,11 @@ public class SettingsController implements Initializable {
     {
         setFieldsDisable(true);
 
-        usernameSettings.setText(oldUsername);
-        passwordSettings.setText(oldPassword);
-        displayNameSettings.setText(oldDisplayName);
-        securityQuestionSettings.setText(oldSecurityQuestion);
-        securityQuestionAnswerSettings.setText(oldSecurityQuestionAnswer);
+        usernameSettings.setText(this.oldUsername);
+        passwordSettings.setText(this.oldPassword);
+        displayNameSettings.setText(this.oldDisplayName);
+        securityQuestionSettings.setText(this.oldSecurityQuestion);
+        securityQuestionAnswerSettings.setText(this.oldSecurityQuestionAnswer);
 
         passwordSettingsError.setText("Password must be at least 8 characters");
         passwordSettingsError.setTextFill(Color.rgb(0, 0, 0));
@@ -161,12 +158,12 @@ public class SettingsController implements Initializable {
 
     private void fillFields()
     {
-        usernameSettings.setText(oldUsername);
-        passwordSettings.setText(oldPassword);
-        showPassword.setText(oldPassword);
-        displayNameSettings.setText(oldDisplayName);
-        securityQuestionSettings.setText(oldSecurityQuestion);
-        securityQuestionAnswerSettings.setText(oldSecurityQuestionAnswer);
+        usernameSettings.setText(this.oldUsername);
+        passwordSettings.setText(this.oldPassword);
+        showPassword.setText(this.oldPassword);
+        displayNameSettings.setText(this.oldDisplayName);
+        securityQuestionSettings.setText(this.oldSecurityQuestion);
+        securityQuestionAnswerSettings.setText(this.oldSecurityQuestionAnswer);
 
         if(oldWelcomePageShown.equals("Yes"))
         {
@@ -226,7 +223,7 @@ public class SettingsController implements Initializable {
         try
         {
             //Change the info file name
-            String oldFileName = "Account/" + oldUsername + "_info.csv";
+            String oldFileName = "Account/" + this.oldUsername + "_info.csv";
             File oldFile = new File(oldFileName);
 
             String newFileName = "Account/" + newSettings.get(0) + "_info.csv";
@@ -245,7 +242,7 @@ public class SettingsController implements Initializable {
             save.close();
 
             //Change the events file name
-            oldFileName = "Account/" + oldUsername + "_events.csv";
+            oldFileName = "Account/" + this.oldUsername + "_events.csv";
             oldFile = new File(oldFileName);
 
             newFileName = "Account/" + newSettings.get(0) + "_events.csv";
@@ -253,7 +250,7 @@ public class SettingsController implements Initializable {
             oldFile.renameTo(newFile);
 
             //Change the categories file name
-            oldFileName = "Account/" + oldUsername + "_categories.csv";
+            oldFileName = "Account/" + this.oldUsername + "_categories.csv";
             oldFile = new File(oldFileName);
 
             newFileName = "Account/" + newSettings.get(0) + "_categories.csv";

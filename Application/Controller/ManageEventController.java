@@ -81,8 +81,8 @@ public class ManageEventController implements Initializable, ParentController {
             Node popUp = loader.load();
             addCategoryPopUp.getChildren().add(popUp);
 
-            popUpController = ((AddCategoryPopUpController)loader.getController());
-            popUpController.setParentController(this);
+            this.popUpController = ((AddCategoryPopUpController)loader.getController());
+            this.popUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -183,7 +183,7 @@ public class ManageEventController implements Initializable, ParentController {
 
     public void cancelManageEvent()
     {
-        if(isPopUp)
+        if(this.isPopUp)
         {
             this.parentController.closePopUp("");
         }
@@ -297,7 +297,7 @@ public class ManageEventController implements Initializable, ParentController {
         String eventLocation = event.get(2);
         String eventCategory = event.get(3);
         String eventDescription = event.get(4);
-        System.out.println(this.isEdit);
+
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
         Main.login.getUser().addEvent(newEvent, this.isEdit, this.eventIndex);
     }

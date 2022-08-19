@@ -32,12 +32,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="editSettingsButton" mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" text="Edit">
+            <Button mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" text="Edit">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="logoutSettingsButton" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" text="Logout" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" text="Logout" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -168,12 +168,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" text="Save">
+            <Button mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" text="Save">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelSettingsButton" mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

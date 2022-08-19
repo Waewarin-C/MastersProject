@@ -78,7 +78,7 @@ public class AddCategoryPopUpController implements Initializable {
 
     public void cancelAddCategory()
     {
-        parentController.closePopUp("");
+        this.parentController.closePopUp("");
     }
 
     public void doneAddCategory()

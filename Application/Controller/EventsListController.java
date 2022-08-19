@@ -66,9 +66,9 @@ public class EventsListController implements Initializable, ParentController {
             Node addEventPopUp = addEventLoader.load();
             manageEvent.getChildren().add(addEventPopUp);
 
-            manageEventController = ((ManageEventController)addEventLoader.getController());
-            manageEventController.setParentController(this);
-            manageEventController.popUpSetUp(true);
+            this.manageEventController = ((ManageEventController)addEventLoader.getController());
+            this.manageEventController.setParentController(this);
+            this.manageEventController.popUpSetUp(true);
 
         }
         catch (IOException e)
@@ -146,7 +146,7 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.add(eventCategoryDetails.getText());
         eventDetails.add(eventDescriptionDetails.getText());
 
-        manageEventController.editSetUp(eventDetails, date, eventIndex);
+        this.manageEventController.editSetUp(eventDetails, date, eventIndex);
         manageEvent.setVisible(true);
     }
 

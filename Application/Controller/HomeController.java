@@ -59,8 +59,8 @@ public class HomeController implements Initializable, ParentController {
             Node listPopUp = listLoader.load();
             eventsList.getChildren().add(listPopUp);
 
-            eventsPopUpController = ((EventsListController)listLoader.getController());
-            eventsPopUpController.setParentController(this);
+            this.eventsPopUpController = ((EventsListController)listLoader.getController());
+            this.eventsPopUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -100,8 +100,8 @@ public class HomeController implements Initializable, ParentController {
 
         for(int i = 0; i < week; i++)
         {
-            LocalDate nextDate = today.plusDays(i);
-            String next = nextDate.format(format);
+            LocalDate nextDate = this.today.plusDays(i);
+            String next = nextDate.format(this.format);
 
             VBox dayEvents = new VBox();
             dayEvents.setSpacing(5);

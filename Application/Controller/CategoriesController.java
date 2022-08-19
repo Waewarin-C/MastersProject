@@ -56,8 +56,8 @@ public class CategoriesController implements Initializable, ParentController {
             Node popUp = loader.load();
             addCategoryPopUp.getChildren().add(popUp);
 
-            popUpController = ((AddCategoryPopUpController)loader.getController());
-            popUpController.setParentController(this);
+            this.popUpController = ((AddCategoryPopUpController)loader.getController());
+            this.popUpController.setParentController(this);
         }
         catch(Exception e)
         {
@@ -91,7 +91,7 @@ public class CategoriesController implements Initializable, ParentController {
             Main.login.getUser().addCategory(categoryName, categoryColor);
         }
 
-        popUpController.saveCategoryToFile();
+        this.popUpController.saveCategoryToFile();
 
         displayCategories();
     }
@@ -101,7 +101,7 @@ public class CategoriesController implements Initializable, ParentController {
         GaussianBlur blur = new GaussianBlur();
         setEffect(blur);
 
-        popUpController.setUp();
+        this.popUpController.setUp();
         addCategoryPopUp.setVisible(true);
     }
 
