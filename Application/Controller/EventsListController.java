@@ -22,7 +22,6 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +32,7 @@ import java.util.ResourceBundle;
 public class EventsListController implements Initializable, ParentController {
 
     @FXML
-    private Label eventsListLabel, selectMessage, deleteSuccessfulMessage, deleteFailMessage;
+    private Label eventsListLabel, selectMessage, deleteFailMessage;
 
     @FXML
     private Label eventNameDetails, eventDateDetails, eventLocationDetails, eventCategoryDetails, eventDescriptionDetails;
@@ -56,6 +55,7 @@ public class EventsListController implements Initializable, ParentController {
     private final GaussianBlur blur = new GaussianBlur();
     private String date;
     private List<Event> events;
+    private int eventIndex;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -108,24 +108,22 @@ public class EventsListController implements Initializable, ParentController {
 
     public void displayEvents()
     {
-        addEventButton.setText("Add Event for " + date);
+        addEventButton.setText("Add Event for " + this.date);
 
-        addEventsToList(date);
-
-        deleteSuccessfulMessage.setVisible(false);
+        addEventsToList(this.date);
     }
 
     public void displaySelectedEventDetails()
     {
         selectMessage.setVisible(false);
 
-        int index = eventsListView.getSelectionModel().selectedIndexProperty().get();
+        this.eventIndex = eventsListView.getSelectionModel().selectedIndexProperty().get();
 
-        eventNameDetails.setText(events.get(index).getEventName());
-        eventDateDetails.setText(events.get(index).getEventDate());
-        eventLocationDetails.setText(events.get(index).getEventLocation());
-        eventCategoryDetails.setText(events.get(index).getEventCategory());
-        eventDescriptionDetails.setText(events.get(index).getEventDescription());
+        eventNameDetails.setText(this.events.get(this.eventIndex).getEventName());
+        eventDateDetails.setText(this.events.get(this.eventIndex).getEventDate());
+        eventLocationDetails.setText(this.events.get(this.eventIndex).getEventLocation());
+        eventCategoryDetails.setText(this.events.get(this.eventIndex).getEventCategory());
+        eventDescriptionDetails.setText(this.events.get(this.eventIndex).getEventDescription());
 
         deleteFailMessage.setVisible(false);
         eventDetailsGrid.setVisible(true);
@@ -133,13 +131,13 @@ public class EventsListController implements Initializable, ParentController {
 
     public void addEvent()
     {
-        setEffect(blur);
+        setEffect(this.blur);
         manageEvent.setVisible(true);
     }
 
     public void editEvent()
     {
-        setEffect(blur);
+        setEffect(this.blur);
 
         List<String> eventDetails = new ArrayList<String>();
         eventDetails.add(eventNameDetails.getText());
@@ -148,7 +146,7 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.add(eventCategoryDetails.getText());
         eventDetails.add(eventDescriptionDetails.getText());
 
-        manageEventController.setUpForEdit(eventDetails);
+        manageEventController.editSetUp(eventDetails, date, eventIndex);
         manageEvent.setVisible(true);
     }
 
@@ -161,7 +159,6 @@ public class EventsListController implements Initializable, ParentController {
         boolean isDeleted = manageEventController.saveToFile(true);
         if(isDeleted)
         {
-            deleteSuccessfulMessage.setVisible(true);
             eventsListView.getSelectionModel().select(null);
             eventDetailsGrid.setVisible(false);
             selectMessage.setVisible(true);
@@ -175,15 +172,16 @@ public class EventsListController implements Initializable, ParentController {
 
     public void closeListView()
     {
-        parentController.closePopUp("");
+        this.parentController.closePopUp("");
     }
 
     private void addEventsToList(String date)
     {
         eventsListView.getItems().clear();
-
-        events = Main.login.getUser().getEvents().get(date);
-        for(Event event : events)
+        System.out.println("Listview size: " + eventsListView.getItems().size());
+        this.events = Main.login.getUser().getEvents().get(date);
+        System.out.println(this.events.size());
+        for(Event event : this.events)
         {
             eventsListView.getItems().add(event.getEventName());
         }

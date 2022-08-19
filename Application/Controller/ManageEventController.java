@@ -63,6 +63,9 @@ public class ManageEventController implements Initializable, ParentController {
     private Pane toolbarPane;
 
     private boolean isPopUp = false;
+    private boolean isEdit = false;
+    private String date;
+    private int eventIndex;
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
 
@@ -117,8 +120,12 @@ public class ManageEventController implements Initializable, ParentController {
         anchorPane.setPrefSize(700, 450);
     }
 
-    public void setUpForEdit(List<String> eventDetails)
+    public void editSetUp(List<String> eventDetails, String date, int eventIndex)
     {
+        this.isEdit = true;
+        this.date = date;
+        this.eventIndex = eventIndex;
+
         manageEventPageLabel.setText("Edit Event");
 
         eventNameField.setText(eventDetails.get(0));
@@ -178,7 +185,7 @@ public class ManageEventController implements Initializable, ParentController {
     {
         if(isPopUp)
         {
-            parentController.closePopUp("");
+            this.parentController.closePopUp("");
         }
         else
         {
@@ -188,7 +195,7 @@ public class ManageEventController implements Initializable, ParentController {
 
     public void doneManageEvent()
     {
-        parentController.closePopUp("");
+        this.parentController.closePopUp("");
     }
 
     public void addNewEventCategory()
@@ -290,12 +297,10 @@ public class ManageEventController implements Initializable, ParentController {
         String eventLocation = event.get(2);
         String eventCategory = event.get(3);
         String eventDescription = event.get(4);
-
+        System.out.println(this.isEdit);
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
-        Main.login.getUser().addEvent(newEvent);
+        Main.login.getUser().addEvent(newEvent, this.isEdit, this.eventIndex);
     }
-
-
 
     private void resetFields()
     {

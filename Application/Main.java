@@ -115,7 +115,7 @@ public class Main extends Application {
                 String[] eventInfo = scan.nextLine().split(",");
                 Event event = new Event(eventInfo[0], eventInfo[1], eventInfo[2], eventInfo[3], eventInfo[4]);
 
-                login.getUser().addEvent(event);
+                login.getUser().addEvent(event, false, -1);
             }
         }
         catch(IOException e)
