@@ -137,6 +137,7 @@ public class ManageEventController implements Initializable, ParentController {
         this.eventIndex = eventIndex;
 
         manageEventPageLabel.setText("Edit Event");
+        saveEventMessage.setText("");
 
         eventNameField.setText(eventDetails.get(0));
 
@@ -197,14 +198,14 @@ public class ManageEventController implements Initializable, ParentController {
 
         if(this.isPopUp)
         {
-            this.manageEventPageLabel.setText("Add Event");
+            resetForPopUp();
             this.parentController.closePopUp("");
         }
     }
 
     public void doneManageEvent()
     {
-        manageEventPageLabel.setText("Add Event");
+        resetForPopUp();
         this.parentController.closePopUp("");
     }
 
@@ -309,14 +310,13 @@ public class ManageEventController implements Initializable, ParentController {
         String eventDescription = event.get(4);
 
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
-        System.out.println(this.isEdit);
+
         if(this.isEdit)
         {
             Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventIndex);
         }
         else
         {
-            System.out.println(this.eventListSize);
             Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventListSize);
         }
 
@@ -332,5 +332,14 @@ public class ManageEventController implements Initializable, ParentController {
         eventDescriptionField.clear();
         addNewEventCategoryButton.setVisible(true);
         newCategory.setVisible(false);
+    }
+
+    private void resetForPopUp()
+    {
+        manageEventPageLabel.setText("Add Event");
+        saveManageEventButton.setVisible(true);
+        cancelManageEventButton.setVisible(true);
+        doneManageEventButton.setVisible(false);
+        saveEventMessage.setText("");
     }
 }

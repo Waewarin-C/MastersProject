@@ -96,6 +96,12 @@ public class EventsListController implements Initializable, ParentController {
     {
         manageEvent.setVisible(false);
         displayEvents();
+
+        if(eventIndex != -1)
+        {
+            displaySelectedEventDetails();
+        }
+
         setEffect(null);
     }
 
@@ -111,8 +117,8 @@ public class EventsListController implements Initializable, ParentController {
     {
         this.manageEventController.setDate(this.date);
         addEventButton.setText("Add Event for " + this.date);
-        selectMessage.setVisible(true);
         addEventsToList(this.date);
+        selectMessage.setVisible(true);
     }
 
     public void displaySelectedEventDetails()
@@ -162,6 +168,7 @@ public class EventsListController implements Initializable, ParentController {
         if(isDeleted)
         {
             eventsListView.getSelectionModel().select(null);
+            this.eventIndex = -1;
             eventDetailsGrid.setVisible(false);
             selectMessage.setVisible(true);
             displayEvents();
