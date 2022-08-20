@@ -55,7 +55,7 @@ public class EventsListController implements Initializable, ParentController {
     private final GaussianBlur blur = new GaussianBlur();
     private String date;
     private List<Event> events;
-    private int eventIndex;
+    private int eventIndex = -1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -69,7 +69,7 @@ public class EventsListController implements Initializable, ParentController {
             this.manageEventController = ((ManageEventController)addEventLoader.getController());
             this.manageEventController.setParentController(this);
             this.manageEventController.popUpSetUp(true);
-
+            System.out.println(this.eventIndex);
         }
         catch (IOException e)
         {
@@ -97,8 +97,9 @@ public class EventsListController implements Initializable, ParentController {
         manageEvent.setVisible(false);
         displayEvents();
 
-        if(eventIndex != -1)
+        if(this.eventIndex >= 0)
         {
+            eventsListView.getSelectionModel().select(this.eventIndex);
             displaySelectedEventDetails();
         }
 
@@ -118,7 +119,9 @@ public class EventsListController implements Initializable, ParentController {
         this.manageEventController.setDate(this.date);
         addEventButton.setText("Add Event for " + this.date);
         addEventsToList(this.date);
+
         selectMessage.setVisible(true);
+        eventDetailsGrid.setVisible(false);
     }
 
     public void displaySelectedEventDetails()
@@ -140,6 +143,7 @@ public class EventsListController implements Initializable, ParentController {
     public void addEvent()
     {
         setEffect(this.blur);
+        this.manageEventController.prefillDate(this.date);
         manageEvent.setVisible(true);
     }
 

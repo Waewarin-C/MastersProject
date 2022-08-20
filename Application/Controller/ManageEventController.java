@@ -67,6 +67,7 @@ public class ManageEventController implements Initializable, ParentController {
     private String date;
     private int eventListSize;
     private int eventIndex;
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
 
@@ -131,6 +132,12 @@ public class ManageEventController implements Initializable, ParentController {
         anchorPane.setPrefSize(700, 450);
     }
 
+    public void prefillDate(String date)
+    {
+        eventDatePicker.setValue(LocalDate.parse(date, this.format));
+        eventDatePicker.setDisable(true);
+    }
+
     public void editSetUp(List<String> eventDetails, int eventIndex)
     {
         this.isEdit = true;
@@ -140,10 +147,8 @@ public class ManageEventController implements Initializable, ParentController {
         saveEventMessage.setText("");
 
         eventNameField.setText(eventDetails.get(0));
-
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
-        eventDatePicker.setValue(LocalDate.parse(eventDetails.get(1), format));
-
+        eventDatePicker.setValue(LocalDate.parse(eventDetails.get(1), this.format));
+        eventDatePicker.setDisable(false);
         eventLocationField.setText(eventDetails.get(2));
         eventCategoryField.setValue(eventDetails.get(3));
         eventDescriptionField.setText(eventDetails.get(4));
