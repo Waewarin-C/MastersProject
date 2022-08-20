@@ -266,7 +266,7 @@ public class ManageEventController implements Initializable, ParentController {
                     String eventCategory = event.getEventCategory();
                     String eventDescription = event.getEventDescription();
 
-                    file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
+                    file.write(String.format("%s,%s,%s,%s,%s", eventName, eventDate, eventLocation, eventCategory, eventDescription));
                 }
             }
 

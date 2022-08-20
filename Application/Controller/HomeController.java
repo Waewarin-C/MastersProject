@@ -97,6 +97,8 @@ public class HomeController implements Initializable, ParentController {
 
     private void displayWeekEvents()
     {
+        upcomingEvents.getChildren().remove(1, upcomingEvents.getChildren().size());
+
         int week = 7;
 
         for(int i = 0; i < week; i++)

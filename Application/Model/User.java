@@ -122,6 +122,11 @@ public class User {
     public void deleteEvent(String date, int index)
     {
         this.events.get(date).remove(index);
+
+        if(this.events.get(date).size() == 0)
+        {
+            this.events.remove(date);
+        }
     }
 
     public TreeMap<String, String> getCategories()
