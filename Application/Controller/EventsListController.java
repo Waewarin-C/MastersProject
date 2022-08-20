@@ -68,7 +68,7 @@ public class EventsListController implements Initializable, ParentController {
 
             this.manageEventController = ((ManageEventController)addEventLoader.getController());
             this.manageEventController.setParentController(this);
-            this.manageEventController.popUpSetUp(true, eventsListView.getItems().size());
+            this.manageEventController.popUpSetUp(true);
 
         }
         catch (IOException e)
@@ -186,5 +186,7 @@ public class EventsListController implements Initializable, ParentController {
         {
             eventsListView.getItems().add(event.getEventName());
         }
+
+        this.manageEventController.setEventListSize(eventsListView.getItems().size());
     }
 }

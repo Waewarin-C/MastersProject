@@ -137,13 +137,8 @@ public class SettingsController implements Initializable {
 
     public void cancelSettings()
     {
+        fillFields();
         setFieldsDisable(true);
-
-        usernameSettings.setText(this.oldUsername);
-        passwordSettings.setText(this.oldPassword);
-        displayNameSettings.setText(this.oldDisplayName);
-        securityQuestionSettings.setText(this.oldSecurityQuestion);
-        securityQuestionAnswerSettings.setText(this.oldSecurityQuestionAnswer);
 
         passwordSettingsError.setText("Password must be at least 8 characters");
         passwordSettingsError.setTextFill(Color.rgb(0, 0, 0));

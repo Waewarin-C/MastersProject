@@ -114,10 +114,16 @@ public class ManageEventController implements Initializable, ParentController {
     {
         this.date = date;
     }
-    public void popUpSetUp(boolean isPopUp, int eventListSize)
+
+    public void setEventListSize(int eventListSize)
+    {
+        this.eventListSize = eventListSize;
+    }
+
+    public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;
-        this.eventListSize = eventListSize;
+
         manageEventGridPane.setLayoutX(66);
         manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
