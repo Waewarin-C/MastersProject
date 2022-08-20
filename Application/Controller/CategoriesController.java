@@ -12,17 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -31,18 +26,22 @@ public class CategoriesController implements Initializable, ParentController {
     private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
-    private Label categoriesPageLabel, saveEditMessage;
+    private Label categoriesPageLabel, editMessage, deleteInstructions;
 
     @FXML
-    private GridPane buttons;
+    private Button saveEditButton, addCategoryButton, deleteCategoriesButton, deleteButton;
+
+    @FXML
+    private GridPane addAndDeleteButtons, editButtons;
 
     @FXML
     private Pane toolbarPane;
 
-    private GridPane categoriesGrid;
+    private GridPane categoriesGrid, deleteGrid;
 
+    private int numRows, numCols;
     private final int categoriesPerRow = 4;
-    private final int layoutXInterval = 80;
+    private final int layoutXInterval = 90;
     private AddCategoryPopUpController popUpController;
 
     @Override
@@ -65,16 +64,19 @@ public class CategoriesController implements Initializable, ParentController {
         }
 
         displayCategories();
-        saveEditMessage.setText("");
+        editMessage.setText("");
+        deleteInstructions.setVisible(false);
+        deleteButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
     }
 
     public void setEffect(Effect effect)
     {
         categoriesPageLabel.setEffect(effect);
-        buttons.setEffect(effect);
+        addAndDeleteButtons.setEffect(effect);
+        editButtons.setEffect(effect);
         categoriesGrid.setEffect(effect);
-        saveEditMessage.setEffect(effect);
+        editMessage.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
 
@@ -105,6 +107,36 @@ public class CategoriesController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(true);
     }
 
+    public void deleteSetUp()
+    {
+        addAndDeleteButtons.setVisible(false);
+        saveEditButton.setVisible(false);
+        deleteButton.setVisible(true);
+        deleteInstructions.setVisible(true);
+
+        int categoryIndex = 0;
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                CheckBox deleteCheckBox = new CheckBox();
+                ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(0, deleteCheckBox);
+
+                categoryIndex++;
+            }
+        }
+    }
+
+    public void deleteCategories()
+    {
+
+    }
+
+    public void cancel()
+    {
+
+    }
+
     public void closePopUp(String category)
     {
         addCategoryPopUp.setVisible(false);
@@ -118,63 +150,63 @@ public class CategoriesController implements Initializable, ParentController {
         List<String> categories = new ArrayList<>(Main.login.getUser().getCategories().keySet());
 
         int numCategories = categories.size();
-        int numRows = numCategories / categoriesPerRow;
-        int numCols = 0;
-        if(numCategories > categoriesPerRow)
+        this.numRows = numCategories / this.categoriesPerRow;
+
+        if(numCategories > this.categoriesPerRow)
         {
-            numCols = 4;
+            this.numCols = 4;
             if(numCategories % 4 != 0) {
-                numRows += 1;
+                this.numRows += 1;
             }
         }
         else
         {
-            numRows = 1;
-            numCols = numCategories;
+            this.numRows = 1;
+            this.numCols = numCategories;
         }
 
-        setUpGrid(numRows, numCols);
-        fillGrid(categories, numRows, numCols);
+        setUpGrid();
+        fillGrid(categories);
     }
 
-    private void setUpGrid(int numRows, int numCols)
+    private void setUpGrid()
     {
-        categoriesGrid = new GridPane();
-        categoriesGrid.setPadding(new Insets(10, 10, 10, 10));
-        categoriesGrid.setHgap(10);
-        categoriesGrid.setVgap(10);
+        this.categoriesGrid = new GridPane();
+        this.categoriesGrid.setPadding(new Insets(10, 10, 10, 10));
+        this.categoriesGrid.setHgap(10);
+        this.categoriesGrid.setVgap(10);
 
-        int layoutX = 335;
-        categoriesGrid.setLayoutY(130);
+        int layoutX = 325;
+        this.categoriesGrid.setLayoutY(130);
 
-        for(int row = 0; row < numRows; row++)
+        for(int row = 0; row < this.numRows; row++)
         {
-            for(int col = 0; col < numCols; col++)
+            for(int col = 0; col < this.numCols; col++)
             {
-                categoriesGrid.getColumnConstraints().add(new ColumnConstraints(150));
+                this.categoriesGrid.getColumnConstraints().add(new ColumnConstraints(170));
 
                 if(col != 0)
                 {
-                    layoutX -= layoutXInterval;
+                    layoutX -= this.layoutXInterval;
                 }
 
-                categoriesGrid.setLayoutX(layoutX);
+                this.categoriesGrid.setLayoutX(layoutX);
 
                 HBox box = new HBox();
                 box.setAlignment(Pos.CENTER);
-                box.setSpacing(10);
-                categoriesGrid.add(box, col, row);
+                box.setSpacing(5);
+                this.categoriesGrid.add(box, col, row);
             }
         }
-        anchorPane.getChildren().add(categoriesGrid);
+        anchorPane.getChildren().add(this.categoriesGrid);
     }
 
-    private void fillGrid(List<String> categories, int numRows, int numCols)
+    private void fillGrid(List<String> categories)
     {
         int categoryIndex = 0;
-        for(int row = 0; row < numRows; row++)
+        for(int row = 0; row < this.numRows; row++)
         {
-            for(int col = 0; col < numCols; col++)
+            for(int col = 0; col < this.numCols; col++)
             {
                 TextField categoryName = new TextField(categories.get(categoryIndex));
                 categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
@@ -186,34 +218,11 @@ public class CategoriesController implements Initializable, ParentController {
                 String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
                 categoryColor.setValue(Color.web(color));
 
-                ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
-                ((HBox)categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
+                ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
+                ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
 
                 categoryIndex++;
             }
-        }
-    }
-
-    private void saveToFile()
-    {
-        FileWriter file = null;
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
-
-        try
-        {
-            file = new FileWriter(new File(fileName));
-            file.write(String.format("%s,%s\n", "Category", "Color"));
-
-            file.close();
-
-            saveEditMessage.setText("Saved successfully!");
-        }
-        catch(IOException e)
-        {
-            saveEditMessage.setText("Error: something went wrong, please try again");
-            saveEditMessage.setTextFill(Color.rgb(255,0,0));
-            System.out.println("Error: unable to save the categories");
-            e.printStackTrace();
         }
     }
 }
