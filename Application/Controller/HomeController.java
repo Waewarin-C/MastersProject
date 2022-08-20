@@ -78,6 +78,7 @@ public class HomeController implements Initializable, ParentController {
     public void closePopUp(String stringNeeded)
     {
         eventsList.setVisible(false);
+        displayWeekEvents();
         setEffect(null);
     }
 

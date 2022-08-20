@@ -90,7 +90,7 @@ public class User {
         this.events = events;
     }
 
-    public void addEvent(Event event, boolean isEdit, int eventIndex)
+    public void addEvent(Event event, boolean isEdit, String oldDate, int eventIndex)
     {
         String date = event.getEventDate();
 
@@ -102,7 +102,14 @@ public class User {
 
         if(this.events.containsKey(date))
         {
-            this.events.get(date).add(event);
+            if((oldDate.equals("") && eventIndex < 0) || !oldDate.equals(date))
+            {
+                this.events.get(date).add(event);
+            }
+            else
+            {
+                this.events.get(date).add(eventIndex, event);
+            }
         }
         else
         {

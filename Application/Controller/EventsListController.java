@@ -68,7 +68,7 @@ public class EventsListController implements Initializable, ParentController {
 
             this.manageEventController = ((ManageEventController)addEventLoader.getController());
             this.manageEventController.setParentController(this);
-            this.manageEventController.popUpSetUp(true);
+            this.manageEventController.popUpSetUp(true, eventsListView.getItems().size());
 
         }
         catch (IOException e)
@@ -95,6 +95,7 @@ public class EventsListController implements Initializable, ParentController {
     public void closePopUp(String neededString)
     {
         manageEvent.setVisible(false);
+        displayEvents();
         setEffect(null);
     }
 
@@ -108,8 +109,9 @@ public class EventsListController implements Initializable, ParentController {
 
     public void displayEvents()
     {
+        this.manageEventController.setDate(this.date);
         addEventButton.setText("Add Event for " + this.date);
-
+        selectMessage.setVisible(true);
         addEventsToList(this.date);
     }
 
@@ -146,7 +148,7 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.add(eventCategoryDetails.getText());
         eventDetails.add(eventDescriptionDetails.getText());
 
-        this.manageEventController.editSetUp(eventDetails, date, eventIndex);
+        this.manageEventController.editSetUp(eventDetails, eventIndex);
         manageEvent.setVisible(true);
     }
 
@@ -178,9 +180,8 @@ public class EventsListController implements Initializable, ParentController {
     private void addEventsToList(String date)
     {
         eventsListView.getItems().clear();
-        System.out.println("Listview size: " + eventsListView.getItems().size());
+
         this.events = Main.login.getUser().getEvents().get(date);
-        System.out.println(this.events.size());
         for(Event event : this.events)
         {
             eventsListView.getItems().add(event.getEventName());

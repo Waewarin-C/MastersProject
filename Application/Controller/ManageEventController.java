@@ -65,6 +65,7 @@ public class ManageEventController implements Initializable, ParentController {
     private boolean isPopUp = false;
     private boolean isEdit = false;
     private String date;
+    private int eventListSize;
     private int eventIndex;
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
@@ -109,10 +110,14 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void popUpSetUp(boolean isPopUp)
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+    public void popUpSetUp(boolean isPopUp, int eventListSize)
     {
         this.isPopUp = isPopUp;
-
+        this.eventListSize = eventListSize;
         manageEventGridPane.setLayoutX(66);
         manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
@@ -120,10 +125,9 @@ public class ManageEventController implements Initializable, ParentController {
         anchorPane.setPrefSize(700, 450);
     }
 
-    public void editSetUp(List<String> eventDetails, String date, int eventIndex)
+    public void editSetUp(List<String> eventDetails, int eventIndex)
     {
         this.isEdit = true;
-        this.date = date;
         this.eventIndex = eventIndex;
 
         manageEventPageLabel.setText("Edit Event");
@@ -183,18 +187,18 @@ public class ManageEventController implements Initializable, ParentController {
 
     public void cancelManageEvent()
     {
+        resetFields();
+
         if(this.isPopUp)
         {
+            this.manageEventPageLabel.setText("Add Event");
             this.parentController.closePopUp("");
-        }
-        else
-        {
-            resetFields();
         }
     }
 
     public void doneManageEvent()
     {
+        manageEventPageLabel.setText("Add Event");
         this.parentController.closePopUp("");
     }
 
@@ -299,7 +303,17 @@ public class ManageEventController implements Initializable, ParentController {
         String eventDescription = event.get(4);
 
         Event newEvent = new Event(eventName, eventDate, eventLocation, eventCategory, eventDescription);
-        Main.login.getUser().addEvent(newEvent, this.isEdit, this.eventIndex);
+        System.out.println(this.isEdit);
+        if(this.isEdit)
+        {
+            Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventIndex);
+        }
+        else
+        {
+            System.out.println(this.eventListSize);
+            Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventListSize);
+        }
+
     }
 
     private void resetFields()
