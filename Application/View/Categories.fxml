@@ -26,12 +26,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="addCategoryButton" mnemonicParsing="false" onAction="#addNewCategory" prefHeight="30.0" text="Add New Category">
+            <Button mnemonicParsing="false" onAction="#addNewCategory" prefHeight="30.0" text="Add New Category">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="deleteCategoriesButton" mnemonicParsing="false" onAction="#deleteSetUp" prefHeight="30.0" text="Delete Existing Categories" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#deleteSetUp" prefHeight="30.0" text="Delete Existing Categories" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#cancelEditCategories" prefHeight="30.0" prefWidth="65.0" text="Cancel" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

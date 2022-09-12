@@ -29,7 +29,7 @@ public class CategoriesController implements Initializable, ParentController {
     private Label categoriesPageLabel, editMessage, deleteInstructions;
 
     @FXML
-    private Button saveEditButton, addCategoryButton, deleteCategoriesButton, deleteButton;
+    private Button saveEditButton, deleteButton;
 
     @FXML
     private GridPane addAndDeleteButtons, editButtons;
@@ -37,7 +37,7 @@ public class CategoriesController implements Initializable, ParentController {
     @FXML
     private Pane toolbarPane;
 
-    private GridPane categoriesGrid, deleteGrid;
+    private GridPane categoriesGrid;
 
     private int numRows, numCols;
     private final int categoriesPerRow = 4;
@@ -132,9 +132,15 @@ public class CategoriesController implements Initializable, ParentController {
 
     }
 
-    public void cancel()
+    public void cancelEditCategories()
     {
+        this.categoriesGrid.getChildren().clear();
+        displayCategories();
 
+        deleteInstructions.setVisible(false);
+        deleteButton.setVisible(false);
+        saveEditButton.setVisible(true);
+        addAndDeleteButtons.setVisible(true);
     }
 
     public void closePopUp(String category)
