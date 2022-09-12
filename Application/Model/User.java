@@ -144,6 +144,11 @@ public class User {
         this.categories.put(categoryName, categoryColor);
     }
 
+    public void deleteCategory(String categoryName)
+    {
+        this.categories.remove(categoryName);
+    }
+
     public String getWelcomePageShown()
     {
         return this.welcomePageShown;

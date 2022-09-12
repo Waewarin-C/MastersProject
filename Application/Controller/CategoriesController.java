@@ -129,7 +129,31 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void deleteCategories()
     {
+        int categoryIndex = 0;
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                HBox category = (HBox)this.categoriesGrid.getChildren().get(categoryIndex);
+                boolean isCategoryChecked = ((CheckBox)category.getChildren().get(0)).isSelected();
+                if(isCategoryChecked)
+                {
+                    String categoryName = ((TextField)category.getChildren().get(1)).getText();
+                    Main.login.getUser().deleteCategory(categoryName);
+                }
 
+                categoryIndex++;
+            }
+        }
+
+        deleteInstructions.setVisible(false);
+        deleteButton.setVisible(false);
+        saveEditButton.setVisible(true);
+        addAndDeleteButtons.setVisible(true);
+
+        this.categoriesGrid.getChildren().clear();
+        displayCategories();
+        saveEditCategories();
     }
 
     public void cancelEditCategories()
