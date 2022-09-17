@@ -10,14 +10,34 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CalendarController implements Initializable {
+public class CalendarController implements Initializable, ParentController {
+    @FXML
+    private Label calendarMonth;
+
+    @FXML
+    private DatePicker calendarDatePicker;
+
+    @FXML
+    private Button addCalendarEventButton;
+
+    @FXML
+    private GridPane datePicker, calendar;
+
     @FXML
     private Pane toolbarPane;
+
+    private GaussianBlur blur = new GaussianBlur();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,5 +55,23 @@ public class CalendarController implements Initializable {
     public void goToDate()
     {
 
+    }
+
+    public void addEvent()
+    {
+        setEffect(blur);
+    }
+
+    public void setEffect(Effect effect)
+    {
+        datePicker.setEffect(effect);
+        addCalendarEventButton.setEffect(effect);
+        calendar.setEffect(effect);
+        toolbarPane.setEffect(effect);
+    }
+
+    public void closePopUp(String stringNeeded)
+    {
+        setEffect(null);
     }
 }
