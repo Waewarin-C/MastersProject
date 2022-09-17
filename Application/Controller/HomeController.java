@@ -46,7 +46,6 @@ public class HomeController implements Initializable, ParentController {
 
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
-    private String date = today.format(format);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
