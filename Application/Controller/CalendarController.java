@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
 
 public class CalendarController implements Initializable, ParentController {
     @FXML
-    private Label calendarMonth;
+    private Label calendarLabel, calendarMonth;
 
     @FXML
     private DatePicker calendarDatePicker;
@@ -78,6 +78,7 @@ public class CalendarController implements Initializable, ParentController {
 
     public void setEffect(Effect effect)
     {
+        calendarLabel.setEffect(effect);
         datePicker.setEffect(effect);
         addCalendarEventButton.setEffect(effect);
         calendar.setEffect(effect);
@@ -112,14 +113,14 @@ public class CalendarController implements Initializable, ParentController {
 
 
         //Set up week 2 onward till the end of the month
-        while(notLastDayOfMonth)
+        /*while(notLastDayOfMonth)
         {
-
+            System.out.println("while loop");
             if(date == lastDayOfMonth)
             {
                 notLastDayOfMonth = false;
             }
-        }
+        }*/
     }
 
     private int setUpFirstWeek(int weekDayOfFirstDay)
