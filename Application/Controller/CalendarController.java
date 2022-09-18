@@ -17,11 +17,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -125,6 +124,8 @@ public class CalendarController implements Initializable, ParentController {
 
     private int setUpFirstWeek(int weekDayOfFirstDay)
     {
+        this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
+
         int date = 1;
         int next = 0;
         for(int col = weekDayOfFirstDay; col < 7; col++)
@@ -133,13 +134,15 @@ public class CalendarController implements Initializable, ParentController {
             String nextDay = nextDate.format(this.format);
 
             VBox day = new VBox();
+            day.setPrefHeight(Region.USE_COMPUTED_SIZE);
             day.setSpacing(5);
-            day.setPadding(new Insets(0, 5, 0, 5));
+            day.setPadding(new Insets(0, 0, 1, 0));
+            day.setStyle("-fx-border-color: black; -fx-border-width: 2;");
 
             Button displayDate = new Button(Integer.toString(date));
-            displayDate.setPrefWidth(100);
+            displayDate.setPrefSize(100, Region.USE_COMPUTED_SIZE);
             displayDate.setAlignment(Pos.CENTER_RIGHT);
-            displayDate.setStyle("-fx-font: 18px \"Berlin Sans FB\";");
+            displayDate.setStyle("-fx-font: 16px \"Berlin Sans FB\"; -fx-background-radius: 0;");
             day.getChildren().add(displayDate);
 
             if(Main.login.getUser().getEvents().containsKey(nextDay))
@@ -164,6 +167,7 @@ public class CalendarController implements Initializable, ParentController {
                 }
             }
 
+            calendar.add(day,col,2);
             date++;
         }
         return date;
