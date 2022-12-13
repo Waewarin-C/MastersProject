@@ -17,7 +17,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
@@ -25,7 +24,6 @@ import javafx.scene.layout.*;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,6 +46,8 @@ public class CalendarController implements Initializable, ParentController {
 
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private int lastDayOfMonth = this.today.lengthOfMonth();
+
     private GaussianBlur blur = new GaussianBlur();
 
     @Override
@@ -91,50 +91,31 @@ public class CalendarController implements Initializable, ParentController {
 
     private void setUpCalendar()
     {
-        boolean notLastDayOfMonth = true;
-        int lastDayOfMonth = this.today.getMonth().length(false);
-        if(this.today.getMonth().equals(Month.FEBRUARY) && this.today.isLeapYear())
-        {
-            lastDayOfMonth = this.today.getMonth().length(true);
-        }
-
         //Get the day of the 1st of the month
-        int weekDayOfFirstDay = 0;
         LocalDate firstDayOfMonth = today.withDayOfMonth(1);
         DayOfWeek firstDay = firstDayOfMonth.getDayOfWeek();
-        if(!firstDay.equals(DayOfWeek.SUNDAY))
-        {
-            weekDayOfFirstDay = firstDay.getValue();
-        }
+        int weekDayOfFirstDay = firstDay.getValue();
 
-        //Set up first week
-        int date = setUpFirstWeek(weekDayOfFirstDay);
-
-
-        //Set up week 2 onward till the end of the month
-        /*while(notLastDayOfMonth)
-        {
-            System.out.println("while loop");
-            if(date == lastDayOfMonth)
-            {
-                notLastDayOfMonth = false;
-            }
-        }*/
+        //Display current month
+        displayMonth(weekDayOfFirstDay);
     }
 
-    private int setUpFirstWeek(int weekDayOfFirstDay)
+    private void displayMonth(int weekDayOfFirstDay)
     {
-        this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
-
         int date = 1;
         int next = 0;
-        for(int col = weekDayOfFirstDay; col < 7; col++)
+        int row = 2;
+        int col = weekDayOfFirstDay;
+
+        while(date <= lastDayOfMonth)
         {
+            this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
+
             LocalDate nextDate = this.today.plusDays(next);
             String nextDay = nextDate.format(this.format);
 
             VBox day = new VBox();
-            day.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            day.setPrefHeight(50);
             day.setSpacing(5);
             day.setPadding(new Insets(0, 0, 1, 0));
             day.setStyle("-fx-border-color: black; -fx-border-width: 2;");
@@ -142,13 +123,13 @@ public class CalendarController implements Initializable, ParentController {
             Button displayDate = new Button(Integer.toString(date));
             displayDate.setPrefSize(100, Region.USE_COMPUTED_SIZE);
             displayDate.setAlignment(Pos.CENTER_RIGHT);
-            displayDate.setStyle("-fx-font: 16px \"Berlin Sans FB\"; -fx-background-radius: 0;");
+            displayDate.setStyle("-fx-font: 12px \"Berlin Sans FB\"; -fx-background-radius: 0;");
             day.getChildren().add(displayDate);
 
             if(Main.login.getUser().getEvents().containsKey(nextDay))
             {
                 Label firstEvent = new Label();
-                firstEvent.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+                firstEvent.setStyle("-fx-font: 12px \"Berlin Sans FB\";");
 
                 List<Event> events = Main.login.getUser().getEvents().get(nextDay);
                 String eventName = events.get(0).getEventName();
@@ -167,9 +148,17 @@ public class CalendarController implements Initializable, ParentController {
                 }
             }
 
-            calendar.add(day,col,2);
+            calendar.add(day,col, row);
             date++;
+            if(col < 6)
+            {
+                col++;
+            }
+            else
+            {
+                col = 0;
+                row++;
+            }
         }
-        return date;
     }
 }
