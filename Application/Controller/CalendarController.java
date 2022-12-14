@@ -61,7 +61,7 @@ public class CalendarController implements Initializable, ParentController {
         {
             e.printStackTrace();
         }
-
+        calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         setUpCalendar();
     }
 
@@ -115,10 +115,16 @@ public class CalendarController implements Initializable, ParentController {
             String nextDay = nextDate.format(this.format);
 
             VBox day = new VBox();
-            day.setPrefHeight(70);
+            day.setPrefHeight(75);
             day.setSpacing(5);
             day.setPadding(new Insets(0, 0, 1, 0));
-            day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 2 0;");
+            if(col == 0) {
+                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
+            }
+            else
+            {
+                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
+            }
 
             Button displayDate = new Button(Integer.toString(date));
             displayDate.setPrefSize(100, Region.USE_COMPUTED_SIZE);
