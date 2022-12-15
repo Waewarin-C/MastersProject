@@ -25,6 +25,7 @@ import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,8 +112,8 @@ public class CalendarController implements Initializable, ParentController {
         {
             this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
 
-            LocalDate nextDate = this.today.plusDays(next);
-            String nextDay = nextDate.format(this.format);
+            this.today = this.today.plusDays(next);
+            String todayDate = this.today.format(this.format);
 
             VBox day = new VBox();
             day.setPrefHeight(75);
@@ -132,25 +133,15 @@ public class CalendarController implements Initializable, ParentController {
             displayDate.setStyle("-fx-font: 12px \"Berlin Sans FB\"; -fx-background-radius: 0;");
             day.getChildren().add(displayDate);
 
-            if(Main.login.getUser().getEvents().containsKey(nextDay))
+            List<Label> eventsList = showEvents(todayDate);
+
+            if(eventsList.size() > 0)
             {
-                Label firstEvent = new Label();
-                firstEvent.setStyle("-fx-font: 12px \"Berlin Sans FB\";");
+                day.getChildren().add(eventsList.get(0));
 
-                List<Event> events = Main.login.getUser().getEvents().get(nextDay);
-                String eventName = events.get(0).getEventName();
-                firstEvent.setText(eventName);
-
-                day.getChildren().add(firstEvent);
-
-                int numMoreEvents = events.size() - 1;
-                if(numMoreEvents > 0)
+                if(eventsList.size() > 1)
                 {
-                    String moreEventText = "+ " + numMoreEvents + " more";
-
-                    Label moreEvents = new Label(moreEventText);
-                    moreEvents.setStyle("-fx-font: 13px \"Berlin Sans FB\";");
-                    day.getChildren().add(moreEvents);
+                    day.getChildren().add(eventsList.get(1));
                 }
             }
 
@@ -166,5 +157,33 @@ public class CalendarController implements Initializable, ParentController {
                 row++;
             }
         }
+    }
+
+    private List<Label> showEvents(String todayDate)
+    {
+        List<Label> eventsList = new ArrayList<Label>();
+
+        if(Main.login.getUser().getEvents().containsKey(todayDate))
+        {
+            Label firstEvent = new Label();
+            firstEvent.setStyle("-fx-font: 12px \"Berlin Sans FB\";");
+
+            List<Event> events = Main.login.getUser().getEvents().get(todayDate);
+            String eventName = events.get(0).getEventName();
+            firstEvent.setText(eventName);
+
+            eventsList.add(firstEvent);
+
+            int numMoreEvents = events.size() - 1;
+            if(numMoreEvents > 0)
+            {
+                String moreEventText = "+ " + numMoreEvents + " more";
+
+                Label moreEvents = new Label(moreEventText);
+                moreEvents.setStyle("-fx-font: 13px \"Berlin Sans FB\";");
+                eventsList.add(moreEvents);
+            }
+        }
+        return eventsList;
     }
 }
