@@ -111,6 +111,16 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+    public void setEventListSize(int eventListSize)
+    {
+        this.eventListSize = eventListSize;
+    }
+
     public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;
@@ -313,7 +323,6 @@ public class ManageEventController implements Initializable, ParentController {
         {
             Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventListSize);
         }
-
     }
 
     private void resetFields()
