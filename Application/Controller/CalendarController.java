@@ -45,6 +45,12 @@ public class CalendarController implements Initializable, ParentController {
     @FXML
     private Pane toolbarPane;
 
+    @FXML
+    private AnchorPane manageEvent;
+
+    private ParentController parentController;
+    private ManageEventController manageEventController;
+
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
     private int lastDayOfMonth = this.today.lengthOfMonth();
@@ -57,11 +63,21 @@ public class CalendarController implements Initializable, ParentController {
         {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
             toolbarPane.getChildren().add(toolbar);
+
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvent.fxml"));
+            Node addEventPopUp = addEventLoader.load();
+            manageEvent.getChildren().add(addEventPopUp);
+
+            this.manageEventController = ((ManageEventController)addEventLoader.getController());
+            this.manageEventController.setParentController(this);
+            this.manageEventController.popUpSetUp(true);
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
+
+        manageEvent.setVisible(false);
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         setUpCalendar();
     }
@@ -73,6 +89,7 @@ public class CalendarController implements Initializable, ParentController {
 
     public void addEvent()
     {
+        manageEvent.setVisible(true);
         setEffect(blur);
     }
 
@@ -87,6 +104,7 @@ public class CalendarController implements Initializable, ParentController {
 
     public void closePopUp(String stringNeeded)
     {
+        manageEvent.setVisible(false);
         setEffect(null);
     }
 

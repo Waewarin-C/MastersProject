@@ -115,9 +115,8 @@ public class EventsListController implements Initializable, ParentController {
 
     public void displayEvents()
     {
-        this.manageEventController.setDate(this.date);
         addEventButton.setText("Add Event for " + this.date);
-        addEventsToList(this.date);
+        addEventsToListView(this.date);
 
         selectMessage.setVisible(true);
         eventDetailsGrid.setVisible(false);
@@ -157,7 +156,7 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.add(eventCategoryDetails.getText());
         eventDetails.add(eventDescriptionDetails.getText());
 
-        this.manageEventController.editSetUp(eventDetails, eventIndex);
+        this.manageEventController.editSetUp(eventDetails, this.eventIndex);
         manageEvent.setVisible(true);
     }
 
@@ -187,7 +186,7 @@ public class EventsListController implements Initializable, ParentController {
         this.parentController.closePopUp("");
     }
 
-    private void addEventsToList(String date)
+    private void addEventsToListView(String date)
     {
         eventsListView.getItems().clear();
 
@@ -199,7 +198,5 @@ public class EventsListController implements Initializable, ParentController {
                 eventsListView.getItems().add(event.getEventName());
             }
         }
-
-        this.manageEventController.setEventListSize(eventsListView.getItems().size());
     }
 }

@@ -111,16 +111,6 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void setDate(String date)
-    {
-        this.date = date;
-    }
-
-    public void setEventListSize(int eventListSize)
-    {
-        this.eventListSize = eventListSize;
-    }
-
     public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;
@@ -296,14 +286,13 @@ public class ManageEventController implements Initializable, ParentController {
 
     private String formatDate()
     {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
         LocalDate date = eventDatePicker.getValue();
 
         if(date == null)
         {
             return "";
         }
-        return date.format(format);
+        return date.format(this.format);
     }
 
     private void saveEventToUser(List<String> event)
