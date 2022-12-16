@@ -84,7 +84,9 @@ public class CalendarController implements Initializable, ParentController {
 
     public void goToDate()
     {
-
+        this.today = calendarDatePicker.getValue();
+        this.lastDayOfMonth = this.today.lengthOfMonth();
+        setUpCalendar();
     }
 
     public void addEvent()
@@ -111,11 +113,13 @@ public class CalendarController implements Initializable, ParentController {
     private void setUpCalendar()
     {
         //Get the day of the 1st of the month
-        LocalDate firstDayOfMonth = today.withDayOfMonth(1);
+        LocalDate firstDayOfMonth = this.today.withDayOfMonth(1);
         DayOfWeek firstDay = firstDayOfMonth.getDayOfWeek();
         int weekDayOfFirstDay = firstDay.getValue();
 
         //Display current month
+        this.calendar.getChildren().remove(8, this.calendar.getChildren().size());
+        calendarMonth.setText(this.today.getMonth().toString());
         displayMonth(weekDayOfFirstDay);
     }
 
@@ -126,7 +130,7 @@ public class CalendarController implements Initializable, ParentController {
         int row = 2;
         int col = weekDayOfFirstDay;
 
-        while(date <= lastDayOfMonth)
+        while(date <= this.lastDayOfMonth)
         {
             this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
 
@@ -134,7 +138,7 @@ public class CalendarController implements Initializable, ParentController {
             String todayDate = this.today.format(this.format);
 
             VBox day = new VBox();
-            day.setPrefHeight(75);
+            day.setPrefHeight(62);
             day.setSpacing(5);
             day.setPadding(new Insets(0, 0, 1, 0));
             if(col == 0) {
@@ -175,6 +179,11 @@ public class CalendarController implements Initializable, ParentController {
                 row++;
             }
         }
+
+        if(col != 0)
+        {
+            addAdditionalBorders(col, row);
+        }
     }
 
     private List<Label> showEvents(String todayDate)
@@ -203,5 +212,27 @@ public class CalendarController implements Initializable, ParentController {
             }
         }
         return eventsList;
+    }
+
+    private void addAdditionalBorders(int col, int row)
+    {
+        for(int i = col; i < 7; i++)
+        {
+            VBox extra = new VBox();
+            extra.setPrefHeight(62);
+            extra.setSpacing(5);
+            extra.setPadding(new Insets(0, 0, 1, 0));
+
+            if(i == col)
+            {
+                extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
+            }
+            else
+            {
+                extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
+            }
+
+            calendar.add(extra, i, row);
+        }
     }
 }
