@@ -97,12 +97,12 @@ public class User {
         //For edit
         if(isEdit)
         {
-            deleteEvent(date, eventIndex);
+            deleteEvent(oldDate, eventIndex);
         }
 
         if(this.events.containsKey(date))
         {
-            if((oldDate.equals("") && eventIndex < 0) || !oldDate.equals(date))
+            if(eventIndex < 0)
             {
                 this.events.get(date).add(event);
             }

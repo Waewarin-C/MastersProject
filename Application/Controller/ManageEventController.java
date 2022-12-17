@@ -111,10 +111,10 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void setDate(String date)
-    {
-        this.date = date;
-    }
+    //public void setDate(String date)
+    //{
+      //  this.date = date;
+    //}
 
     public void setEventListSize(int eventListSize)
     {
@@ -142,6 +142,7 @@ public class ManageEventController implements Initializable, ParentController {
     {
         this.isEdit = true;
         this.eventIndex = eventIndex;
+        this.date = eventDetails.get(1);
 
         manageEventPageLabel.setText("Edit Event");
         saveEventMessage.setText("");
@@ -266,7 +267,7 @@ public class ManageEventController implements Initializable, ParentController {
                     String eventCategory = event.getEventCategory();
                     String eventDescription = event.getEventDescription();
 
-                    file.write(String.format("%s,%s,%s,%s,%s", eventName, eventDate, eventLocation, eventCategory, eventDescription));
+                    file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
                 }
             }
 

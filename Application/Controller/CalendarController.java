@@ -207,7 +207,7 @@ public class CalendarController implements Initializable, ParentController {
                 String moreEventText = "+ " + numMoreEvents + " more";
 
                 Label moreEvents = new Label(moreEventText);
-                moreEvents.setStyle("-fx-font: 13px \"Berlin Sans FB\";");
+                moreEvents.setStyle("-fx-font: 12px \"Berlin Sans FB\";");
                 eventsList.add(moreEvents);
             }
         }
