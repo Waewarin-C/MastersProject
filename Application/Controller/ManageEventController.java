@@ -182,7 +182,7 @@ public class ManageEventController implements Initializable, ParentController {
         event.add(eventDescription);
 
         saveEventToUser(event);
-        saveToFile(false);
+        saveEventToFile(false);
 
         resetFields();
 
@@ -241,7 +241,7 @@ public class ManageEventController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
-    public boolean saveToFile(boolean isDelete)
+    public boolean saveEventToFile(boolean isDelete)
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
 
@@ -294,7 +294,8 @@ public class ManageEventController implements Initializable, ParentController {
     private void updateCategoriesList()
     {
         List<String> categories = new ArrayList<String>(Main.login.getUser().getCategories().keySet());
-        Collections.sort(categories);
+
+        eventCategoryField.getItems().clear();
         eventCategoryField.getItems().addAll(categories);
         eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 

@@ -92,7 +92,7 @@ public class User {
 
     public void addEvent(Event event, boolean isEdit, String oldDate, int eventIndex)
     {
-        String date = event.getEventDate();
+        String newDate = event.getEventDate();
 
         //For edit
         if(isEdit)
@@ -100,22 +100,16 @@ public class User {
             deleteEvent(oldDate, eventIndex);
         }
 
-        if(this.events.containsKey(date))
+        if(this.events.containsKey(newDate))
         {
-            if(eventIndex < 0)
-            {
-                this.events.get(date).add(event);
-            }
-            else
-            {
-                this.events.get(date).add(eventIndex, event);
-            }
+            this.events.get(newDate).add(eventIndex, event);
+
         }
         else
         {
             List<Event> events = new ArrayList<>();
             events.add(event);
-            this.events.put(date, events);
+            this.events.put(newDate, events);
         }
     }
 

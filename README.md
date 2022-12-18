@@ -7,15 +7,13 @@
 
 ### Calendar Program
 
-Users can add events
-* Each will be separate (shown on separate calendars)
-* Different ways users can add events
-  * On Home page
-  * On the Event Calendar page
+Users can add events the following ways:
+* On Home page
+* On the Event Calendar page
 
-These options may be turned into a bottom bar and displayed on every view
+These options are displayed on the bottom bar of every view
 * Home
-* Events Calendar
+* Calendar
 * Add Event
 * Categories
 * Settings
