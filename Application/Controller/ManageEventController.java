@@ -96,12 +96,8 @@ public class ManageEventController implements Initializable, ParentController {
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
-        List<String> categories = new ArrayList<String>(Main.login.getUser().getCategories().keySet());
-        Collections.sort(categories);
-        eventCategoryField.getItems().addAll(categories);
-        eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        newCategory.setText("");
-        newCategory.setVisible(false);
+        //TODO: update this into its own method for getting current list of categories
+        updateCategoriesList();
 
         saveEventMessage.setText("");
     }
@@ -295,6 +291,17 @@ public class ManageEventController implements Initializable, ParentController {
         return true;
     }
 
+    private void updateCategoriesList()
+    {
+        List<String> categories = new ArrayList<String>(Main.login.getUser().getCategories().keySet());
+        Collections.sort(categories);
+        eventCategoryField.getItems().addAll(categories);
+        eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+
+        newCategory.setText("");
+        newCategory.setVisible(false);
+    }
+
     private String formatDate()
     {
         LocalDate date = eventDatePicker.getValue();
@@ -331,11 +338,12 @@ public class ManageEventController implements Initializable, ParentController {
         eventNameField.clear();
         eventDatePicker.setValue(null);
         eventLocationField.clear();
+
         eventCategoryField.getSelectionModel().clearSelection();
-        newCategory.setText("");
-        eventDescriptionField.clear();
+        updateCategoriesList();
         addNewEventCategoryButton.setVisible(true);
-        newCategory.setVisible(false);
+
+        eventDescriptionField.clear();
     }
 
     private void resetForPopUp()

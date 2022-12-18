@@ -89,7 +89,7 @@ public class AddCategoryPopUpController implements Initializable {
 
         String categoryName = categoryNamePopUpField.getText().substring(0,1).toUpperCase();
         categoryName += categoryNamePopUpField.getText().substring(1);
-        parentController.closePopUp(categoryName);
+        this.parentController.closePopUp(categoryName);
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)
