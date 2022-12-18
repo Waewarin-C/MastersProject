@@ -51,9 +51,12 @@ public class CalendarController implements Initializable, ParentController {
     private ParentController parentController;
     private ManageEventController manageEventController;
 
-    private LocalDate today = LocalDate.now();
+    private LocalDate selectedDate = LocalDate.now();
+    private LocalDate firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
+    private DayOfWeek firstDay = this.firstDayOfMonth.getDayOfWeek();
+    private int weekDayOfFirstDay = this.firstDay.getValue();
+    private int lastDayOfMonth = this.selectedDate.lengthOfMonth();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
-    private int lastDayOfMonth = this.today.lengthOfMonth();
 
     private GaussianBlur blur = new GaussianBlur();
 
@@ -84,8 +87,12 @@ public class CalendarController implements Initializable, ParentController {
 
     public void goToDate()
     {
-        this.today = calendarDatePicker.getValue();
-        this.lastDayOfMonth = this.today.lengthOfMonth();
+        this.selectedDate = calendarDatePicker.getValue();
+        this.firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
+        this.firstDay = this.firstDayOfMonth.getDayOfWeek();
+        this.weekDayOfFirstDay = this.firstDay.getValue();
+        this.lastDayOfMonth = this.selectedDate.lengthOfMonth();
+
         setUpCalendar();
     }
 
@@ -112,30 +119,25 @@ public class CalendarController implements Initializable, ParentController {
 
     private void setUpCalendar()
     {
-        //Get the day of the 1st of the month
-        LocalDate firstDayOfMonth = this.today.withDayOfMonth(1);
-        DayOfWeek firstDay = firstDayOfMonth.getDayOfWeek();
-        int weekDayOfFirstDay = firstDay.getValue();
-
-        //Display current month
         this.calendar.getChildren().remove(8, this.calendar.getChildren().size());
-        calendarMonth.setText(this.today.getMonth().toString());
-        displayMonth(weekDayOfFirstDay);
+        calendarMonth.setText(this.selectedDate.getMonth().toString());
+
+        displayMonth();
     }
 
-    private void displayMonth(int weekDayOfFirstDay)
+    private void displayMonth()
     {
         int date = 1;
-        int next = 0;
+        //int next = 0;
         int row = 2;
-        int col = weekDayOfFirstDay;
+        int col = this.weekDayOfFirstDay;
 
         while(date <= this.lastDayOfMonth)
         {
             this.calendar.getRowConstraints().add(new RowConstraints(Region.USE_COMPUTED_SIZE));
 
-            this.today = this.today.plusDays(next);
-            String todayDate = this.today.format(this.format);
+            LocalDate current = this.firstDayOfMonth.plusDays(date - 1);
+            String currentDate = current.format(this.format);
 
             VBox day = new VBox();
             day.setPrefHeight(62);
@@ -155,7 +157,7 @@ public class CalendarController implements Initializable, ParentController {
             displayDate.setStyle("-fx-font: 12px \"Berlin Sans FB\"; -fx-background-radius: 0;");
             day.getChildren().add(displayDate);
 
-            List<Label> eventsList = showEvents(todayDate);
+            List<Label> eventsList = showEvents(currentDate);
 
             if(eventsList.size() > 0)
             {
@@ -168,7 +170,7 @@ public class CalendarController implements Initializable, ParentController {
             }
 
             calendar.add(day,col, row);
-            date++;
+
             if(col < 6)
             {
                 col++;
@@ -178,6 +180,8 @@ public class CalendarController implements Initializable, ParentController {
                 col = 0;
                 row++;
             }
+
+            date++;
         }
 
         if(col != 0)

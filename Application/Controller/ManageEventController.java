@@ -100,8 +100,6 @@ public class ManageEventController implements Initializable, ParentController {
         updateCategoriesList();
 
         saveEventMessage.setText("");
-        System.out.println(Main.login.getUser().getEvents());
-        System.out.println(Main.login.getUser().getEvents().get("12/17/22"));
     }
 
     public void setParentController(ParentController parentController)
