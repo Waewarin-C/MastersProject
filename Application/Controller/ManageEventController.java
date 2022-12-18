@@ -100,6 +100,8 @@ public class ManageEventController implements Initializable, ParentController {
         updateCategoriesList();
 
         saveEventMessage.setText("");
+        System.out.println(Main.login.getUser().getEvents());
+        System.out.println(Main.login.getUser().getEvents().get("12/17/22"));
     }
 
     public void setParentController(ParentController parentController)
@@ -326,11 +328,11 @@ public class ManageEventController implements Initializable, ParentController {
 
         if(this.isEdit)
         {
-            Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventIndex);
+            Main.login.getUser().editEvent(newEvent, this.date, this.eventIndex);
         }
         else
         {
-            Main.login.getUser().addEvent(newEvent, this.isEdit, this.date, this.eventListSize);
+            Main.login.getUser().addEvent(newEvent);
         }
     }
 

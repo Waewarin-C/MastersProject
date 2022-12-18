@@ -90,20 +90,39 @@ public class User {
         this.events = events;
     }
 
-    public void addEvent(Event event, boolean isEdit, String oldDate, int eventIndex)
+    public void addEvent(Event event)
+    {
+        String date = event.getEventDate();
+
+        if(this.events.containsKey(date))
+        {
+            this.events.get(date).add(event);
+
+        }
+        else
+        {
+            List<Event> events = new ArrayList<>();
+            events.add(event);
+            this.events.put(date, events);
+        }
+    }
+
+    public void editEvent(Event event, String oldDate, int eventIndex)
     {
         String newDate = event.getEventDate();
 
-        //For edit
-        if(isEdit)
-        {
-            deleteEvent(oldDate, eventIndex);
-        }
+        deleteEvent(oldDate, eventIndex);
 
         if(this.events.containsKey(newDate))
         {
-            this.events.get(newDate).add(eventIndex, event);
-
+            if(newDate.equals(oldDate))
+            {
+                this.events.get(newDate).add(eventIndex, event);
+            }
+            else
+            {
+                this.events.get(newDate).add(event);
+            }
         }
         else
         {
