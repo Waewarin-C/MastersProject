@@ -142,7 +142,7 @@ public class CalendarController implements Initializable, ParentController {
             VBox day = new VBox();
             day.setPrefHeight(62);
             day.setSpacing(5);
-            day.setPadding(new Insets(0, 0, 1, 0));
+            day.setPadding(new Insets(0, 2, 1, 2));
             if(col == 0) {
                 day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
             }
