@@ -21,6 +21,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -221,7 +222,10 @@ public class CalendarController implements Initializable, ParentController {
 
             List<Event> events = Main.login.getUser().getEvents().get(todayDate);
             String eventName = events.get(0).getEventName();
+            String eventCategory = events.get(0).getEventCategory();
+            String categoryColor = Main.login.getUser().getCategories().get(eventCategory);
             firstEvent.setText(eventName);
+            firstEvent.setTextFill(Color.web(categoryColor));
 
             eventsList.add(firstEvent);
 

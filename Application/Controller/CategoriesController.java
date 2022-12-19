@@ -90,6 +90,8 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void saveEditCategories()
     {
+        //TODO: find a way to change edited categories accordingly
+        //TODO: check if user wants to edit category if it has events associated with it
         Main.login.getUser().getCategories().clear();
 
         for(Node node : categoriesGrid.getChildren())
@@ -137,6 +139,8 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void deleteCategories()
     {
+        //TODO: find a way to change or delete events with deleted categories accordingly
+        //TODO: check if user wants to delete category if it has events associated with it
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
         {
