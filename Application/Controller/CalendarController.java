@@ -48,9 +48,9 @@ public class CalendarController implements Initializable, ParentController {
     private Pane toolbarPane;
 
     @FXML
-    private AnchorPane manageEvent;
+    private AnchorPane manageEvent, eventsList;
 
-    private ParentController parentController;
+    private EventsListController eventsListController;
     private ManageEventController manageEventController;
 
     private LocalDate selectedDate = LocalDate.now();
@@ -76,6 +76,13 @@ public class CalendarController implements Initializable, ParentController {
             this.manageEventController = ((ManageEventController)addEventLoader.getController());
             this.manageEventController.setParentController(this);
             this.manageEventController.popUpSetUp(true);
+
+            FXMLLoader eventsListLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
+            Node eventsListPopUp = eventsListLoader.load();
+            eventsList.getChildren().add(eventsListPopUp);
+
+            this.eventsListController = ((EventsListController)eventsListLoader.getController());
+            this.eventsListController.setParentController(this);
         }
         catch(Exception e)
         {

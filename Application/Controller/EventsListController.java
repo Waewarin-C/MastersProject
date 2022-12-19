@@ -81,16 +81,6 @@ public class EventsListController implements Initializable, ParentController {
         manageEvent.setVisible(false);
     }
 
-    public void setParentController(ParentController parentController)
-    {
-        this.parentController = parentController;
-    }
-
-    public void setDate(String date)
-    {
-        this.date = date;
-    }
-
     public void closePopUp(String neededString)
     {
         manageEvent.setVisible(false);
@@ -112,6 +102,17 @@ public class EventsListController implements Initializable, ParentController {
         eventsListView.setEffect(effect);
         eventDetails.setEffect(effect);
     }
+    public void setParentController(ParentController parentController)
+    {
+        this.parentController = parentController;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+
 
     public void displayEvents()
     {

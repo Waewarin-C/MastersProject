@@ -70,6 +70,14 @@ public class CategoriesController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(false);
     }
 
+    public void closePopUp(String category)
+    {
+        addCategoryPopUp.setVisible(false);
+        anchorPane.getChildren().remove(categoriesGrid);
+        displayCategories();
+        setEffect(null);
+    }
+
     public void setEffect(Effect effect)
     {
         categoriesPageLabel.setEffect(effect);
@@ -167,13 +175,7 @@ public class CategoriesController implements Initializable, ParentController {
         addAndDeleteButtons.setVisible(true);
     }
 
-    public void closePopUp(String category)
-    {
-        addCategoryPopUp.setVisible(false);
-        anchorPane.getChildren().remove(categoriesGrid);
-        displayCategories();
-        setEffect(null);
-    }
+
 
     private void displayCategories()
     {

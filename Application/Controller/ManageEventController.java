@@ -96,12 +96,31 @@ public class ManageEventController implements Initializable, ParentController {
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
-        //TODO: update this into its own method for getting current list of categories
         updateCategoriesList();
 
         saveEventMessage.setText("");
     }
 
+    public void closePopUp(String category)
+    {
+        addCategoryPopUp.setVisible(false);
+        if(category.length() > 0)
+        {
+            addNewEventCategoryButton.setVisible(false);
+            newCategory.setText(category);
+            newCategory.setVisible(true);
+        }
+
+        setEffect(null);
+    }
+
+    public void setEffect(Effect effect)
+    {
+        manageEventPageLabel.setEffect(effect);
+        manageEventGridPane.setEffect(effect);
+        manageEventButtons.setEffect(effect);
+        toolbarPane.setEffect(effect);
+    }
     public void setParentController(ParentController parentController)
     {
         this.parentController = parentController;
@@ -221,26 +240,7 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(true);
     }
 
-    public void closePopUp(String category)
-    {
-        addCategoryPopUp.setVisible(false);
-        if(category.length() > 0)
-        {
-            addNewEventCategoryButton.setVisible(false);
-            newCategory.setText(category);
-            newCategory.setVisible(true);
-        }
 
-        setEffect(null);
-    }
-
-    public void setEffect(Effect effect)
-    {
-        manageEventPageLabel.setEffect(effect);
-        manageEventGridPane.setEffect(effect);
-        manageEventButtons.setEffect(effect);
-        toolbarPane.setEffect(effect);
-    }
 
     public boolean saveEventToFile(boolean isDelete)
     {
