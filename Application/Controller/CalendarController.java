@@ -8,6 +8,8 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -61,7 +63,7 @@ public class CalendarController implements Initializable, ParentController {
     private GaussianBlur blur = new GaussianBlur();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
         try
         {
             Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
@@ -84,7 +86,20 @@ public class CalendarController implements Initializable, ParentController {
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         setUpCalendar();
     }
+    public void setEffect(Effect effect)
+    {
+        calendarLabel.setEffect(effect);
+        datePicker.setEffect(effect);
+        addCalendarEventButton.setEffect(effect);
+        calendar.setEffect(effect);
+        toolbarPane.setEffect(effect);
+    }
 
+    public void closePopUp(String stringNeeded)
+    {
+        manageEvent.setVisible(false);
+        setEffect(null);
+    }
     public void goToDate()
     {
         this.selectedDate = calendarDatePicker.getValue();
@@ -102,20 +117,7 @@ public class CalendarController implements Initializable, ParentController {
         setEffect(blur);
     }
 
-    public void setEffect(Effect effect)
-    {
-        calendarLabel.setEffect(effect);
-        datePicker.setEffect(effect);
-        addCalendarEventButton.setEffect(effect);
-        calendar.setEffect(effect);
-        toolbarPane.setEffect(effect);
-    }
 
-    public void closePopUp(String stringNeeded)
-    {
-        manageEvent.setVisible(false);
-        setEffect(null);
-    }
 
     private void setUpCalendar()
     {
@@ -128,7 +130,6 @@ public class CalendarController implements Initializable, ParentController {
     private void displayMonth()
     {
         int date = 1;
-        //int next = 0;
         int row = 2;
         int col = this.weekDayOfFirstDay;
 
@@ -151,10 +152,10 @@ public class CalendarController implements Initializable, ParentController {
                 day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
             }
 
-            Button displayDate = new Button(Integer.toString(date));
-            displayDate.setPrefSize(100, Region.USE_COMPUTED_SIZE);
-            displayDate.setAlignment(Pos.CENTER_RIGHT);
-            displayDate.setStyle("-fx-font: 12px \"Berlin Sans FB\"; -fx-background-radius: 0;");
+            Label displayDate = new Label(Integer.toString(date));
+            displayDate.setPrefWidth(100);
+            displayDate.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+
             day.getChildren().add(displayDate);
 
             List<Label> eventsList = showEvents(currentDate);
@@ -168,6 +169,17 @@ public class CalendarController implements Initializable, ParentController {
                     day.getChildren().add(eventsList.get(1));
                 }
             }
+
+            /*EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    eventsPopUpController.setDate(eventDate);
+                    eventsPopUpController.displayEvents();
+                    setEffect(blur);
+                    eventsList.setVisible(true);
+                }
+            };
+            viewEventsButton.setOnAction(viewEvents);*/
 
             calendar.add(day,col, row);
 
