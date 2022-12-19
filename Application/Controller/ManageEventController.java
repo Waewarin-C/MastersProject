@@ -188,6 +188,7 @@ public class ManageEventController implements Initializable, ParentController {
 
         if(isPopUp)
         {
+            this.isEdit = false;
             saveManageEventButton.setVisible(false);
             cancelManageEventButton.setVisible(false);
             doneManageEventButton.setVisible(true);
@@ -349,6 +350,7 @@ public class ManageEventController implements Initializable, ParentController {
 
     private void resetForPopUp()
     {
+        this.isEdit = false;
         manageEventPageLabel.setText("Add Event");
         saveManageEventButton.setVisible(true);
         cancelManageEventButton.setVisible(true);
