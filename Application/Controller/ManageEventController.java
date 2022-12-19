@@ -126,11 +126,6 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    //public void setDate(String date)
-    //{
-      //  this.date = date;
-    //}
-
     public void setEventListSize(int eventListSize)
     {
         this.eventListSize = eventListSize;

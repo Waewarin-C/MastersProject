@@ -8,19 +8,18 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.net.URL;
@@ -48,7 +47,7 @@ public class CalendarController implements Initializable, ParentController {
     private Pane toolbarPane;
 
     @FXML
-    private AnchorPane manageEvent, eventsList;
+    private AnchorPane manageEvent, listOfEvents;
 
     private EventsListController eventsListController;
     private ManageEventController manageEventController;
@@ -79,7 +78,7 @@ public class CalendarController implements Initializable, ParentController {
 
             FXMLLoader eventsListLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
             Node eventsListPopUp = eventsListLoader.load();
-            eventsList.getChildren().add(eventsListPopUp);
+            listOfEvents.getChildren().add(eventsListPopUp);
 
             this.eventsListController = ((EventsListController)eventsListLoader.getController());
             this.eventsListController.setParentController(this);
@@ -90,9 +89,18 @@ public class CalendarController implements Initializable, ParentController {
         }
 
         manageEvent.setVisible(false);
+        listOfEvents.setVisible(false);
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         setUpCalendar();
     }
+
+    public void closePopUp(String stringNeeded)
+    {
+        manageEvent.setVisible(false);
+        listOfEvents.setVisible(false);
+        setEffect(null);
+    }
+
     public void setEffect(Effect effect)
     {
         calendarLabel.setEffect(effect);
@@ -102,11 +110,6 @@ public class CalendarController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
-    public void closePopUp(String stringNeeded)
-    {
-        manageEvent.setVisible(false);
-        setEffect(null);
-    }
     public void goToDate()
     {
         this.selectedDate = calendarDatePicker.getValue();
@@ -123,8 +126,6 @@ public class CalendarController implements Initializable, ParentController {
         manageEvent.setVisible(true);
         setEffect(blur);
     }
-
-
 
     private void setUpCalendar()
     {
@@ -177,16 +178,16 @@ public class CalendarController implements Initializable, ParentController {
                 }
             }
 
-            /*EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
+            EventHandler<MouseEvent> viewEvents = new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
-                    eventsPopUpController.setDate(eventDate);
-                    eventsPopUpController.displayEvents();
+                public void handle(MouseEvent event) {
+                    eventsListController.setDate(currentDate);
+                    eventsListController.displayEvents();
                     setEffect(blur);
-                    eventsList.setVisible(true);
+                    listOfEvents.setVisible(true);
                 }
             };
-            viewEventsButton.setOnAction(viewEvents);*/
+            day.setOnMouseClicked(viewEvents);
 
             calendar.add(day,col, row);
 

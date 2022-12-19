@@ -112,8 +112,6 @@ public class EventsListController implements Initializable, ParentController {
         this.date = date;
     }
 
-
-
     public void displayEvents()
     {
         eventsListLabel.setText("Events for " + this.date);
