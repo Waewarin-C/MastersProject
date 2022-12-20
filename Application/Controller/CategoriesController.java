@@ -26,7 +26,7 @@ public class CategoriesController implements Initializable, ParentController {
     private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
-    private Label categoriesPageLabel, editMessage, deleteInstructions;
+    private Label categoriesPageLabel, editSuccessMessage, editErrorMessage, deleteInstructions;
 
     @FXML
     private Button saveEditButton, deleteButton;
@@ -64,7 +64,8 @@ public class CategoriesController implements Initializable, ParentController {
         }
 
         displayCategories();
-        editMessage.setText("");
+        editSuccessMessage.setVisible(false);
+        editErrorMessage.setVisible(false);
         deleteInstructions.setVisible(false);
         deleteButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
@@ -84,7 +85,8 @@ public class CategoriesController implements Initializable, ParentController {
         addAndDeleteButtons.setEffect(effect);
         editButtons.setEffect(effect);
         categoriesGrid.setEffect(effect);
-        editMessage.setEffect(effect);
+        editSuccessMessage.setEffect(effect);
+        editErrorMessage.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
 
@@ -103,9 +105,7 @@ public class CategoriesController implements Initializable, ParentController {
             Main.login.getUser().addCategory(categoryName, categoryColor);
         }
 
-        this.popUpController.saveCategoryToFile();
-
-        displayCategories();
+        saveCategoriesToFile();
     }
 
     public void addNewCategory()
@@ -164,8 +164,10 @@ public class CategoriesController implements Initializable, ParentController {
         addAndDeleteButtons.setVisible(true);
 
         this.categoriesGrid.getChildren().clear();
-        displayCategories();
-        saveEditCategories();
+        saveCategoriesToFile();
+
+        //displayCategories();
+        //saveEditCategories();
     }
 
     public void cancelEditCategories()
@@ -178,8 +180,6 @@ public class CategoriesController implements Initializable, ParentController {
         saveEditButton.setVisible(true);
         addAndDeleteButtons.setVisible(true);
     }
-
-
 
     private void displayCategories()
     {
@@ -259,6 +259,22 @@ public class CategoriesController implements Initializable, ParentController {
 
                 categoryIndex++;
             }
+        }
+    }
+
+    private void saveCategoriesToFile()
+    {
+        if(this.popUpController.saveCategoryToFile())
+        {
+            this.editSuccessMessage.setVisible(true);
+            this.editErrorMessage.setVisible(false);
+            displayCategories();
+        }
+        else
+        {
+            this.editErrorMessage.setVisible(true);
+            this.editSuccessMessage.setVisible(false);
+            cancelEditCategories();
         }
     }
 }

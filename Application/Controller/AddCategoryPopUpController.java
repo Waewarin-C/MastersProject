@@ -141,7 +141,7 @@ public class AddCategoryPopUpController implements Initializable {
         Main.login.getUser().addCategory(categoryName, categoryColor);
     }
 
-    public void saveCategoryToFile()
+    public boolean saveCategoryToFile()
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
 
@@ -161,10 +161,12 @@ public class AddCategoryPopUpController implements Initializable {
         }
         catch(IOException e)
         {
-            categoryMessagePopUp.setText("Error: something went wrong, please try again");
+            categoryMessagePopUp.setText("Error: something went wrong in saving, please try again");
             categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
-            System.out.println("Error: unable to save the category");
             e.printStackTrace();
+            return false;
         }
+
+        return true;
     }
 }
