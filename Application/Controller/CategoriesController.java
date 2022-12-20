@@ -26,7 +26,7 @@ public class CategoriesController implements Initializable, ParentController {
     private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
-    private Label categoriesPageLabel, editSuccessMessage, editErrorMessage, deleteInstructions;
+    private Label categoriesPageLabel, editInstruction, editSuccessMessage, editErrorMessage, deleteInstruction;
 
     @FXML
     private Button saveEditButton, deleteButton;
@@ -42,6 +42,10 @@ public class CategoriesController implements Initializable, ParentController {
     private int numRows, numCols;
     private final int categoriesPerRow = 4;
     private final int layoutXInterval = 90;
+    private HashMap<String, String> oldAndNewCategories = new HashMap<String, String>();
+    private List<String> oldCategories = new ArrayList<String>();
+    private List<String> newCategories = new ArrayList<String>();
+
     private AddCategoryPopUpController popUpController;
 
     @Override
@@ -66,7 +70,7 @@ public class CategoriesController implements Initializable, ParentController {
         displayCategories();
         editSuccessMessage.setVisible(false);
         editErrorMessage.setVisible(false);
-        deleteInstructions.setVisible(false);
+        deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
     }
@@ -93,8 +97,7 @@ public class CategoriesController implements Initializable, ParentController {
     public void saveEditCategories()
     {
         //TODO: find a way to change edited categories accordingly
-        //TODO: check if user wants to edit category if it has events associated with it
-        Main.login.getUser().getCategories().clear();
+        getEditedCategories();
 
         for(Node node : categoriesGrid.getChildren())
         {
@@ -120,9 +123,10 @@ public class CategoriesController implements Initializable, ParentController {
     public void deleteSetUp()
     {
         addAndDeleteButtons.setVisible(false);
+        editInstruction.setVisible(false);
         saveEditButton.setVisible(false);
         deleteButton.setVisible(true);
-        deleteInstructions.setVisible(true);
+        deleteInstruction.setVisible(true);
 
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
@@ -158,16 +162,13 @@ public class CategoriesController implements Initializable, ParentController {
             }
         }
 
-        deleteInstructions.setVisible(false);
+        deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         saveEditButton.setVisible(true);
         addAndDeleteButtons.setVisible(true);
 
         this.categoriesGrid.getChildren().clear();
         saveCategoriesToFile();
-
-        //displayCategories();
-        //saveEditCategories();
     }
 
     public void cancelEditCategories()
@@ -175,7 +176,8 @@ public class CategoriesController implements Initializable, ParentController {
         this.categoriesGrid.getChildren().clear();
         displayCategories();
 
-        deleteInstructions.setVisible(false);
+        editInstruction.setVisible(true);
+        deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         saveEditButton.setVisible(true);
         addAndDeleteButtons.setVisible(true);
@@ -259,6 +261,18 @@ public class CategoriesController implements Initializable, ParentController {
 
                 categoryIndex++;
             }
+        }
+    }
+
+    private void getEditedCategories()
+    {
+        this.oldCategories.addAll(Main.login.getUser().getCategories().keySet());
+        Main.login.getUser().getCategories().clear();
+
+        for(Node node : categoriesGrid.getChildren())
+        {
+            HBox box = (HBox)node;
+            String categoryName = ((TextField)box.getChildren().get(0)).getText();
         }
     }
 
