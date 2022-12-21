@@ -10,6 +10,12 @@ package Application.Model;
     //Categories
     //If Welcome page is shown everytime user logins
 
+import Application.Main;
+import javafx.scene.paint.Color;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -142,6 +148,46 @@ public class User {
         }
     }
 
+    public boolean saveEventToFile()
+    {
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
+
+        try
+        {
+            FileWriter file = new FileWriter(new File(fileName));;
+            file.write(String.format("%s,%s,%s,%s,%s\n", "Event", "Date", "Location", "Category", "Description"));
+
+            Set<String> eventDates = Main.login.getUser().getEvents().keySet();
+            for(String date : eventDates)
+            {
+                List<Event> eventsList = Main.login.getUser().getEvents().get(date);
+
+                for(Event event : eventsList)
+                {
+                    String eventName = event.getEventName();
+                    String eventDate = event.getEventDate();
+                    String eventLocation = event.getEventLocation();
+                    String eventCategory = event.getEventCategory();
+                    String eventDescription = event.getEventDescription();
+
+                    file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
+                }
+            }
+
+            file.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error: unable to save the event");
+            e.printStackTrace();
+
+            return false;
+
+        }
+
+        return true;
+    }
+
     public TreeMap<String, String> getCategories()
     {
         return this.categories;
@@ -160,6 +206,32 @@ public class User {
     public void deleteCategory(String categoryName)
     {
         this.categories.remove(categoryName);
+    }
+
+    public boolean saveCategoryToFile()
+    {
+        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
+
+        try
+        {
+            FileWriter file = new FileWriter(new File(fileName));
+            file.write(String.format("%s,%s\n", "Category", "Color"));
+
+            Set<String> categories = this.categories.keySet();
+            for(String category : categories)
+            {
+                file.write(String.format("%s,%s\n", category, this.categories.get(category)));
+            }
+
+            file.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
     public void updateCategoriesOfEvents(HashMap<String, String> oldAndNewCategories)

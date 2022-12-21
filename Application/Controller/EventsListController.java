@@ -167,8 +167,7 @@ public class EventsListController implements Initializable, ParentController {
         int index = eventsListView.getSelectionModel().selectedIndexProperty().get();
         Main.login.getUser().deleteEvent(date, index);
 
-        boolean isDeleted = manageEventController.saveEventToFile(true);
-        if(isDeleted)
+        if(Main.login.getUser().saveEventToFile())
         {
             eventsListView.getSelectionModel().select(null);
             this.eventIndex = -1;

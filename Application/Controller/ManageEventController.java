@@ -196,7 +196,15 @@ public class ManageEventController implements Initializable, ParentController {
         event.add(eventDescription);
 
         saveEventToUser(event);
-        saveEventToFile(false);
+        if(Main.login.getUser().saveEventToFile())
+        {
+            saveEventMessage.setText("Saved successfully!");
+        }
+        else
+        {
+            saveEventMessage.setText("Error: something went wrong, please try again");
+            saveEventMessage.setTextFill(Color.rgb(255, 0, 0));
+        }
 
         resetFields();
 
@@ -233,58 +241,6 @@ public class ManageEventController implements Initializable, ParentController {
 
         popUpController.setUp();
         addCategoryPopUp.setVisible(true);
-    }
-
-
-
-    public boolean saveEventToFile(boolean isDelete)
-    {
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
-
-        try
-        {
-            FileWriter file = new FileWriter(new File(fileName));;
-            file.write(String.format("%s,%s,%s,%s,%s\n", "Event", "Date", "Location", "Category", "Description"));
-
-            Set<String> eventDates = Main.login.getUser().getEvents().keySet();
-            for(String date : eventDates)
-            {
-                List<Event> eventsList = Main.login.getUser().getEvents().get(date);
-
-                for(Event event : eventsList)
-                {
-                    String eventName = event.getEventName();
-                    String eventDate = event.getEventDate();
-                    String eventLocation = event.getEventLocation();
-                    String eventCategory = event.getEventCategory();
-                    String eventDescription = event.getEventDescription();
-
-                    file.write(String.format("%s,%s,%s,%s,%s\n", eventName, eventDate, eventLocation, eventCategory, eventDescription));
-                }
-            }
-
-            file.close();
-            saveEventMessage.setText("Saved successfully!");
-
-            if(isDelete)
-            {
-                return true;
-            }
-        }
-        catch (IOException e)
-        {
-            saveEventMessage.setText("Error: something went wrong, please try again");
-            saveEventMessage.setTextFill(Color.rgb(255, 0, 0));
-            System.out.println("Error: unable to save the event");
-            e.printStackTrace();
-
-            if(isDelete)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private void updateCategoriesList()

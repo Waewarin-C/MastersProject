@@ -270,7 +270,7 @@ public class CategoriesController implements Initializable, ParentController {
 
     private void saveCategoriesToFile()
     {
-        if(this.popUpController.saveCategoryToFile())
+        if(Main.login.getUser().saveCategoryToFile())
         {
             this.editSuccessMessage.setVisible(true);
             this.editErrorMessage.setVisible(false);
@@ -283,6 +283,7 @@ public class CategoriesController implements Initializable, ParentController {
             cancelEditCategories();
         }
     }
+
     private void getEditedCategories()
     {
         int numCategories = this.oldCategories.size();
@@ -295,5 +296,6 @@ public class CategoriesController implements Initializable, ParentController {
     private void updateCategoryOfEvents()
     {
         Main.login.getUser().updateCategoriesOfEvents(this.oldAndNewCategories);
+        Main.login.getUser().saveEventToFile();
     }
 }

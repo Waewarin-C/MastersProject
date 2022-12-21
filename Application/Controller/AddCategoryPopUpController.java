@@ -68,7 +68,16 @@ public class AddCategoryPopUpController implements Initializable {
         if(isUnique)
         {
             saveCategoryToUser(categoryNameCamelCase, categoryColor);
-            saveCategoryToFile();
+
+            if(Main.login.getUser().saveCategoryToFile())
+            {
+                categoryMessagePopUp.setText("Saved successfully!");
+            }
+            else
+            {
+                categoryMessagePopUp.setText("Error: something went wrong in saving, please try again");
+                categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
+            }
 
             saveCategoryPopUpButton.setVisible(false);
             cancelCategoryPopUpButton.setVisible(false);
@@ -139,34 +148,5 @@ public class AddCategoryPopUpController implements Initializable {
     private void saveCategoryToUser(String categoryName, String categoryColor)
     {
         Main.login.getUser().addCategory(categoryName, categoryColor);
-    }
-
-    public boolean saveCategoryToFile()
-    {
-        String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
-
-        try
-        {
-            FileWriter file = new FileWriter(new File(fileName));
-            file.write(String.format("%s,%s\n", "Category", "Color"));
-
-            Set<String> categories = Main.login.getUser().getCategories().keySet();
-            for(String category : categories)
-            {
-                file.write(String.format("%s,%s\n", category, Main.login.getUser().getCategories().get(category)));
-            }
-
-            file.close();
-            categoryMessagePopUp.setText("Saved successfully!");
-        }
-        catch(IOException e)
-        {
-            categoryMessagePopUp.setText("Error: something went wrong in saving, please try again");
-            categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
     }
 }
