@@ -39,7 +39,7 @@ public class CategoriesController implements Initializable, ParentController {
 
     private GridPane categoriesGrid;
 
-    private int numRows, numCols;
+    private int numRows, numCols, numCategories;
     private final int categoriesPerRow = 4;
     private final int layoutXInterval = 90;
     private HashMap<String, String> oldAndNewCategories = new HashMap<String, String>();
@@ -89,8 +89,10 @@ public class CategoriesController implements Initializable, ParentController {
         addAndDeleteButtons.setEffect(effect);
         editButtons.setEffect(effect);
         categoriesGrid.setEffect(effect);
+        editInstruction.setEffect(effect);
         editSuccessMessage.setEffect(effect);
         editErrorMessage.setEffect(effect);
+        deleteInstruction.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
 
@@ -141,6 +143,11 @@ public class CategoriesController implements Initializable, ParentController {
                 ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(0, deleteCheckBox);
 
                 categoryIndex++;
+
+                if(categoryIndex == numCategories)
+                {
+                    return;
+                }
             }
         }
     }
@@ -152,6 +159,11 @@ public class CategoriesController implements Initializable, ParentController {
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
         {
+            if(categoryIndex == this.numCategories)
+            {
+                break;
+            }
+
             for(int col = 0; col < numCols; col++)
             {
                 HBox category = (HBox)this.categoriesGrid.getChildren().get(categoryIndex);
@@ -163,6 +175,11 @@ public class CategoriesController implements Initializable, ParentController {
                 }
 
                 categoryIndex++;
+
+                if(categoryIndex == this.numCategories)
+                {
+                    break;
+                }
             }
         }
 
@@ -191,22 +208,24 @@ public class CategoriesController implements Initializable, ParentController {
     {
         List<String> categories = new ArrayList<>(Main.login.getUser().getCategories().keySet());
 
-        int numCategories = categories.size();
-        this.numRows = numCategories / this.categoriesPerRow;
+        this.numCategories = categories.size();
+        this.numRows = this.numCategories / this.categoriesPerRow;
 
-        if(numCategories > this.categoriesPerRow)
+        if(this.numCategories > this.categoriesPerRow)
         {
             this.numCols = 4;
-            if(numCategories % 4 != 0) {
+            if(this.numCategories % 4 != 0) {
                 this.numRows += 1;
             }
         }
         else
         {
             this.numRows = 1;
-            this.numCols = numCategories;
+            this.numCols = this.numCategories;
         }
-
+        System.out.println("num categories: " + this.numCategories);
+        System.out.println("num rows: " + this.numRows);
+        System.out.println("num cols: " + this.numCols);
         setUpGrid();
         fillGrid(categories);
     }
@@ -221,24 +240,40 @@ public class CategoriesController implements Initializable, ParentController {
         int layoutX = 325;
         this.categoriesGrid.setLayoutY(130);
 
+        int categoryNumber = 1;
+
         for(int row = 0; row < this.numRows; row++)
         {
+            if(categoryNumber > this.numCategories)
+            {
+                System.out.println("category num in outer loop set up " + categoryNumber);
+                break;
+            }
+
             for(int col = 0; col < this.numCols; col++)
             {
                 this.categoriesGrid.getColumnConstraints().add(new ColumnConstraints(170));
 
-                if(col != 0)
+                if(col != 0 && row == 0)
                 {
                     layoutX -= this.layoutXInterval;
                 }
 
                 this.categoriesGrid.setLayoutX(layoutX);
-
+                System.out.println(this.categoriesGrid.getLayoutX());
                 HBox box = new HBox();
                 box.setAlignment(Pos.CENTER);
                 box.setSpacing(5);
                 this.categoriesGrid.add(box, col, row);
+
+                categoryNumber++;
+                if(categoryNumber > this.numCategories)
+                {
+                    System.out.println("category num in set up " + categoryNumber);
+                    break;
+                }
             }
+            System.out.println("hello");
         }
         anchorPane.getChildren().add(this.categoriesGrid);
     }
@@ -264,6 +299,11 @@ public class CategoriesController implements Initializable, ParentController {
                 ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
 
                 categoryIndex++;
+
+                if(categoryIndex == this.numCategories)
+                {
+                    return;
+                }
             }
         }
     }
