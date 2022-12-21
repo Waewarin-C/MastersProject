@@ -163,8 +163,23 @@ public class User {
     }
 
     public void updateCategoriesOfEvents(HashMap<String, String> oldAndNewCategories)
-    {
+    {//TODO: find way to save updated events from editing categories to file
+        Set<String> allDates = this.events.keySet();
+        Set<String> oldCategories = oldAndNewCategories.keySet();
 
+        for(String date : allDates)
+        {
+            List<Event> allEvents = this.events.get(date);
+
+            for(Event event : allEvents)
+            {
+                String currentCategory = event.getEventCategory();
+                if(oldCategories.contains(currentCategory))
+                {
+                    event.setEventCategory(oldAndNewCategories.get(currentCategory));
+                }
+            }
+        }
     }
 
     public String getWelcomePageShown()
