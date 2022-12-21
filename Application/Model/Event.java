@@ -53,7 +53,7 @@ public class Event {
     }
 
     public void setEventCategory(String eventCategory) {
-        this.eventName = eventCategory;
+        this.eventCategory = eventCategory;
     }
 
     public String getEventDescription() {
