@@ -97,7 +97,8 @@ public class CategoriesController implements Initializable, ParentController {
     public void saveEditCategories()
     {
         //TODO: find a way to change edited categories accordingly
-        getEditedCategories();
+        this.oldCategories.addAll(Main.login.getUser().getCategories().keySet());
+        Main.login.getUser().getCategories().clear();
 
         for(Node node : categoriesGrid.getChildren())
         {
@@ -105,10 +106,13 @@ public class CategoriesController implements Initializable, ParentController {
             String categoryName = ((TextField)box.getChildren().get(0)).getText();
             String categoryColor = ((ColorPicker)box.getChildren().get(1)).getValue().toString();
 
+            this.newCategories.add(categoryName);
             Main.login.getUser().addCategory(categoryName, categoryColor);
         }
 
         saveCategoriesToFile();
+        getEditedCategories();
+        updateCategoryOfEvents();
     }
 
     public void addNewCategory()
@@ -264,18 +268,6 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
-    private void getEditedCategories()
-    {
-        this.oldCategories.addAll(Main.login.getUser().getCategories().keySet());
-        Main.login.getUser().getCategories().clear();
-
-        for(Node node : categoriesGrid.getChildren())
-        {
-            HBox box = (HBox)node;
-            String categoryName = ((TextField)box.getChildren().get(0)).getText();
-        }
-    }
-
     private void saveCategoriesToFile()
     {
         if(this.popUpController.saveCategoryToFile())
@@ -290,5 +282,18 @@ public class CategoriesController implements Initializable, ParentController {
             this.editSuccessMessage.setVisible(false);
             cancelEditCategories();
         }
+    }
+    private void getEditedCategories()
+    {
+        int numCategories = this.oldCategories.size();
+        for(int i = 0; i < numCategories; i++)
+        {
+            this.oldAndNewCategories.put(this.oldCategories.get(i), this.newCategories.get(i));
+        }
+    }
+
+    private void updateCategoryOfEvents()
+    {
+        Main.login.getUser().updateCategoriesOfEvents(this.oldAndNewCategories);
     }
 }

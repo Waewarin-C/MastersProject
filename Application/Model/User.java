@@ -162,6 +162,11 @@ public class User {
         this.categories.remove(categoryName);
     }
 
+    public void updateCategoriesOfEvents(HashMap<String, String> oldAndNewCategories)
+    {
+
+    }
+
     public String getWelcomePageShown()
     {
         return this.welcomePageShown;
