@@ -9,12 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class AddCategoryPopUpController implements Initializable {
     @FXML
@@ -37,6 +33,7 @@ public class AddCategoryPopUpController implements Initializable {
         doneAddCategoryButton.setVisible(false);
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         categoryMessagePopUp.setText("");
+        categoryMessagePopUp.setTextFill(Color.rgb(0,0,0));
     }
 
     public void setParentController(ParentController parentController)

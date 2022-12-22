@@ -183,6 +183,7 @@ public class CategoriesController implements Initializable, ParentController {
             }
         }
 
+        editInstruction.setVisible(true);
         deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         saveEditButton.setVisible(true);
@@ -214,7 +215,7 @@ public class CategoriesController implements Initializable, ParentController {
         if(this.numCategories > this.categoriesPerRow)
         {
             this.numCols = 4;
-            if(this.numCategories % 4 != 0) {
+            if(this.numCategories % this.categoriesPerRow != 0) {
                 this.numRows += 1;
             }
         }
@@ -252,11 +253,13 @@ public class CategoriesController implements Initializable, ParentController {
 
             for(int col = 0; col < this.numCols; col++)
             {
-                this.categoriesGrid.getColumnConstraints().add(new ColumnConstraints(170));
-
-                if(col != 0 && row == 0)
+                if(row == 0)
                 {
-                    layoutX -= this.layoutXInterval;
+                    this.categoriesGrid.getColumnConstraints().add(new ColumnConstraints(170));
+                    if(col != 0)
+                    {
+                        layoutX -= this.layoutXInterval;
+                    }
                 }
 
                 this.categoriesGrid.setLayoutX(layoutX);
