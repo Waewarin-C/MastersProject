@@ -156,6 +156,7 @@ public class CategoriesController implements Initializable, ParentController {
     {
         //TODO: find a way to change or delete events with deleted categories accordingly
         //TODO: check if user wants to delete category if it has events associated with it
+        List<String> deletedCategories = new ArrayList<String>();
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
         {
@@ -171,6 +172,7 @@ public class CategoriesController implements Initializable, ParentController {
                 if(isCategoryChecked)
                 {
                     String categoryName = ((TextField)category.getChildren().get(1)).getText();
+                    deletedCategories.add(categoryName);
                     Main.login.getUser().deleteCategory(categoryName);
                 }
 
@@ -191,6 +193,9 @@ public class CategoriesController implements Initializable, ParentController {
 
         this.categoriesGrid.getChildren().clear();
         saveCategoriesToFile();
+        System.out.println(deletedCategories.toString());
+        Main.login.getUser().deleteEventsOfCategories(deletedCategories);
+        Main.login.getUser().saveEventToFile();
     }
 
     public void cancelEditCategories()
@@ -224,9 +229,7 @@ public class CategoriesController implements Initializable, ParentController {
             this.numRows = 1;
             this.numCols = this.numCategories;
         }
-        System.out.println("num categories: " + this.numCategories);
-        System.out.println("num rows: " + this.numRows);
-        System.out.println("num cols: " + this.numCols);
+
         setUpGrid();
         fillGrid(categories);
     }
@@ -247,7 +250,6 @@ public class CategoriesController implements Initializable, ParentController {
         {
             if(categoryNumber > this.numCategories)
             {
-                System.out.println("category num in outer loop set up " + categoryNumber);
                 break;
             }
 
@@ -263,7 +265,6 @@ public class CategoriesController implements Initializable, ParentController {
                 }
 
                 this.categoriesGrid.setLayoutX(layoutX);
-                System.out.println(this.categoriesGrid.getLayoutX());
                 HBox box = new HBox();
                 box.setAlignment(Pos.CENTER);
                 box.setSpacing(5);
@@ -272,11 +273,9 @@ public class CategoriesController implements Initializable, ParentController {
                 categoryNumber++;
                 if(categoryNumber > this.numCategories)
                 {
-                    System.out.println("category num in set up " + categoryNumber);
                     break;
                 }
             }
-            System.out.println("hello");
         }
         anchorPane.getChildren().add(this.categoriesGrid);
     }

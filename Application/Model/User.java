@@ -182,10 +182,30 @@ public class User {
             e.printStackTrace();
 
             return false;
-
         }
 
         return true;
+    }
+
+    public void deleteEventsOfCategories(List<String> deletedCategories)
+    {
+        Set<String> allDates = this.events.keySet();
+
+        for(String date : allDates)
+        {
+            List<Event> allEvents = this.events.get(date);
+            List<Event> eventsToDelete = new ArrayList<Event>();
+            for(Event event : allEvents)
+            {
+                String currentCategory = event.getEventCategory();
+                if(deletedCategories.contains(currentCategory))
+                {
+                    //this.deleteEvent(date, allEvents.indexOf(event));
+                    eventsToDelete.add(event);
+                }
+            }
+            deleteSpecificEvents(date, eventsToDelete);
+        }
     }
 
     public TreeMap<String, String> getCategories()
@@ -235,7 +255,7 @@ public class User {
     }
 
     public void updateCategoriesOfEvents(HashMap<String, String> oldAndNewCategories)
-    {//TODO: find way to save updated events from editing categories to file
+    {
         Set<String> allDates = this.events.keySet();
         Set<String> oldCategories = oldAndNewCategories.keySet();
 
@@ -262,5 +282,14 @@ public class User {
     public void setWelcomePageShown(String welcomePageShown)
     {
         this.welcomePageShown = welcomePageShown;
+    }
+
+    private void deleteSpecificEvents(String date, List<Event> eventsToDelete)
+    {
+        this.events.get(date).removeAll(eventsToDelete);
+        if(this.events.get(date).size() == 0)
+        {
+            this.events.remove(date);
+        }
     }
 }
