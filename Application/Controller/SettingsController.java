@@ -104,6 +104,7 @@ public class SettingsController implements Initializable {
         String newSecurityQuestion = securityQuestionSettings.getText();
         String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
         String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
+        String newLogout = Main.login.getUser().getIsLogout();
 
         //Get the new password from the field that is visible to get the latest change
         String newPassword;
@@ -148,7 +149,8 @@ public class SettingsController implements Initializable {
 
     public void logout()
     {
-
+        Main.login.getUser().setIsLogout("Yes");
+        saveSettings();
     }
 
     private void fillFields()

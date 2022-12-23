@@ -28,12 +28,14 @@ public class User {
     TreeMap<String, List<Event>> events;
     TreeMap<String, String> categories;
     String welcomePageShown;
+    String isLogout;
 
     public User()
     {
         this.events = new TreeMap<String, List<Event>>();
         this.categories = new TreeMap<String, String>();
         this.welcomePageShown = "No";
+        this.isLogout = "No";
     }
 
     public String getUsername()
@@ -293,6 +295,16 @@ public class User {
     public void setWelcomePageShown(String welcomePageShown)
     {
         this.welcomePageShown = welcomePageShown;
+    }
+
+    public String getIsLogout()
+    {
+        return this.isLogout;
+    }
+
+    public void setIsLogout(String isLogout)
+    {
+        this.isLogout = isLogout;
     }
 
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
