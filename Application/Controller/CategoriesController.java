@@ -193,7 +193,6 @@ public class CategoriesController implements Initializable, ParentController {
 
         this.categoriesGrid.getChildren().clear();
         saveCategoriesToFile();
-        System.out.println(deletedCategories.toString());
         Main.login.getUser().deleteEventsOfCategories(deletedCategories);
         Main.login.getUser().saveEventToFile();
     }

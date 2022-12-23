@@ -190,22 +190,33 @@ public class User {
     public void deleteEventsOfCategories(List<String> deletedCategories)
     {
         Set<String> allDates = this.events.keySet();
+        HashMap<String, List<Event>> eventsToDelete = new HashMap<String, List<Event>>();
 
         for(String date : allDates)
         {
             List<Event> allEvents = this.events.get(date);
-            List<Event> eventsToDelete = new ArrayList<Event>();
+
             for(Event event : allEvents)
             {
                 String currentCategory = event.getEventCategory();
                 if(deletedCategories.contains(currentCategory))
                 {
-                    //this.deleteEvent(date, allEvents.indexOf(event));
-                    eventsToDelete.add(event);
+                    if(eventsToDelete.containsKey(date))
+                    {
+                        eventsToDelete.get(date).add(event);
+
+                    }
+                    else
+                    {
+                        List<Event> events = new ArrayList<>();
+                        events.add(event);
+                        eventsToDelete.put(date, events);
+                    }
                 }
             }
-            deleteSpecificEvents(date, eventsToDelete);
+
         }
+        deleteSpecificEvents(eventsToDelete);
     }
 
     public TreeMap<String, String> getCategories()
@@ -284,12 +295,17 @@ public class User {
         this.welcomePageShown = welcomePageShown;
     }
 
-    private void deleteSpecificEvents(String date, List<Event> eventsToDelete)
+    private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
     {
-        this.events.get(date).removeAll(eventsToDelete);
-        if(this.events.get(date).size() == 0)
+        Set<String> specificDates = eventsToDelete.keySet();
+        for(String date : specificDates)
         {
-            this.events.remove(date);
+            this.events.get(date).removeAll(eventsToDelete.get(date));
+            if(this.events.get(date).size() == 0)
+            {
+                this.events.remove(date);
+            }
         }
+
     }
 }
