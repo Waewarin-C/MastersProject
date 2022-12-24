@@ -20,6 +20,11 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
+      <Label fx:id="logoutMessage" layoutX="237.0" layoutY="55.0" text="Error: something went wrong with logging out, please try again" textFill="RED">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+      </Label>
       <Button fx:id="logoutButton" layoutX="750.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" text="Logout">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />

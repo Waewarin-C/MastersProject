@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable, ParentController {
     @FXML
-    private Label helloMessage;
+    private Label helloMessage, logoutMessage;
 
     @FXML
     private Button logoutButton;
@@ -46,6 +47,8 @@ public class HomeController implements Initializable, ParentController {
 
     private LocalDate today = LocalDate.now();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+
+    private String currentUsername = Main.login.getUser().getUsername();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,6 +73,7 @@ public class HomeController implements Initializable, ParentController {
         helloMessage.setText(message);
 
         eventsList.setVisible(false);
+        logoutMessage.setVisible(false);
 
         displayWeekEvents();
     }
@@ -85,13 +89,18 @@ public class HomeController implements Initializable, ParentController {
     {
         helloMessage.setEffect(effect);
         logoutButton.setEffect(effect);
+        logoutMessage.setEffect(effect);
         upcomingEvents.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
 
     public void logout()
     {
-
+        Main.login.getUser().setLogout("Yes");
+        if(!Main.login.getUser().saveSettingsToFile(this.currentUsername))
+        {
+            logoutMessage.setVisible(true);
+        }
     }
 
     private void displayWeekEvents()
