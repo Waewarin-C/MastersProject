@@ -79,6 +79,7 @@ public class Main extends Application {
             String securityQuestion = scan.nextLine().split(",")[1];
             String securityQuestionAnswer = scan.nextLine().split(",")[1];
             String welcomePageShown = scan.nextLine().split(",")[1];
+            String logout = "No";
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
@@ -86,6 +87,7 @@ public class Main extends Application {
             login.getUser().setSecurityQuestion(securityQuestion);
             login.getUser().setSecurityQuestionAnswer(securityQuestionAnswer);
             login.getUser().setWelcomePageShown(welcomePageShown);
+            login.getUser().setLogout(logout);
         }
         catch(IOException e)
         {
