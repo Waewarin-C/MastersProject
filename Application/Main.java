@@ -16,6 +16,7 @@ public class Main extends Application {
 
     public static Stage stage;
     public static Login login;
+    public static String firstPageShown;
 
     @Override
     public void start(Stage primaryStage)
@@ -24,8 +25,7 @@ public class Main extends Application {
 
         try
         {
-            //Parent root = FXMLLoader.load(getClass().getResource("./View/Login.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Home.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
             stage.setScene(new Scene(root));
             stage.show();
         }
@@ -79,7 +79,7 @@ public class Main extends Application {
             String securityQuestion = scan.nextLine().split(",")[1];
             String securityQuestionAnswer = scan.nextLine().split(",")[1];
             String welcomePageShown = scan.nextLine().split(",")[1];
-            String logout = "No";
+            String logout = scan.nextLine().split(",")[1];
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
@@ -88,6 +88,8 @@ public class Main extends Application {
             login.getUser().setSecurityQuestionAnswer(securityQuestionAnswer);
             login.getUser().setWelcomePageShown(welcomePageShown);
             login.getUser().setLogout(logout);
+
+            setFirstPageShown(logout, welcomePageShown);
         }
         catch(IOException e)
         {
@@ -161,6 +163,26 @@ public class Main extends Application {
         finally
         {
             scan.close();
+        }
+    }
+
+    private static void setFirstPageShown(String logout, String welcomePageShown)
+    {
+        if(logout.equals("Yes"))
+        {
+            firstPageShown = "./View/Login.fxml";
+        }
+        else
+        {
+            if(welcomePageShown.equals("Yes"))
+            {
+                firstPageShown = "./View/Welcome.fxml";
+            }
+            else
+            {
+                firstPageShown = "./View/Home.fxml";
+            }
+
         }
     }
 }
