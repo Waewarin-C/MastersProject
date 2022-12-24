@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
 public class User {
@@ -28,14 +27,14 @@ public class User {
     TreeMap<String, List<Event>> events;
     TreeMap<String, String> categories;
     String welcomePageShown;
-    String isLogout;
+    String logout;
 
     public User()
     {
         this.events = new TreeMap<String, List<Event>>();
         this.categories = new TreeMap<String, String>();
         this.welcomePageShown = "No";
-        this.isLogout = "No";
+        this.logout = "No";
     }
 
     public String getUsername()
@@ -297,16 +296,73 @@ public class User {
         this.welcomePageShown = welcomePageShown;
     }
 
-    public String getIsLogout()
+    public String getLogout()
     {
-        return this.isLogout;
+        return this.logout;
     }
 
-    public void setIsLogout(String isLogout)
+    public void setLogout(String logout)
     {
-        this.isLogout = isLogout;
+        this.logout = logout;
     }
 
+    public void saveSettings(List<String> newSettings)
+    {
+        this.username = newSettings.get(0);
+        this.password = newSettings.get(1);
+        this.displayName = newSettings.get(2);
+        this.securityQuestion = newSettings.get(3);
+        this.securityQuestionAnswer = newSettings.get(4);
+        this.welcomePageShown = newSettings.get(5);
+    }
+
+    public boolean saveSettingsToFile(String oldUsername)
+    {
+        try
+        {
+            //Change the info file name
+            String oldFileName = "Account/" + oldUsername + "_info.csv";
+            File oldFile = new File(oldFileName);
+
+            String newFileName = "Account/" + this.username + "_info.csv";
+            File newFile = new File(newFileName);
+            oldFile.renameTo(newFile);
+
+            FileWriter save = new FileWriter(oldFile);
+            save.write(String.format("%s,%s\n", "Setting", "Value"));
+            save.write(String.format("%s,%s\n", "Username", this.username));
+            save.write(String.format("%s,%s\n", "Password", this.password));
+            save.write(String.format("%s,%s\n", "Display Name", this.displayName));
+            save.write(String.format("%s,%s\n", "Security Question", this.securityQuestion));
+            save.write(String.format("%s,%s\n", "Security Question Answer", this.securityQuestionAnswer));
+            save.write(String.format("%s,%s\n", "Welcome Page Shown", this.welcomePageShown));
+            save.write(String.format("%s,%s\n", "Logout", this.logout));
+
+            save.close();
+
+            //Change the events file name
+            oldFileName = "Account/" + oldUsername + "_events.csv";
+            oldFile = new File(oldFileName);
+
+            newFileName = "Account/" + this.username + "_events.csv";
+            newFile = new File(newFileName);
+            oldFile.renameTo(newFile);
+
+            //Change the categories file name
+            oldFileName = "Account/" + oldUsername + "_categories.csv";
+            oldFile = new File(oldFileName);
+
+            newFileName = "Account/" + this.username + "_categories.csv";
+            newFile = new File(newFileName);
+            oldFile.renameTo(newFile);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
     {
         Set<String> specificDates = eventsToDelete.keySet();

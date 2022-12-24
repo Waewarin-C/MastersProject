@@ -17,9 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +101,6 @@ public class SettingsController implements Initializable {
         String newSecurityQuestion = securityQuestionSettings.getText();
         String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
         String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
-        String newLogout = Main.login.getUser().getIsLogout();
 
         //Get the new password from the field that is visible to get the latest change
         String newPassword;
@@ -130,8 +126,8 @@ public class SettingsController implements Initializable {
         newSettings.add(newSecurityQuestionAnswer);
         newSettings.add(newWelcomePageShown);
 
-        saveSettingsToFile(newSettings);
-        saveSettingsToUser(newSettings);
+        Main.login.getUser().saveSettings(newSettings);
+        saveSettingsToFile();
 
         setFieldsDisable(true);
     }
@@ -149,8 +145,12 @@ public class SettingsController implements Initializable {
 
     public void logout()
     {
-        Main.login.getUser().setIsLogout("Yes");
-        saveSettings();
+        Main.login.getUser().setLogout("Yes");
+        if(!Main.login.getUser().saveSettingsToFile(this.oldUsername))
+        {
+            saveMessage.setText("Error: something went wrong with logging out, please try again");
+            saveMessage.setTextFill(Color.rgb(255, 0, 0));
+        }
     }
 
     private void fillFields()
@@ -215,63 +215,16 @@ public class SettingsController implements Initializable {
         return error;
     }
 
-    private void saveSettingsToFile(List<String> newSettings)
+    private void saveSettingsToFile()
     {
-        try
+        if(Main.login.getUser().saveSettingsToFile(this.oldUsername))
         {
-            //Change the info file name
-            String oldFileName = "Account/" + this.oldUsername + "_info.csv";
-            File oldFile = new File(oldFileName);
-
-            String newFileName = "Account/" + newSettings.get(0) + "_info.csv";
-            File newFile = new File(newFileName);
-            oldFile.renameTo(newFile);
-
-            FileWriter save = new FileWriter(oldFile);
-            save.write(String.format("%s,%s\n", "Setting", "Value"));
-            save.write(String.format("%s,%s\n", "Username", newSettings.get(0)));
-            save.write(String.format("%s,%s\n", "Password", newSettings.get(1)));
-            save.write(String.format("%s,%s\n", "Display Name", newSettings.get(2)));
-            save.write(String.format("%s,%s\n", "Security Question", newSettings.get(3)));
-            save.write(String.format("%s,%s\n", "Security Question Answer", newSettings.get(4)));
-            save.write(String.format("%s,%s\n", "Welcome Page Shown", newSettings.get(5)));
-
-            save.close();
-
-            //Change the events file name
-            oldFileName = "Account/" + this.oldUsername + "_events.csv";
-            oldFile = new File(oldFileName);
-
-            newFileName = "Account/" + newSettings.get(0) + "_events.csv";
-            newFile = new File(newFileName);
-            oldFile.renameTo(newFile);
-
-            //Change the categories file name
-            oldFileName = "Account/" + this.oldUsername + "_categories.csv";
-            oldFile = new File(oldFileName);
-
-            newFileName = "Account/" + newSettings.get(0) + "_categories.csv";
-            newFile = new File(newFileName);
-            oldFile.renameTo(newFile);
-
             saveMessage.setText("Saved successfully!");
         }
-        catch(IOException e)
+        else
         {
             saveMessage.setText("Error: something went wrong, please try again");
             saveMessage.setTextFill(Color.rgb(255, 0, 0));
-            System.out.println("Error: cannot save account settings");
-            e.printStackTrace();
         }
-    }
-
-    private void saveSettingsToUser(List<String> newSettings)
-    {
-        Main.login.getUser().setUsername(newSettings.get(0));
-        Main.login.getUser().setPassword(newSettings.get(1));
-        Main.login.getUser().setDisplayName(newSettings.get(2));
-        Main.login.getUser().setSecurityQuestion(newSettings.get(3));
-        Main.login.getUser().setSecurityQuestionAnswer(newSettings.get(4));
-        Main.login.getUser().setWelcomePageShown(newSettings.get(5));
     }
 }
