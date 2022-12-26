@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -150,6 +152,18 @@ public class SettingsController implements Initializable {
         {
             saveMessage.setText("Error: something went wrong with logging out, please try again");
             saveMessage.setTextFill(Color.rgb(255, 0, 0));
+            return;
+        }
+
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 

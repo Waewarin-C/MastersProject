@@ -16,7 +16,7 @@ public class Main extends Application {
 
     public static Stage stage;
     public static Login login;
-    public static String firstPageShown;
+    private static String firstPageShown;
 
     @Override
     public void start(Stage primaryStage)
@@ -174,15 +174,7 @@ public class Main extends Application {
         }
         else
         {
-            if(welcomePageShown.equals("Yes"))
-            {
-                firstPageShown = "./View/Welcome.fxml";
-            }
-            else
-            {
-                firstPageShown = "./View/Home.fxml";
-            }
-
+            firstPageShown = "./View/Home.fxml";
         }
     }
 }
