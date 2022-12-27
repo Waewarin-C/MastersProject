@@ -48,7 +48,7 @@ public class HomeController implements Initializable, ParentController {
     private EventsListController eventsPopUpController;
 
     private LocalDate today = LocalDate.now();
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
     private String currentUsername = Main.login.getUser().getUsername();
 

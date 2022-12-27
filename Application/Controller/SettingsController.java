@@ -38,7 +38,7 @@ public class SettingsController implements Initializable {
     private RadioButton welcomePageShow, welcomePageNotShow;
 
     @FXML
-    private ToggleGroup welcomePage;
+    private ToggleGroup welcomePage, dateFormat;
 
     @FXML
     private Label passwordSettingsError, displayNameSettingsError, saveMessage;
@@ -52,6 +52,7 @@ public class SettingsController implements Initializable {
     private String oldSecurityQuestion = Main.login.getUser().getSecurityQuestion();
     private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
     private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
+    private String oldDateFormat = Main.login.getUser().getDateFormat();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -176,13 +177,21 @@ public class SettingsController implements Initializable {
         securityQuestionSettings.setText(this.oldSecurityQuestion);
         securityQuestionAnswerSettings.setText(this.oldSecurityQuestionAnswer);
 
-        if(oldWelcomePageShown.equals("Yes"))
+        if(this.oldWelcomePageShown.equals("Yes"))
         {
             welcomePage.selectToggle(welcomePageShow);
         }
         else
         {
             welcomePage.selectToggle(welcomePageNotShow);
+        }
+
+        for(Toggle dateFormatOption : dateFormat.getToggles())
+        {
+            if(((RadioButton)dateFormatOption).getText().equals(this.oldDateFormat))
+            {
+                dateFormat.selectToggle(dateFormatOption);
+            }
         }
     }
     private void setFieldsDisable(boolean disable)

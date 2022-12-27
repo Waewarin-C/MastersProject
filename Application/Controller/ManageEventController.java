@@ -64,7 +64,7 @@ public class ManageEventController implements Initializable, ParentController {
     private String date;
     private int eventListSize;
     private int eventIndex;
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
 

@@ -58,7 +58,7 @@ public class CalendarController implements Initializable, ParentController {
     private DayOfWeek firstDay = this.firstDayOfMonth.getDayOfWeek();
     private int weekDayOfFirstDay = this.firstDay.getValue();
     private int lastDayOfMonth = this.selectedDate.lengthOfMonth();
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
     private GaussianBlur blur = new GaussianBlur();
 

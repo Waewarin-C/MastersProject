@@ -98,7 +98,6 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void saveEditCategories()
     {
-        //TODO: find a way to change edited categories accordingly
         this.oldCategories.addAll(Main.login.getUser().getCategories().keySet());
         Main.login.getUser().getCategories().clear();
 
@@ -154,8 +153,6 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void deleteCategories()
     {
-        //TODO: find a way to change or delete events with deleted categories accordingly
-        //TODO: check if user wants to delete category if it has events associated with it
         List<String> deletedCategories = new ArrayList<String>();
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)

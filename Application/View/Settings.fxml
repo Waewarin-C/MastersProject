@@ -175,7 +175,7 @@
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="476.0" layoutY="140.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="471.0" layoutY="140.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -196,56 +196,59 @@
             </Label>
             <VBox spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <HBox>
+                  <HBox spacing="12.5">
                      <children>
                         <RadioButton mnemonicParsing="false" text="MM/dd/yy">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="dateFormat" />
+                           </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="MM/dd/yyyy">
+                        <RadioButton mnemonicParsing="false" text="MM/dd/yyyy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="MM-dd-yy">
+                        <RadioButton mnemonicParsing="false" text="MM-dd-yy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="MM-dd-yyyy">
+                        <RadioButton mnemonicParsing="false" text="MM-dd-yyyy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox spacing="12.5">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="dd/MM/yy">
+                        <RadioButton mnemonicParsing="false" text="dd/MM/yy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="dd/MM/yyyy">
+                        <RadioButton mnemonicParsing="false" text="dd/MM/yyyy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="dd-MM-yy">
+                        <RadioButton mnemonicParsing="false" text="dd-MM-yy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="dd-MM-yyyy">
+                        <RadioButton mnemonicParsing="false" text="dd-MM-yyyy" toggleGroup="$dateFormat">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
