@@ -11,11 +11,12 @@ package Application.Model;
     //If Welcome page is shown everytime user logins
 
 import Application.Main;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class User {
@@ -378,6 +379,32 @@ public class User {
         this.dateFormat = dateFormat;
     }
 
+    public void updateDateFormatOfEvents(String oldDateFormat)
+    {
+        Set<String> allDates = this.events.keySet();
+        DateTimeFormatter oldFormat = DateTimeFormatter.ofPattern(oldDateFormat);
+        DateTimeFormatter newFormat = DateTimeFormatter.ofPattern(this.dateFormat);
+        String newDate = "";
+
+        TreeMap<String, List<Event>> updatedEvents = new TreeMap<String, List<Event>>();
+
+        for(String date : allDates)
+        {
+            List<Event> allEvents = this.events.get(date);
+
+            for(Event event : allEvents)
+            {
+                LocalDate parseDate = LocalDate.parse(date, oldFormat);
+                newDate = parseDate.format(newFormat);
+                event.setEventDate(newDate);
+            }
+
+            updatedEvents.put(newDate, allEvents);
+        }
+
+        this.events = updatedEvents;
+    }
+
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
     {
         Set<String> specificDates = eventsToDelete.keySet();
@@ -389,6 +416,5 @@ public class User {
                 this.events.remove(date);
             }
         }
-
     }
 }

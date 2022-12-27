@@ -24,7 +24,6 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.time.LocalDate;

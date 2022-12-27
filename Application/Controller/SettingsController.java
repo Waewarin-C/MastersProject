@@ -132,6 +132,7 @@ public class SettingsController implements Initializable {
         newSettings.add(newDateFormat);
 
         Main.login.getUser().saveSettings(newSettings);
+        Main.login.getUser().updateDateFormatOfEvents(this.oldDateFormat);
         saveSettingsToFile();
 
         setFieldsDisable(true);

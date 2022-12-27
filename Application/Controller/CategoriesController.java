@@ -113,7 +113,8 @@ public class CategoriesController implements Initializable, ParentController {
 
         saveCategoriesToFile();
         getEditedCategories();
-        updateCategoryOfEvents();
+        Main.login.getUser().updateCategoriesOfEvents(this.oldAndNewCategories);
+        Main.login.getUser().saveEventToFile();
     }
 
     public void addNewCategory()
@@ -329,11 +330,5 @@ public class CategoriesController implements Initializable, ParentController {
         {
             this.oldAndNewCategories.put(this.oldCategories.get(i), this.newCategories.get(i));
         }
-    }
-
-    private void updateCategoryOfEvents()
-    {
-        Main.login.getUser().updateCategoriesOfEvents(this.oldAndNewCategories);
-        Main.login.getUser().saveEventToFile();
     }
 }
