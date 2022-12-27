@@ -5,4 +5,5 @@ Display Name,Test
 Security Question,What is the capital of Texas?
 Security Question Answer,Austin
 Welcome Page Shown,No
-Logout,Yes
+Logout,No
+Date Format,MM/dd/yy

@@ -47,6 +47,7 @@ public class User {
         this.securityQuestion = newSettings.get(3);
         this.securityQuestionAnswer = newSettings.get(4);
         this.welcomePageShown = newSettings.get(5);
+        this.dateFormat = newSettings.get(6);
     }
 
     public boolean saveSettingsToFile(String oldUsername)
@@ -70,6 +71,7 @@ public class User {
             save.write(String.format("%s,%s\n", "Security Question Answer", this.securityQuestionAnswer));
             save.write(String.format("%s,%s\n", "Welcome Page Shown", this.welcomePageShown));
             save.write(String.format("%s,%s\n", "Logout", this.logout));
+            save.write(String.format("%s,%s\n", "Date Format", this.dateFormat));
 
             save.close();
 

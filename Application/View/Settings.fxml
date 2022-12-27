@@ -196,7 +196,7 @@
             </Label>
             <VBox spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <HBox spacing="12.5">
+                  <HBox spacing="10.0">
                      <children>
                         <RadioButton mnemonicParsing="false" text="MM/dd/yy">
                            <font>
@@ -227,7 +227,7 @@
                         </RadioButton>
                      </children>
                   </HBox>
-                  <HBox spacing="12.5">
+                  <HBox spacing="10.0">
                      <children>
                         <RadioButton mnemonicParsing="false" text="dd/MM/yy" toggleGroup="$dateFormat">
                            <font>

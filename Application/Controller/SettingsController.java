@@ -104,6 +104,7 @@ public class SettingsController implements Initializable {
         String newSecurityQuestion = securityQuestionSettings.getText();
         String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
         String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
+        String newDateFormat = ((RadioButton) dateFormat.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
         String newPassword;
@@ -128,6 +129,7 @@ public class SettingsController implements Initializable {
         newSettings.add(newSecurityQuestion);
         newSettings.add(newSecurityQuestionAnswer);
         newSettings.add(newWelcomePageShown);
+        newSettings.add(newDateFormat);
 
         Main.login.getUser().saveSettings(newSettings);
         saveSettingsToFile();

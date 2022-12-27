@@ -25,8 +25,7 @@ public class Main extends Application {
 
         try
         {
-            //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
             stage.setScene(new Scene(root));
             stage.show();
         }
@@ -81,6 +80,7 @@ public class Main extends Application {
             String securityQuestionAnswer = scan.nextLine().split(",")[1];
             String welcomePageShown = scan.nextLine().split(",")[1];
             String logout = scan.nextLine().split(",")[1];
+            String dateFormat = scan.nextLine().split(",")[1];
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
@@ -89,8 +89,9 @@ public class Main extends Application {
             login.getUser().setSecurityQuestionAnswer(securityQuestionAnswer);
             login.getUser().setWelcomePageShown(welcomePageShown);
             login.getUser().setLogout(logout);
+            login.getUser().setDateFormat(dateFormat);
 
-            setFirstPageShown(logout, welcomePageShown);
+            setFirstPageShown(logout);
         }
         catch(IOException e)
         {
@@ -109,8 +110,6 @@ public class Main extends Application {
 
         try
         {
-            List<Event> events = new ArrayList<Event>();
-
             scan = new Scanner(file);
             //Skip first line
             scan.nextLine();
@@ -167,7 +166,7 @@ public class Main extends Application {
         }
     }
 
-    private static void setFirstPageShown(String logout, String welcomePageShown)
+    private static void setFirstPageShown(String logout)
     {
         if(logout.equals("Yes"))
         {
