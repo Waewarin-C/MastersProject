@@ -51,6 +51,8 @@ public class HomeController implements Initializable, ParentController {
 
     private String currentUsername = Main.login.getUser().getUsername();
 
+    private final GaussianBlur blur = new GaussianBlur();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try
@@ -176,8 +178,6 @@ public class HomeController implements Initializable, ParentController {
         viewEventsButton.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
         viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         viewEventsButton.setText("View Events for " + eventDate);
-
-        GaussianBlur blur = new GaussianBlur();
 
         EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
             @Override

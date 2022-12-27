@@ -48,6 +48,8 @@ public class CategoriesController implements Initializable, ParentController {
 
     private AddCategoryPopUpController popUpController;
 
+    private final GaussianBlur blur = new GaussianBlur();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try
@@ -119,8 +121,7 @@ public class CategoriesController implements Initializable, ParentController {
 
     public void addNewCategory()
     {
-        GaussianBlur blur = new GaussianBlur();
-        setEffect(blur);
+        setEffect(this.blur);
 
         this.popUpController.setUp();
         addCategoryPopUp.setVisible(true);

@@ -67,6 +67,7 @@ public class ManageEventController implements Initializable, ParentController {
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
+    private final GaussianBlur blur = new GaussianBlur();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -233,8 +234,7 @@ public class ManageEventController implements Initializable, ParentController {
 
     public void addNewEventCategory()
     {
-        GaussianBlur blur = new GaussianBlur();
-        setEffect(blur);
+        setEffect(this.blur);
 
         popUpController.setUp();
         addCategoryPopUp.setVisible(true);

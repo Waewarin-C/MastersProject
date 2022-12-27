@@ -194,6 +194,7 @@ public class SettingsController implements Initializable {
             if(((RadioButton)dateFormatOption).getText().equals(this.oldDateFormat))
             {
                 dateFormat.selectToggle(dateFormatOption);
+                break;
             }
         }
     }

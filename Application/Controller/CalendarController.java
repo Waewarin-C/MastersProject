@@ -60,7 +60,7 @@ public class CalendarController implements Initializable, ParentController {
     private int lastDayOfMonth = this.selectedDate.lengthOfMonth();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
-    private GaussianBlur blur = new GaussianBlur();
+    private final GaussianBlur blur = new GaussianBlur();
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -125,7 +125,7 @@ public class CalendarController implements Initializable, ParentController {
     public void addEvent()
     {
         manageEvent.setVisible(true);
-        setEffect(blur);
+        setEffect(this.blur);
     }
 
     private void setUpCalendar()
