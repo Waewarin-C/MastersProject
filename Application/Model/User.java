@@ -403,6 +403,7 @@ public class User {
         }
 
         this.events = updatedEvents;
+        saveEventToFile();
     }
 
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
