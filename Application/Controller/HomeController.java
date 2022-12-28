@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -176,7 +177,8 @@ public class HomeController implements Initializable, ParentController {
     {
         Button viewEventsButton = new Button();
         viewEventsButton.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
-        viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-color: black; -fx-background-radius: 20");
+        viewEventsButton.setTextFill(Color.rgb(255, 255, 255));
         viewEventsButton.setText("View Events for " + eventDate);
 
         EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {
