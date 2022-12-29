@@ -98,19 +98,19 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="eventNameField" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1">
+            <TextField fx:id="eventNameField" prefHeight="30.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
             <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" promptText="Type in or Select a Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="450.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" style="-fx-font-size: 14px;" />
+                  <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" />
                   <Label text="or">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
@@ -118,7 +118,7 @@
                   </Label>
                   <AnchorPane prefHeight="200.0">
                      <children>
-                        <Button fx:id="addNewEventCategoryButton" mnemonicParsing="false" onAction="#addNewEventCategory" prefHeight="30.0" text="Add a New Category">
+                        <Button fx:id="addNewEventCategoryButton" mnemonicParsing="false" onAction="#addNewEventCategory" prefHeight="30.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Add a New Category" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
@@ -132,7 +132,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

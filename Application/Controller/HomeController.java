@@ -43,7 +43,10 @@ public class HomeController implements Initializable, ParentController {
     private GridPane upcomingEvents;
 
     @FXML
-    private Pane toolbarPane, eventsList;
+    private Pane toolbarPane;
+
+    @FXML
+    private AnchorPane eventsList;
 
     private EventsListController eventsPopUpController;
 
