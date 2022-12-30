@@ -112,7 +112,7 @@
                </font></TextField>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="450.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" />
+                  <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" />
                   <Label text="or">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
@@ -134,7 +134,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
