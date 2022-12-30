@@ -16,7 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -42,6 +44,9 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Label passwordSettingsError, displayNameSettingsError, saveMessage;
+
+    @FXML
+    private HBox numbersHbox, monthHbox, dayHbox;
 
     @FXML
     private Pane toolbarPane;
@@ -208,6 +213,9 @@ public class SettingsController implements Initializable {
         securityQuestionAnswerSettings.setDisable(disable);
         welcomePageShow.setDisable(disable);
         welcomePageNotShow.setDisable(disable);
+        numbersHbox.setDisable(disable);
+        monthHbox.setDisable(disable);
+        dayHbox.setDisable(disable);
     }
 
     private boolean requirementsCheck(String newPassword, String newDisplayName)

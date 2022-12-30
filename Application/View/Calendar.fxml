@@ -100,9 +100,9 @@
             </Label>
          </children>
       </GridPane>
-      <Pane fx:id="toolbarPane" layoutX="20.0" layoutY="540.0" prefHeight="80.0" prefWidth="800.0" />
+      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
       <AnchorPane fx:id="manageEvent" layoutX="70.0" layoutY="70.0" prefHeight="450.0" prefWidth="700.0" />
-      <AnchorPane fx:id="listOfEvents" layoutX="50.0" layoutY="50.0" prefHeight="501.0" prefWidth="740.0" />
+      <AnchorPane fx:id="listOfEvents" layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="740.0" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
