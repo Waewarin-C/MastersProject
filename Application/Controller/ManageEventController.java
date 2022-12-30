@@ -136,8 +136,11 @@ public class ManageEventController implements Initializable, ParentController {
         manageEventGridPane.setLayoutX(66);
         manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
+        addCategoryPopUp.setLayoutX(150);
+        addCategoryPopUp.setLayoutY(120);
         anchorPane.getChildren().remove(toolbarPane);
         anchorPane.setPrefSize(700, 450);
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
     }
 
     public void prefillDate(String date)

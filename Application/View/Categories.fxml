@@ -72,6 +72,11 @@
             </Button>
          </children>
       </GridPane>
+      <Separator layoutY="540.0" prefWidth="840.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Separator>
       <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
       <AnchorPane fx:id="addCategoryPopUp" layoutX="210.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" />
       <Label fx:id="editInstruction" layoutX="153.0" layoutY="110.0" text="Editing the category names will change the events associated with them">
@@ -94,10 +99,5 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Label>
-      <Separator layoutY="540.0" prefWidth="840.0">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Separator>
    </children>
 </AnchorPane>

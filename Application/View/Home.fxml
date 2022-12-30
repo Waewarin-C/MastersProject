@@ -60,12 +60,12 @@
             </Label>
          </children>
       </GridPane>
-      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
-      <AnchorPane fx:id="eventsList" layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="740.0" />
       <Separator layoutY="540.0" prefWidth="840.0">
          <effect>
             <DropShadow />
          </effect>
       </Separator>
+      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
+      <AnchorPane fx:id="eventsList" layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="740.0" />
    </children>
 </AnchorPane>
