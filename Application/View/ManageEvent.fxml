@@ -105,7 +105,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" promptText="Type in or Select a Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="eventDatePicker" prefHeight="30.0" prefWidth="250.0" promptText="Type in or Select a Date" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="eventLocationField" prefHeight="30.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
@@ -134,7 +134,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextArea fx:id="eventDescriptionField" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

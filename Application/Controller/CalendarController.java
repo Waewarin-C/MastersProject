@@ -153,12 +153,13 @@ public class CalendarController implements Initializable, ParentController {
             day.setPrefHeight(62);
             day.setSpacing(5);
             day.setPadding(new Insets(0, 2, 1, 2));
-            if(col == 0) {
+            if(col == 0)
+            {
                 day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
             }
             else
             {
-                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
+                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2");
             }
 
             Label displayDate = new Label(Integer.toString(date));

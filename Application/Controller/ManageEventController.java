@@ -93,7 +93,7 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(false);
 
         eventDescriptionField.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
-        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
 
         updateCategoriesList();
 
