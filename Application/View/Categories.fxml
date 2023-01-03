@@ -55,6 +55,11 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
+            <Button fx:id="editButton" mnemonicParsing="false" onAction="#editCategories" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Edit" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="saveEditButton" mnemonicParsing="false" onAction="#saveEditCategories" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Save" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />

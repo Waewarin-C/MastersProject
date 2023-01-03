@@ -194,12 +194,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Save" textFill="WHITE">
+            <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Save" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Cancel" textFill="WHITE" GridPane.columnIndex="1">
+            <Button fx:id="cancelSettingsButton" mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Cancel" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

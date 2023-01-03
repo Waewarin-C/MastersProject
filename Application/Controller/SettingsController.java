@@ -49,6 +49,9 @@ public class SettingsController implements Initializable {
     private HBox numbersHbox, monthHbox, dayHbox;
 
     @FXML
+    private Button saveSettingsButton, cancelSettingsButton;
+
+    @FXML
     private Pane toolbarPane;
 
     private String oldUsername = Main.login.getUser().getUsername();
@@ -216,6 +219,8 @@ public class SettingsController implements Initializable {
         numbersHbox.setDisable(disable);
         monthHbox.setDisable(disable);
         dayHbox.setDisable(disable);
+        saveSettingsButton.setDisable(disable);
+        cancelSettingsButton.setDisable(disable);
     }
 
     private boolean requirementsCheck(String newPassword, String newDisplayName)

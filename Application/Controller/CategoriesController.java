@@ -29,7 +29,7 @@ public class CategoriesController implements Initializable, ParentController {
     private Label categoriesPageLabel, editInstruction, editSuccessMessage, editErrorMessage, deleteInstruction;
 
     @FXML
-    private Button saveEditButton, deleteButton;
+    private Button editButton, saveEditButton, deleteButton;
 
     @FXML
     private GridPane addAndDeleteButtons, editButtons;
@@ -70,8 +70,11 @@ public class CategoriesController implements Initializable, ParentController {
         }
 
         displayCategories();
+        categoriesGrid.setDisable(true);
+        editInstruction.setVisible(false);
         editSuccessMessage.setVisible(false);
         editErrorMessage.setVisible(false);
+        saveEditButton.setVisible(false);
         deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
@@ -96,6 +99,14 @@ public class CategoriesController implements Initializable, ParentController {
         editErrorMessage.setEffect(effect);
         deleteInstruction.setEffect(effect);
         toolbarPane.setEffect(effect);
+    }
+
+    public void editCategories()
+    {
+        categoriesGrid.setDisable(false);
+        editButton.setVisible(false);
+        editInstruction.setVisible(true);
+        saveEditButton.setVisible(true);
     }
 
     public void saveEditCategories()
@@ -131,9 +142,11 @@ public class CategoriesController implements Initializable, ParentController {
     {
         addAndDeleteButtons.setVisible(false);
         editInstruction.setVisible(false);
+        editButton.setVisible(false);
         saveEditButton.setVisible(false);
         deleteButton.setVisible(true);
         deleteInstruction.setVisible(true);
+        categoriesGrid.setDisable(false);
 
         int categoryIndex = 0;
         for(int row = 0; row < numRows; row++)
@@ -204,8 +217,11 @@ public class CategoriesController implements Initializable, ParentController {
         editInstruction.setVisible(true);
         deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
-        saveEditButton.setVisible(true);
+        editButton.setVisible(true);
+        editInstruction.setVisible(false);
+        saveEditButton.setVisible(false);
         addAndDeleteButtons.setVisible(true);
+        categoriesGrid.setDisable(true);
     }
 
     private void displayCategories()
