@@ -285,12 +285,11 @@ public class CategoriesController implements Initializable, ParentController {
         while(categoryIndex != this.numCategories)
         {
             TextField categoryName = new TextField(categories.get(categoryIndex));
-            categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+            categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
             categoryName.setPrefWidth(75);
 
             ColorPicker categoryColor = new ColorPicker();
-            categoryColor.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-            categoryColor.setStyle("-fx-color-label-visible: false;");
+            categoryColor.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-color-label-visible: false;");
             String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
             categoryColor.setValue(Color.web(color));
 

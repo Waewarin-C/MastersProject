@@ -31,10 +31,9 @@ public class AddCategoryPopUpController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         doneAddCategoryButton.setVisible(false);
-        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
         categoryMessagePopUp.setText("");
         categoryMessagePopUp.setTextFill(Color.rgb(0,0,0));
-        categoryColorPopUpField.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
     }
 
     public void setParentController(ParentController parentController)
