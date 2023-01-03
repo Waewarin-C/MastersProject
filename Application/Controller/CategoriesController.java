@@ -281,30 +281,23 @@ public class CategoriesController implements Initializable, ParentController {
     private void fillGrid(List<String> categories)
     {
         int categoryIndex = 0;
-        for(int row = 0; row < this.numRows; row++)
+
+        while(categoryIndex != this.numCategories)
         {
-            for(int col = 0; col < this.numCols; col++)
-            {
-                TextField categoryName = new TextField(categories.get(categoryIndex));
-                categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-                categoryName.setPrefWidth(75);
+            TextField categoryName = new TextField(categories.get(categoryIndex));
+            categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+            categoryName.setPrefWidth(75);
 
-                ColorPicker categoryColor = new ColorPicker();
-                categoryColor.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-                categoryColor.setStyle("-fx-color-label-visible: false;");
-                String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
-                categoryColor.setValue(Color.web(color));
+            ColorPicker categoryColor = new ColorPicker();
+            categoryColor.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+            categoryColor.setStyle("-fx-color-label-visible: false;");
+            String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
+            categoryColor.setValue(Color.web(color));
 
-                ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
-                ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
+            ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryName);
+            ((HBox)this.categoriesGrid.getChildren().get(categoryIndex)).getChildren().add(categoryColor);
 
-                categoryIndex++;
-
-                if(categoryIndex == this.numCategories)
-                {
-                    return;
-                }
-            }
+            categoryIndex++;
         }
     }
 
