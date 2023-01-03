@@ -157,11 +157,8 @@ public class CalendarController implements Initializable, ParentController {
             day.setPrefHeight(62);
             day.setSpacing(5);
             day.setPadding(new Insets(0, 2, 1, 2));
-            if(date == 1 && col != 0)
-            {
-                day.setStyle("-fx-border-color: black; -fx-border-radius: 20 0 0 0; -fx-border-width: 2 0 0 2;");
-            }
-            else if(col == 0)
+
+            if(col == 0)
             {
                 day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
             }
@@ -172,14 +169,7 @@ public class CalendarController implements Initializable, ParentController {
 
             Label displayDate = new Label(Integer.toString(date));
             displayDate.setPrefWidth(100);
-            if(date == 1)
-            {
-                displayDate.setStyle("-fx-padding: 0 0 0 10; -fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-            }
-            else
-            {
-                displayDate.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-            }
+            displayDate.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
 
             day.getChildren().add(displayDate);
 
@@ -265,7 +255,7 @@ public class CalendarController implements Initializable, ParentController {
             VBox extra = new VBox();
             extra.setPrefHeight(62);
             extra.setSpacing(5);
-            extra.setPadding(new Insets(0, 0, 1, 0));
+            extra.setPadding(new Insets(0, 2, 1, 2));
 
             if(i == col)
             {
