@@ -23,7 +23,7 @@ import java.util.*;
 
 public class CategoriesController implements Initializable, ParentController {
     @FXML
-    private AnchorPane anchorPane, addCategoryPopUp;
+    private AnchorPane anchorPane, addCategoryPopUp, deleteConfirmation;
 
     @FXML
     private Label categoriesPageLabel, editInstruction, editSuccessMessage, editErrorMessage, deleteInstruction;
@@ -78,6 +78,7 @@ public class CategoriesController implements Initializable, ParentController {
         deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
+        deleteConfirmation.setVisible(false);
     }
 
     public void closePopUp(String category)
@@ -166,6 +167,12 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    public void confirmDelete()
+    {
+        setEffect(this.blur);
+        deleteConfirmation.setVisible(true);
+    }
+
     public void deleteCategories()
     {
         List<String> deletedCategories = new ArrayList<String>();
@@ -207,6 +214,15 @@ public class CategoriesController implements Initializable, ParentController {
         saveCategoriesToFile();
         Main.login.getUser().deleteEventsOfCategories(deletedCategories);
         Main.login.getUser().saveEventToFile();
+
+        deleteConfirmation.setVisible(false);
+        setEffect(null);
+    }
+
+    public void cancelDeleteConfirm()
+    {
+        deleteConfirmation.setVisible(false);
+        setEffect(null);
     }
 
     public void cancelEditCategories()
