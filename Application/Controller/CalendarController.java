@@ -57,6 +57,7 @@ public class CalendarController implements Initializable, ParentController {
     private LocalDate firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
     private DayOfWeek firstDay = this.firstDayOfMonth.getDayOfWeek();
     private int weekDayOfFirstDay = this.firstDay.getValue();
+    private int dayOfMonth = this.selectedDate.getDayOfMonth();
     private int lastDayOfMonth = this.selectedDate.lengthOfMonth();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
@@ -118,6 +119,7 @@ public class CalendarController implements Initializable, ParentController {
         this.firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
         this.firstDay = this.firstDayOfMonth.getDayOfWeek();
         this.weekDayOfFirstDay = this.firstDay.getValue();
+        this.dayOfMonth = this.selectedDate.getDayOfMonth();
         this.lastDayOfMonth = this.selectedDate.lengthOfMonth();
 
         setUpCalendar();
@@ -132,7 +134,9 @@ public class CalendarController implements Initializable, ParentController {
     private void setUpCalendar()
     {
         this.calendar.getChildren().remove(8, this.calendar.getChildren().size());
-        calendarMonth.setText(this.selectedDate.getMonth().toString());
+        String month = this.selectedDate.getMonth().toString();
+        int year = this.selectedDate.getYear();
+        calendarMonth.setText(month + " " + year);
 
         displayMonth();
     }
@@ -159,14 +163,8 @@ public class CalendarController implements Initializable, ParentController {
             day.setSpacing(5);
             day.setPadding(new Insets(0, 2, 1, 2));
 
-            if(col == 0)
-            {
-                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
-            }
-            else
-            {
-                day.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
-            }
+            String dayBoxStyle = getDayBoxStyle(date, col);
+            day.setStyle(dayBoxStyle);
 
             Label displayDate = new Label(Integer.toString(date));
             displayDate.setPrefWidth(100);
@@ -216,6 +214,41 @@ public class CalendarController implements Initializable, ParentController {
         {
             addAdditionalBorders(col, row);
         }
+    }
+
+    private String getDayBoxStyle(int date, int col)
+    {
+        String dayBoxStyle = "";
+
+        if(date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
+        {
+            dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 20 0; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
+        }
+        else if(date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
+        {
+            dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 0 20; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
+        }
+        else if(date == this.dayOfMonth)
+        {
+            if(col == 0)
+            {
+                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
+            }
+            else
+            {
+                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
+            }
+        }
+        else if(col == 0)
+        {
+            dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 0;";
+        }
+        else
+        {
+            dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 2;";
+        }
+
+        return dayBoxStyle;
     }
 
     private List<Label> showEvents(String todayDate)
