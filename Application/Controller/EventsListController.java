@@ -47,7 +47,7 @@ public class EventsListController implements Initializable, ParentController {
     private GridPane topButtons, eventDetailsGrid;
 
     @FXML
-    private AnchorPane eventDetails, manageEvent;
+    private AnchorPane eventDetails, manageEvent, deleteEventConfirmation;
 
     private ParentController parentController;
     private ManageEventController manageEventController;
@@ -79,6 +79,7 @@ public class EventsListController implements Initializable, ParentController {
 
         eventDetailsGrid.setVisible(false);
         manageEvent.setVisible(false);
+        deleteEventConfirmation.setVisible(false);
     }
 
     public void closePopUp(String neededString)
@@ -161,6 +162,18 @@ public class EventsListController implements Initializable, ParentController {
         manageEvent.setVisible(true);
     }
 
+    public void confirmDeleteEvent()
+    {
+        setEffect(this.blur);
+        deleteEventConfirmation.setVisible(true);
+    }
+
+    public void cancelConfirmDeleteEvent()
+    {
+        deleteEventConfirmation.setVisible(false);
+        setEffect(null);
+    }
+
     public void deleteEvent()
     {
         String date = eventDateDetails.getText();
@@ -179,6 +192,9 @@ public class EventsListController implements Initializable, ParentController {
         {
             deleteFailMessage.setVisible(true);
         }
+
+        deleteEventConfirmation.setVisible(false);
+        setEffect(null);
     }
 
     public void closeListView()
