@@ -100,6 +100,7 @@ public class CalendarController implements Initializable, ParentController {
         manageEvent.setVisible(false);
         listOfEvents.setVisible(false);
         setEffect(null);
+        setUpCalendar();
     }
 
     public void setEffect(Effect effect)
