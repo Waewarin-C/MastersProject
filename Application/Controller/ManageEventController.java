@@ -36,16 +36,13 @@ public class ManageEventController implements Initializable, ParentController {
     private Button saveManageEventButton, cancelManageEventButton, doneManageEventButton, addNewEventCategoryButton;
 
     @FXML
-    private TextField eventNameField, eventLocationField;
+    private TextField eventNameField, eventLocationField, eventDescriptionField;
 
     @FXML
     private DatePicker eventDatePicker;
 
     @FXML
     private ComboBox eventCategoryField;
-
-    @FXML
-    private TextArea eventDescriptionField;
 
     @FXML
     private Label manageEventPageLabel, saveEventMessage, newCategory;
@@ -92,12 +89,12 @@ public class ManageEventController implements Initializable, ParentController {
         doneManageEventButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
 
-        eventDescriptionField.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
-        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
-
         updateCategoriesList();
 
         saveEventMessage.setText("");
+
+        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        anchorPane.getStylesheets().add(getClass().getResource("../view/test_style.css").toExternalForm());
     }
 
     public void closePopUp(String category)
@@ -250,7 +247,7 @@ public class ManageEventController implements Initializable, ParentController {
 
         eventCategoryField.getItems().clear();
         eventCategoryField.getItems().addAll(categories);
-        eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
+        eventCategoryField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         newCategory.setText("");
         newCategory.setVisible(false);
