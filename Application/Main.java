@@ -25,8 +25,8 @@ public class Main extends Application {
 
         try
         {
-            //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Welcome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
+            root.getStylesheets().add(getClass().getResource("./View/light_mode.css").toExternalForm());
             stage.setScene(new Scene(root));
             stage.show();
         }

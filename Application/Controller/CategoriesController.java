@@ -69,7 +69,6 @@ public class CategoriesController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         anchorPane.setStyle("-fx-background-color: white;");
         deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
 

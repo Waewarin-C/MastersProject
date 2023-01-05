@@ -67,7 +67,17 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label text="A quick glance at the week ahead from the current date">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Add and delete events">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Logout">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -81,7 +91,17 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label text="Simply click on the date on the calendar to view all the date's events">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Go to a specific date">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Add and delete events">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -95,7 +115,12 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label text="Add events to your calendar">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="You can also add new categories while adding new events">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -109,7 +134,7 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label text="Edit, delete, or add new categories">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -123,14 +148,19 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label text="View and edit account and preference settings">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Logout">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="beginButton" mnemonicParsing="false" onAction="#continueToHome" style="-fx-background-radius: 20;" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button mnemonicParsing="false" onAction="#continueToHome" style="-fx-background-radius: 20;" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>

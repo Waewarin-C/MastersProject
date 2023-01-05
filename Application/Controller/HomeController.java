@@ -76,7 +76,6 @@ public class HomeController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         anchorPane.setStyle("-fx-background-color: white;");
 
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";

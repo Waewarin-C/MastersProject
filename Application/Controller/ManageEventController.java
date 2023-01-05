@@ -85,7 +85,6 @@ public class ManageEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         anchorPane.setStyle("-fx-background-color: white;");
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 

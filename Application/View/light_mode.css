@@ -27,6 +27,11 @@
     -fx-border-radius: 20;
     -fx-border-color: black;
 }
+.combo-box > .menu-item {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: black;
+}
 
 .color-picker {
     -fx-background-radius: 20;

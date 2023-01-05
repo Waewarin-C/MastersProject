@@ -34,7 +34,6 @@ public class AddCategoryPopUpController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 

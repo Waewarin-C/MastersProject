@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -29,16 +28,12 @@ public class WelcomeController implements Initializable {
     private Label welcomeMessage;
 
     @FXML
-    private Button beginButton;
-
-    @FXML
     private Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         anchorPane.setStyle("-fx-background-color: white;");
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
 
         welcomeMessage.setText("Welcome " + Main.login.getUser().getDisplayName() + "!");
 
@@ -79,6 +74,7 @@ public class WelcomeController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
+            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
