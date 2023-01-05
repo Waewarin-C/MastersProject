@@ -69,11 +69,13 @@ public class CategoriesController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white;");
         deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+
         displayCategories();
-        categoriesGrid.setDisable(true);
+        this.categoriesGrid.setDisable(true);
+
         editInstruction.setVisible(false);
         editSuccessMessage.setVisible(false);
         editErrorMessage.setVisible(false);
@@ -89,6 +91,7 @@ public class CategoriesController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(false);
         anchorPane.getChildren().remove(categoriesGrid);
         displayCategories();
+        this.categoriesGrid.setDisable(true);
         setEffect(null);
     }
 
@@ -228,8 +231,6 @@ public class CategoriesController implements Initializable, ParentController {
         setEffect(null);
     }
 
-
-
     public void cancelEditCategories()
     {
         this.categoriesGrid.getChildren().clear();
@@ -242,7 +243,8 @@ public class CategoriesController implements Initializable, ParentController {
         editInstruction.setVisible(false);
         saveEditButton.setVisible(false);
         addAndDeleteButtons.setVisible(true);
-        categoriesGrid.setDisable(true);
+
+        this.categoriesGrid.setDisable(true);
     }
 
     private void displayCategories()
@@ -322,11 +324,11 @@ public class CategoriesController implements Initializable, ParentController {
         while(categoryIndex != this.numCategories)
         {
             TextField categoryName = new TextField(categories.get(categoryIndex));
-            categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
+            categoryName.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-radius: 20;");
             categoryName.setPrefWidth(75);
 
             ColorPicker categoryColor = new ColorPicker();
-            categoryColor.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-color-label-visible: false;");
+            categoryColor.setStyle("-fx-color-label-visible: false;");
             String color = Main.login.getUser().getCategories().get(categories.get(categoryIndex));
             categoryColor.setValue(Color.web(color));
 

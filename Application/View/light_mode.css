@@ -33,3 +33,21 @@
     -fx-border-radius: 20;
     -fx-border-color: black;
 }
+
+.check-box > .box {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
+
+.radio-button > .radio {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: black;
+}
+
+.list-view {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: black;
+}

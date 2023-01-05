@@ -78,8 +78,9 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white;");
+
         fillFields();
         setFieldsDisable(true);
 
@@ -105,6 +106,8 @@ public class SettingsController implements Initializable {
 
     public void editSettings()
     {
+        resetRequirementsMessages();
+        saveMessage.setText("");
         setFieldsDisable(false);
     }
 
@@ -154,12 +157,8 @@ public class SettingsController implements Initializable {
     public void cancelSettings()
     {
         fillFields();
+        resetRequirementsMessages();
         setFieldsDisable(true);
-
-        passwordSettingsError.setText("Password must be at least 8 characters");
-        passwordSettingsError.setTextFill(Color.rgb(0, 0, 0));
-        displayNameSettingsError.setText("Display Name can be at most 30 characters");
-        displayNameSettingsError.setTextFill(Color.rgb(0, 0, 0));
     }
 
     public void logout()
@@ -168,7 +167,7 @@ public class SettingsController implements Initializable {
         if(!Main.login.getUser().saveSettingsToFile(this.oldUsername))
         {
             saveMessage.setText("Error: something went wrong with logging out, please try again");
-            saveMessage.setTextFill(Color.rgb(255, 0, 0));
+            saveMessage.setTextFill(Color.RED);
             return;
         }
 
@@ -228,6 +227,14 @@ public class SettingsController implements Initializable {
         cancelSettingsButton.setDisable(disable);
     }
 
+    private void resetRequirementsMessages()
+    {
+        passwordSettingsError.setText("Password must be at least 8 characters");
+        passwordSettingsError.setTextFill(Color.BLACK);
+        displayNameSettingsError.setText("Display Name can be at most 30 characters");
+        displayNameSettingsError.setTextFill(Color.BLACK);
+    }
+
     private boolean requirementsCheck(String newPassword, String newDisplayName)
     {
         boolean error = false;
@@ -236,25 +243,25 @@ public class SettingsController implements Initializable {
         if(newPassword.length() < 8)
         {
             passwordSettingsError.setText("Error: Password must be at least 8 characters");
-            passwordSettingsError.setTextFill(Color.rgb(255,0,0));
+            passwordSettingsError.setTextFill(Color.RED);
             error = true;
         }
         else
         {
             passwordSettingsError.setText("Password length satisfied");
-            passwordSettingsError.setTextFill(Color.rgb(0,255,0));
+            passwordSettingsError.setTextFill(Color.GREEN);
         }
 
         if(newDisplayName.length() > 30)
         {
             displayNameSettingsError.setText("Error: Display Name must be at most 30 characters");
-            displayNameSettingsError.setTextFill(Color.rgb(255, 0, 0));
+            displayNameSettingsError.setTextFill(Color.RED);
             error = true;
         }
         else
         {
             displayNameSettingsError.setText("Display Name is within length limits");
-            displayNameSettingsError.setTextFill(Color.rgb(0, 255, 0));
+            displayNameSettingsError.setTextFill(Color.GREEN);
         }
 
         return error;
@@ -269,7 +276,7 @@ public class SettingsController implements Initializable {
         else
         {
             saveMessage.setText("Error: something went wrong, please try again");
-            saveMessage.setTextFill(Color.rgb(255, 0, 0));
+            saveMessage.setTextFill(Color.RED);
         }
     }
 }

@@ -49,8 +49,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white;");
 
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);

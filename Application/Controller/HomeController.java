@@ -76,8 +76,9 @@ public class HomeController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white;");
+
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
 
@@ -182,8 +183,7 @@ public class HomeController implements Initializable, ParentController {
     {
         Button viewEventsButton = new Button();
         viewEventsButton.setPrefSize(Region.USE_COMPUTED_SIZE, 30);
-        viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-color: black; -fx-background-radius: 20");
-        viewEventsButton.setTextFill(Color.rgb(255, 255, 255));
+        viewEventsButton.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         viewEventsButton.setText("View Events for " + eventDate);
 
         EventHandler<ActionEvent> viewEvents = new EventHandler<ActionEvent>() {

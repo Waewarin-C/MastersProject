@@ -74,13 +74,13 @@ public class EventsListController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
-        eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20");
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
 
         eventDetailsGrid.setVisible(false);
         manageEvent.setVisible(false);
-        deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         deleteEventConfirmation.setVisible(false);
     }
 

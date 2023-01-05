@@ -85,16 +85,16 @@ public class ManageEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white;");
+        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+
         doneManageEventButton.setVisible(false);
         addCategoryPopUp.setVisible(false);
 
         updateCategoriesList();
 
         saveEventMessage.setText("");
-
-        eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        anchorPane.setStyle("-fx-background-color: white;");
-        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
     }
 
     public void closePopUp(String category)
@@ -202,7 +202,7 @@ public class ManageEventController implements Initializable, ParentController {
         else
         {
             saveEventMessage.setText("Error: something went wrong, please try again");
-            saveEventMessage.setTextFill(Color.rgb(255, 0, 0));
+            saveEventMessage.setTextFill(Color.RED);
         }
 
         resetFields();

@@ -34,12 +34,14 @@ public class AddCategoryPopUpController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        doneAddCategoryButton.setVisible(false);
-        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        categoryMessagePopUp.setText("");
-        categoryMessagePopUp.setTextFill(Color.rgb(0,0,0));
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+
+        categoryMessagePopUp.setText("");
+        categoryMessagePopUp.setTextFill(Color.BLACK);
+
+        doneAddCategoryButton.setVisible(false);
     }
 
     public void setParentController(ParentController parentController)
@@ -79,7 +81,7 @@ public class AddCategoryPopUpController implements Initializable {
             else
             {
                 categoryMessagePopUp.setText("Error: something went wrong in saving, please try again");
-                categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
+                categoryMessagePopUp.setTextFill(Color.RED);
             }
 
             saveCategoryPopUpButton.setVisible(false);
@@ -113,7 +115,7 @@ public class AddCategoryPopUpController implements Initializable {
             if(!isUniqueColor)
             {
                 categoryMessagePopUp.setText("This color is already with an existing category");
-                categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
+                categoryMessagePopUp.setTextFill(Color.RED);
                 return false;
             }
         }
@@ -121,7 +123,7 @@ public class AddCategoryPopUpController implements Initializable {
         {
             String message = "The category \"" + categoryName + "\" already exists";
             categoryMessagePopUp.setText(message);
-            categoryMessagePopUp.setTextFill(Color.rgb(255,0,0));
+            categoryMessagePopUp.setTextFill(Color.RED);
             return false;
         }
 
