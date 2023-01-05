@@ -135,9 +135,9 @@ public class ManageEventController implements Initializable, ParentController {
         manageEventButtons.setLayoutX(520);
         eventDescriptionField.setPrefHeight(100);
         addCategoryPopUp.setLayoutX(150);
-        addCategoryPopUp.setLayoutY(120);
+        addCategoryPopUp.setLayoutY(90);
         anchorPane.getChildren().remove(toolbarPane);
-        anchorPane.setPrefSize(700, 450);
+        anchorPane.setPrefSize(700, 400);
         anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
     }
 

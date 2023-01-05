@@ -55,7 +55,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <GridPane fx:id="manageEventGridPane" hgap="10.0" layoutX="131.0" layoutY="97.0" vgap="10.0">
+      <GridPane fx:id="manageEventGridPane" hgap="10.0" layoutX="131.0" layoutY="130.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
