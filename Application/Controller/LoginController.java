@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
@@ -24,6 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private TextField loginUsernameField, loginShowPassword, loginSecurityQuestionAnswer;
@@ -49,6 +52,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);
         confirmPasswordShow.setVisible(false);

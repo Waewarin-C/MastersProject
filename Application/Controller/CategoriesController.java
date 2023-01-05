@@ -69,6 +69,7 @@ public class CategoriesController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         displayCategories();
         categoriesGrid.setDisable(true);
         editInstruction.setVisible(false);

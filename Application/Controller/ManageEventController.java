@@ -31,7 +31,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ManageEventController implements Initializable, ParentController {
-
     @FXML
     private Button saveManageEventButton, cancelManageEventButton, doneManageEventButton, addNewEventCategoryButton;
 
@@ -94,7 +93,7 @@ public class ManageEventController implements Initializable, ParentController {
         saveEventMessage.setText("");
 
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        anchorPane.getStylesheets().add(getClass().getResource("../view/test_style.css").toExternalForm());
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
     }
 
     public void closePopUp(String category)

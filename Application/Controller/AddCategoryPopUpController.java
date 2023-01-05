@@ -7,12 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddCategoryPopUpController implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
+
     @FXML
     private Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
 
@@ -34,6 +38,7 @@ public class AddCategoryPopUpController implements Initializable {
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;");
         categoryMessagePopUp.setText("");
         categoryMessagePopUp.setTextFill(Color.rgb(0,0,0));
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
     }
 
     public void setParentController(ParentController parentController)

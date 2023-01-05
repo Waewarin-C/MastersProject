@@ -48,7 +48,7 @@ public class CalendarController implements Initializable, ParentController {
     private Pane toolbarPane;
 
     @FXML
-    private AnchorPane manageEvent, listOfEvents;
+    private AnchorPane anchorPane, manageEvent, listOfEvents;
 
     private EventsListController eventsListController;
     private ManageEventController manageEventController;
@@ -92,7 +92,9 @@ public class CalendarController implements Initializable, ParentController {
 
         manageEvent.setVisible(false);
         listOfEvents.setVisible(false);
+        calendarDatePicker.setValue(this.selectedDate);
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         setUpCalendar();
     }
 

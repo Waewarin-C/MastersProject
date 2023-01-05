@@ -46,7 +46,7 @@ public class HomeController implements Initializable, ParentController {
     private Pane toolbarPane;
 
     @FXML
-    private AnchorPane eventsList;
+    private AnchorPane anchorPane, eventsList;
 
     private EventsListController eventsPopUpController;
 
@@ -76,6 +76,7 @@ public class HomeController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
 

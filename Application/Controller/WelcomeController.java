@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.SVGPath;
 
@@ -21,6 +22,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
+    @FXML
+    private AnchorPane anchorPane;
+
     @FXML
     private Label welcomeMessage;
 
@@ -33,6 +37,7 @@ public class WelcomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         welcomeMessage.setText("Welcome " + Main.login.getUser().getDisplayName() + "!");
 
         //Load SVG paths

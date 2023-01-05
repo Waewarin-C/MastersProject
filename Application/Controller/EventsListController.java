@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EventsListController implements Initializable, ParentController {
-
     @FXML
     private Label eventsListLabel, selectMessage, deleteFailMessage;
 
@@ -47,7 +46,7 @@ public class EventsListController implements Initializable, ParentController {
     private GridPane topButtons, eventDetailsGrid;
 
     @FXML
-    private AnchorPane eventDetails, manageEvent, deleteEventConfirmation;
+    private AnchorPane anchorPane, eventDetails, manageEvent, deleteEventConfirmation;
 
     private ParentController parentController;
     private ManageEventController manageEventController;
@@ -75,6 +74,7 @@ public class EventsListController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
+        anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20");
 
         eventDetailsGrid.setVisible(false);
