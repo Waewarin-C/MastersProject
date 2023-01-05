@@ -71,6 +71,7 @@ public class CategoriesController implements Initializable, ParentController {
 
         anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
+        deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         displayCategories();
         categoriesGrid.setDisable(true);
         editInstruction.setVisible(false);

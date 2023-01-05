@@ -38,7 +38,7 @@ public class AddCategoryPopUpController implements Initializable {
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         categoryMessagePopUp.setText("");
         categoryMessagePopUp.setTextFill(Color.rgb(0,0,0));
-        anchorPane.setStyle("-fx-background-color: white;");
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
     }
 

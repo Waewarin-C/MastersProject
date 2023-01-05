@@ -138,7 +138,7 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setLayoutY(90);
         anchorPane.getChildren().remove(toolbarPane);
         anchorPane.setPrefSize(700, 400);
-        anchorPane.setStyle("-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
     }
 
     public void prefillDate(String date)
