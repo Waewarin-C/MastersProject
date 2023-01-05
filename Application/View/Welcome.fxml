@@ -76,7 +76,7 @@
             </VBox>
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="Events Calendar">
+                  <Label text="Calendar">
                      <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
@@ -130,7 +130,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button fx:id="beginButton" mnemonicParsing="false" onAction="#continueToHome" style="-fx-background-color: black; -fx-background-radius: 20;" text="Let's Begin!" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="beginButton" mnemonicParsing="false" onAction="#continueToHome" style="-fx-background-radius: 20;" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>

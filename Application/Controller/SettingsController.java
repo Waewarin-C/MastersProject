@@ -78,6 +78,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
+        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         fillFields();
         setFieldsDisable(true);

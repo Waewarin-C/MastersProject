@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="640.0" prefWidth="840.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.LoginController">
+<AnchorPane fx:id="anchorPane" prefHeight="640.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.LoginController">
    <children>
       <Label layoutX="283.0" layoutY="53.0" text="Name of Program">
          <font>
@@ -50,20 +50,20 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="loginUsernameField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1">
+            <TextField fx:id="loginUsernameField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="loginPasswordField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="loginPasswordField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
-            <TextField fx:id="loginShowPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="loginShowPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Login" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 20;" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -110,12 +110,12 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="loginSecurityQuestionAnswer" prefHeight="30.0" prefWidth="300.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.rowIndex="2">
+            <TextField fx:id="loginSecurityQuestionAnswer" prefHeight="30.0" prefWidth="300.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="securityQuestionSubmitButton" mnemonicParsing="false" onAction="#checkSecurityQuestionAnswer" prefHeight="30.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Submit Answer" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#checkSecurityQuestionAnswer" prefHeight="30.0" style="-fx-background-radius: 20;" text="Submit Answer" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -189,7 +189,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Sign Up" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 20;" text="Sign Up" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -199,7 +199,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="signUpUsernameField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1">
+            <TextField fx:id="signUpUsernameField" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
@@ -207,7 +207,7 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
-            <TextField fx:id="signUpShowPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="signUpShowPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -221,12 +221,12 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
-            <TextField fx:id="confirmPasswordShow" onAction="#showPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="confirmPasswordShow" onAction="#showPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="signUpDisplayNameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="signUpDisplayNameField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
@@ -235,12 +235,12 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="signUpSecurityQuestionField" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+            <TextField fx:id="signUpSecurityQuestionField" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="signUpAnswerField" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
+            <TextField fx:id="signUpAnswerField" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

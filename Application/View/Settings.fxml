@@ -35,12 +35,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Edit" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-radius: 20;" text="Edit">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Logout" textFill="WHITE" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" style="-fx-background-radius: 20;" text="Logout" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -103,17 +103,17 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameSettings" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1">
+            <TextField fx:id="usernameSettings" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordSettings" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="passwordSettings" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="showPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="showPassword" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -123,7 +123,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="displayNameSettings" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="displayNameSettings" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -133,12 +133,12 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="securityQuestionSettings" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
+            <TextField fx:id="securityQuestionSettings" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="securityQuestionAnswerSettings" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+            <TextField fx:id="securityQuestionAnswerSettings" prefHeight="30.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -194,12 +194,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Save" textFill="WHITE">
+            <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-radius: 20;" text="Save">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelSettingsButton" mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: black; -fx-background-radius: 20;" text="Cancel" textFill="WHITE" GridPane.columnIndex="1">
+            <Button fx:id="cancelSettingsButton" mnemonicParsing="false" onAction="#cancelSettings" prefHeight="30.0" prefWidth="65.0" style="-fx-background-radius: 20;" text="Cancel" GridPane.columnIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

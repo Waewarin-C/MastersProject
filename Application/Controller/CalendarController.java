@@ -94,6 +94,7 @@ public class CalendarController implements Initializable, ParentController {
         listOfEvents.setVisible(false);
         calendarDatePicker.setValue(this.selectedDate);
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        anchorPane.setStyle("-fx-background-color: white;");
         anchorPane.getStylesheets().add(getClass().getResource("../view/light_mode.css").toExternalForm());
         setUpCalendar();
     }
