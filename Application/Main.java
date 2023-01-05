@@ -91,7 +91,7 @@ public class Main extends Application {
             login.getUser().setLogout(logout);
             login.getUser().setDateFormat(dateFormat);
 
-            setFirstPageShown(logout);
+            setFirstPageShown(logout, welcomePageShown);
         }
         catch(IOException e)
         {
@@ -166,7 +166,7 @@ public class Main extends Application {
         }
     }
 
-    private static void setFirstPageShown(String logout)
+    private static void setFirstPageShown(String logout, String welcomePageShown)
     {
         if(logout.equals("Yes"))
         {
@@ -174,7 +174,14 @@ public class Main extends Application {
         }
         else
         {
-            firstPageShown = "./View/Home.fxml";
+            if(welcomePageShown.equals("Yes"))
+            {
+                firstPageShown = "./View/Welcome.fxml";
+            }
+            else
+            {
+                firstPageShown = "./View/Home.fxml";
+            }
         }
     }
 }

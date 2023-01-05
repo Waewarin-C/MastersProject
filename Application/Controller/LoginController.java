@@ -41,9 +41,6 @@ public class LoginController implements Initializable {
     private CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox;
 
     @FXML
-    private Button loginButton, signUpButton, securityQuestionSubmitButton;
-
-    @FXML
     private Label loginErrorMessage, signUpErrorMessage, loginSecurityQuestion, securityQuestionMessage;
 
     @FXML
@@ -145,7 +142,7 @@ public class LoginController implements Initializable {
         }
         else
         {
-            continueToNextPage();
+            nextStep();
         }
     }
 
@@ -186,38 +183,47 @@ public class LoginController implements Initializable {
         }
         else
         {
-            continueToNextPage();
+            nextStep();
         }
+    }
+
+    private void nextStep()
+    {
+        Main.login.getUser().setLogout("No");
+        Main.login.getUser().saveSettingsToFile(Main.login.getUser().getUsername());
+        continueToNextPage();
     }
 
     private void continueToNextPage()
     {
+        String nextPage = getNextPage();
+
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource(nextPage));
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private String getNextPage()
+    {
         String welcomePageShown = Main.login.getUser().getWelcomePageShown();
+        String nextPage = "";
 
         if(welcomePageShown.equals("Yes"))
         {
-            try
-            {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/Welcome.fxml"));
-                Main.stage.setScene(new Scene(root));
-                Main.stage.show();
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            nextPage = "../View/Welcome.fxml";
         }
         else
         {
-            try
-            {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
-                Main.stage.setScene(new Scene(root));
-                Main.stage.show();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
+            nextPage = "../View/Home.fxml";
         }
+
+        return nextPage;
     }
 }
