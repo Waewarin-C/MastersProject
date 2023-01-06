@@ -1,13 +1,16 @@
 package Application.Controller;
 
 import Application.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -16,6 +19,9 @@ import java.util.ResourceBundle;
 public class AddCategoryPopUpController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
+
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
@@ -36,11 +42,14 @@ public class AddCategoryPopUpController implements Initializable {
     {
         anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
+        setLabelLightModeColor();
 
         categoryMessagePopUp.setText("");
         categoryMessagePopUp.setTextFill(Color.BLACK);
 
         doneAddCategoryButton.setVisible(false);
+
+
     }
 
     public void setParentController(ParentController parentController)
@@ -103,6 +112,27 @@ public class AddCategoryPopUpController implements Initializable {
         String categoryName = categoryNamePopUpField.getText().substring(0,1).toUpperCase();
         categoryName += categoryNamePopUpField.getText().substring(1);
         this.parentController.closePopUp(categoryName);
+    }
+
+    private void setLabelLightModeColor()
+    {
+        ObservableList<Node> anchorPaneChildren = anchorPane.getChildren();
+        for(Node child : anchorPaneChildren)
+        {
+            if(child.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)child).setTextFill(Color.WHITE);
+            }
+        }
+
+        ObservableList<Node> gridPaneChildren = gridPane.getChildren();
+        for(Node child : gridPaneChildren)
+        {
+            if(child.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)child).setTextFill(Color.WHITE);
+            }
+        }
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)
