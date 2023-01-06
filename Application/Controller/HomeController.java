@@ -10,6 +10,7 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable, ParentController {
     @FXML
-    private Label helloMessage, logoutMessage;
+    private Label helloMessage, logoutMessage, weekAheadLabel;
 
     @FXML
     private Button logoutButton;
@@ -76,7 +77,7 @@ public class HomeController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
 
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
@@ -124,8 +125,26 @@ public class HomeController implements Initializable, ParentController {
         }
     }
 
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+        helloMessage.setTextFill(Color.RED);
+        weekAheadLabel.setTextFill(Color.RED);
+
+        ObservableList<Node> children = upcomingEvents.getChildren();
+        for(Node child : children)
+        {
+            if(child.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)child).setTextFill(Color.RED);
+            }
+        }
+    }
+
     private void displayWeekEvents()
     {
+        Color labelColor = getLabelColor();
+
         upcomingEvents.getChildren().remove(1, upcomingEvents.getChildren().size());
 
         int week = 7;
@@ -141,6 +160,7 @@ public class HomeController implements Initializable, ParentController {
 
             Label dayLabel = new Label();
             dayLabel.setStyle("-fx-font: 20px \"Berlin Sans FB\";");
+            dayLabel.setTextFill(labelColor);
             if(i == 0)
             {
                 dayLabel.setText("Today: " + next);
@@ -153,6 +173,7 @@ public class HomeController implements Initializable, ParentController {
 
             Label eventLabel = new Label();
             eventLabel.setStyle("-fx-font: 16px \"Berlin Sans FB\";");
+            eventLabel.setTextFill(labelColor);
             if(!Main.login.getUser().getEvents().containsKey(next))
             {
                 eventLabel.setText("You have no events");
@@ -176,6 +197,11 @@ public class HomeController implements Initializable, ParentController {
             }
             upcomingEvents.add(dayEvents, 0, i+1);
         }
+    }
+
+    private Color getLabelColor()
+    {
+        return Color.RED;
     }
 
     private void addViewEventsButton(int row, String eventDate)

@@ -71,7 +71,6 @@ public class CategoriesController implements Initializable, ParentController {
         }
 
         setLightModeStyle();
-        deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
 
         displayCategories();
         this.categoriesGrid.setDisable(true);
@@ -250,6 +249,7 @@ public class CategoriesController implements Initializable, ParentController {
     private void setLightModeStyle()
     {
         anchorPane.setStyle("-fx-background-color: white;");
+        deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         categoriesPageLabel.setTextFill(Color.BLACK);
         editInstruction.setTextFill(Color.BLACK);
         deleteInstruction.setTextFill(Color.BLACK);

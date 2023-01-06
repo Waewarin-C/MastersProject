@@ -11,6 +11,7 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,9 +76,8 @@ public class EventsListController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        setLightModeStyle();
         eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
 
         eventDetailsGrid.setVisible(false);
         manageEvent.setVisible(false);
@@ -201,6 +202,32 @@ public class EventsListController implements Initializable, ParentController {
     public void closeListView()
     {
         this.parentController.closePopUp("");
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        eventsListLabel.setTextFill(Color.BLACK);
+        selectMessage.setTextFill(Color.BLACK);
+
+        ObservableList<Node> detailsChildren = eventDetailsGrid.getChildren();
+        for(Node detailsChild : detailsChildren)
+        {
+            if(detailsChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)detailsChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList<Node> confirmChildren = deleteEventConfirmation.getChildren();
+        for(Node confirmChild : confirmChildren)
+        {
+            if(confirmChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)confirmChild).setTextFill(Color.BLACK);
+            }
+        }
     }
 
     private void addEventsToListView(String date)

@@ -15,18 +15,18 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="640.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.LoginController">
    <children>
-      <Label layoutX="283.0" layoutY="53.0" text="Name of Program">
+      <Label fx:id="nameOfProgram" layoutX="283.0" layoutY="53.0" text="Name of Program">
          <font>
             <Font name="Berlin Sans FB" size="36.0" />
          </font>
       </Label>
       <Separator layoutX="420.0" layoutY="120.0" orientation="VERTICAL" prefHeight="510.0" />
-      <Label layoutX="138.0" layoutY="150.0" text="Welcome Back!">
+      <Label fx:id="welcomeBack" layoutX="138.0" layoutY="150.0" text="Welcome Back!">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="45.0" layoutY="190.0" vgap="10.0">
+      <GridPane fx:id="loginGrid" hgap="10.0" layoutX="45.0" layoutY="190.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -130,17 +130,17 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <Label layoutX="569.0" layoutY="150.0" text="New Here?">
+      <Label fx:id="newHere" layoutX="569.0" layoutY="150.0" text="New Here?">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="516.0" layoutY="179.0" text="No problem! Sign up here!">
+      <Label fx:id="signUpPrompt" layoutX="516.0" layoutY="179.0" text="No problem! Sign up here!">
          <font>
             <Font name="Berlin Sans FB" size="20.0" />
          </font>
       </Label>
-      <GridPane hgap="5.0" layoutX="422.0" layoutY="215.0" vgap="8.0">
+      <GridPane fx:id="signUpGrid" hgap="5.0" layoutX="422.0" layoutY="215.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />

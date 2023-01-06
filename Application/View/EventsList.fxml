@@ -50,7 +50,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </ListView>
-      <AnchorPane fx:id="eventDetails" layoutX="299.0" layoutY="77.0" prefHeight="450.0" prefWidth="400.0">
+      <AnchorPane fx:id="eventDetails" layoutX="299.0" layoutY="77.0" prefHeight="380.0" prefWidth="400.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>

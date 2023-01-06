@@ -10,14 +10,17 @@ package Application.Controller;
     //Redirects to Home view
 
 import Application.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,15 +44,18 @@ public class LoginController implements Initializable {
     private CheckBox loginShowPasswordCheckBox, signUpShowPasswordCheckBox;
 
     @FXML
+    private Label nameOfProgram, welcomeBack, newHere, signUpPrompt;
+
+    @FXML
     private Label loginErrorMessage, signUpErrorMessage, loginSecurityQuestion, securityQuestionMessage;
 
     @FXML
-    private GridPane securityQuestionGrid;
+    private GridPane loginGrid, securityQuestionGrid, signUpGrid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
 
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);
@@ -183,6 +189,50 @@ public class LoginController implements Initializable {
         else
         {
             nextStep();
+        }
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+        nameOfProgram.setTextFill(Color.BLACK);
+        welcomeBack.setTextFill(Color.BLACK);
+        newHere.setTextFill(Color.BLACK);
+        signUpPrompt.setTextFill(Color.BLACK);
+
+        ObservableList<Node> loginChildren = loginGrid.getChildren();
+        for(Node loginChild : loginChildren)
+        {
+            if(loginChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)loginChild).setTextFill(Color.BLACK);
+            }
+            if(loginChild.getClass().getSimpleName().equals("CheckBox"))
+            {
+                ((CheckBox)loginChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList<Node> securityQuestionChildren = securityQuestionGrid.getChildren();
+        for(Node securityQuestionChild : securityQuestionChildren)
+        {
+            if(securityQuestionChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)securityQuestionChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList<Node> signUpChildren = signUpGrid.getChildren();
+        for(Node signUpChild : signUpChildren)
+        {
+            if(signUpChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)signUpChild).setTextFill(Color.BLACK);
+            }
+            if(signUpChild.getClass().getSimpleName().equals("CheckBox"))
+            {
+                ((CheckBox)signUpChild).setTextFill(Color.BLACK);
+            }
         }
     }
 
