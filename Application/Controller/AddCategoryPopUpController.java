@@ -1,10 +1,8 @@
 package Application.Controller;
 
 import Application.Main;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -21,9 +19,6 @@ public class AddCategoryPopUpController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private GridPane gridPane;
-
-    @FXML
     private Button saveCategoryPopUpButton, cancelCategoryPopUpButton, doneAddCategoryButton;
 
     @FXML
@@ -33,23 +28,20 @@ public class AddCategoryPopUpController implements Initializable {
     private ColorPicker categoryColorPopUpField;
 
     @FXML
-    private Label categoryMessagePopUp;
+    private Label categoryMessagePopUp, addCategoryLabel, categoryNameLabel, categoryColorLabel;
 
     private ParentController parentController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        setLabelLightModeColor();
+        setLightModeStyle();
 
         categoryMessagePopUp.setText("");
-        categoryMessagePopUp.setTextFill(Color.BLACK);
 
         doneAddCategoryButton.setVisible(false);
-
-
     }
 
     public void setParentController(ParentController parentController)
@@ -70,6 +62,7 @@ public class AddCategoryPopUpController implements Initializable {
         if(categoryName.equals(""))
         {
             categoryMessagePopUp.setText("Category Name is empty");
+            categoryMessagePopUp.setTextFill(Color.RED);
             return;
         }
 
@@ -114,25 +107,13 @@ public class AddCategoryPopUpController implements Initializable {
         this.parentController.closePopUp(categoryName);
     }
 
-    private void setLabelLightModeColor()
+    private void setLightModeStyle()
     {
-        ObservableList<Node> anchorPaneChildren = anchorPane.getChildren();
-        for(Node child : anchorPaneChildren)
-        {
-            if(child.getClass().getSimpleName().equals("Label"))
-            {
-                ((Label)child).setTextFill(Color.WHITE);
-            }
-        }
-
-        ObservableList<Node> gridPaneChildren = gridPane.getChildren();
-        for(Node child : gridPaneChildren)
-        {
-            if(child.getClass().getSimpleName().equals("Label"))
-            {
-                ((Label)child).setTextFill(Color.WHITE);
-            }
-        }
+        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        addCategoryLabel.setTextFill(Color.BLACK);
+        categoryNameLabel.setTextFill(Color.BLACK);
+        categoryColorLabel.setTextFill(Color.BLACK);
+        categoryMessagePopUp.setTextFill(Color.BLACK);
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)

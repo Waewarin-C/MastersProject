@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
 
 public class CalendarController implements Initializable, ParentController {
     @FXML
-    private Label calendarLabel, calendarMonth;
+    private Label calendarLabel, goToDateLabel, calendarMonth, sunday, monday, tuesday, wednesday, thursday, friday, saturday;
 
     @FXML
     private DatePicker calendarDatePicker;
@@ -90,7 +90,7 @@ public class CalendarController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         manageEvent.setVisible(false);
@@ -133,6 +133,21 @@ public class CalendarController implements Initializable, ParentController {
     {
         manageEvent.setVisible(true);
         setEffect(this.blur);
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+        calendarLabel.setTextFill(Color.BLACK);
+        goToDateLabel.setTextFill(Color.BLACK);
+        calendarMonth.setTextFill(Color.BLACK);
+        sunday.setTextFill(Color.BLACK);
+        monday.setTextFill(Color.BLACK);
+        tuesday.setTextFill(Color.BLACK);
+        wednesday.setTextFill(Color.BLACK);
+        thursday.setTextFill(Color.BLACK);
+        friday.setTextFill(Color.BLACK);
+        saturday.setTextFill(Color.BLACK);
     }
 
     private void setUpCalendar()

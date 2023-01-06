@@ -6,6 +6,7 @@ package Application.Controller;
     //Name of category
 
 import Application.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -69,7 +70,7 @@ public class CategoriesController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
         deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
 
         displayCategories();
@@ -244,6 +245,24 @@ public class CategoriesController implements Initializable, ParentController {
         addAndDeleteButtons.setVisible(true);
 
         this.categoriesGrid.setDisable(true);
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+        categoriesPageLabel.setTextFill(Color.BLACK);
+        editInstruction.setTextFill(Color.BLACK);
+        deleteInstruction.setTextFill(Color.BLACK);
+        editSuccessMessage.setTextFill(Color.BLACK);
+
+        ObservableList<Node> children = deleteCategoriesConfirmation.getChildren();
+        for(Node child : children)
+        {
+            if(child.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)child).setTextFill(Color.BLACK);
+            }
+        }
     }
 
     private void displayCategories()

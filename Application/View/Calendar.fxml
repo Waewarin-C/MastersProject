@@ -29,7 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Go to Date:">
+            <Label fx:id="goToDateLabel" text="Go to Date:">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -60,17 +60,17 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Sunday" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="sunday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Sunday" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="monday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="tuesday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
@@ -80,22 +80,22 @@
                   <Font name="Berlin Sans FB" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="wednesday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="thursday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="friday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Saturday" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="saturday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;" text="Saturday" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
