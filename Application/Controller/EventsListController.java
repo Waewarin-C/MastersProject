@@ -208,6 +208,7 @@ public class EventsListController implements Initializable, ParentController {
     {
         anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
         deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+
         eventsListLabel.setTextFill(Color.BLACK);
         selectMessage.setTextFill(Color.BLACK);
 

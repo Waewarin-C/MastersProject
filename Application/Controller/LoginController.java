@@ -195,6 +195,7 @@ public class LoginController implements Initializable {
     private void setLightModeStyle()
     {
         anchorPane.setStyle("-fx-background-color: white;");
+
         nameOfProgram.setTextFill(Color.BLACK);
         welcomeBack.setTextFill(Color.BLACK);
         newHere.setTextFill(Color.BLACK);

@@ -138,16 +138,19 @@ public class CalendarController implements Initializable, ParentController {
     private void setLightModeStyle()
     {
         anchorPane.setStyle("-fx-background-color: white;");
+
         calendarLabel.setTextFill(Color.BLACK);
         goToDateLabel.setTextFill(Color.BLACK);
-        calendarMonth.setTextFill(Color.BLACK);
-        sunday.setTextFill(Color.BLACK);
-        monday.setTextFill(Color.BLACK);
-        tuesday.setTextFill(Color.BLACK);
-        wednesday.setTextFill(Color.BLACK);
-        thursday.setTextFill(Color.BLACK);
-        friday.setTextFill(Color.BLACK);
-        saturday.setTextFill(Color.BLACK);
+
+        calendar.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black; -fx-border-width: 2;");
+        calendarMonth.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        sunday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        monday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        tuesday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        wednesday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        thursday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        friday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        saturday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
     }
 
     private void setUpCalendar()

@@ -128,6 +128,7 @@ public class HomeController implements Initializable, ParentController {
     private void setLightModeStyle()
     {
         anchorPane.setStyle("-fx-background-color: white;");
+
         helloMessage.setTextFill(Color.RED);
         weekAheadLabel.setTextFill(Color.RED);
 

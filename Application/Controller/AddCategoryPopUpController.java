@@ -110,6 +110,7 @@ public class AddCategoryPopUpController implements Initializable {
     private void setLightModeStyle()
     {
         anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+
         addCategoryLabel.setTextFill(Color.BLACK);
         categoryNameLabel.setTextFill(Color.BLACK);
         categoryColorLabel.setTextFill(Color.BLACK);
