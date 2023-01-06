@@ -53,8 +53,16 @@
 
 .color-picker {
     -fx-background-radius: 20;
+    -fx-background-color: black;
     -fx-border-radius: 20;
     -fx-border-color: black;
+    -fx-font-color: white;
+}
+.color-picker > .label {
+    -fx-text-fill: white;
+}
+.color-picker > .arrow-button > .arrow {
+    -fx-background-color: white;
 }
 
 .check-box > .box {
