@@ -40,12 +40,13 @@ public class ToolbarController implements Initializable {
     private Label homeLabel, calendarLabel, addEventsLabel, categoriesLabel, settingsLabel;
 
     private SVGPath homeIconPath, calendarIconPath, addEventIconPath, categoriesIconPath, settingsIconPath;
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         loadSVGPaths();
-        setLightModeStyle();
+        setStyleFromTheme();
     }
 
     public void goToHome()
@@ -53,8 +54,7 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -69,8 +69,7 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Calendar.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -85,8 +84,7 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvent.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -101,8 +99,7 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Categories.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -117,8 +114,7 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -161,24 +157,56 @@ public class ToolbarController implements Initializable {
         settingsIcon.getChildren().add(this.settingsIconPath);
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
+        Color color = getColorFromTheme();
+
         InnerShadow innerShadow = new InnerShadow();
         innerShadow.setColor(Color.BLACK);
-        anchorPane.setStyle("-fx-background-color: #31323e;");
         anchorPane.setEffect(innerShadow);
-        gridPane.setStyle("-fx-background-color: #31323e;");
 
-        this.homeIconPath.setFill(Color.WHITE);
-        this.calendarIconPath.setFill(Color.WHITE);
-        this.addEventIconPath.setFill(Color.WHITE);
-        this.categoriesIconPath.setFill(Color.WHITE);
-        this.settingsIconPath.setFill(Color.WHITE);
+        this.homeIconPath.setFill(color);
+        this.calendarIconPath.setFill(color);
+        this.addEventIconPath.setFill(color);
+        this.categoriesIconPath.setFill(color);
+        this.settingsIconPath.setFill(color);
 
-        homeLabel.setTextFill(Color.WHITE);
-        calendarLabel.setTextFill(Color.WHITE);
-        addEventsLabel.setTextFill(Color.WHITE);
-        categoriesLabel.setTextFill(Color.WHITE);
-        settingsLabel.setTextFill(Color.WHITE);
+        homeLabel.setTextFill(color);
+        calendarLabel.setTextFill(color);
+        addEventsLabel.setTextFill(color);
+        categoriesLabel.setTextFill(color);
+        settingsLabel.setTextFill(color);
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            gridPane.setStyle("-fx-background-color: #31323e;");
+            return Color.WHITE;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #f5f5f5;");
+            gridPane.setStyle("-fx-background-color: #f5f5f5;");
+            return Color.BLACK;
+        }
+    }
+
+    private String getThemeCSS()
+    {
+        String themeCSS = "";
+
+        if(this.theme.equals("Light"))
+        {
+            themeCSS = "../View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "../View/dark_mode.css";
+        }
+
+        return themeCSS;
     }
 }

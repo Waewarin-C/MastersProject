@@ -38,12 +38,13 @@ public class WelcomeController implements Initializable {
     private Pane homeIcon, calendarIcon, addEventsIcon, categoriesIcon, settingsIcon;
 
     private SVGPath homeIconPath, calendarIconPath, addEventIconPath, categoriesIconPath, settingsIconPath;
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         loadSVGPaths();
-        setLightModeStyle();
+        setStyleFromTheme();
 
         welcomeMessage.setText("Welcome " + Main.login.getUser().getDisplayName() + "!");
     }
@@ -53,8 +54,7 @@ public class WelcomeController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
-            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
-            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -96,24 +96,24 @@ public class WelcomeController implements Initializable {
         this.settingsIconPath.setScaleY(2.5);
         settingsIcon.getChildren().add(this.settingsIconPath);
     }
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
-        welcomeMessage.setTextFill(Color.BLACK);
+        welcomeMessage.setTextFill(color);
 
-        this.homeIconPath.setFill(Color.BLACK);
-        this.calendarIconPath.setFill(Color.BLACK);
-        this.addEventIconPath.setFill(Color.BLACK);
-        this.categoriesIconPath.setFill(Color.BLACK);
-        this.settingsIconPath.setFill(Color.BLACK);
+        this.homeIconPath.setFill(color);
+        this.calendarIconPath.setFill(color);
+        this.addEventIconPath.setFill(color);
+        this.categoriesIconPath.setFill(color);
+        this.settingsIconPath.setFill(color);
 
         ObservableList<Node> homeOverviewChildren = homeOverview.getChildren();
         for(Node homeOverviewChild : homeOverviewChildren)
         {
             if(homeOverviewChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)homeOverviewChild).setTextFill(Color.BLACK);
+                ((Label)homeOverviewChild).setTextFill(color);
             }
         }
 
@@ -122,7 +122,7 @@ public class WelcomeController implements Initializable {
         {
             if(calendarOverviewChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)calendarOverviewChild).setTextFill(Color.BLACK);
+                ((Label)calendarOverviewChild).setTextFill(color);
             }
         }
 
@@ -131,7 +131,7 @@ public class WelcomeController implements Initializable {
         {
             if(addEventsOverviewChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)addEventsOverviewChild).setTextFill(Color.BLACK);
+                ((Label)addEventsOverviewChild).setTextFill(color);
             }
         }
 
@@ -140,7 +140,7 @@ public class WelcomeController implements Initializable {
         {
             if(categoriesOverviewChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)categoriesOverviewChild).setTextFill(Color.BLACK);
+                ((Label)categoriesOverviewChild).setTextFill(color);
             }
         }
 
@@ -149,8 +149,38 @@ public class WelcomeController implements Initializable {
         {
             if(settingsOverviewChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)settingsOverviewChild).setTextFill(Color.BLACK);
+                ((Label)settingsOverviewChild).setTextFill(color);
             }
         }
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            return Color.WHITE;
+        }
+    }
+
+    private String getThemeCSS()
+    {
+        String themeCSS = "";
+
+        if(this.theme.equals("Light"))
+        {
+            themeCSS = "../View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "../View/dark_mode.css";
+        }
+
+        return themeCSS;
     }
 }

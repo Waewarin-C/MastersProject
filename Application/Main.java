@@ -17,6 +17,7 @@ public class Main extends Application {
     public static Stage stage;
     public static Login login;
     private static String firstPageShown;
+    private static String themeCSS;
 
     @Override
     public void start(Stage primaryStage)
@@ -26,8 +27,8 @@ public class Main extends Application {
         try
         {
             //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Login.fxml"));
-            root.getStylesheets().add(getClass().getResource("./View/dark_mode.css").toExternalForm());
+            Parent root = FXMLLoader.load(getClass().getResource("./View/Welcome.fxml"));
+            root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
             stage.setScene(new Scene(root));
             stage.show();
         }
@@ -96,6 +97,7 @@ public class Main extends Application {
             login.getUser().setTheme(theme);
 
             setFirstPageShown(logout, welcomePageShown);
+            setThemeCSS(theme);
         }
         catch(IOException e)
         {
@@ -186,6 +188,18 @@ public class Main extends Application {
             {
                 firstPageShown = "./View/Home.fxml";
             }
+        }
+    }
+
+    private static void setThemeCSS(String theme)
+    {
+        if(theme.equals("Light"))
+        {
+            themeCSS = "./View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "./View/dark_mode.css";
         }
     }
 }

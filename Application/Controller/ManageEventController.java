@@ -65,6 +65,7 @@ public class ManageEventController implements Initializable, ParentController {
     private ParentController parentController;
     private AddCategoryPopUpController popUpController;
     private final GaussianBlur blur = new GaussianBlur();
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,7 +87,7 @@ public class ManageEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyleFromTheme();
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         doneManageEventButton.setVisible(false);
@@ -138,7 +139,7 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setLayoutY(90);
         anchorPane.getChildren().remove(toolbarPane);
         anchorPane.setPrefSize(700, 400);
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        setStyleFromTheme();
     }
 
     public void prefillDate(String date)
@@ -243,20 +244,50 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(true);
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
-        manageEventPageLabel.setTextFill(Color.BLACK);
-        newCategory.setTextFill(Color.BLACK);
+        manageEventPageLabel.setTextFill(color);
+        newCategory.setTextFill(color);
 
         ObservableList<Node> children = manageEventGridPane.getChildren();
         for(Node child : children)
         {
             if(child.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)child).setTextFill(Color.BLACK);
+                ((Label)child).setTextFill(color);
             }
+        }
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            if (isPopUp)
+            {
+                anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+            }
+            else
+            {
+                anchorPane.setStyle("-fx-background-color: white;");
+            }
+
+            return Color.BLACK;
+        }
+        else
+        {
+            if(isPopUp)
+            {
+                anchorPane.setStyle("-fx-background-color: #31323e; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            }
+            else
+            {
+                anchorPane.setStyle("-fx-background-color: #31323e;");
+            }
+
+            return Color.WHITE;
         }
     }
 
