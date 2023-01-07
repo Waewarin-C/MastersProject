@@ -45,10 +45,10 @@ public class SettingsController implements Initializable {
     private ToggleGroup welcomePage, dateFormat, theme;
 
     @FXML
-    private Label settingsLabel, passwordSettingsError, displayNameSettingsError, accountSettingsLabel, preferenceSettingsLabel, saveMessage;
+    private Label settingsLabel, passwordSettingsError, displayNameSettingsError, accountSettingsLabel, preferenceSettingsLabel, themeLabel, saveMessage;
 
     @FXML
-    private GridPane accountSettings;
+    private Label usernameSettingsLabel, passwordSettingsLabel, displayNameSettingsLabel, securityQuestionSettingsLabel, answerSettingsLabel, welcomePageSettingsLabel;
 
     @FXML
     private VBox preferenceSettings;
@@ -84,7 +84,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        setStyle();
+        setStyleFromTheme(false);
 
         fillFields();
         setFieldsDisable(true);
@@ -159,7 +159,7 @@ public class SettingsController implements Initializable {
         saveSettingsToFile();
 
         setFieldsDisable(true);
-        setStyle();
+        setStyleFromTheme(true);
     }
 
     public void cancelSettings()
@@ -182,6 +182,7 @@ public class SettingsController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            root.getStylesheets().add(getClass().getResource("./View/light_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -191,29 +192,35 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void setStyle()
+    private void setStyleFromTheme(boolean isAfterSave)
     {
-        Color color = getColorFromMode();
-
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
         settingsLabel.setTextFill(color);
+
         accountSettingsLabel.setTextFill(color);
-        preferenceSettingsLabel.setTextFill(color);
+        usernameSettingsLabel.setTextFill(color);
+        passwordSettingsLabel.setTextFill(color);
         showPasswordCheckBox.setTextFill(color);
+        displayNameSettingsLabel.setTextFill(color);
+        securityQuestionSettingsLabel.setTextFill(color);
+        answerSettingsLabel.setTextFill(color);
+        welcomePageSettingsLabel.setTextFill(color);
         welcomePageShow.setTextFill(color);
         welcomePageNotShow.setTextFill(color);
-        lightTheme.setTextFill(color);
-        darkTheme.setTextFill(color);
 
-        ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
-        for(Node accountSettingsChild : accountSettingsChildren)
+        if(!isAfterSave)
         {
-            if(accountSettingsChild.getClass().getSimpleName().equals("Label"))
-            {
-                ((Label)accountSettingsChild).setTextFill(color);
-            }
+            passwordSettingsError.setTextFill(color);
+            displayNameSettingsError.setTextFill(color);
         }
+
+        preferenceSettingsLabel.setTextFill(color);
+
+        lightTheme.setTextFill(color);
+        themeLabel.setTextFill(color);
+        darkTheme.setTextFill(color);
+        saveMessage.setTextFill(color);
 
         ObservableList <Node> preferenceSettingsChildren = preferenceSettings.getChildren();
         for(Node preferenceSettingsChild : preferenceSettingsChildren)
@@ -252,14 +259,16 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private Color getColorFromMode()
+    private Color getColorFromTheme()
     {
         if(this.oldTheme.equals("Light"))
         {
+            anchorPane.setStyle("-fx-background-color: white;");
             return Color.BLACK;
         }
         else
         {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
             return Color.WHITE;
         }
     }
@@ -290,7 +299,17 @@ public class SettingsController implements Initializable {
                 break;
             }
         }
+
+        if(this.oldTheme.equals("Light"))
+        {
+            theme.selectToggle(lightTheme);
+        }
+        else
+        {
+            theme.selectToggle(darkTheme);
+        }
     }
+
     private void setFieldsDisable(boolean disable)
     {
         usernameSettings.setDisable(disable);
@@ -312,10 +331,11 @@ public class SettingsController implements Initializable {
 
     private void resetRequirementsMessages()
     {
+        Color color = getColorFromTheme();
         passwordSettingsError.setText("Password must be at least 8 characters");
-        passwordSettingsError.setTextFill(Color.BLACK);
+        passwordSettingsError.setTextFill(color);
         displayNameSettingsError.setText("Display Name can be at most 30 characters");
-        displayNameSettingsError.setTextFill(Color.BLACK);
+        displayNameSettingsError.setTextFill(color);
     }
 
     private boolean requirementsCheck(String newPassword, String newDisplayName)

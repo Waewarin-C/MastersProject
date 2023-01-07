@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -162,8 +163,11 @@ public class ToolbarController implements Initializable {
 
     private void setLightModeStyle()
     {
-        anchorPane.setStyle("-fx-background-color: #31323e");
-        gridPane.setStyle("-fx-background-color: #31323e");
+        InnerShadow innerShadow = new InnerShadow();
+        innerShadow.setColor(Color.BLACK);
+        anchorPane.setStyle("-fx-background-color: #31323e;");
+        anchorPane.setEffect(innerShadow);
+        gridPane.setStyle("-fx-background-color: #31323e;");
 
         this.homeIconPath.setFill(Color.WHITE);
         this.calendarIconPath.setFill(Color.WHITE);

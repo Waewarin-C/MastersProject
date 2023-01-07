@@ -26,7 +26,7 @@ public class Main extends Application {
         try
         {
             //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Welcome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("./View/Settings.fxml"));
             root.getStylesheets().add(getClass().getResource("./View/light_mode.css").toExternalForm());
             stage.setScene(new Scene(root));
             stage.show();
@@ -83,6 +83,7 @@ public class Main extends Application {
             String welcomePageShown = scan.nextLine().split(",")[1];
             String logout = scan.nextLine().split(",")[1];
             String dateFormat = scan.nextLine().split(",")[1];
+            String theme = scan.nextLine().split(",")[1];
 
             login.getUser().setUsername(username);
             login.getUser().setPassword(password);
@@ -92,6 +93,7 @@ public class Main extends Application {
             login.getUser().setWelcomePageShown(welcomePageShown);
             login.getUser().setLogout(logout);
             login.getUser().setDateFormat(dateFormat);
+            login.getUser().setTheme(theme);
 
             setFirstPageShown(logout, welcomePageShown);
         }

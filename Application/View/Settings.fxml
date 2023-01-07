@@ -55,7 +55,7 @@
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane fx:id="accountSettings" hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
+      <GridPane hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -64,41 +64,40 @@
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Username">
+            <Label fx:id="usernameSettingsLabel" text="Username">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label text="Password" GridPane.rowIndex="1">
+            <Label fx:id="passwordSettingsLabel" text="Password" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label text="Display Name" GridPane.rowIndex="3">
+            <Label fx:id="displayNameSettingsLabel" text="Display Name" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label text="Security Question" GridPane.rowIndex="5">
+            <Label fx:id="securityQuestionSettingsLabel" text="Security Question" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label text="Security Question Answer" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="6">
+            <Label fx:id="answerSettingsLabel" text="Security Question Answer" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="6">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label text="Welcome Page Always Show First" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="8">
+            <Label fx:id="welcomePageSettingsLabel" text="Welcome Page Always Show First" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="7">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -118,7 +117,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Label fx:id="passwordSettingsError" text="Password must be at least 8 characters" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <Label fx:id="passwordSettingsError" text="Password must be at least 8 characters" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -128,7 +127,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Label fx:id="displayNameSettingsError" text="Display Name can be at most 30 characters" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+            <Label fx:id="displayNameSettingsError" text="Display Name can be at most 30 characters" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -143,7 +142,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <HBox alignment="CENTER_LEFT" prefWidth="150.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <HBox alignment="CENTER_LEFT" prefWidth="150.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
                   <RadioButton fx:id="welcomePageShow" mnemonicParsing="false" text="Yes">
                      <font>
@@ -307,7 +306,7 @@
          </effect>
       </Separator>
       <Separator layoutX="433.0" layoutY="345.0" prefWidth="395.0" />
-      <Label layoutX="594.0" layoutY="356.0" text="Theme">
+      <Label fx:id="themeLabel" layoutX="594.0" layoutY="356.0" text="Theme">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
