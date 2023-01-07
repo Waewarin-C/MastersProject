@@ -39,10 +39,10 @@ public class SettingsController implements Initializable {
     private CheckBox showPasswordCheckBox;
 
     @FXML
-    private RadioButton welcomePageShow, welcomePageNotShow;
+    private RadioButton welcomePageShow, welcomePageNotShow, lightTheme, darkTheme;
 
     @FXML
-    private ToggleGroup welcomePage, dateFormat;
+    private ToggleGroup welcomePage, dateFormat, theme;
 
     @FXML
     private Label settingsLabel, passwordSettingsError, displayNameSettingsError, accountSettingsLabel, preferenceSettingsLabel, saveMessage;
@@ -69,6 +69,7 @@ public class SettingsController implements Initializable {
     private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
     private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
     private String oldDateFormat = Main.login.getUser().getDateFormat();
+    private String oldTheme;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -83,7 +84,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyle();
 
         fillFields();
         setFieldsDisable(true);
@@ -187,23 +188,27 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void setLightModeStyle()
+    private void setStyle()
     {
+        Color color = getColorFromMode();
+
         anchorPane.setStyle("-fx-background-color: white;");
 
-        settingsLabel.setTextFill(Color.BLACK);
-        accountSettingsLabel.setTextFill(Color.BLACK);
-        preferenceSettingsLabel.setTextFill(Color.BLACK);
-        showPasswordCheckBox.setTextFill(Color.BLACK);
-        welcomePageShow.setTextFill(Color.BLACK);
-        welcomePageNotShow.setTextFill(Color.BLACK);
+        settingsLabel.setTextFill(color);
+        accountSettingsLabel.setTextFill(color);
+        preferenceSettingsLabel.setTextFill(color);
+        showPasswordCheckBox.setTextFill(color);
+        welcomePageShow.setTextFill(color);
+        welcomePageNotShow.setTextFill(color);
+        lightTheme.setTextFill(color);
+        darkTheme.setTextFill(color);
 
         ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
         for(Node accountSettingsChild : accountSettingsChildren)
         {
             if(accountSettingsChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)accountSettingsChild).setTextFill(Color.BLACK);
+                ((Label)accountSettingsChild).setTextFill(color);
             }
         }
 
@@ -212,7 +217,7 @@ public class SettingsController implements Initializable {
         {
             if(preferenceSettingsChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)preferenceSettingsChild).setTextFill(Color.BLACK);
+                ((Label)preferenceSettingsChild).setTextFill(color);
             }
         }
 
@@ -221,7 +226,7 @@ public class SettingsController implements Initializable {
         {
             if(numberChild.getClass().getSimpleName().equals("RadioButton"))
             {
-                ((RadioButton)numberChild).setTextFill(Color.BLACK);
+                ((RadioButton)numberChild).setTextFill(color);
             }
         }
 
@@ -230,7 +235,7 @@ public class SettingsController implements Initializable {
         {
             if(monthChild.getClass().getSimpleName().equals("RadioButton"))
             {
-                ((RadioButton)monthChild).setTextFill(Color.BLACK);
+                ((RadioButton)monthChild).setTextFill(color);
             }
         }
 
@@ -239,8 +244,20 @@ public class SettingsController implements Initializable {
         {
             if(dayChild.getClass().getSimpleName().equals("RadioButton"))
             {
-                ((RadioButton)dayChild).setTextFill(Color.BLACK);
+                ((RadioButton)dayChild).setTextFill(color);
             }
+        }
+    }
+
+    private Color getColorFromMode()
+    {
+        if(this.oldTheme.equals("Light"))
+        {
+            return Color.BLACK;
+        }
+        else
+        {
+            return Color.WHITE;
         }
     }
 
@@ -284,6 +301,8 @@ public class SettingsController implements Initializable {
         numbersHbox.setDisable(disable);
         monthHbox.setDisable(disable);
         dayHbox.setDisable(disable);
+        lightTheme.setDisable(disable);
+        darkTheme.setDisable(disable);
         saveSettingsButton.setDisable(disable);
         cancelSettingsButton.setDisable(disable);
     }
