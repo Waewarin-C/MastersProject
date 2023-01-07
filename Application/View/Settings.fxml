@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="840.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.SettingsController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Settings">
+      <Label fx:id="settingsLabel" layoutX="14.0" layoutY="14.0" text="Settings">
          <font>
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
@@ -50,12 +50,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </GridPane>
-      <Label layoutX="139.0" layoutY="104.0" text="Account Settings">
+      <Label fx:id="accountSettingsLabel" layoutX="139.0" layoutY="104.0" text="Account Settings">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
+      <GridPane fx:id="accountSettings" hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -215,7 +215,7 @@
          </padding>
       </GridPane>
       <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
-      <VBox alignment="CENTER" layoutX="437.0" layoutY="140.0" spacing="10.0">
+      <VBox fx:id="preferenceSettings" alignment="CENTER" layoutX="437.0" layoutY="140.0" spacing="10.0">
          <children>
             <Label text="Using Numbers">
                <font>
@@ -296,7 +296,7 @@
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="507.0" layoutY="104.0" text="Date Format Preference">
+      <Label fx:id="preferenceSettingsLabel" layoutX="507.0" layoutY="104.0" text="Date Format Preference">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>

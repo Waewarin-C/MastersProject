@@ -9,6 +9,7 @@ package Application.Controller;
         //Welcome page shown
 
 import Application.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,9 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -46,7 +45,13 @@ public class SettingsController implements Initializable {
     private ToggleGroup welcomePage, dateFormat;
 
     @FXML
-    private Label passwordSettingsError, displayNameSettingsError, saveMessage;
+    private Label settingsLabel, passwordSettingsError, displayNameSettingsError, accountSettingsLabel, preferenceSettingsLabel, saveMessage;
+
+    @FXML
+    private GridPane accountSettings;
+
+    @FXML
+    private VBox preferenceSettings;
 
     @FXML
     private HBox numbersHbox, monthHbox, dayHbox;
@@ -78,7 +83,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
 
         fillFields();
         setFieldsDisable(true);
@@ -179,6 +184,63 @@ public class SettingsController implements Initializable {
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+
+        settingsLabel.setTextFill(Color.BLACK);
+        accountSettingsLabel.setTextFill(Color.BLACK);
+        preferenceSettingsLabel.setTextFill(Color.BLACK);
+        showPasswordCheckBox.setTextFill(Color.BLACK);
+        welcomePageShow.setTextFill(Color.BLACK);
+        welcomePageNotShow.setTextFill(Color.BLACK);
+
+        ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
+        for(Node accountSettingsChild : accountSettingsChildren)
+        {
+            if(accountSettingsChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)accountSettingsChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList <Node> preferenceSettingsChildren = preferenceSettings.getChildren();
+        for(Node preferenceSettingsChild : preferenceSettingsChildren)
+        {
+            if(preferenceSettingsChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)preferenceSettingsChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList <Node> numberChildren = numbersHbox.getChildren();
+        for(Node numberChild : numberChildren)
+        {
+            if(numberChild.getClass().getSimpleName().equals("RadioButton"))
+            {
+                ((RadioButton)numberChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList <Node> monthChildren = monthHbox.getChildren();
+        for(Node monthChild : monthChildren)
+        {
+            if(monthChild.getClass().getSimpleName().equals("RadioButton"))
+            {
+                ((RadioButton)monthChild).setTextFill(Color.BLACK);
+            }
+        }
+
+        ObservableList <Node> dayChildren = dayHbox.getChildren();
+        for(Node dayChild : dayChildren)
+        {
+            if(dayChild.getClass().getSimpleName().equals("RadioButton"))
+            {
+                ((RadioButton)dayChild).setTextFill(Color.BLACK);
+            }
         }
     }
 

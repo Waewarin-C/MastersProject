@@ -13,6 +13,7 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -85,7 +86,7 @@ public class ManageEventController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        anchorPane.setStyle("-fx-background-color: white;");
+        setLightModeStyle();
         eventDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         doneManageEventButton.setVisible(false);
@@ -238,6 +239,23 @@ public class ManageEventController implements Initializable, ParentController {
 
         popUpController.setUp();
         addCategoryPopUp.setVisible(true);
+    }
+
+    private void setLightModeStyle()
+    {
+        anchorPane.setStyle("-fx-background-color: white;");
+
+        manageEventPageLabel.setTextFill(Color.BLACK);
+        newCategory.setTextFill(Color.BLACK);
+
+        ObservableList<Node> children = manageEventGridPane.getChildren();
+        for(Node child : children)
+        {
+            if(child.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)child).setTextFill(Color.BLACK);
+            }
+        }
     }
 
     private void updateCategoriesList()
