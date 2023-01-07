@@ -60,7 +60,7 @@
                   <Insets top="15.0" />
                </GridPane.margin>
             </Pane>
-            <VBox GridPane.columnIndex="1">
+            <VBox fx:id="homeOverview" GridPane.columnIndex="1">
                <children>
                   <Label text="Home">
                      <font>
@@ -84,7 +84,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox fx:id="calendarOverview" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label text="Calendar">
                      <font>
@@ -108,9 +108,9 @@
                   </Label>
                </children>
             </VBox>
-            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <VBox fx:id="addEventsOverview" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label text="Add Event">
+                  <Label text="Add Events">
                      <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
@@ -127,7 +127,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <VBox fx:id="categoriesOverview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label text="Categories">
                      <font>
@@ -141,7 +141,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <VBox fx:id="settingsOverview" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="Settings">
                      <font>

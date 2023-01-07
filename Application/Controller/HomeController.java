@@ -129,17 +129,8 @@ public class HomeController implements Initializable, ParentController {
     {
         anchorPane.setStyle("-fx-background-color: white;");
 
-        helloMessage.setTextFill(Color.RED);
-        weekAheadLabel.setTextFill(Color.RED);
-
-        ObservableList<Node> children = upcomingEvents.getChildren();
-        for(Node child : children)
-        {
-            if(child.getClass().getSimpleName().equals("Label"))
-            {
-                ((Label)child).setTextFill(Color.RED);
-            }
-        }
+        helloMessage.setTextFill(Color.BLACK);
+        weekAheadLabel.setTextFill(Color.BLACK);
     }
 
     private void displayWeekEvents()
@@ -202,7 +193,7 @@ public class HomeController implements Initializable, ParentController {
 
     private Color getLabelColor()
     {
-        return Color.RED;
+        return Color.BLACK;
     }
 
     private void addViewEventsButton(int row, String eventDate)

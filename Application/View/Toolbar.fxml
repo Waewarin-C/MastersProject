@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" style="-fx-background-color: #31323e;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.ToolbarController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.ToolbarController">
    <children>
-      <GridPane hgap="75.0" layoutX="19.0" style="-fx-background-color: #31323e;">
+      <GridPane fx:id="gridPane" hgap="75.0" layoutX="19.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,27 +50,27 @@
                   <Insets left="38.0" top="15.0" />
                </GridPane.margin>
             </Pane>
-            <Label text="Home" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="homeLabel" text="Home" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </Label>
-            <Label text="Calendar" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="calendarLabel" text="Calendar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </Label>
-            <Label text="Add Events" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="addEventsLabel" text="Add Events" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </Label>
-            <Label text="Categories" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="categoriesLabel" text="Categories" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
             </Label>
-            <Label text="Settings" textFill="WHITE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="settingsLabel" text="Settings" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="15.0" />
                </font>
