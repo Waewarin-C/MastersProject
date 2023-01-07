@@ -133,7 +133,10 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <TextField fx:id="eventDescriptionField" prefHeight="30.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="eventDescriptionField" prefHeight="30.0" prefWidth="450.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></TextField>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
