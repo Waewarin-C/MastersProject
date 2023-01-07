@@ -53,7 +53,8 @@ public class WelcomeController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }

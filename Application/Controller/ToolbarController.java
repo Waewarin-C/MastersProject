@@ -52,7 +52,8 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -67,7 +68,8 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Calendar.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -82,7 +84,8 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvent.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -97,7 +100,8 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Categories.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -112,7 +116,8 @@ public class ToolbarController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
-            root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            //root.getStylesheets().add(getClass().getResource("../View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("../View/dark_mode.css").toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }

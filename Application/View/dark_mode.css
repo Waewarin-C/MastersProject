@@ -1,6 +1,7 @@
 .text-field {
     -fx-background-color: black;
     -fx-border-color: white;
+    -fx-text-fill: white;
 }
 
 .button {
@@ -19,69 +20,71 @@
     -fx-text-fill: white;
 }
 .date-picker > .arrow-button {
-    -fx-background-radius: 0 20 20 0;
     -fx-background-color: white;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-color: white;
     -fx-border-radius: 0 20 20 0;
-    -fx-border-color: black;
     -fx-border-width: 1 1 1 0;
 }
 .date-picker > .arrow-button > .arrow {
-    -fx-background-color: white;
+    -fx-background-color: black;
 }
 
 .combo-box {
+    -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-background-color: black;
+    -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-color: black;
 }
 .combo-box > .arrow-button > .arrow {
-    -fx-background-color: white;
+    -fx-background-color: black;
 }
 .combo-box > .list-cell {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 .combo-box-popup .list-view {
+    -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-background-color: black;
+    -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-color: black;
 }
 .combo-box-popup > .list-view .list-cell{
+    -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-background-color: black;
+    -fx-text-fill: black;
     -fx-border-radius: 20;
-    -fx-text-fill: white;
 }
 
 .color-picker {
+    -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-background-color: black;
+    -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-color: black;
-    -fx-font-color: white;
+    -fx-font-color: black;
 }
 .color-picker > .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 .color-picker > .arrow-button > .arrow {
-    -fx-background-color: white;
+    -fx-background-color: black;
 }
 
 .check-box > .box {
     -fx-background-radius: 5;
+    -fx-border-color: white;
     -fx-border-radius: 5;
-    -fx-border-color: black;
 }
 
 .radio-button > .radio {
+    -fx-background-color: black;
     -fx-background-radius: 20;
+    -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-color: black;
+    -fx-mark-color: white;
 }
 
 .list-view {
     -fx-background-radius: 20;
+    -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-color: black;
 }
