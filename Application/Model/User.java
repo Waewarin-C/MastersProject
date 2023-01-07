@@ -30,6 +30,7 @@ public class User {
     String welcomePageShown;
     String logout;
     String dateFormat;
+    String theme;
 
     public User()
     {
@@ -49,6 +50,7 @@ public class User {
         this.securityQuestionAnswer = newSettings.get(4);
         this.welcomePageShown = newSettings.get(5);
         this.dateFormat = newSettings.get(6);
+        this.theme = newSettings.get(7);
     }
 
     public boolean saveSettingsToFile(String oldUsername)
@@ -73,6 +75,7 @@ public class User {
             save.write(String.format("%s,%s\n", "Welcome Page Shown", this.welcomePageShown));
             save.write(String.format("%s,%s\n", "Logout", this.logout));
             save.write(String.format("%s,%s\n", "Date Format", this.dateFormat));
+            save.write(String.format("%s,%s\n", "Theme", this.theme));
 
             save.close();
 
@@ -404,6 +407,16 @@ public class User {
 
         this.events = updatedEvents;
         saveEventToFile();
+    }
+
+    public String getTheme()
+    {
+        return this.theme;
+    }
+
+    public void setTheme(String theme)
+    {
+        this.theme = theme;
     }
 
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)

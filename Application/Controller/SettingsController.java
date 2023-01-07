@@ -69,7 +69,7 @@ public class SettingsController implements Initializable {
     private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
     private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
     private String oldDateFormat = Main.login.getUser().getDateFormat();
-    private String oldTheme;
+    private String oldTheme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -126,6 +126,7 @@ public class SettingsController implements Initializable {
         String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
         String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
         String newDateFormat = ((RadioButton) dateFormat.getSelectedToggle()).getText();
+        String newTheme = ((RadioButton) theme.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
         String newPassword;
@@ -151,12 +152,14 @@ public class SettingsController implements Initializable {
         newSettings.add(newSecurityQuestionAnswer);
         newSettings.add(newWelcomePageShown);
         newSettings.add(newDateFormat);
+        newSettings.add(newTheme);
 
         Main.login.getUser().saveSettings(newSettings);
         Main.login.getUser().updateDateFormatOfEvents(this.oldDateFormat);
         saveSettingsToFile();
 
         setFieldsDisable(true);
+        setStyle();
     }
 
     public void cancelSettings()
