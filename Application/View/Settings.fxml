@@ -55,7 +55,7 @@
             <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <GridPane hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
+      <GridPane fx:id="accountSettings" hgap="5.0" layoutX="10.0" layoutY="140.0" vgap="8.0">
          <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -72,32 +72,32 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="usernameSettingsLabel" text="Username">
+            <Label text="Username">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="passwordSettingsLabel" text="Password" GridPane.rowIndex="1">
+            <Label text="Password" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="displayNameSettingsLabel" text="Display Name" GridPane.rowIndex="3">
+            <Label text="Display Name" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="securityQuestionSettingsLabel" text="Security Question" GridPane.rowIndex="5">
+            <Label text="Security Question" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="answerSettingsLabel" text="Security Question Answer" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="6">
+            <Label text="Security Question Answer" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="6">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="welcomePageSettingsLabel" text="Welcome Page Always Show First" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="7">
+            <Label text="Welcome Page Always Show First" textAlignment="RIGHT" wrapText="true" GridPane.rowIndex="7">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

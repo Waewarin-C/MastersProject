@@ -48,7 +48,7 @@ public class SettingsController implements Initializable {
     private Label settingsLabel, passwordSettingsError, displayNameSettingsError, accountSettingsLabel, preferenceSettingsLabel, themeLabel, saveMessage;
 
     @FXML
-    private Label usernameSettingsLabel, passwordSettingsLabel, displayNameSettingsLabel, securityQuestionSettingsLabel, answerSettingsLabel, welcomePageSettingsLabel;
+    private GridPane accountSettings;
 
     @FXML
     private VBox preferenceSettings;
@@ -84,7 +84,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        setStyleFromTheme(false);
+        setStyleFromTheme();
 
         fillFields();
         setFieldsDisable(true);
@@ -159,7 +159,7 @@ public class SettingsController implements Initializable {
         saveSettingsToFile();
 
         setFieldsDisable(true);
-        setStyleFromTheme(true);
+        setStyleFromTheme();
     }
 
     public void cancelSettings()
@@ -192,37 +192,34 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void setStyleFromTheme(boolean isAfterSave)
+    private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
 
         settingsLabel.setTextFill(color);
-
         accountSettingsLabel.setTextFill(color);
-        usernameSettingsLabel.setTextFill(color);
-        passwordSettingsLabel.setTextFill(color);
-        showPasswordCheckBox.setTextFill(color);
-        displayNameSettingsLabel.setTextFill(color);
-        securityQuestionSettingsLabel.setTextFill(color);
-        answerSettingsLabel.setTextFill(color);
-        welcomePageSettingsLabel.setTextFill(color);
-        welcomePageShow.setTextFill(color);
-        welcomePageNotShow.setTextFill(color);
-
-        if(!isAfterSave)
-        {
-            passwordSettingsError.setTextFill(color);
-            displayNameSettingsError.setTextFill(color);
-        }
-
         preferenceSettingsLabel.setTextFill(color);
-
         lightTheme.setTextFill(color);
         themeLabel.setTextFill(color);
         darkTheme.setTextFill(color);
         saveMessage.setTextFill(color);
 
-        ObservableList <Node> preferenceSettingsChildren = preferenceSettings.getChildren();
+        Color passwordErrorColor = (Color)passwordSettingsError.getTextFill();
+        Color displayErrorColor = (Color)displayNameSettingsError.getTextFill();
+
+        ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
+        for(Node accountSettingsChild : accountSettingsChildren)
+        {
+            if(accountSettingsChild.getClass().getSimpleName().equals("Label"))
+            {
+                ((Label)accountSettingsChild).setTextFill(color);
+            }
+        }
+
+        passwordSettingsError.setTextFill(passwordErrorColor);
+        displayNameSettingsError.setTextFill(displayErrorColor);
+
+        ObservableList<Node> preferenceSettingsChildren = preferenceSettings.getChildren();
         for(Node preferenceSettingsChild : preferenceSettingsChildren)
         {
             if(preferenceSettingsChild.getClass().getSimpleName().equals("Label"))
@@ -231,7 +228,7 @@ public class SettingsController implements Initializable {
             }
         }
 
-        ObservableList <Node> numberChildren = numbersHbox.getChildren();
+        ObservableList<Node> numberChildren = numbersHbox.getChildren();
         for(Node numberChild : numberChildren)
         {
             if(numberChild.getClass().getSimpleName().equals("RadioButton"))
@@ -240,7 +237,7 @@ public class SettingsController implements Initializable {
             }
         }
 
-        ObservableList <Node> monthChildren = monthHbox.getChildren();
+        ObservableList<Node> monthChildren = monthHbox.getChildren();
         for(Node monthChild : monthChildren)
         {
             if(monthChild.getClass().getSimpleName().equals("RadioButton"))
@@ -249,7 +246,7 @@ public class SettingsController implements Initializable {
             }
         }
 
-        ObservableList <Node> dayChildren = dayHbox.getChildren();
+        ObservableList<Node> dayChildren = dayHbox.getChildren();
         for(Node dayChild : dayChildren)
         {
             if(dayChild.getClass().getSimpleName().equals("RadioButton"))

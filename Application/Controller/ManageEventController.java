@@ -184,6 +184,7 @@ public class ManageEventController implements Initializable, ParentController {
         if(emptyField)
         {
             saveEventMessage.setText("One or more fields is empty");
+            saveEventMessage.setTextFill(Color.RED);
             return;
         }
 
@@ -198,6 +199,7 @@ public class ManageEventController implements Initializable, ParentController {
         if(Main.login.getUser().saveEventToFile())
         {
             saveEventMessage.setText("Saved successfully!");
+            saveEventMessage.setTextFill(Color.BLACK);
         }
         else
         {
