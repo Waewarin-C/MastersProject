@@ -70,6 +70,7 @@
 }
 
 .check-box > .box {
+    -fx-background-color: black;
     -fx-background-radius: 5;
     -fx-border-color: white;
     -fx-border-radius: 5;

@@ -84,6 +84,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
+        resetRequirementsMessages();
         setStyleFromTheme();
 
         fillFields();
@@ -198,6 +199,9 @@ public class SettingsController implements Initializable {
 
         settingsLabel.setTextFill(color);
         accountSettingsLabel.setTextFill(color);
+        showPasswordCheckBox.setTextFill(color);
+        welcomePageShow.setTextFill(color);
+        welcomePageNotShow.setTextFill(color);
         preferenceSettingsLabel.setTextFill(color);
         lightTheme.setTextFill(color);
         themeLabel.setTextFill(color);

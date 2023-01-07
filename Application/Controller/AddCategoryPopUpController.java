@@ -1,6 +1,7 @@
 package Application.Controller;
 
 import Application.Main;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,7 +9,6 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -31,13 +31,14 @@ public class AddCategoryPopUpController implements Initializable {
     private Label categoryMessagePopUp, addCategoryLabel, categoryNameLabel, categoryColorLabel;
 
     private ParentController parentController;
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
 
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
-        setLightModeStyle();
+        setStyleFromTheme();
 
         categoryMessagePopUp.setText("");
 
@@ -107,14 +108,28 @@ public class AddCategoryPopUpController implements Initializable {
         this.parentController.closePopUp(categoryName);
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        Color color = getColorFromTheme();
 
-        addCategoryLabel.setTextFill(Color.BLACK);
-        categoryNameLabel.setTextFill(Color.BLACK);
-        categoryColorLabel.setTextFill(Color.BLACK);
-        categoryMessagePopUp.setTextFill(Color.BLACK);
+        addCategoryLabel.setTextFill(color);
+        categoryNameLabel.setTextFill(color);
+        categoryColorLabel.setTextFill(color);
+        categoryMessagePopUp.setTextFill(color);
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.WHITE;
+        }
     }
 
     private boolean checkIfUnique(String categoryName, String categoryColor)
