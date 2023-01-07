@@ -4,6 +4,12 @@
     -fx-text-fill: white;
 }
 
+.password-field {
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+}
+
 .button {
     -fx-background-color: white;
     -fx-text-fill: black;
@@ -74,6 +80,9 @@
     -fx-background-radius: 5;
     -fx-border-color: white;
     -fx-border-radius: 5;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
 }
 
 .radio-button > .radio {

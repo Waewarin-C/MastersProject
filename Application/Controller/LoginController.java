@@ -52,10 +52,12 @@ public class LoginController implements Initializable {
     @FXML
     private GridPane loginGrid, securityQuestionGrid, signUpGrid;
 
+    private final String theme = Main.login.getUser().getTheme();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        setLightModeStyle();
+        setStyleFromTheme();
 
         loginShowPassword.setVisible(false);
         signUpShowPassword.setVisible(false);
@@ -192,25 +194,25 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
-        nameOfProgram.setTextFill(Color.BLACK);
-        welcomeBack.setTextFill(Color.BLACK);
-        newHere.setTextFill(Color.BLACK);
-        signUpPrompt.setTextFill(Color.BLACK);
+        nameOfProgram.setTextFill(color);
+        welcomeBack.setTextFill(color);
+        newHere.setTextFill(color);
+        signUpPrompt.setTextFill(color);
 
         ObservableList<Node> loginChildren = loginGrid.getChildren();
         for(Node loginChild : loginChildren)
         {
             if(loginChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)loginChild).setTextFill(Color.BLACK);
+                ((Label)loginChild).setTextFill(color);
             }
             if(loginChild.getClass().getSimpleName().equals("CheckBox"))
             {
-                ((CheckBox)loginChild).setTextFill(Color.BLACK);
+                ((CheckBox)loginChild).setTextFill(color);
             }
         }
 
@@ -219,7 +221,7 @@ public class LoginController implements Initializable {
         {
             if(securityQuestionChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)securityQuestionChild).setTextFill(Color.BLACK);
+                ((Label)securityQuestionChild).setTextFill(color);
             }
         }
 
@@ -228,12 +230,26 @@ public class LoginController implements Initializable {
         {
             if(signUpChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)signUpChild).setTextFill(Color.BLACK);
+                ((Label)signUpChild).setTextFill(color);
             }
             if(signUpChild.getClass().getSimpleName().equals("CheckBox"))
             {
-                ((CheckBox)signUpChild).setTextFill(Color.BLACK);
+                ((CheckBox)signUpChild).setTextFill(color);
             }
+        }
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            return Color.WHITE;
         }
     }
 
@@ -247,10 +263,11 @@ public class LoginController implements Initializable {
     private void continueToNextPage()
     {
         String nextPage = getNextPage();
-
+        String themeCSS = getThemeCSS();
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource(nextPage));
+            root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -275,5 +292,21 @@ public class LoginController implements Initializable {
         }
 
         return nextPage;
+    }
+
+    private String getThemeCSS()
+    {
+        String themeCSS = "";
+
+        if(this.theme.equals("Light"))
+        {
+            themeCSS = "../View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "../View/dark_mode.css";
+        }
+
+        return themeCSS;
     }
 }

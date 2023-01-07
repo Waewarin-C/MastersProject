@@ -2,6 +2,10 @@
     -fx-border-color: black;
 }
 
+.password-field {
+    -fx-border-color: black;
+}
+
 .button {
     -fx-background-color: black;
     -fx-text-fill: white;

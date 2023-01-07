@@ -203,7 +203,7 @@
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="signUpPasswordField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="signUpPasswordField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>
@@ -217,7 +217,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="confirmPasswordField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="confirmPasswordField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font></PasswordField>

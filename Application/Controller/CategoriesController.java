@@ -50,6 +50,7 @@ public class CategoriesController implements Initializable, ParentController {
     private AddCategoryPopUpController popUpController;
 
     private final GaussianBlur blur = new GaussianBlur();
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,7 +71,7 @@ public class CategoriesController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyleFromTheme();
 
         displayCategories();
         this.categoriesGrid.setDisable(true);
@@ -246,23 +247,38 @@ public class CategoriesController implements Initializable, ParentController {
         this.categoriesGrid.setDisable(true);
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
-        deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        Color color = getColorFromTheme();
 
-        categoriesPageLabel.setTextFill(Color.BLACK);
-        editInstruction.setTextFill(Color.BLACK);
-        deleteInstruction.setTextFill(Color.BLACK);
-        editSuccessMessage.setTextFill(Color.BLACK);
+        categoriesPageLabel.setTextFill(color);
+        editInstruction.setTextFill(color);
+        deleteInstruction.setTextFill(color);
+        editSuccessMessage.setTextFill(color);
 
         ObservableList<Node> children = deleteCategoriesConfirmation.getChildren();
         for(Node child : children)
         {
             if(child.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)child).setTextFill(Color.BLACK);
+                ((Label)child).setTextFill(color);
             }
+        }
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white;");
+            deleteCategoriesConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;;");
+            deleteCategoriesConfirmation.setStyle("-fx-background-color: #31323e;; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.WHITE;
         }
     }
 
