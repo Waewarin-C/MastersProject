@@ -200,7 +200,7 @@ public class ManageEventController implements Initializable, ParentController {
         if(Main.login.getUser().saveEventToFile())
         {
             saveEventMessage.setText("Saved successfully!");
-            saveEventMessage.setTextFill(Color.BLACK);
+            saveEventMessage.setTextFill(getColorFromTheme());
         }
         else
         {
