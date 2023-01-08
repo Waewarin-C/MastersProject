@@ -54,6 +54,7 @@ public class EventsListController implements Initializable, ParentController {
     private ManageEventController manageEventController;
 
     private final GaussianBlur blur = new GaussianBlur();
+    private final String theme = Main.login.getUser().getTheme();
     private String date;
     private List<Event> events;
     private int eventIndex = -1;
@@ -76,7 +77,7 @@ public class EventsListController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyleFromTheme();
         eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         eventDetailsGrid.setVisible(false);
@@ -204,20 +205,19 @@ public class EventsListController implements Initializable, ParentController {
         this.parentController.closePopUp("");
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
-        deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+        Color color = getColorFromTheme();
 
-        eventsListLabel.setTextFill(Color.BLACK);
-        selectMessage.setTextFill(Color.BLACK);
+        eventsListLabel.setTextFill(color);
+        selectMessage.setTextFill(color);
 
         ObservableList<Node> detailsChildren = eventDetailsGrid.getChildren();
         for(Node detailsChild : detailsChildren)
         {
             if(detailsChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)detailsChild).setTextFill(Color.BLACK);
+                ((Label)detailsChild).setTextFill(color);
             }
         }
 
@@ -226,8 +226,26 @@ public class EventsListController implements Initializable, ParentController {
         {
             if(confirmChild.getClass().getSimpleName().equals("Label"))
             {
-                ((Label)confirmChild).setTextFill(Color.BLACK);
+                ((Label)confirmChild).setTextFill(color);
             }
+        }
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+            eventDetails.setStyle("-fx-background-color: white;");
+            deleteEventConfirmation.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            eventDetails.setStyle("-fx-background-color: #31323e;");
+            deleteEventConfirmation.setStyle("-fx-background-color: #31323e; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            return Color.WHITE;
         }
     }
 

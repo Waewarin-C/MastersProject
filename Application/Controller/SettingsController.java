@@ -160,7 +160,20 @@ public class SettingsController implements Initializable {
         saveSettingsToFile();
 
         setFieldsDisable(true);
+
+        this.oldTheme = newTheme;
         setStyleFromTheme();
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void cancelSettings()
@@ -183,7 +196,7 @@ public class SettingsController implements Initializable {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
-            root.getStylesheets().add(getClass().getResource("./View/light_mode.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -272,6 +285,22 @@ public class SettingsController implements Initializable {
             anchorPane.setStyle("-fx-background-color: #31323e;");
             return Color.WHITE;
         }
+    }
+
+    private String getThemeCSS()
+    {
+        String themeCSS = "";
+
+        if(this.oldTheme.equals("Light"))
+        {
+            themeCSS = "../View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "../View/dark_mode.css";
+        }
+
+        return themeCSS;
     }
 
     private void fillFields()

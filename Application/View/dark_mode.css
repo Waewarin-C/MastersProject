@@ -94,7 +94,18 @@
 }
 
 .list-view {
+    -fx-background-color: black;
     -fx-background-radius: 20;
     -fx-border-color: white;
     -fx-border-radius: 20;
+    -fx-border-width: 2;
+}
+.list-view .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20
+}
+.list-view .list-cell:odd {
+    -fx-background-color: #31323e;
 }
