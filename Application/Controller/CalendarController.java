@@ -62,6 +62,7 @@ public class CalendarController implements Initializable, ParentController {
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
     private final GaussianBlur blur = new GaussianBlur();
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -90,7 +91,7 @@ public class CalendarController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyleFromTheme();
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         manageEvent.setVisible(false);
@@ -135,22 +136,65 @@ public class CalendarController implements Initializable, ParentController {
         setEffect(this.blur);
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
-        calendarLabel.setTextFill(Color.BLACK);
-        goToDateLabel.setTextFill(Color.BLACK);
+        calendarLabel.setTextFill(color);
+        goToDateLabel.setTextFill(color);
+        calendarMonth.setTextFill(color);
+        sunday.setTextFill(color);
+        monday.setTextFill(color);
+        tuesday.setTextFill(color);
+        wednesday.setTextFill(color);
+        thursday.setTextFill(color);
+        friday.setTextFill(color);
+        saturday.setTextFill(color);
 
-        calendar.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black; -fx-border-width: 2;");
-        calendarMonth.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        sunday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        monday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        tuesday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        wednesday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        thursday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        friday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
-        saturday.setStyle("-fx-text-fill: black; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        setCalendarStyleFromTheme();
+
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            return Color.WHITE;
+        }
+    }
+
+    private void setCalendarStyleFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            calendar.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black; -fx-border-width: 2;");
+            calendarMonth.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            sunday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            monday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            tuesday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            wednesday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            thursday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            friday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            saturday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+        }
+        else
+        {
+            calendar.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: white; -fx-border-width: 2;");
+            calendarMonth.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            sunday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            monday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            tuesday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            wednesday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            thursday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            friday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+            saturday.setStyle("-fx-border-color: white; -fx-border-width: 0 0 2 0;");
+        }
     }
 
     private void setUpCalendar()
@@ -190,7 +234,8 @@ public class CalendarController implements Initializable, ParentController {
 
             Label displayDate = new Label(Integer.toString(date));
             displayDate.setPrefWidth(100);
-            displayDate.setStyle("-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            displayDate.setTextFill(getColorFromTheme());
+            displayDate.setStyle(getDisplayDateStyle());
 
             day.getChildren().add(displayDate);
 
@@ -238,38 +283,82 @@ public class CalendarController implements Initializable, ParentController {
         }
     }
 
+    private String getDisplayDateStyle()
+    {
+        if(this.theme.equals("Light"))
+        {
+            return "-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: black; -fx-border-width: 0 0 2 0;";
+        }
+        else
+        {
+            return "-fx-font: 14px \"Berlin Sans FB\"; -fx-border-color: white; -fx-border-width: 0 0 2 0;";
+        }
+    }
+
     private String getDayBoxStyle(int date, int col)
     {
         String dayBoxStyle = "";
 
-        if(date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
+        if(this.theme.equals("Light"))
         {
-            dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 20 0; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
-        }
-        else if(date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
-        {
-            dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 0 20; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
-        }
-        else if(date == this.dayOfMonth)
-        {
-            if(col == 0)
+            if (date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
             {
-                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
+                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 20 0; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
+            }
+            else if (date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
+            {
+                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 0 20; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
+            }
+            else if (date == this.dayOfMonth)
+            {
+                if (col == 0)
+                {
+                    dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
+                }
+                else
+                {
+                    dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
+                }
+            }
+            else if (col == 0)
+            {
+                dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 0;";
             }
             else
             {
-                dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
+                dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 2;";
             }
-        }
-        else if(col == 0)
-        {
-            dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 0;";
         }
         else
         {
-            dayBoxStyle = "-fx-border-color: black; -fx-border-width: 2 0 0 2;";
+            if (date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
+            {
+                dayBoxStyle = "-fx-background-color: black; -fx-background-radius: 0 0 20 0; -fx-border-color: white; -fx-border-width: 2 0 0 2;";
+            }
+            else if (date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
+            {
+                dayBoxStyle = "-fx-background-color: black; -fx-background-radius: 0 0 0 20; -fx-border-color: white; -fx-border-width: 2 0 0 0;";
+            }
+            else if (date == this.dayOfMonth)
+            {
+                if (col == 0)
+                {
+                    dayBoxStyle = "-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2 0 0 0;";
+                }
+                else
+                {
+                    dayBoxStyle = "-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2 0 0 2;";
+                }
+            }
+            else if (col == 0)
+            {
+                dayBoxStyle = "-fx-border-color: white; -fx-border-width: 2 0 0 0;";
+            }
+            else
+            {
+                dayBoxStyle = "-fx-border-color: white; -fx-border-width: 2 0 0 2;";
+            }
         }
-
         return dayBoxStyle;
     }
 
@@ -298,6 +387,7 @@ public class CalendarController implements Initializable, ParentController {
 
                 Label moreEvents = new Label(moreEventText);
                 moreEvents.setStyle("-fx-font: 12px \"Berlin Sans FB\";");
+                moreEvents.setTextFill(getColorFromTheme());
                 eventsList.add(moreEvents);
             }
         }
@@ -313,13 +403,27 @@ public class CalendarController implements Initializable, ParentController {
             extra.setSpacing(5);
             extra.setPadding(new Insets(0, 2, 1, 2));
 
-            if(i == col)
+            if(this.theme.equals("Light"))
             {
-                extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
+                if (i == col)
+                {
+                    extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 2;");
+                }
+                else
+                {
+                    extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
+                }
             }
             else
             {
-                extra.setStyle("-fx-border-color: black; -fx-border-width: 2 0 0 0;");
+                if (i == col)
+                {
+                    extra.setStyle("-fx-border-color: white; -fx-border-width: 2 0 0 2;");
+                }
+                else
+                {
+                    extra.setStyle("-fx-border-color: white; -fx-border-width: 2 0 0 0;");
+                }
             }
 
             calendar.add(extra, i, row);

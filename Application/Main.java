@@ -27,7 +27,7 @@ public class Main extends Application {
         try
         {
             //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("./View/Calendar.fxml"));
             root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
             stage.setScene(new Scene(root));
             stage.show();
