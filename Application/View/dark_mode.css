@@ -12,6 +12,7 @@
 
 .button {
     -fx-background-color: white;
+    -fx-background-radius: 20;
     -fx-text-fill: black;
 }
 

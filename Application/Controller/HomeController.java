@@ -10,7 +10,6 @@ package Application.Controller;
 
 import Application.Main;
 import Application.Model.Event;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,6 +56,7 @@ public class HomeController implements Initializable, ParentController {
     private String currentUsername = Main.login.getUser().getUsername();
 
     private final GaussianBlur blur = new GaussianBlur();
+    private final String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,7 +77,7 @@ public class HomeController implements Initializable, ParentController {
             e.printStackTrace();
         }
 
-        setLightModeStyle();
+        setStyleFromTheme();
 
         String message = "Hello " + Main.login.getUser().getDisplayName() + "!";
         helloMessage.setText(message);
@@ -125,17 +125,31 @@ public class HomeController implements Initializable, ParentController {
         }
     }
 
-    private void setLightModeStyle()
+    private void setStyleFromTheme()
     {
-        anchorPane.setStyle("-fx-background-color: white;");
+        Color color = getColorFromTheme();
 
-        helloMessage.setTextFill(Color.BLACK);
-        weekAheadLabel.setTextFill(Color.BLACK);
+        helloMessage.setTextFill(color);
+        weekAheadLabel.setTextFill(color);
+    }
+
+    private Color getColorFromTheme()
+    {
+        if(this.theme.equals("Light"))
+        {
+            anchorPane.setStyle("-fx-background-color: white;");
+            return Color.BLACK;
+        }
+        else
+        {
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            return Color.WHITE;
+        }
     }
 
     private void displayWeekEvents()
     {
-        Color labelColor = getLabelColor();
+        Color labelColor = getColorFromTheme();
 
         upcomingEvents.getChildren().remove(1, upcomingEvents.getChildren().size());
 
@@ -189,11 +203,6 @@ public class HomeController implements Initializable, ParentController {
             }
             upcomingEvents.add(dayEvents, 0, i+1);
         }
-    }
-
-    private Color getLabelColor()
-    {
-        return Color.BLACK;
     }
 
     private void addViewEventsButton(int row, String eventDate)
