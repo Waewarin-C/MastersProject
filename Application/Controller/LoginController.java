@@ -146,6 +146,7 @@ public class LoginController implements Initializable {
         if(!errorMessage.equals(""))
         {
             loginErrorMessage.setText(errorMessage);
+            loginErrorMessage.setTextFill(Color.RED);
         }
         else
         {
@@ -187,6 +188,7 @@ public class LoginController implements Initializable {
         if(!errorMessage.equals(""))
         {
             signUpErrorMessage.setText(errorMessage);
+            signUpErrorMessage.setTextFill(Color.RED);
         }
         else
         {

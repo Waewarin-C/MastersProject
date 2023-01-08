@@ -68,7 +68,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="loginErrorMessage" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label fx:id="loginErrorMessage" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -194,7 +194,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="signUpErrorMessage" text="Label" textFill="RED" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+            <Label fx:id="signUpErrorMessage" text="Label" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

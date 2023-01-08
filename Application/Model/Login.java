@@ -94,6 +94,10 @@ public class Login {
         return errorMessage;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     private void saveNewAccount(List<String> information)
     {
         try
@@ -135,9 +139,5 @@ public class Login {
         this.user.setDisplayName(information.get(2));
         this.user.setSecurityQuestion(information.get(3));
         this.user.setSecurityQuestionAnswer(information.get(4));
-    }
-
-    public User getUser() {
-        return user;
     }
 }
