@@ -27,7 +27,7 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="logoutButton" layoutX="750.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" style="-fx-background-radius: 20;" text="Logout">
+      <Button fx:id="logoutButton" layoutX="750.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" text="Logout">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font>

@@ -63,7 +63,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 20;" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#checkSecurityQuestionAnswer" prefHeight="30.0" style="-fx-background-radius: 20;" text="Submit Answer" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#checkSecurityQuestionAnswer" prefHeight="30.0" text="Submit Answer" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
@@ -189,7 +189,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 20;" text="Sign Up" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="100.0" text="Sign Up" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>

@@ -160,7 +160,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#continueToHome" style="-fx-background-radius: 20;" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+            <Button mnemonicParsing="false" onAction="#continueToHome" text="Let's Begin!" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
