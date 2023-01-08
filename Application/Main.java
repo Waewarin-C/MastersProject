@@ -29,7 +29,7 @@ public class Main extends Application {
             //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
             Parent root = FXMLLoader.load(getClass().getResource("./View/Calendar.fxml"));
             root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 840, 640));
             stage.show();
         }
         catch(Exception e)

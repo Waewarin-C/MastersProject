@@ -1,11 +1,13 @@
 .text-field {
     -fx-background-color: white;
     -fx-border-color: black;
+    -fx-text-fill: black;
 }
 
 .password-field {
     -fx-background-color: white;
     -fx-border-color: black;
+    -fx-text-fill: black;
 }
 
 .button {

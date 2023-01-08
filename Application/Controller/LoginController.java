@@ -270,7 +270,7 @@ public class LoginController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource(nextPage));
             root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch (Exception e)

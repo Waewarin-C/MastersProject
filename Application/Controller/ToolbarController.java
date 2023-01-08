@@ -55,7 +55,7 @@ public class ToolbarController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch(Exception e)
@@ -70,7 +70,7 @@ public class ToolbarController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Calendar.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch(Exception e)
@@ -85,7 +85,7 @@ public class ToolbarController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvent.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch(Exception e)
@@ -100,7 +100,7 @@ public class ToolbarController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Categories.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch(Exception e)
@@ -115,7 +115,7 @@ public class ToolbarController implements Initializable {
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
+            Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
         catch(Exception e)

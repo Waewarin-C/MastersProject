@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import javax.sound.midi.SysexMessage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        resetRequirementsMessages();
+        //resetRequirementsMessages();
         setStyleFromTheme();
 
         fillFields();
@@ -163,17 +164,7 @@ public class SettingsController implements Initializable {
 
         this.oldTheme = newTheme;
         setStyleFromTheme();
-        try
-        {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
-            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
-            Main.stage.setScene(new Scene(root));
-            Main.stage.show();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        reloadStyleFromTheme();
     }
 
     public void cancelSettings()
@@ -398,6 +389,18 @@ public class SettingsController implements Initializable {
         }
 
         return error;
+    }
+
+    private void reloadStyleFromTheme()
+    {
+        if(this.oldTheme.equals("Light"))
+        {
+            anchorPane.getStylesheets().add(this.getClass().getResource(getThemeCSS()).toExternalForm());
+        }
+        else
+        {
+            anchorPane.getStylesheets().add(this.getClass().getResource(getThemeCSS()).toExternalForm());
+        }
     }
 
     private void saveSettingsToFile()
