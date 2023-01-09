@@ -97,7 +97,7 @@ public class CalendarController implements Initializable, ParentController {
         manageEvent.setVisible(false);
         listOfEvents.setVisible(false);
 
-        calendarDatePicker.setValue(this.selectedDate);
+        //calendarDatePicker.setValue(this.selectedDate);
         setUpCalendar();
     }
 

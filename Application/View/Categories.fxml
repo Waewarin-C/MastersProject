@@ -82,8 +82,8 @@
             <DropShadow />
          </effect>
       </Separator>
-      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
-      <AnchorPane fx:id="addCategoryPopUp" layoutX="210.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" />
+      <Pane fx:id="toolbarPane" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" />
+      <AnchorPane fx:id="addCategoryPopUp" layoutX="210.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" />
       <AnchorPane fx:id="deleteCategoriesConfirmation" layoutX="219.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="400.0">
          <children>
             <Label layoutX="18.0" layoutY="14.0" text="Deleting the categories will also delete the events">

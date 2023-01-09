@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="840.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.SettingsController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.SettingsController">
    <children>
       <Button layoutX="750.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="65.0" text="Logout">
          <font>
@@ -335,7 +335,7 @@
             <DropShadow />
          </effect>
       </Separator>
-      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
+      <Pane fx:id="toolbarPane" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" />
       <Label fx:id="logoutMessage" layoutX="237.0" layoutY="55.0" text="Error: something went wrong with logging out, please try again" textFill="RED">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />

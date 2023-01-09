@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.AddCategoryPopUpController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.AddCategoryPopUpController">
    <children>
       <Label fx:id="addCategoryLabel" layoutX="14.0" layoutY="14.0" text="Add Category">
          <font>
@@ -47,7 +47,7 @@
             </Button>
          </children>
       </GridPane>
-      <GridPane hgap="10.0" layoutX="60.0" layoutY="81.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="60.0" layoutY="77.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
