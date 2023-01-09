@@ -95,8 +95,6 @@ public class SettingsController implements Initializable {
         setPreferenceFieldsDisable(true);
 
         showPassword.setVisible(false);
-        saveAccountButton.setVisible(false);
-        savePreferenceButton.setVisible(false);
         logoutMessage.setVisible(false);
 
         accountSaveMessage.setText("");
@@ -122,20 +120,18 @@ public class SettingsController implements Initializable {
     public void editAccountSettings()
     {
         resetRequirementsMessages();
-        editAccountButton.setVisible(false);
-        saveAccountButton.setVisible(true);
         accountSaveMessage.setText("");
-        preferenceSaveMessage.setText("");
+        editAccountButton.setDisable(true);
+        saveAccountButton.setDisable(false);
         setAccountFieldsDisable(false);
     }
 
     public void editPreferenceSettings()
     {
-        resetRequirementsMessages();
-        editPreferenceButton.setVisible(false);
-        savePreferenceButton.setVisible(true);
-        accountSaveMessage.setText("");
+        //resetRequirementsMessages();
         preferenceSaveMessage.setText("");
+        editPreferenceButton.setDisable(true);
+        savePreferenceButton.setDisable(false);
         setPreferenceFieldsDisable(false);
     }
 
@@ -164,9 +160,7 @@ public class SettingsController implements Initializable {
 
         saveSettings("account");
 
-        editAccountButton.setVisible(true);
-        saveAccountButton.setVisible(true);
-
+        editAccountButton.setDisable(false);
         setAccountFieldsDisable(true);
     }
 
@@ -181,9 +175,7 @@ public class SettingsController implements Initializable {
         saveSettings("preference");
         Main.login.getUser().updateDateFormatOfEvents(oldDateFormat);
 
-        editPreferenceButton.setVisible(true);
-        savePreferenceButton.setVisible(false);
-
+        editPreferenceButton.setDisable(false);
         setPreferenceFieldsDisable(true);
 
         setStyleFromTheme();
@@ -191,10 +183,8 @@ public class SettingsController implements Initializable {
 
     public void cancelSettings()
     {
-        editAccountButton.setVisible(true);
-        saveAccountButton.setVisible(false);
-        editPreferenceButton.setVisible(true);
-        savePreferenceButton.setVisible(false);
+        editAccountButton.setDisable(false);
+        editPreferenceButton.setDisable(false);
 
         fillFields();
         resetRequirementsMessages();
@@ -369,6 +359,7 @@ public class SettingsController implements Initializable {
         securityQuestionAnswerSettings.setDisable(disable);
         welcomePageShow.setDisable(disable);
         welcomePageNotShow.setDisable(disable);
+        saveAccountButton.setDisable(disable);
     }
 
     private void setPreferenceFieldsDisable(boolean disable)
@@ -378,6 +369,7 @@ public class SettingsController implements Initializable {
         dayHbox.setDisable(disable);
         lightTheme.setDisable(disable);
         darkTheme.setDisable(disable);
+        savePreferenceButton.setDisable(disable);
     }
 
     private void resetRequirementsMessages()
