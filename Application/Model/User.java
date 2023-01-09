@@ -20,17 +20,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class User {
-    String username;
-    String password;
-    String displayName;
-    String securityQuestion;
-    String securityQuestionAnswer;
-    TreeMap<String, List<Event>> events;
-    TreeMap<String, String> categories;
-    String welcomePageShown;
-    String logout;
-    String dateFormat;
-    String theme;
+    private String username;
+    private String password;
+    private String displayName;
+    private String securityQuestion;
+    private String securityQuestionAnswer;
+    private TreeMap<String, List<Event>> events;
+    private TreeMap<String, String> categories;
+    private String welcomePageShown;
+    private String logout;
+    private String dateFormat;
+    private String theme;
+    private EditStatus editStatus;
 
     public User()
     {

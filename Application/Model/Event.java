@@ -8,11 +8,11 @@ package Application.Model;
     //Category
 
 public class Event {
-    String eventName;
-    String eventDate;
-    String eventLocation;
-    String eventDescription;
-    String eventCategory;
+    private String eventName;
+    private String eventDate;
+    private String eventLocation;
+    private String eventDescription;
+    private String eventCategory;
 
     public Event(String eventName, String eventDate, String eventLocation, String eventCategory, String eventDescription)
     {

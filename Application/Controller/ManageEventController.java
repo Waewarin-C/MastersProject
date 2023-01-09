@@ -123,11 +123,6 @@ public class ManageEventController implements Initializable, ParentController {
         this.parentController = parentController;
     }
 
-    public void setEventListSize(int eventListSize)
-    {
-        this.eventListSize = eventListSize;
-    }
-
     public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;

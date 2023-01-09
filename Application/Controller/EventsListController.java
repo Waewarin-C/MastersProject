@@ -261,7 +261,5 @@ public class EventsListController implements Initializable, ParentController {
                 eventsListView.getItems().add(event.getEventName());
             }
         }
-
-        this.manageEventController.setEventListSize(eventsListView.getItems().size());
     }
 }

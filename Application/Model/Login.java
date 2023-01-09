@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Login {
 
-    User user;
+    private User user;
 
     public Login()
     {
