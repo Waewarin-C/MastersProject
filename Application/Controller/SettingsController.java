@@ -45,7 +45,7 @@ public class SettingsController implements Initializable {
     private ToggleGroup welcomePage, dateFormatOption, themeOption;
 
     @FXML
-    private Label settingsLabel, accountSettingsLabel, preferenceSettingsLabel, themeLabel, accountSaveMessage, preferenceSaveMessage, logoutMessage;
+    private Label settingsLabel, accountSettingsLabel, preferenceSettingsLabel, themeLabel, saveMessage, logoutMessage;
 
     @FXML
     private Label passwordSettingsError, displayNameSettingsError;
@@ -60,7 +60,7 @@ public class SettingsController implements Initializable {
     private HBox numbersHbox, monthHbox, dayHbox;
 
     @FXML
-    private Button editAccountButton, saveAccountButton, editPreferenceButton, savePreferenceButton;
+    private Button editSettingsButton, saveSettingsButton, cancelSettingsButton;
 
     @FXML
     private Pane toolbarPane;
@@ -91,14 +91,12 @@ public class SettingsController implements Initializable {
         setStyleFromTheme();
 
         fillFields();
-        setAccountFieldsDisable(true);
-        setPreferenceFieldsDisable(true);
+        setFieldsDisable(true);
 
         showPassword.setVisible(false);
         logoutMessage.setVisible(false);
 
-        accountSaveMessage.setText("");
-        preferenceSaveMessage.setText("");
+        saveMessage.setText("");
     }
 
     public void showPassword()
@@ -117,31 +115,27 @@ public class SettingsController implements Initializable {
         }
     }
 
-    public void editAccountSettings()
+    public void editSettings()
     {
         resetRequirementsMessages();
-        accountSaveMessage.setText("");
-        editAccountButton.setDisable(true);
-        saveAccountButton.setDisable(false);
-        setAccountFieldsDisable(false);
+        saveMessage.setText("");
+        saveSettingsButton.setDisable(false);
+        cancelSettingsButton.setDisable(false);
+        setFieldsDisable(false);
     }
 
-    public void editPreferenceSettings()
+    public void saveSettings()
     {
-        //resetRequirementsMessages();
-        preferenceSaveMessage.setText("");
-        editPreferenceButton.setDisable(true);
-        savePreferenceButton.setDisable(false);
-        setPreferenceFieldsDisable(false);
-    }
-
-    public void saveAccountSettings()
-    {
+        String oldUsername = this.username;
         this.username = usernameSettings.getText();
         this.displayName = displayNameSettings.getText();
         this.securityQuestion = securityQuestionSettings.getText();
         this.securityQuestionAnswer = securityQuestionAnswerSettings.getText();
         this.welcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
+
+        String oldDateFormat = this.dateFormat;
+        this.dateFormat = ((RadioButton) dateFormatOption.getSelectedToggle()).getText();
+        this.theme = ((RadioButton) themeOption.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
         if(passwordSettings.isVisible())
@@ -158,38 +152,20 @@ public class SettingsController implements Initializable {
             return;
         }
 
-        saveSettings("account");
-
-        editAccountButton.setDisable(false);
-        setAccountFieldsDisable(true);
-    }
-
-    public void savePreferenceSettings()
-    {
-        List<String> newSettings = new ArrayList<String>();
-
-        String oldDateFormat = this.dateFormat;
-        this.dateFormat = ((RadioButton) dateFormatOption.getSelectedToggle()).getText();
-        this.theme = ((RadioButton) themeOption.getSelectedToggle()).getText();
-
-        saveSettings("preference");
+        saveSettingsToUser();
+        saveSettingsToFile(oldUsername);
         Main.login.getUser().updateDateFormatOfEvents(oldDateFormat);
 
-        editPreferenceButton.setDisable(false);
-        setPreferenceFieldsDisable(true);
+        setFieldsDisable(true);
 
         setStyleFromTheme();
     }
 
     public void cancelSettings()
     {
-        editAccountButton.setDisable(false);
-        editPreferenceButton.setDisable(false);
-
         fillFields();
         resetRequirementsMessages();
-        setAccountFieldsDisable(true);
-        setPreferenceFieldsDisable(true);
+        setFieldsDisable(true);
     }
 
     public void logout()
@@ -227,8 +203,7 @@ public class SettingsController implements Initializable {
         lightTheme.setTextFill(color);
         themeLabel.setTextFill(color);
         darkTheme.setTextFill(color);
-        accountSaveMessage.setTextFill(color);
-        preferenceSaveMessage.setTextFill(color);
+        saveMessage.setTextFill(color);
 
         Color passwordErrorColor = (Color)passwordSettingsError.getTextFill();
         Color displayErrorColor = (Color)displayNameSettingsError.getTextFill();
@@ -349,7 +324,7 @@ public class SettingsController implements Initializable {
         }
     }
 
-    private void setAccountFieldsDisable(boolean disable)
+    private void setFieldsDisable(boolean disable)
     {
         usernameSettings.setDisable(disable);
         passwordSettings.setDisable(disable);
@@ -359,17 +334,14 @@ public class SettingsController implements Initializable {
         securityQuestionAnswerSettings.setDisable(disable);
         welcomePageShow.setDisable(disable);
         welcomePageNotShow.setDisable(disable);
-        saveAccountButton.setDisable(disable);
-    }
-
-    private void setPreferenceFieldsDisable(boolean disable)
-    {
         numbersHbox.setDisable(disable);
         monthHbox.setDisable(disable);
         dayHbox.setDisable(disable);
         lightTheme.setDisable(disable);
         darkTheme.setDisable(disable);
-        savePreferenceButton.setDisable(disable);
+        saveSettingsButton.setDisable(disable);
+        cancelSettingsButton.setDisable(disable);
+
     }
 
     private void resetRequirementsMessages()
@@ -425,7 +397,7 @@ public class SettingsController implements Initializable {
         }
     }*/
 
-    private void saveSettings(String settingToSave)
+    private void saveSettingsToUser()
     {
         List<String> newSettings = new ArrayList<String>();
 
@@ -439,35 +411,18 @@ public class SettingsController implements Initializable {
         newSettings.add(this.theme);
 
         Main.login.getUser().saveSettings(newSettings);
-
-        saveSettingsToFile(settingToSave);
     }
 
-    private void saveSettingsToFile(String settingToSave)
+    private void saveSettingsToFile(String oldUsername)
     {
-        if(Main.login.getUser().saveSettingsToFile(this.username))
+        if(Main.login.getUser().saveSettingsToFile(oldUsername))
         {
-            if(settingToSave.equals("account"))
-            {
-                accountSaveMessage.setText("Saved successfully!");
-            }
-            else if(settingToSave.equals("preference"))
-            {
-                preferenceSaveMessage.setText("Saved successfully!");
-            }
+            saveMessage.setText("Saved successfully!");
         }
         else
         {
-            if(settingToSave.equals("account"))
-            {
-                accountSaveMessage.setText("Error: something went wrong, please try again");
-                accountSaveMessage.setTextFill(Color.RED);
-            }
-            else if(settingToSave.equals("preference"))
-            {
-                preferenceSaveMessage.setText("Error: something went wrong, please try again");
-                preferenceSaveMessage.setTextFill(Color.RED);
-            }
+            saveMessage.setText("Error: something went wrong, please try again");
+            saveMessage.setTextFill(Color.RED);
         }
     }
 }

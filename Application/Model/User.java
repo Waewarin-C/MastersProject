@@ -31,7 +31,7 @@ public class User {
     private String logout;
     private String dateFormat;
     private String theme;
-    private EditStatus editStatus;
+    private EditErrorStatus editErrorStatus;
 
     public User()
     {
@@ -55,7 +55,7 @@ public class User {
     }
 
     public boolean saveSettingsToFile(String oldUsername)
-    {
+    {System.out.println(oldUsername);
         try
         {
             //Change the info file name
@@ -66,7 +66,7 @@ public class User {
             File newFile = new File(newFileName);
             oldFile.renameTo(newFile);
 
-            FileWriter save = new FileWriter(oldFile);
+            FileWriter save = new FileWriter(newFile);
             save.write(String.format("%s,%s\n", "Setting", "Value"));
             save.write(String.format("%s,%s\n", "Username", this.username));
             save.write(String.format("%s,%s\n", "Password", this.password));
