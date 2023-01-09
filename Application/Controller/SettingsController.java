@@ -42,7 +42,7 @@ public class SettingsController implements Initializable {
     private RadioButton welcomePageShow, welcomePageNotShow, lightTheme, darkTheme;
 
     @FXML
-    private ToggleGroup welcomePage, dateFormat, theme;
+    private ToggleGroup welcomePage, dateFormatOption, themeOption;
 
     @FXML
     private Label settingsLabel, accountSettingsLabel, preferenceSettingsLabel, themeLabel, accountSaveMessage, preferenceSaveMessage, logoutMessage;
@@ -65,14 +65,14 @@ public class SettingsController implements Initializable {
     @FXML
     private Pane toolbarPane;
 
-    private String oldUsername = Main.login.getUser().getUsername();
-    private String oldPassword = Main.login.getUser().getPassword();
-    private String oldDisplayName = Main.login.getUser().getDisplayName();
-    private String oldSecurityQuestion = Main.login.getUser().getSecurityQuestion();
-    private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
-    private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
-    private String oldDateFormat = Main.login.getUser().getDateFormat();
-    private String oldTheme = Main.login.getUser().getTheme();
+    private String username = Main.login.getUser().getUsername();
+    private String password = Main.login.getUser().getPassword();
+    private String displayName = Main.login.getUser().getDisplayName();
+    private String securityQuestion = Main.login.getUser().getSecurityQuestion();
+    private String securityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
+    private String welcomePageShown = Main.login.getUser().getWelcomePageShown();
+    private String dateFormat = Main.login.getUser().getDateFormat();
+    private String theme = Main.login.getUser().getTheme();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -92,6 +92,7 @@ public class SettingsController implements Initializable {
 
         fillFields();
         setAccountFieldsDisable(true);
+        setPreferenceFieldsDisable(true);
 
         showPassword.setVisible(false);
         saveAccountButton.setVisible(false);
@@ -140,43 +141,28 @@ public class SettingsController implements Initializable {
 
     public void saveAccountSettings()
     {
-        List<String> newSettings = new ArrayList<String>();
-
-        String newUsername = usernameSettings.getText();
-        String newDisplayName = displayNameSettings.getText();
-        String newSecurityQuestion = securityQuestionSettings.getText();
-        String newSecurityQuestionAnswer = securityQuestionAnswerSettings.getText();
-        String newWelcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
+        this.username = usernameSettings.getText();
+        this.displayName = displayNameSettings.getText();
+        this.securityQuestion = securityQuestionSettings.getText();
+        this.securityQuestionAnswer = securityQuestionAnswerSettings.getText();
+        this.welcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
-        String newPassword;
         if(passwordSettings.isVisible())
         {
-            newPassword = passwordSettings.getText();
+            this.password = passwordSettings.getText();
         }
         else
         {
-            newPassword = showPassword.getText();
+            this.password = showPassword.getText();
         }
 
-        boolean error = requirementsCheck(newPassword, newDisplayName);
-        if(error)
+        if(requirementsCheck())
         {
             return;
         }
 
-        newSettings.add(newUsername);
-        newSettings.add(newPassword);
-        newSettings.add(newDisplayName);
-        newSettings.add(newSecurityQuestion);
-        newSettings.add(newSecurityQuestionAnswer);
-        newSettings.add(newWelcomePageShown);
-        newSettings.add(this.oldDateFormat);
-        newSettings.add(this.oldTheme);
-
-        Main.login.getUser().saveSettings(newSettings);
-
-        saveSettingsToFile("account");
+        saveSettings("account");
 
         editAccountButton.setVisible(true);
         saveAccountButton.setVisible(true);
@@ -188,28 +174,18 @@ public class SettingsController implements Initializable {
     {
         List<String> newSettings = new ArrayList<String>();
 
-        String newDateFormat = ((RadioButton) dateFormat.getSelectedToggle()).getText();
-        String newTheme = ((RadioButton) theme.getSelectedToggle()).getText();
+        String oldDateFormat = this.dateFormat;
+        this.dateFormat = ((RadioButton) dateFormatOption.getSelectedToggle()).getText();
+        this.theme = ((RadioButton) themeOption.getSelectedToggle()).getText();
 
-        newSettings.add(this.oldUsername);
-        newSettings.add(this.oldPassword);
-        newSettings.add(this.oldDisplayName);
-        newSettings.add(this.oldSecurityQuestion);
-        newSettings.add(this.oldSecurityQuestionAnswer);
-        newSettings.add(this.oldWelcomePageShown);
-        newSettings.add(newDateFormat);
-        newSettings.add(newTheme);
-
-        Main.login.getUser().saveSettings(newSettings);
-        Main.login.getUser().updateDateFormatOfEvents(this.oldDateFormat);
-        saveSettingsToFile("preference");
+        saveSettings("preference");
+        Main.login.getUser().updateDateFormatOfEvents(oldDateFormat);
 
         editPreferenceButton.setVisible(true);
         savePreferenceButton.setVisible(false);
 
         setPreferenceFieldsDisable(true);
 
-        this.oldTheme = newTheme;
         setStyleFromTheme();
     }
 
@@ -229,7 +205,7 @@ public class SettingsController implements Initializable {
     public void logout()
     {
         Main.login.getUser().setLogout("Yes");
-        if(!Main.login.getUser().saveSettingsToFile(this.oldUsername))
+        if(!Main.login.getUser().saveSettingsToFile(this.username))
         {
             logoutMessage.setVisible(true);
             return;
@@ -318,7 +294,7 @@ public class SettingsController implements Initializable {
 
     private Color getColorFromTheme()
     {
-        if(this.oldTheme.equals("Light"))
+        if(this.theme.equals("Light"))
         {
             anchorPane.setStyle("-fx-background-color: white;");
             return Color.BLACK;
@@ -334,7 +310,7 @@ public class SettingsController implements Initializable {
     {
         String themeCSS = "";
 
-        if(this.oldTheme.equals("Light"))
+        if(this.theme.equals("Light"))
         {
             themeCSS = "../View/light_mode.css";
         }
@@ -348,14 +324,14 @@ public class SettingsController implements Initializable {
 
     private void fillFields()
     {
-        usernameSettings.setText(this.oldUsername);
-        passwordSettings.setText(this.oldPassword);
-        showPassword.setText(this.oldPassword);
-        displayNameSettings.setText(this.oldDisplayName);
-        securityQuestionSettings.setText(this.oldSecurityQuestion);
-        securityQuestionAnswerSettings.setText(this.oldSecurityQuestionAnswer);
+        usernameSettings.setText(this.username);
+        passwordSettings.setText(this.password);
+        showPassword.setText(this.password);
+        displayNameSettings.setText(this.displayName);
+        securityQuestionSettings.setText(this.securityQuestion);
+        securityQuestionAnswerSettings.setText(this.securityQuestionAnswer);
 
-        if(this.oldWelcomePageShown.equals("Yes"))
+        if(this.welcomePageShown.equals("Yes"))
         {
             welcomePage.selectToggle(welcomePageShow);
         }
@@ -364,22 +340,22 @@ public class SettingsController implements Initializable {
             welcomePage.selectToggle(welcomePageNotShow);
         }
 
-        for(Toggle dateFormatOption : dateFormat.getToggles())
+        for(Toggle dateFormatOption : dateFormatOption.getToggles())
         {
-            if(((RadioButton)dateFormatOption).getText().equals(this.oldDateFormat))
+            if(((RadioButton)dateFormatOption).getText().equals(this.dateFormat))
             {
-                dateFormat.selectToggle(dateFormatOption);
+                this.dateFormatOption.selectToggle(dateFormatOption);
                 break;
             }
         }
 
-        if(this.oldTheme.equals("Light"))
+        if(this.theme.equals("Light"))
         {
-            theme.selectToggle(lightTheme);
+            themeOption.selectToggle(lightTheme);
         }
         else
         {
-            theme.selectToggle(darkTheme);
+            themeOption.selectToggle(darkTheme);
         }
     }
 
@@ -413,12 +389,12 @@ public class SettingsController implements Initializable {
         displayNameSettingsError.setTextFill(color);
     }
 
-    private boolean requirementsCheck(String newPassword, String newDisplayName)
+    private boolean requirementsCheck()
     {
         boolean error = false;
 
         //Check if credentials are correct
-        if(newPassword.length() < 8)
+        if(this.password.length() < 8)
         {
             passwordSettingsError.setText("Error: Password must be at least 8 characters");
             passwordSettingsError.setTextFill(Color.RED);
@@ -430,7 +406,7 @@ public class SettingsController implements Initializable {
             passwordSettingsError.setTextFill(Color.GREEN);
         }
 
-        if(newDisplayName.length() > 30)
+        if(this.displayName.length() > 30)
         {
             displayNameSettingsError.setText("Error: Display Name must be at most 30 characters");
             displayNameSettingsError.setTextFill(Color.RED);
@@ -457,11 +433,27 @@ public class SettingsController implements Initializable {
         }
     }*/
 
+    private void saveSettings(String settingToSave)
+    {
+        List<String> newSettings = new ArrayList<String>();
+
+        newSettings.add(this.username);
+        newSettings.add(this.password);
+        newSettings.add(this.displayName);
+        newSettings.add(this.securityQuestion);
+        newSettings.add(this.securityQuestionAnswer);
+        newSettings.add(this.welcomePageShown);
+        newSettings.add(this.dateFormat);
+        newSettings.add(this.theme);
+
+        Main.login.getUser().saveSettings(newSettings);
+
+        saveSettingsToFile(settingToSave);
+    }
+
     private void saveSettingsToFile(String settingToSave)
     {
-        String message = "";
-
-        if(Main.login.getUser().saveSettingsToFile(this.oldUsername))
+        if(Main.login.getUser().saveSettingsToFile(this.username))
         {
             if(settingToSave.equals("account"))
             {

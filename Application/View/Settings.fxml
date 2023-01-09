@@ -150,7 +150,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <GridPane hgap="10.0" layoutX="141.0" layoutY="437.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="141.0" layoutY="450.0" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -205,20 +205,20 @@
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                      <toggleGroup>
-                        <ToggleGroup fx:id="dateFormat" />
+                        <ToggleGroup fx:id="dateFormatOption" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="MM/dd/yyyy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="MM/dd/yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="dd/MM/yy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="dd/MM/yy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="dd/MM/yyyy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="dd/MM/yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
@@ -233,17 +233,17 @@
             </Label>
             <HBox fx:id="monthHbox" alignment="CENTER" spacing="5.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="dd-MMM-yy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="dd-MMM-yy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="MMM dd yy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="MMM dd yy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="MMMM dd yyyy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="MMMM dd yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
@@ -258,12 +258,12 @@
             </Label>
             <HBox fx:id="dayHbox" alignment="CENTER" spacing="5.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="E dd MMM yyyy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="E dd MMM yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="EEEE dd MMMM yyyy" toggleGroup="$dateFormat">
+                  <RadioButton mnemonicParsing="false" text="EEEE dd MMMM yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
@@ -285,17 +285,17 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="theme" />
+                  <ToggleGroup fx:id="themeOption" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="darkTheme" mnemonicParsing="false" text="Dark" toggleGroup="$theme">
+            <RadioButton fx:id="darkTheme" mnemonicParsing="false" text="Dark" toggleGroup="$themeOption">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </RadioButton>
          </children>
       </HBox>
-      <GridPane hgap="10.0" layoutX="550.0" layoutY="437.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="550.0" layoutY="450.0" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
