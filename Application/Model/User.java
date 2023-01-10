@@ -31,7 +31,7 @@ public class User {
     private String logout;
     private String dateFormat;
     private String theme;
-    private EditErrorStatus editErrorStatus;
+    private EditRequirementsStatus editRequirementsStatus;
 
     public User()
     {
@@ -40,7 +40,7 @@ public class User {
         this.welcomePageShown = "No";
         this.logout = "No";
         this.dateFormat = "MM/dd/yy";
-        this.editErrorStatus = new EditErrorStatus();
+        this.editRequirementsStatus = new EditRequirementsStatus();
     }
 
     public void saveSettings(List<String> newSettings)
@@ -421,14 +421,14 @@ public class User {
         this.theme = theme;
     }
 
-    public EditErrorStatus getEditErrorStatus()
+    public EditRequirementsStatus getEditRequirementsStatus()
     {
-        return this.editErrorStatus;
+        return this.editRequirementsStatus;
     }
 
-    public void setEditErrorStatus(EditErrorStatus editErrorStatus)
+    public void setEditRequirementsStatus(EditRequirementsStatus editRequirementsStatus)
     {
-        this.editErrorStatus = editErrorStatus;
+        this.editRequirementsStatus = editRequirementsStatus;
     }
 
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
