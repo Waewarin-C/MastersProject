@@ -18,6 +18,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The Login class stores a single User and takes care of the login,
+ * sign up, and creating an account.
+ *
+ * @author Waewarin Chindarassami
+ */
+
 public class Login {
 
     private User user;
@@ -27,6 +34,13 @@ public class Login {
         this.user = new User();
     }
 
+    /**
+     * Checks if the login credentials are correct
+     *
+     * @param username String - username the user entered
+     * @param password String - password the user entered
+     * @return errorMessage String - errorMessage
+     */
     public String login(String username, String password)
     {
         String errorMessage = "";
@@ -48,6 +62,13 @@ public class Login {
         return errorMessage;
     }
 
+    /**
+     * Checks if all the information entered during sign up satisfies the requirements.
+     * If all the requirements are satisfied, an account is created.
+     *
+     * @param information List<String> - information user entered during sign up
+     * @return errorMessage String - error message
+     */
     public String createAccount(List<String> information)
     {
         String username = information.get(0);
@@ -98,6 +119,11 @@ public class Login {
         return user;
     }
 
+    /*
+     * Saves the new account information into a new user's files.
+     * For when there is no existing account and user signs up
+     * Each file name begins with the user's username
+     */
     private void saveNewAccount(List<String> information)
     {
         try
@@ -112,6 +138,9 @@ public class Login {
             newUserFile.write(String.format("%s,%s\n", "Security Question", information.get(3)));
             newUserFile.write(String.format("%s,%s\n", "Security Question Answer", information.get(4)));
             newUserFile.write(String.format("%s,%s\n", "Welcome Page Shown", "No"));
+            newUserFile.write(String.format("%s,%s\n", "Logout", "No"));
+            newUserFile.write(String.format("%s,%s\n", "Date Format", "MM/dd/yy"));
+            newUserFile.write(String.format("%s,%s\n", "Theme", "Light"));
 
             newUserFile.close();
 
@@ -132,6 +161,10 @@ public class Login {
         }
     }
 
+    /*
+     * Saves new user information into User
+     * For when there is no existing account
+     */
     private void saveNewUser(List<String> information)
     {
         this.user.setUsername(information.get(0));

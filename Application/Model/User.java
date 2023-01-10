@@ -1,15 +1,5 @@
 package Application.Model;
 
-//Keeps the information about a single user
-    //Username
-    //Password
-    //Display Name
-    //Security question
-    //Answer to security question
-    //Events
-    //Categories
-    //If Welcome page is shown everytime user logins
-
 import Application.Main;
 
 import java.io.File;
@@ -18,6 +8,17 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+/**
+ * User class stores the information about a single user: username, password,
+ * display name, security question, security question answer, events, categories,
+ * if the welcome page is always shown first, if the user logged out, date format
+ * for events, and theme.
+ * Also takes care of saving the user's information, events, and categories to the
+ * corresponding files.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class User {
     private String username;
@@ -43,6 +44,11 @@ public class User {
         this.editRequirementsStatus = new EditRequirementsStatus();
     }
 
+    /**
+     * Saves the new settings
+     *
+     * @param newSettings List<String> - user's new settings
+     */
     public void saveSettings(List<String> newSettings)
     {
         this.username = newSettings.get(0);
@@ -55,6 +61,13 @@ public class User {
         this.theme = newSettings.get(7);
     }
 
+    /**
+     * Saves the new settings into the information file.
+     * Renames the files if the user changes their username
+     *
+     * @param oldUsername String - user's old username
+     * @return boolean - if the save was successful
+     */
     public boolean saveSettingsToFile(String oldUsername)
     {
         try
@@ -217,6 +230,11 @@ public class User {
         }
     }
 
+    /**
+     * Saves the event to the user's event file
+     *
+     * @return boolean - if the save was successful
+     */
     public boolean saveEventToFile()
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_events.csv";
@@ -256,6 +274,12 @@ public class User {
         return true;
     }
 
+    /**
+     * Delete the events that are associated with the categories the user
+     * deleted
+     *
+     * @param deletedCategories List<String> - list of deleted categories
+     */
     public void deleteEventsOfCategories(List<String> deletedCategories)
     {
         Set<String> allDates = this.events.keySet();
@@ -308,6 +332,11 @@ public class User {
         this.categories.remove(categoryName);
     }
 
+    /**
+     * Saves the category to the user's categories file
+     *
+     * @return boolean - if the save was successful
+     */
     public boolean saveCategoryToFile()
     {
         String fileName = "Account/" + Main.login.getUser().getUsername() + "_categories.csv";
@@ -334,6 +363,13 @@ public class User {
         return true;
     }
 
+    /**
+     * Update the events of the edited categories if the categories' names
+     * were changed.
+     *
+     * @param oldAndNewCategories HashMap<String, String> - old category names
+     *                            and what they are changed to
+     */
     public void updateCategoriesOfEvents(HashMap<String, String> oldAndNewCategories)
     {
         Set<String> allDates = this.events.keySet();
@@ -384,6 +420,11 @@ public class User {
         this.dateFormat = dateFormat;
     }
 
+    /**
+     * Updates the date format of every event
+     *
+     * @param oldDateFormat String - old date format
+     */
     public void updateDateFormatOfEvents(String oldDateFormat)
     {
         Set<String> allDates = this.events.keySet();
@@ -431,6 +472,9 @@ public class User {
         this.editRequirementsStatus = editRequirementsStatus;
     }
 
+    /*
+     * Delete specific events, used when deleting events related to deleted categories
+     */
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
     {
         Set<String> specificDates = eventsToDelete.keySet();

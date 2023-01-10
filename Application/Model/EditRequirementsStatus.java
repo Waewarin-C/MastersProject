@@ -2,6 +2,16 @@ package Application.Model;
 
 import javafx.scene.paint.Color;
 
+/**
+ * EditRequirementsStatus class stores information about the current requirement
+ * status for the password and display name. These requirements are shown in the
+ * Settings page. This information helps make sure that the statuses do not reset
+ * when the user changes theme. They should only reset when the user visits or
+ * reloads the Settings page, or cancels the editions they made in the Settings page
+ *
+ * @author Waewarin Chindarassami
+ */
+
 public class EditRequirementsStatus {
     private String currentPasswordRequirementStatus;
     private String currentDisplayNameRequirementStatus;

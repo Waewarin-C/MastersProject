@@ -1,18 +1,18 @@
 package Application.Model;
 
-//Keeps the information about a single event
-    //Name
-    //Date
-    //Location
-    //Description
-    //Category
+/**
+ * The Event class stores information about a single event: name, date,
+ * location, description, and category.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class Event {
     private String eventName;
     private String eventDate;
     private String eventLocation;
-    private String eventDescription;
     private String eventCategory;
+    private String eventDescription;
 
     public Event(String eventName, String eventDate, String eventLocation, String eventCategory, String eventDescription)
     {
@@ -23,15 +23,18 @@ public class Event {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventName() {
+    public String getEventName()
+    {
         return this.eventName;
     }
 
-    public void setEventName(String eventName) {
+    public void setEventName(String eventName)
+    {
         this.eventName = eventName;
     }
 
-    public String getEventDate() {
+    public String getEventDate()
+    {
         return this.eventDate;
     }
 
@@ -40,30 +43,34 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public String getEventLocation() {
+    public String getEventLocation()
+    {
         return this.eventLocation;
     }
 
-    public void setEventLocation(String eventLocation) {
+    public void setEventLocation(String eventLocation)
+    {
         this.eventLocation = eventLocation;
     }
 
-    public String getEventCategory() {
+    public String getEventCategory()
+    {
         return this.eventCategory;
     }
 
-    public void setEventCategory(String eventCategory) {
+    public void setEventCategory(String eventCategory)
+    {
         this.eventCategory = eventCategory;
     }
 
-    public String getEventDescription() {
+    public String getEventDescription()
+    {
         return this.eventDescription;
     }
 
-    public void setEventDescription(String eventDescription) {
+    public void setEventDescription(String eventDescription)
+    {
         this.eventDescription = eventDescription;
     }
-
-
 }
 

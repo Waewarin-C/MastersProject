@@ -13,6 +13,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The Main class loads in the information about the user if there already exists an account.
+ * The information loaded are general user information and settings, the events, and the
+ * categories the user has added. All of the information is stored in the corresponding files.
+ * Once the existing account has been loaded, the GUI will pop up with the appropriate first page
+ * shown according to the user's settings. If there is no existing account, the first page shown
+ * to the user will be the Login page.
+ *
+ * @author Waewarin Chindarassami
+ */
+
 public class Main extends Application {
 
     public static Stage stage;
@@ -48,6 +59,13 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Loads in the existing account if there is one from the corresponding files for
+     * user information, events, and categories. If no account exists, then it sets a
+     * default requirements status color.
+     *
+     * @exception NullPointerException - unable to load the files for the existing account
+     */
     public static void loadExistingAccount()
     {
         try
@@ -61,6 +79,11 @@ public class Main extends Application {
                 storeUserEvents(files[1]);
                 storeUserCategories(files[0]);
             }
+            else
+            {
+                setThemeCSS("Light");
+                setEditRequirementsStatusColor("Light");
+            }
         }
         catch(NullPointerException e) {
             System.out.println("Error: unable to load existing account");
@@ -68,6 +91,13 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Loads the user's information and settings from the corresponding file
+     * and stores them into the User
+     *
+     * @param file File - file that stores the user information and settings
+     * @exception IOException - unable to open the user's information file
+     */
     public static void storeUserInfo(File file)
     {
         Scanner scan = null;
@@ -99,7 +129,7 @@ public class Main extends Application {
 
             setFirstPageShown(logout, welcomePageShown);
             setThemeCSS(theme);
-            setEditErrorStatusColor(theme);
+            setEditRequirementsStatusColor(theme);
         }
         catch(IOException e)
         {
@@ -112,6 +142,13 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Loads the information about the user's events from the corresponding file
+     * and stores them into the User's Events
+     *
+     * @param file File - file that stores the user's events
+     * @exception IOException - unable to open the user's events file
+     */
     public static void storeUserEvents(File file)
     {
         Scanner scan = null;
@@ -141,6 +178,13 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Loads the user's categories from the corresponding file
+     * and stores them into the User's list of categories
+     *
+     * @param file File - file that stores the user's categories
+     * @exception IOException - unable to open the user's categories file
+     */
     public static void storeUserCategories(File file)
     {
         Scanner scan = null;
@@ -174,6 +218,10 @@ public class Main extends Application {
         }
     }
 
+    /*
+     * Sets the first page shown to the user based on the user's setting if there
+     * already exists an account, or to the Login page if no account exists
+     */
     private static void setFirstPageShown(String logout, String welcomePageShown)
     {
         if(logout.equals("Yes"))
@@ -193,6 +241,9 @@ public class Main extends Application {
         }
     }
 
+    /*
+     * Set the theme CSS file
+     */
     private static void setThemeCSS(String theme)
     {
         if(theme.equals("Light"))
@@ -205,17 +256,20 @@ public class Main extends Application {
         }
     }
 
-    private static void setEditErrorStatusColor(String theme)
+    /*
+     * Set the edit requirements status color
+     */
+    private static void setEditRequirementsStatusColor(String theme)
     {
         if(theme.equals("Light"))
         {
-            login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.BLACK);
-            login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.BLACK);
+            login.getUser().getEditRequirementsStatus().setCurrentPasswordRequirementColor(Color.BLACK);
+            login.getUser().getEditRequirementsStatus().setCurrentDisplayNameRequirementColor(Color.BLACK);
         }
         else
         {
-            login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.WHITE);
-            login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.WHITE);
+            login.getUser().getEditRequirementsStatus().setCurrentPasswordRequirementColor(Color.WHITE);
+            login.getUser().getEditRequirementsStatus().setCurrentDisplayNameRequirementColor(Color.WHITE);
         }
     }
 }
