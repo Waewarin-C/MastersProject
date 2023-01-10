@@ -7,11 +7,13 @@ public class EditErrorStatus {
     private String currentDisplayNameError;
     private Color currentPasswordErrorColor;
     private Color currentDisplayNameErrorColor;
+    private boolean settingsPageReloaded;
 
     public EditErrorStatus()
     {
         this.currentPasswordError = "Password must be at least 8 characters";
         this.currentDisplayNameError = "Display Name can be at most 30 characters";
+        this.settingsPageReloaded = false;
     }
 
     public String getCurrentPasswordError()
@@ -52,5 +54,15 @@ public class EditErrorStatus {
     public void setCurrentDisplayNameErrorColor(Color currentDisplayNameErrorColor)
     {
         this.currentDisplayNameErrorColor = currentDisplayNameErrorColor;
+    }
+
+    public boolean getSettingsPageReloaded()
+    {
+        return this.settingsPageReloaded;
+    }
+
+    public void setSettingsPageReloaded(boolean settingsPageReloaded)
+    {
+        this.settingsPageReloaded = settingsPageReloaded;
     }
 }

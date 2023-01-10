@@ -136,6 +136,8 @@ public class SettingsController implements Initializable {
 
         String oldDateFormat = this.dateFormat;
         this.dateFormat = ((RadioButton) dateFormatOption.getSelectedToggle()).getText();
+
+        String oldTheme = this.theme;
         this.theme = ((RadioButton) themeOption.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
@@ -160,6 +162,10 @@ public class SettingsController implements Initializable {
         setFieldsDisable(true);
 
         setStyleFromTheme();
+        if(oldTheme.equals(this.theme))
+        {
+            reloadPage();
+        }
     }
 
     public void cancelSettings()
@@ -205,9 +211,6 @@ public class SettingsController implements Initializable {
         themeLabel.setTextFill(color);
         darkTheme.setTextFill(color);
         saveMessage.setTextFill(color);
-
-        //Color passwordErrorColor = (Color)passwordSettingsError.getTextFill();
-        //Color displayErrorColor = (Color)displayNameSettingsError.getTextFill();
 
         ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
         for(Node accountSettingsChild : accountSettingsChildren)
@@ -406,18 +409,6 @@ public class SettingsController implements Initializable {
         return error;
     }
 
-    /*private void reloadStyleFromTheme()
-    {
-        if(this.oldTheme.equals("Light"))
-        {
-            anchorPane.getStylesheets().add(this.getClass().getResource(getThemeCSS()).toExternalForm());
-        }
-        else
-        {
-            anchorPane.getStylesheets().add(this.getClass().getResource(getThemeCSS()).toExternalForm());
-        }
-    }*/
-
     private void saveSettingsToUser()
     {
         List<String> newSettings = new ArrayList<String>();
@@ -444,6 +435,21 @@ public class SettingsController implements Initializable {
         {
             saveMessage.setText("Error: something went wrong, please try again");
             saveMessage.setTextFill(Color.RED);
+        }
+    }
+
+    private void reloadPage()
+    {
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
+            Main.stage.setScene(new Scene(root));
+            Main.stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
