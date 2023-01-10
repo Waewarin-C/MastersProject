@@ -60,6 +60,11 @@
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <Label fx:id="calendarMonth" alignment="CENTER" prefWidth="750.0" text="Label" GridPane.columnSpan="7" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Berlin Sans FB" size="20.0" />
+               </font>
+            </Label>
             <Label fx:id="sunday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" text="Sunday" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
@@ -73,11 +78,6 @@
             <Label fx:id="tuesday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="calendarMonth" alignment="CENTER" prefWidth="750.0" text="Label" GridPane.columnSpan="7" GridPane.halignment="CENTER">
-               <font>
-                  <Font name="Berlin Sans FB" size="20.0" />
                </font>
             </Label>
             <Label fx:id="wednesday" alignment="CENTER" maxHeight="-Infinity" prefWidth="100.0" text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">

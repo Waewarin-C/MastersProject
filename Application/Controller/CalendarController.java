@@ -31,6 +31,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The CalendarController class interacts with the Calendar.fxml file.
+ * Displays the calendar in monthly view. When the page first loads, it
+ * will initially display the current month with the current date highlighted.
+ * Users can go to a specific date by typing in or selecting the date. On this
+ * page users can also click on a date on the calendar to view the date's events
+ * as well as add events to any date.
+ */
+
 public class CalendarController implements Initializable, ParentController {
     @FXML
     private Label calendarLabel, goToDateLabel, calendarMonth, sunday, monday, tuesday, wednesday, thursday, friday, saturday;
@@ -57,7 +66,7 @@ public class CalendarController implements Initializable, ParentController {
     private LocalDate firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
     private DayOfWeek firstDay = this.firstDayOfMonth.getDayOfWeek();
     private int weekDayOfFirstDay = this.firstDay.getValue();
-    private int dayOfMonth = this.selectedDate.getDayOfMonth();
+    private int selectedDayOfMonth = this.selectedDate.getDayOfMonth();
     private int lastDayOfMonth = this.selectedDate.lengthOfMonth();
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
 
@@ -97,7 +106,6 @@ public class CalendarController implements Initializable, ParentController {
         manageEvent.setVisible(false);
         listOfEvents.setVisible(false);
 
-        //calendarDatePicker.setValue(this.selectedDate);
         setUpCalendar();
     }
 
@@ -118,24 +126,33 @@ public class CalendarController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
+    /**
+     * Go to specific date
+     */
     public void goToDate()
     {
         this.selectedDate = calendarDatePicker.getValue();
         this.firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
         this.firstDay = this.firstDayOfMonth.getDayOfWeek();
         this.weekDayOfFirstDay = this.firstDay.getValue();
-        this.dayOfMonth = this.selectedDate.getDayOfMonth();
+        this.selectedDayOfMonth = this.selectedDate.getDayOfMonth();
         this.lastDayOfMonth = this.selectedDate.lengthOfMonth();
 
         setUpCalendar();
     }
 
+    /**
+     * Add an event
+     */
     public void addEvent()
     {
         manageEvent.setVisible(true);
         setEffect(this.blur);
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -155,6 +172,10 @@ public class CalendarController implements Initializable, ParentController {
 
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -169,12 +190,15 @@ public class CalendarController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets the calendar style based on the theme
+     */
     private void setCalendarStyleFromTheme()
     {
         if(this.theme.equals("Light"))
         {
             calendar.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black; -fx-border-width: 2;");
-            calendarMonth.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
+            calendarMonth.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0");
             sunday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
             monday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
             tuesday.setStyle("-fx-border-color: black; -fx-border-width: 0 0 2 0;");
@@ -197,6 +221,9 @@ public class CalendarController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets up the calendar to be display
+     */
     private void setUpCalendar()
     {
         this.calendar.getChildren().remove(8, this.calendar.getChildren().size());
@@ -207,6 +234,13 @@ public class CalendarController implements Initializable, ParentController {
         displayMonth();
     }
 
+    /*
+     * Display the current month or the month of the selected date.
+     * If a date has a event, it will be displayed. If a date has more than
+     * one event, it will display the first event and shows how many more
+     * events are left. Allows each date to be clicked so the user can view all the events for
+     * that date.
+     */
     private void displayMonth()
     {
         int date = 1;
@@ -283,6 +317,9 @@ public class CalendarController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Gets the style for the date based on the theme
+     */
     private String getDisplayDateStyle()
     {
         if(this.theme.equals("Light"))
@@ -295,21 +332,24 @@ public class CalendarController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Gets the style for the box of each date based on the theme
+     */
     private String getDayBoxStyle(int date, int col)
     {
         String dayBoxStyle = "";
 
         if(this.theme.equals("Light"))
         {
-            if (date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
+            if (date == this.selectedDayOfMonth && date == this.lastDayOfMonth && col == 6)
             {
                 dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 20 0; -fx-border-color: black; -fx-border-width: 2 0 0 2;";
             }
-            else if (date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
+            else if (date == this.selectedDayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
             {
                 dayBoxStyle = "-fx-background-color: #e3e3e3; -fx-background-radius: 0 0 0 20; -fx-border-color: black; -fx-border-width: 2 0 0 0;";
             }
-            else if (date == this.dayOfMonth)
+            else if (date == this.selectedDayOfMonth)
             {
                 if (col == 0)
                 {
@@ -331,15 +371,15 @@ public class CalendarController implements Initializable, ParentController {
         }
         else
         {
-            if (date == this.dayOfMonth && date == this.lastDayOfMonth && col == 6)
+            if (date == this.selectedDayOfMonth && date == this.lastDayOfMonth && col == 6)
             {
                 dayBoxStyle = "-fx-background-color: black; -fx-background-radius: 0 0 20 0; -fx-border-color: white; -fx-border-width: 2 0 0 2;";
             }
-            else if (date == this.dayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
+            else if (date == this.selectedDayOfMonth && col == 0 && this.lastDayOfMonth - date <= 6)
             {
                 dayBoxStyle = "-fx-background-color: black; -fx-background-radius: 0 0 0 20; -fx-border-color: white; -fx-border-width: 2 0 0 0;";
             }
-            else if (date == this.dayOfMonth)
+            else if (date == this.selectedDayOfMonth)
             {
                 if (col == 0)
                 {
@@ -362,6 +402,9 @@ public class CalendarController implements Initializable, ParentController {
         return dayBoxStyle;
     }
 
+    /*
+     * Shows the first event and how many more events there are for each date
+     */
     private List<Label> showEvents(String todayDate)
     {
         List<Label> eventsList = new ArrayList<Label>();
@@ -394,6 +437,10 @@ public class CalendarController implements Initializable, ParentController {
         return eventsList;
     }
 
+    /*
+     * Add additional borders after the last day of the month if it does not
+     * end on a Saturday so that everything is bordered
+     */
     private void addAdditionalBorders(int col, int row)
     {
         for(int i = col; i < 7; i++)

@@ -1,7 +1,6 @@
 package Application.Controller;
 
 import Application.Main;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +12,13 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/**
+ * AddCategoryPopUpController interacts with AddCategoryPopUp.fxml
+ * This is where users can add new categories
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class AddCategoryPopUpController implements Initializable {
     @FXML
@@ -36,7 +42,6 @@ public class AddCategoryPopUpController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
         categoryColorPopUpField.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
         setStyleFromTheme();
 
@@ -45,11 +50,23 @@ public class AddCategoryPopUpController implements Initializable {
         doneAddCategoryButton.setVisible(false);
     }
 
+    /**
+     * Sets the controller class of the view that this AddCategoryPopUp will pop up on to be
+     * the parent of this controller class. The parent controller can either be CategoriesController
+     * or ManageEventController.
+     *
+     * @param parentController ParentController - controller of the view this will pop up on
+     */
     public void setParentController(ParentController parentController)
     {
         this.parentController = parentController;
     }
 
+    /**
+     * Set up the view before having it pop up on the parent controller's view
+     * Called by the parent controller which can either by CategoriesController
+     * or ManageEventController.
+     */
     public void setUp()
     {
         categoryNamePopUpField.clear();
@@ -57,6 +74,9 @@ public class AddCategoryPopUpController implements Initializable {
         categoryMessagePopUp.setText("");
     }
 
+    /**
+     * Save the category that was added
+     */
     public void saveAddCategory()
     {
         String categoryName = categoryNamePopUpField.getText();
@@ -92,11 +112,19 @@ public class AddCategoryPopUpController implements Initializable {
         }
     }
 
+    /**
+     * Cancels the addition of a new category
+     * Will call the parent controller's closePopUp() method to close this view
+     */
     public void cancelAddCategory()
     {
         this.parentController.closePopUp("");
     }
 
+    /**
+     * Done adding a new category and prepare the view to be closed
+     * Calls the parent controller's closePopUp() method to close this view
+     */
     public void doneAddCategory()
     {
         saveCategoryPopUpButton.setVisible(true);
@@ -108,6 +136,9 @@ public class AddCategoryPopUpController implements Initializable {
         this.parentController.closePopUp(categoryName);
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -118,6 +149,10 @@ public class AddCategoryPopUpController implements Initializable {
         categoryMessagePopUp.setTextFill(color);
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -132,6 +167,10 @@ public class AddCategoryPopUpController implements Initializable {
         }
     }
 
+    /*
+     * Checks to see if the category name has already been used and if the color
+     * chosen is already assigned to another category
+     */
     private boolean checkIfUnique(String categoryName, String categoryColor)
     {
         boolean isUniqueCategory = checkIfNewCategory(categoryName);
@@ -156,6 +195,9 @@ public class AddCategoryPopUpController implements Initializable {
         return true;
     }
 
+    /*
+     * Checks if the category name has already been used
+     */
     private boolean checkIfNewCategory(String category)
     {
         if(Main.login.getUser().getCategories().containsKey(category))
@@ -166,6 +208,9 @@ public class AddCategoryPopUpController implements Initializable {
         return true;
     }
 
+    /*
+     * Checks if the color has already been assigned to another category
+     */
     private boolean checkIfNewColor(String color)
     {
         if(Main.login.getUser().getCategories().containsValue(color))
@@ -176,6 +221,9 @@ public class AddCategoryPopUpController implements Initializable {
         return true;
     }
 
+    /*
+     * Saves the category to User
+     */
     private void saveCategoryToUser(String categoryName, String categoryColor)
     {
         Main.login.getUser().addCategory(categoryName, categoryColor);
