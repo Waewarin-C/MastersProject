@@ -9,6 +9,7 @@ package Application.Controller;
         //Welcome page shown
 
 import Application.Main;
+import Application.Model.EditErrorStatus;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +88,7 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        //resetRequirementsMessages();
+        resetRequirementsMessages();
         setStyleFromTheme();
 
         fillFields();
@@ -205,8 +206,8 @@ public class SettingsController implements Initializable {
         darkTheme.setTextFill(color);
         saveMessage.setTextFill(color);
 
-        Color passwordErrorColor = (Color)passwordSettingsError.getTextFill();
-        Color displayErrorColor = (Color)displayNameSettingsError.getTextFill();
+        //Color passwordErrorColor = (Color)passwordSettingsError.getTextFill();
+        //Color displayErrorColor = (Color)displayNameSettingsError.getTextFill();
 
         ObservableList<Node> accountSettingsChildren = accountSettings.getChildren();
         for(Node accountSettingsChild : accountSettingsChildren)
@@ -217,8 +218,10 @@ public class SettingsController implements Initializable {
             }
         }
 
-        passwordSettingsError.setTextFill(passwordErrorColor);
-        displayNameSettingsError.setTextFill(displayErrorColor);
+        passwordSettingsError.setText(Main.login.getUser().getEditErrorStatus().getCurrentPasswordError());
+        passwordSettingsError.setTextFill(Main.login.getUser().getEditErrorStatus().getCurrentPasswordErrorColor());
+        displayNameSettingsError.setText(Main.login.getUser().getEditErrorStatus().getCurrentDisplayNameError());
+        displayNameSettingsError.setTextFill(Main.login.getUser().getEditErrorStatus().getCurrentDisplayNameErrorColor());
 
         ObservableList<Node> preferenceSettingsChildren = preferenceSettings.getChildren();
         for(Node preferenceSettingsChild : preferenceSettingsChildren)
@@ -341,7 +344,6 @@ public class SettingsController implements Initializable {
         darkTheme.setDisable(disable);
         saveSettingsButton.setDisable(disable);
         cancelSettingsButton.setDisable(disable);
-
     }
 
     private void resetRequirementsMessages()
@@ -351,6 +353,11 @@ public class SettingsController implements Initializable {
         passwordSettingsError.setTextFill(color);
         displayNameSettingsError.setText("Display Name can be at most 30 characters");
         displayNameSettingsError.setTextFill(color);
+
+        Main.login.getUser().getEditErrorStatus().setCurrentPasswordError("Password must be at least 8 characters");
+        Main.login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(color);
+        Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameError("Display Name can be at most 30 characters");
+        Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(color);
     }
 
     private boolean requirementsCheck()
@@ -362,24 +369,38 @@ public class SettingsController implements Initializable {
         {
             passwordSettingsError.setText("Error: Password must be at least 8 characters");
             passwordSettingsError.setTextFill(Color.RED);
+
+            Main.login.getUser().getEditErrorStatus().setCurrentPasswordError("Error: Password must be at least 8 characters");
+            Main.login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.RED);
+
             error = true;
         }
         else
         {
             passwordSettingsError.setText("Password length satisfied");
             passwordSettingsError.setTextFill(Color.GREEN);
+
+            Main.login.getUser().getEditErrorStatus().setCurrentPasswordError("Password length satisfied");
+            Main.login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.GREEN);
         }
 
         if(this.displayName.length() > 30)
         {
             displayNameSettingsError.setText("Error: Display Name must be at most 30 characters");
             displayNameSettingsError.setTextFill(Color.RED);
+
+            Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameError("Error: Display Name must be at most 30 characters");
+            Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.RED);
+
             error = true;
         }
         else
         {
             displayNameSettingsError.setText("Display Name is within length limits");
             displayNameSettingsError.setTextFill(Color.GREEN);
+
+            Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameError("Display Name is within length limits");
+            Main.login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.GREEN);
         }
 
         return error;

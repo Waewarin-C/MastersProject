@@ -12,8 +12,6 @@ public class EditErrorStatus {
     {
         this.currentPasswordError = "Password must be at least 8 characters";
         this.currentDisplayNameError = "Display Name can be at most 30 characters";
-        this.currentPasswordErrorColor = Color.BLACK;
-        this.currentDisplayNameErrorColor = Color.BLACK;
     }
 
     public String getCurrentPasswordError()

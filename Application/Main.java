@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -98,6 +99,7 @@ public class Main extends Application {
 
             setFirstPageShown(logout, welcomePageShown);
             setThemeCSS(theme);
+            setEditErrorStatusColor(theme);
         }
         catch(IOException e)
         {
@@ -200,6 +202,20 @@ public class Main extends Application {
         else
         {
             themeCSS = "./View/dark_mode.css";
+        }
+    }
+
+    private static void setEditErrorStatusColor(String theme)
+    {
+        if(theme.equals("Light"))
+        {
+            login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.BLACK);
+            login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.BLACK);
+        }
+        else
+        {
+            login.getUser().getEditErrorStatus().setCurrentPasswordErrorColor(Color.WHITE);
+            login.getUser().getEditErrorStatus().setCurrentDisplayNameErrorColor(Color.WHITE);
         }
     }
 }

@@ -40,6 +40,7 @@ public class User {
         this.welcomePageShown = "No";
         this.logout = "No";
         this.dateFormat = "MM/dd/yy";
+        this.editErrorStatus = new EditErrorStatus();
     }
 
     public void saveSettings(List<String> newSettings)
@@ -418,6 +419,16 @@ public class User {
     public void setTheme(String theme)
     {
         this.theme = theme;
+    }
+
+    public EditErrorStatus getEditErrorStatus()
+    {
+        return this.editErrorStatus;
+    }
+
+    public void setEditErrorStatus(EditErrorStatus editErrorStatus)
+    {
+        this.editErrorStatus = editErrorStatus;
     }
 
     private void deleteSpecificEvents(HashMap<String, List<Event>> eventsToDelete)
