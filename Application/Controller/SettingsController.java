@@ -61,7 +61,7 @@ public class SettingsController implements Initializable {
     private HBox numbersHbox, monthHbox, dayHbox;
 
     @FXML
-    private Button editSettingsButton, saveSettingsButton, cancelSettingsButton;
+    private Button saveSettingsButton, cancelSettingsButton;
 
     @FXML
     private Pane toolbarPane;
@@ -88,7 +88,15 @@ public class SettingsController implements Initializable {
             e.printStackTrace();
         }
 
-        resetRequirementsMessages();
+        if(Main.login.getUser().getEditErrorStatus().getSettingsPageReloaded())
+        {
+            Main.login.getUser().getEditErrorStatus().setSettingsPageReloaded(false);
+        }
+        else
+        {
+            resetRequirementsMessages();
+        }
+
         setStyleFromTheme();
 
         fillFields();
@@ -162,7 +170,7 @@ public class SettingsController implements Initializable {
         setFieldsDisable(true);
 
         setStyleFromTheme();
-        if(oldTheme.equals(this.theme))
+        if(!oldTheme.equals(this.theme))
         {
             reloadPage();
         }
@@ -440,6 +448,7 @@ public class SettingsController implements Initializable {
 
     private void reloadPage()
     {
+        Main.login.getUser().getEditErrorStatus().setSettingsPageReloaded(true);
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Settings.fxml"));

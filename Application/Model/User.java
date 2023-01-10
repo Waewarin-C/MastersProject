@@ -56,7 +56,7 @@ public class User {
     }
 
     public boolean saveSettingsToFile(String oldUsername)
-    {System.out.println(oldUsername);
+    {
         try
         {
             //Change the info file name

@@ -43,7 +43,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="editSettingsButton" mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" text="Edit">
+            <Button mnemonicParsing="false" onAction="#editSettings" prefHeight="30.0" prefWidth="65.0" text="Edit">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
