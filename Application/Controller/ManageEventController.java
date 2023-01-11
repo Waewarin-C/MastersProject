@@ -25,6 +25,8 @@ import java.util.*;
  * When the view is the main page, it allows the user to add events.
  * When the view is a popup, it allows the user to add and edit events.
  * The user can also add a new category when adding or editing events.
+ *
+ * @author Waewarin Chindarassami
  */
 
 public class ManageEventController implements Initializable, ParentController {
@@ -113,11 +115,24 @@ public class ManageEventController implements Initializable, ParentController {
         manageEventButtons.setEffect(effect);
         toolbarPane.setEffect(effect);
     }
+
+    /**
+     * Sets the controller class of the view that this ManageEvent will pop up on to be
+     * the parent of this controller class. The parent controller can either be CalendarController
+     * or EventsListController.
+     *
+     * @param parentController ParentController - controller of the view this will pop up on
+     */
     public void setParentController(ParentController parentController)
     {
         this.parentController = parentController;
     }
 
+    /**
+     * Sets up the view for when it is a popup
+     *
+     * @param isPopUp boolean - if the view is going to a popup
+     */
     public void popUpSetUp(boolean isPopUp)
     {
         this.isPopUp = isPopUp;
@@ -132,12 +147,24 @@ public class ManageEventController implements Initializable, ParentController {
         setStyleFromTheme();
     }
 
+    /**
+     * Prefill the date field with the selected date for adding an event
+     * on that date
+     *
+     * @param date String - selected date
+     */
     public void prefillDate(String date)
     {
         eventDatePicker.setValue(LocalDate.parse(date, this.format));
         eventDatePicker.setDisable(true);
     }
 
+    /**
+     * Set up the view for editing an event
+     *
+     * @param eventDetails List<String> - the details of the event
+     * @param eventIndex int - the index the event is at in the list
+     */
     public void editSetUp(List<String> eventDetails, int eventIndex)
     {
         this.isEdit = true;
@@ -155,6 +182,9 @@ public class ManageEventController implements Initializable, ParentController {
         eventDescriptionField.setText(eventDetails.get(4));
     }
 
+    /**
+     * Saves the event, whether is adding or editing an event
+     */
     public void saveManageEvent()
     {
         String eventName = eventNameField.getText();
@@ -209,6 +239,11 @@ public class ManageEventController implements Initializable, ParentController {
         }
     }
 
+    /**
+     * Cancels adding or editing an event and resets the field accordingly
+     * If it is a popup, it will call the parent controller's closePopUp()
+     * method to close this view
+     */
     public void cancelManageEvent()
     {
         resetFields();
@@ -220,12 +255,20 @@ public class ManageEventController implements Initializable, ParentController {
         }
     }
 
+    /**
+     * Done adding or editing an event in the popup version of the view
+     * Calls the parent controller's closePopUp() method to close this view
+     */
     public void doneManageEvent()
     {
         resetForPopUp();
         this.parentController.closePopUp("");
     }
 
+    /**
+     * Add a new category when adding or editing an event
+     * The add category pop up will appear
+     */
     public void addNewEventCategory()
     {
         setEffect(this.blur);
@@ -234,6 +277,9 @@ public class ManageEventController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(true);
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -251,6 +297,10 @@ public class ManageEventController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme and if it is a popup
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -281,6 +331,9 @@ public class ManageEventController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Update the categories list to have the current version display in the combobox
+     */
     private void updateCategoriesList()
     {
         List<String> categories = new ArrayList<String>(Main.login.getUser().getCategories().keySet());
@@ -293,6 +346,10 @@ public class ManageEventController implements Initializable, ParentController {
         newCategory.setVisible(false);
     }
 
+    /*
+     * Format the date from the date field to be the format that matches the
+     * user's settings
+     */
     private String formatDate()
     {
         LocalDate date = eventDatePicker.getValue();
@@ -304,6 +361,9 @@ public class ManageEventController implements Initializable, ParentController {
         return date.format(this.format);
     }
 
+    /*
+     * Saves the event to User
+     */
     private void saveEventToUser(List<String> event)
     {
         String eventName = event.get(0);
@@ -324,6 +384,9 @@ public class ManageEventController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Resets all the fields
+     */
     private void resetFields()
     {
         eventNameField.clear();
@@ -337,6 +400,9 @@ public class ManageEventController implements Initializable, ParentController {
         eventDescriptionField.clear();
     }
 
+    /*
+     * Resets view for the popup version
+     */
     private void resetForPopUp()
     {
         this.isEdit = false;
