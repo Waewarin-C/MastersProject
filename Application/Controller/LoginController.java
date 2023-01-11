@@ -1,14 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Login view
-//Login view will include
-    //Textfield
-        //Username
-        //Password
-    //Login button
-    //Error message will pop up if user types in wrong credentials
-    //Redirects to Home view
-
 import Application.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,6 +17,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ * The LoginController interacts with the Login.fxml file.
+ * Shows the login space for the existing account and the
+ * sign up space if there is no existing account.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class LoginController implements Initializable {
     @FXML
@@ -68,6 +67,10 @@ public class LoginController implements Initializable {
         signUpErrorMessage.setText("");
     }
 
+    /**
+     * Shows the password when the user checks the show password checkbox
+     * Hide password when the user unchecks the show password checkbox
+     */
     public void showPassword()
     {
         if(loginShowPasswordCheckBox.isSelected())
@@ -105,6 +108,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Shows security question for when user forgets the password
+     */
     public void forgotPassword()
     {
         securityQuestionGrid.setVisible(true);
@@ -112,6 +118,9 @@ public class LoginController implements Initializable {
         securityQuestionMessage.setText("");
     }
 
+    /**
+     * Checks if the security question answer is correct
+     */
     public void checkSecurityQuestionAnswer()
     {
         String answerEntered = loginSecurityQuestionAnswer.getText();
@@ -127,6 +136,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Login to the account
+     */
     public void login()
     {
         String username = loginUsernameField.getText();
@@ -154,6 +166,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Sign up for a new account
+     */
     public void signUp()
     {
         String username = signUpUsernameField.getText();
@@ -196,6 +211,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -241,6 +259,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -255,6 +277,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /*
+     * Set up to continue on to the next page
+     */
     private void nextStep()
     {
         Main.login.getUser().setLogout("No");
@@ -262,6 +287,12 @@ public class LoginController implements Initializable {
         continueToNextPage();
     }
 
+    /*
+     * Continue to the next page.
+     * For login, the next page shown is either the Welcome page or Home page,
+     * depending on the user's setting. For sign up, the next page shown is
+     * the Welcome page.
+     */
     private void continueToNextPage()
     {
         String nextPage = getNextPage();
@@ -279,6 +310,9 @@ public class LoginController implements Initializable {
         }
     }
 
+    /*
+     * Get the next page to show after login or sign up
+     */
     private String getNextPage()
     {
         String welcomePageShown = Main.login.getUser().getWelcomePageShown();
@@ -296,6 +330,9 @@ public class LoginController implements Initializable {
         return nextPage;
     }
 
+    /*
+     * Get the theme CSS depending on the theme
+     */
     private String getThemeCSS()
     {
         String themeCSS = "";

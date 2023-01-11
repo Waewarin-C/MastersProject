@@ -1,16 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Add Event view
-//Add Event view will include
-    //Date picker
-    //Name of event
-    //Category of event (maybe a dropdown or radio button)
-        //Adding a new category will pop up an Add Category view
-    //Location
-    //Description
-    //Save event button
-    //Cancel button
-
 import Application.Main;
 import Application.Model.Event;
 import javafx.collections.ObservableList;
@@ -30,6 +19,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+/**
+ * The ManageEventController interacts with the ManageEvent.fxml file.
+ * When the view is the main page, it allows the user to add events.
+ * When the view is a popup, it allows the user to add and edit events.
+ * The user can also add a new category when adding or editing events.
+ */
 
 public class ManageEventController implements Initializable, ParentController {
     @FXML
@@ -59,7 +55,6 @@ public class ManageEventController implements Initializable, ParentController {
     private boolean isPopUp = false;
     private boolean isEdit = false;
     private String date;
-    private int eventListSize;
     private int eventIndex;
     private DateTimeFormatter format = DateTimeFormatter.ofPattern(Main.login.getUser().getDateFormat());
     private ParentController parentController;

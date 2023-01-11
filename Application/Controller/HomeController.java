@@ -1,13 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Home view
-//Home view will include
-    //Add Event button
-    //Settings button
-    //Message at the top right corner that says "Hello <Name>!"
-    //Option for user to pick view they want to view the calendar
-    //The week and month will have the events for each date displayed in each date
-
 import Application.Main;
 import Application.Model.Event;
 import javafx.event.ActionEvent;
@@ -31,6 +23,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ * HomeController interacts with Home.fxml
+ * Shows the events of the week ahead starting from the current date.
+ * If a date has an event, it will be shown. If a date has more than,
+ * one event, the first event is shown with how many more the date has.
+ * The user can view, add, and events for the seven days
+ * The user can also logout through this page.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class HomeController implements Initializable, ParentController {
     @FXML
@@ -104,6 +107,9 @@ public class HomeController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
+    /**
+     * Logout of account
+     */
     public void logout()
     {
         Main.login.getUser().setLogout("Yes");
@@ -125,6 +131,9 @@ public class HomeController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -133,6 +142,10 @@ public class HomeController implements Initializable, ParentController {
         weekAheadLabel.setTextFill(color);
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -147,6 +160,9 @@ public class HomeController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Display events for the week ahead starting from the current date
+     */
     private void displayWeekEvents()
     {
         Color labelColor = getColorFromTheme();
@@ -205,6 +221,9 @@ public class HomeController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Add view events button for the dates that have events
+     */
     private void addViewEventsButton(int row, String eventDate)
     {
         Button viewEventsButton = new Button();
