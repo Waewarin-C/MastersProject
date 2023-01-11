@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 /**
  * AddCategoryPopUpController interacts with AddCategoryPopUp.fxml
- * This is where users can add new categories
+ * This is where the user can add new categories
  *
  * @author Waewarin Chindarassami
  */

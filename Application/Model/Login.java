@@ -1,18 +1,5 @@
 package Application.Model;
 
-//Takes care of
-    //Login
-        //Checks that the credentials are correct
-        //Forgot password
-            //Presents user with the security question they have in their settings
-    //Create account
-        //Checks all fields are entered
-        //Checks all fields are correct
-            //Check if username is already taken
-            //Check limit on display name
-            //Check if password contains at least 8 characters
-            //Check if password and confirm password are the same
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

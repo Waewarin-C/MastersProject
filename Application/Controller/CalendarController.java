@@ -1,11 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Event Calendar view
-//Event Calendar view will include
-    //Add Event button
-    //Option for user to pick view they want to view the calendar (weekly or monthly)
-    //The events for each date displayed in each date
-
 import Application.Main;
 import Application.Model.Event;
 import javafx.event.EventHandler;
@@ -35,8 +29,8 @@ import java.util.ResourceBundle;
  * The CalendarController class interacts with the Calendar.fxml file.
  * Displays the calendar in monthly view. When the page first loads, it
  * will initially display the current month with the current date highlighted.
- * Users can go to a specific date by typing in or selecting the date. On this
- * page users can also click on a date on the calendar to view the date's events
+ * The user can go to a specific date by typing in or selecting the date. On this
+ * page, the user can also click on a date on the calendar to view the date's events
  * as well as add events to any date.
  */
 

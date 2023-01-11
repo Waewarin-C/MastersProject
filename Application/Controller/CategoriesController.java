@@ -1,10 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Add Category view
-//Add Category view will include
-    //Color picker
-    //Name of category
-
 import Application.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +16,14 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.*;
+
+/**
+ * CategoriesController interacts with Categories.fxml
+ * It displays the user's list of categories, each with its assigned color.
+ * Here the user can add, edit, and delete categories.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class CategoriesController implements Initializable, ParentController {
     @FXML
@@ -108,6 +111,9 @@ public class CategoriesController implements Initializable, ParentController {
         toolbarPane.setEffect(effect);
     }
 
+    /**
+     * Set up to edit categories
+     */
     public void editCategories()
     {
         categoriesGrid.setDisable(false);
@@ -116,6 +122,9 @@ public class CategoriesController implements Initializable, ParentController {
         saveEditButton.setVisible(true);
     }
 
+    /**
+     * Save the edited categories
+     */
     public void saveEditCategories()
     {
         this.oldCategories.addAll(Main.login.getUser().getCategories().keySet());
@@ -137,6 +146,9 @@ public class CategoriesController implements Initializable, ParentController {
         Main.login.getUser().saveEventToFile();
     }
 
+    /**
+     * Add a new category, the add a new category pop up will appear
+     */
     public void addNewCategory()
     {
         setEffect(this.blur);
@@ -145,6 +157,9 @@ public class CategoriesController implements Initializable, ParentController {
         addCategoryPopUp.setVisible(true);
     }
 
+    /**
+     * Set up for deleting categories
+     */
     public void deleteSetUp()
     {
         addAndDeleteButtons.setVisible(false);
@@ -173,18 +188,27 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    /**
+     * Confirm that the user actually wants to delete the categories
+     */
     public void confirmDeleteCategories()
     {
         setEffect(this.blur);
         deleteCategoriesConfirmation.setVisible(true);
     }
 
+    /**
+     * The user cancels the deletion of categories
+     */
     public void cancelConfirmDeleteCategories()
     {
         deleteCategoriesConfirmation.setVisible(false);
         setEffect(null);
     }
 
+    /**
+     * Delete selected categories
+     */
     public void deleteCategories()
     {
         List<String> deletedCategories = new ArrayList<String>();
@@ -231,6 +255,9 @@ public class CategoriesController implements Initializable, ParentController {
         setEffect(null);
     }
 
+    /**
+     * Cancel the editing of categories
+     */
     public void cancelEditCategories()
     {
         this.categoriesGrid.getChildren().clear();
@@ -247,6 +274,9 @@ public class CategoriesController implements Initializable, ParentController {
         this.categoriesGrid.setDisable(true);
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -266,6 +296,10 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -282,6 +316,9 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Display the user's categories
+     */
     private void displayCategories()
     {
         List<String> categories = new ArrayList<>(Main.login.getUser().getCategories().keySet());
@@ -306,6 +343,9 @@ public class CategoriesController implements Initializable, ParentController {
         fillGrid(categories);
     }
 
+    /*
+     * Set up the grid where the categories will be displayed in
+     */
     private void setUpGrid()
     {
         this.categoriesGrid = new GridPane();
@@ -352,6 +392,9 @@ public class CategoriesController implements Initializable, ParentController {
         anchorPane.getChildren().add(this.categoriesGrid);
     }
 
+    /*
+     * Fill the grid with the categories
+     */
     private void fillGrid(List<String> categories)
     {
         int categoryIndex = 0;
@@ -374,6 +417,9 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Save the categories to the user's categories file
+     */
     private void saveCategoriesToFile()
     {
         if(Main.login.getUser().saveCategoryToFile())
@@ -390,6 +436,9 @@ public class CategoriesController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Get the categories that were edited
+     */
     private void getEditedCategories()
     {
         int numCategories = this.oldCategories.size();

@@ -1,14 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Events view
-//Events view will include
-    //List of events for the selected date, week, month, or year
-    //Option for user to select if they want day, week, month, or year?
-    //Clicking on an event will display its information
-        //See textbook cover example in java book
-        //Edit event button
-        //Delete event button
-
 import Application.Main;
 import Application.Model.Event;
 import javafx.collections.ObservableList;
@@ -30,6 +21,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ * The EventsListController interacts with the EventsList.fxml file
+ * It displays the list of events for a specific date. The user can
+ * add, edit, and delete events for the date.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class EventsListController implements Initializable, ParentController {
     @FXML
@@ -106,6 +105,14 @@ public class EventsListController implements Initializable, ParentController {
         eventsListView.setEffect(effect);
         eventDetails.setEffect(effect);
     }
+
+    /**
+     * Sets the controller class of the view that this EventsList will pop up on to be
+     * the parent of this controller class. The parent controller can either be HomeController
+     * or CalendarController.
+     *
+     * @param parentController ParentController - controller of the view this will pop up on
+     */
     public void setParentController(ParentController parentController)
     {
         this.parentController = parentController;
@@ -116,6 +123,9 @@ public class EventsListController implements Initializable, ParentController {
         this.date = date;
     }
 
+    /**
+     * Displays the events for the selected date
+     */
     public void displayEvents()
     {
         eventsListLabel.setText("Events for " + this.date);
@@ -127,6 +137,9 @@ public class EventsListController implements Initializable, ParentController {
         eventDetailsGrid.setVisible(false);
     }
 
+    /**
+     * Display the details of the specific event selected
+     */
     public void displaySelectedEventDetails()
     {
         selectMessage.setVisible(false);
@@ -143,6 +156,10 @@ public class EventsListController implements Initializable, ParentController {
         eventDetailsGrid.setVisible(true);
     }
 
+    /**
+     * Add an event, the date field will already be prefilled with the date of the
+     * events list
+     */
     public void addEvent()
     {
         setEffect(this.blur);
@@ -150,6 +167,9 @@ public class EventsListController implements Initializable, ParentController {
         manageEvent.setVisible(true);
     }
 
+    /**
+     * Edit the selected event
+     */
     public void editEvent()
     {
         setEffect(this.blur);
@@ -165,18 +185,27 @@ public class EventsListController implements Initializable, ParentController {
         manageEvent.setVisible(true);
     }
 
+    /**
+     * Confirm that the user actually wants to delete the event
+     */
     public void confirmDeleteEvent()
     {
         setEffect(this.blur);
         deleteEventConfirmation.setVisible(true);
     }
 
+    /**
+     * The user cancels the deletion of the event
+     */
     public void cancelConfirmDeleteEvent()
     {
         deleteEventConfirmation.setVisible(false);
         setEffect(null);
     }
 
+    /**
+     * Delete the selected event
+     */
     public void deleteEvent()
     {
         String date = eventDateDetails.getText();
@@ -200,11 +229,18 @@ public class EventsListController implements Initializable, ParentController {
         setEffect(null);
     }
 
+    /**
+     * Closes the events list view
+     * Calls the parent controller's closePopUp() method to close this view
+     */
     public void closeListView()
     {
         this.parentController.closePopUp("");
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -231,6 +267,10 @@ public class EventsListController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -249,6 +289,9 @@ public class EventsListController implements Initializable, ParentController {
         }
     }
 
+    /*
+     * Add the date's events to the list view to be displayed
+     */
     private void addEventsToListView(String date)
     {
         eventsListView.getItems().clear();
