@@ -1,11 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Welcome view
-//Welcome view will include
-    //Welcome message
-    //Description of each view/feature
-    //A checkbox option to not display again
-
 import Application.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +17,17 @@ import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
+/**
+ * The WelcomeController interacts with the Welcome.fxml file
+ * Shows a quick overview of the five main pages: Home, Calendar,
+ * Add Events, Categories, and Settings. When the button is clicked,
+ * the page leads the user to the Home page. This page may be shown
+ * everytime depending on the user's settings.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class WelcomeController implements Initializable {
     @FXML
@@ -49,6 +54,9 @@ public class WelcomeController implements Initializable {
         welcomeMessage.setText("Welcome " + Main.login.getUser().getDisplayName() + "!");
     }
 
+    /**
+     * Continues to the Home page when the "Let's Begin!" button is clicked
+     */
     public void continueToHome()
     {
         try
@@ -64,6 +72,9 @@ public class WelcomeController implements Initializable {
         }
     }
 
+    /*
+     * Loads the SVG paths for the icons
+     */
     private void loadSVGPaths()
     {
         this.homeIconPath = new SVGPath();
@@ -96,6 +107,10 @@ public class WelcomeController implements Initializable {
         this.settingsIconPath.setScaleY(2.5);
         settingsIcon.getChildren().add(this.settingsIconPath);
     }
+
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -154,6 +169,10 @@ public class WelcomeController implements Initializable {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -168,6 +187,9 @@ public class WelcomeController implements Initializable {
         }
     }
 
+    /*
+     * Get the theme CSS depending on the theme
+     */
     private String getThemeCSS()
     {
         String themeCSS = "";

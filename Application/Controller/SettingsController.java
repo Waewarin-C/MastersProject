@@ -1,13 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Settings view
-//Settings view will include
-    //Editable fields
-        //Username
-        //Password
-        //Name
-        //Welcome page shown
-
 import Application.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,6 +16,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ * The SettingsController interacts with the Settings.fxml file
+ * Allows the user to edit account and preferences as well as
+ * logout.
+ *
+ * @author Waewarin Chindarassami
+ */
 
 public class SettingsController implements Initializable {
     @FXML
@@ -63,7 +63,7 @@ public class SettingsController implements Initializable {
     private Button saveSettingsButton, cancelSettingsButton;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane navigationPane;
 
     private String username = Main.login.getUser().getUsername();
     private String password = Main.login.getUser().getPassword();
@@ -79,8 +79,8 @@ public class SettingsController implements Initializable {
     {
         try
         {
-            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
-            toolbarPane.getChildren().add(toolbar);
+            Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
+            navigationPane.getChildren().add(navigation);
         }
         catch(Exception e)
         {
@@ -107,6 +107,10 @@ public class SettingsController implements Initializable {
         saveMessage.setText("");
     }
 
+    /**
+     * Shows the password when the user checks the show password checkbox
+     * Hide password when the user unchecks the show password checkbox
+     */
     public void showPassword()
     {
         if(showPasswordCheckBox.isSelected())
@@ -123,6 +127,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /**
+     * Sets up the page for editing the settings
+     */
     public void editSettings()
     {
         resetRequirementsMessages();
@@ -132,6 +139,9 @@ public class SettingsController implements Initializable {
         setFieldsDisable(false);
     }
 
+    /**
+     * Saves the settings
+     */
     public void saveSettings()
     {
         String oldUsername = this.username;
@@ -175,6 +185,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /**
+     * Cancels the editing of settings
+     */
     public void cancelSettings()
     {
         fillFields();
@@ -182,6 +195,9 @@ public class SettingsController implements Initializable {
         setFieldsDisable(true);
     }
 
+    /**
+     * Logs out of account
+     */
     public void logout()
     {
         Main.login.getUser().setLogout("Yes");
@@ -204,6 +220,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -270,6 +289,10 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -284,6 +307,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /*
+     * Get the theme CSS depending on the theme
+     */
     private String getThemeCSS()
     {
         String themeCSS = "";
@@ -300,6 +326,9 @@ public class SettingsController implements Initializable {
         return themeCSS;
     }
 
+    /*
+     * Fills all the fields with the current settings
+     */
     private void fillFields()
     {
         usernameSettings.setText(this.username);
@@ -337,6 +366,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /*
+     * Disable or enable the fields for when the user clicks edit or cancels
+     */
     private void setFieldsDisable(boolean disable)
     {
         usernameSettings.setDisable(disable);
@@ -356,6 +388,9 @@ public class SettingsController implements Initializable {
         cancelSettingsButton.setDisable(disable);
     }
 
+    /*
+     * Resets the password and display name requirements messages
+     */
     private void resetRequirementsMessages()
     {
         Color color = getColorFromTheme();
@@ -370,11 +405,13 @@ public class SettingsController implements Initializable {
         Main.login.getUser().getEditRequirementsStatus().setCurrentDisplayNameRequirementColor(color);
     }
 
+    /*
+     * Checks if all the requirements are satisfied
+     */
     private boolean requirementsCheck()
     {
         boolean error = false;
 
-        //Check if credentials are correct
         if(this.password.length() < 8)
         {
             passwordRequirement.setText("Error: Password must be at least 8 characters");
@@ -416,6 +453,9 @@ public class SettingsController implements Initializable {
         return error;
     }
 
+    /*
+     * Saves the settings to User
+     */
     private void saveSettingsToUser()
     {
         List<String> newSettings = new ArrayList<String>();
@@ -432,6 +472,9 @@ public class SettingsController implements Initializable {
         Main.login.getUser().saveSettings(newSettings);
     }
 
+    /*
+     * Saves the settings to the user's information file
+     */
     private void saveSettingsToFile(String oldUsername)
     {
         if(Main.login.getUser().saveSettingsToFile(oldUsername))
@@ -445,6 +488,9 @@ public class SettingsController implements Initializable {
         }
     }
 
+    /*
+     * Reloads the settings page when the user changes theme
+     */
     private void reloadPage()
     {
         Main.login.getUser().getEditRequirementsStatus().setSettingsPageReloaded(true);

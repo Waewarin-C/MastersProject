@@ -46,7 +46,7 @@ public class HomeController implements Initializable, ParentController {
     private GridPane upcomingEvents;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane navigationPane;
 
     @FXML
     private AnchorPane anchorPane, eventsList;
@@ -65,8 +65,8 @@ public class HomeController implements Initializable, ParentController {
     public void initialize(URL location, ResourceBundle resources) {
         try
         {
-            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
-            toolbarPane.getChildren().add(toolbar);
+            Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
+            navigationPane.getChildren().add(navigation);
 
             FXMLLoader listLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
             Node listPopUp = listLoader.load();
@@ -104,11 +104,11 @@ public class HomeController implements Initializable, ParentController {
         logoutButton.setEffect(effect);
         logoutMessage.setEffect(effect);
         upcomingEvents.setEffect(effect);
-        toolbarPane.setEffect(effect);
+        navigationPane.setEffect(effect);
     }
 
     /**
-     * Logout of account
+     * Logs out of account
      */
     public void logout()
     {

@@ -39,7 +39,7 @@ public class CategoriesController implements Initializable, ParentController {
     private GridPane addAndDeleteButtons, editButtons;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane navigationPane;
 
     private GridPane categoriesGrid;
 
@@ -59,8 +59,8 @@ public class CategoriesController implements Initializable, ParentController {
     public void initialize(URL location, ResourceBundle resources) {
         try
         {
-            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
-            toolbarPane.getChildren().add(toolbar);
+            Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
+            navigationPane.getChildren().add(navigation);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCategoryPopUp.fxml"));
             Node popUp = loader.load();
@@ -108,7 +108,7 @@ public class CategoriesController implements Initializable, ParentController {
         editSuccessMessage.setEffect(effect);
         editErrorMessage.setEffect(effect);
         deleteInstruction.setEffect(effect);
-        toolbarPane.setEffect(effect);
+        navigationPane.setEffect(effect);
     }
 
     /**

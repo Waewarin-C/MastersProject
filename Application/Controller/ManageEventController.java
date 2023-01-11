@@ -52,7 +52,7 @@ public class ManageEventController implements Initializable, ParentController {
     private AnchorPane anchorPane, addCategoryPopUp;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane navigationPane;
 
     private boolean isPopUp = false;
     private boolean isEdit = false;
@@ -69,8 +69,8 @@ public class ManageEventController implements Initializable, ParentController {
 
         try
         {
-            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
-            toolbarPane.getChildren().add(toolbar);
+            Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
+            navigationPane.getChildren().add(navigation);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AddCategoryPopUp.fxml"));
             Node popUp = loader.load();
@@ -113,7 +113,7 @@ public class ManageEventController implements Initializable, ParentController {
         manageEventPageLabel.setEffect(effect);
         manageEventGridPane.setEffect(effect);
         manageEventButtons.setEffect(effect);
-        toolbarPane.setEffect(effect);
+        navigationPane.setEffect(effect);
     }
 
     /**
@@ -142,7 +142,7 @@ public class ManageEventController implements Initializable, ParentController {
         eventDescriptionField.setPrefHeight(100);
         addCategoryPopUp.setLayoutX(150);
         addCategoryPopUp.setLayoutY(90);
-        anchorPane.getChildren().remove(toolbarPane);
+        anchorPane.getChildren().remove(navigationPane);
         anchorPane.setPrefSize(700, 400);
         setStyleFromTheme();
     }

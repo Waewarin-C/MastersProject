@@ -48,7 +48,7 @@ public class CalendarController implements Initializable, ParentController {
     private GridPane datePicker, calendar;
 
     @FXML
-    private Pane toolbarPane;
+    private Pane navigationPane;
 
     @FXML
     private AnchorPane anchorPane, manageEvent, listOfEvents;
@@ -71,8 +71,8 @@ public class CalendarController implements Initializable, ParentController {
     public void initialize(URL location, ResourceBundle resources){
         try
         {
-            Node toolbar = FXMLLoader.load(getClass().getResource("../View/Toolbar.fxml"));
-            toolbarPane.getChildren().add(toolbar);
+            Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
+            navigationPane.getChildren().add(navigation);
 
             FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvent.fxml"));
             Node addEventPopUp = addEventLoader.load();
@@ -117,7 +117,7 @@ public class CalendarController implements Initializable, ParentController {
         datePicker.setEffect(effect);
         addCalendarEventButton.setEffect(effect);
         calendar.setEffect(effect);
-        toolbarPane.setEffect(effect);
+        navigationPane.setEffect(effect);
     }
 
     /**

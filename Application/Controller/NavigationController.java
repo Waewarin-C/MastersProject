@@ -1,14 +1,5 @@
 package Application.Controller;
 
-//Application.Controller for the Toolbar view
-//Toolbar view will include
-    //Home
-    //Events Calendar
-    //Notes Calendar
-    //Categories
-    //Settings
-    //This will be a bottom navigation bar on each of the main pages
-
 import Application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +17,16 @@ import javafx.scene.shape.SVGPath;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ToolbarController implements Initializable {
+/**
+ * NavigationController interacts with Navigation.fxml
+ * Displays the navigation at the bottom for the five main pages:
+ * Home, Calendar, Add Events, Categories, and Settings.
+ * Clicking on the icons takes the user to the corresponding page.
+ *
+ * @author Waewarin Chindarassami
+ */
+
+public class NavigationController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
@@ -49,6 +49,9 @@ public class ToolbarController implements Initializable {
         setStyleFromTheme();
     }
 
+    /**
+     * Goes to the Home page when the Home icon is clicked
+     */
     public void goToHome()
     {
         try
@@ -64,6 +67,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /**
+     * Goes to the Calendar page when the Calendar icon is clicked
+     */
     public void goToCalendar()
     {
         try
@@ -79,6 +85,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /**
+     * Goes to the Add Events page when the Add Events page is clicked
+     */
     public void goToAddEvents()
     {
         try
@@ -94,6 +103,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /**
+     * Goes to the Categories page when the Categories icon is clicked
+     */
     public void goToCategories()
     {
         try
@@ -109,6 +121,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /**
+     * Goes to the Settings page when the Settings icon is clicked
+     */
     public void goToSettings()
     {
         try
@@ -124,6 +139,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /*
+     * Loads the SVG paths for the icons
+     */
     private void loadSVGPaths()
     {
         this.homeIconPath = new SVGPath();
@@ -157,6 +175,9 @@ public class ToolbarController implements Initializable {
         settingsIcon.getChildren().add(this.settingsIconPath);
     }
 
+    /*
+     * Sets the style of this view based on the theme
+     */
     private void setStyleFromTheme()
     {
         Color color = getColorFromTheme();
@@ -178,6 +199,10 @@ public class ToolbarController implements Initializable {
         settingsLabel.setTextFill(color);
     }
 
+    /*
+     * Sets the anchorPane style based on the theme
+     * Gets the color of the labels based on the theme
+     */
     private Color getColorFromTheme()
     {
         if(this.theme.equals("Light"))
@@ -194,6 +219,9 @@ public class ToolbarController implements Initializable {
         }
     }
 
+    /*
+     * Get the theme CSS depending on the theme
+     */
     private String getThemeCSS()
     {
         String themeCSS = "";

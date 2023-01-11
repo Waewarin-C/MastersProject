@@ -314,7 +314,7 @@
             <DropShadow />
          </effect>
       </Separator>
-      <Pane fx:id="toolbarPane" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" />
+      <Pane fx:id="navigationPane" layoutY="540.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="840.0" />
       <Label fx:id="logoutMessage" layoutX="237.0" layoutY="55.0" text="Error: something went wrong with logging out, please try again" textFill="RED">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />

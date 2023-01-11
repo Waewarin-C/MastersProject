@@ -147,7 +147,7 @@
             <DropShadow />
          </effect>
       </Separator>
-      <Pane fx:id="toolbarPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
+      <Pane fx:id="navigationPane" layoutY="540.0" prefHeight="100.0" prefWidth="840.0" />
       <AnchorPane fx:id="addCategoryPopUp" layoutX="230.0" layoutY="200.0" prefHeight="200.0" prefWidth="400.0" />
    </children>
 </AnchorPane>
