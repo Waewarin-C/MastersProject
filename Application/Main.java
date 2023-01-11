@@ -38,8 +38,7 @@ public class Main extends Application {
 
         try
         {
-            //Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
-            Parent root = FXMLLoader.load(getClass().getResource("./View/Calendar.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(firstPageShown));
             root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
             stage.setScene(new Scene(root, 840, 640));
             stage.show();
@@ -81,6 +80,7 @@ public class Main extends Application {
             }
             else
             {
+                setFirstPageShown("Yes", "No");
                 setThemeCSS("Light");
                 setEditRequirementsStatusColor("Light");
             }
@@ -204,7 +204,6 @@ public class Main extends Application {
                 categories.put(categoryInfo[0], categoryInfo[1]);
             }
 
-            //Add the list of events to the user object
             login.getUser().setCategories(categories);
         }
         catch(IOException e)

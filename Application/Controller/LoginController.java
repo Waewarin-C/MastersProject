@@ -128,7 +128,7 @@ public class LoginController implements Initializable {
 
         if(answerEntered.equalsIgnoreCase(answerSaved))
         {
-            continueToNextPage();
+            continueToNextPage(false);
         }
         else
         {
@@ -162,7 +162,7 @@ public class LoginController implements Initializable {
         }
         else
         {
-            nextStep();
+            nextStep(false);
         }
     }
 
@@ -207,7 +207,7 @@ public class LoginController implements Initializable {
         }
         else
         {
-            nextStep();
+            nextStep(true);
         }
     }
 
@@ -280,11 +280,11 @@ public class LoginController implements Initializable {
     /*
      * Set up to continue on to the next page
      */
-    private void nextStep()
+    private void nextStep(boolean isSignUp)
     {
         Main.login.getUser().setLogout("No");
         Main.login.getUser().saveSettingsToFile(Main.login.getUser().getUsername());
-        continueToNextPage();
+        continueToNextPage(isSignUp);
     }
 
     /*
@@ -293,14 +293,12 @@ public class LoginController implements Initializable {
      * depending on the user's setting. For sign up, the next page shown is
      * the Welcome page.
      */
-    private void continueToNextPage()
+    private void continueToNextPage(boolean isSignUp)
     {
-        String nextPage = getNextPage();
-        String themeCSS = getThemeCSS();
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource(nextPage));
-            root.getStylesheets().add(getClass().getResource(themeCSS).toExternalForm());
+            Parent root = FXMLLoader.load(getClass().getResource(getNextPage(isSignUp)));
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();
         }
@@ -313,8 +311,13 @@ public class LoginController implements Initializable {
     /*
      * Get the next page to show after login or sign up
      */
-    private String getNextPage()
+    private String getNextPage(boolean isSignUp)
     {
+        if(isSignUp)
+        {
+            return "../View/Welcome.fxml";
+        }
+
         String welcomePageShown = Main.login.getUser().getWelcomePageShown();
         String nextPage = "";
 

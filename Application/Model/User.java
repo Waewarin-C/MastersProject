@@ -41,6 +41,7 @@ public class User {
         this.welcomePageShown = "No";
         this.logout = "No";
         this.dateFormat = "MM/dd/yy";
+        this.theme = "Light";
         this.editRequirementsStatus = new EditRequirementsStatus();
     }
 
