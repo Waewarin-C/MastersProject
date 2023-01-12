@@ -36,7 +36,7 @@ public class Main extends Application {
     public void start(Stage primaryStage)
     {
         stage = primaryStage;
-        stage.setTitle("Event Calendar");
+        stage.setTitle("ColorPlan");
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("./calendar.png")));
 
         try
