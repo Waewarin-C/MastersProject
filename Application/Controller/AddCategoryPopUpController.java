@@ -99,6 +99,7 @@ public class AddCategoryPopUpController implements Initializable {
             if(Main.login.getUser().saveCategoryToFile())
             {
                 categoryMessagePopUp.setText("Saved successfully!");
+                categoryMessagePopUp.setTextFill(getColorFromTheme());
             }
             else
             {

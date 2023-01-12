@@ -92,9 +92,15 @@ public class CategoriesController implements Initializable, ParentController {
     public void closePopUp(String category)
     {
         addCategoryPopUp.setVisible(false);
-        anchorPane.getChildren().remove(categoriesGrid);
+        editInstruction.setVisible(false);
+        deleteInstruction.setVisible(false);
+        editSuccessMessage.setVisible(false);
+        editErrorMessage.setVisible(false);
+
+        anchorPane.getChildren().remove(this.categoriesGrid);
         displayCategories();
         this.categoriesGrid.setDisable(true);
+
         setEffect(null);
     }
 
@@ -120,6 +126,8 @@ public class CategoriesController implements Initializable, ParentController {
         editButton.setVisible(false);
         editInstruction.setVisible(true);
         saveEditButton.setVisible(true);
+        editSuccessMessage.setVisible(false);
+        editErrorMessage.setVisible(false);
     }
 
     /**
@@ -140,10 +148,17 @@ public class CategoriesController implements Initializable, ParentController {
             Main.login.getUser().addCategory(categoryName, categoryColor);
         }
 
+        this.categoriesGrid.getChildren().clear();
         saveCategoriesToFile();
         getEditedCategories();
         Main.login.getUser().updateCategoriesOfEvents(this.oldAndNewCategories);
         Main.login.getUser().saveEventToFile();
+
+        editButton.setVisible(true);
+        saveEditButton.setVisible(false);
+        editInstruction.setVisible(false);
+
+        this.categoriesGrid.setDisable(true);
     }
 
     /**
@@ -168,6 +183,9 @@ public class CategoriesController implements Initializable, ParentController {
         saveEditButton.setVisible(false);
         deleteButton.setVisible(true);
         deleteInstruction.setVisible(true);
+        editSuccessMessage.setVisible(false);
+        editErrorMessage.setVisible(false);
+
         categoriesGrid.setDisable(false);
 
         int categoryIndex = 0;
@@ -240,11 +258,12 @@ public class CategoriesController implements Initializable, ParentController {
             }
         }
 
-        editInstruction.setVisible(true);
-        deleteInstruction.setVisible(false);
         deleteButton.setVisible(false);
-        saveEditButton.setVisible(true);
+        saveEditButton.setVisible(false);
+        editButton.setVisible(true);
         addAndDeleteButtons.setVisible(true);
+        editInstruction.setVisible(false);
+        deleteInstruction.setVisible(false);
 
         this.categoriesGrid.getChildren().clear();
         saveCategoriesToFile();
@@ -252,6 +271,7 @@ public class CategoriesController implements Initializable, ParentController {
         Main.login.getUser().saveEventToFile();
 
         deleteCategoriesConfirmation.setVisible(false);
+        this.categoriesGrid.setDisable(true);
         setEffect(null);
     }
 
@@ -263,13 +283,14 @@ public class CategoriesController implements Initializable, ParentController {
         this.categoriesGrid.getChildren().clear();
         displayCategories();
 
-        editInstruction.setVisible(true);
-        deleteInstruction.setVisible(false);
-        deleteButton.setVisible(false);
         editButton.setVisible(true);
-        editInstruction.setVisible(false);
         saveEditButton.setVisible(false);
         addAndDeleteButtons.setVisible(true);
+        editInstruction.setVisible(false);
+        deleteInstruction.setVisible(false);
+        deleteButton.setVisible(false);
+        editSuccessMessage.setVisible(false);
+        editErrorMessage.setVisible(false);
 
         this.categoriesGrid.setDisable(true);
     }
