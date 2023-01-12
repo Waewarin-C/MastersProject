@@ -90,10 +90,12 @@ public class SettingsController implements Initializable {
         if(Main.login.getUser().getEditRequirementsStatus().getSettingsPageReloaded())
         {
             Main.login.getUser().getEditRequirementsStatus().setSettingsPageReloaded(false);
+            saveMessage.setText("Saved successfully!");
         }
         else
         {
             resetRequirementsMessages();
+            saveMessage.setText("");
         }
 
         setStyleFromTheme();
@@ -104,7 +106,7 @@ public class SettingsController implements Initializable {
         showPassword.setVisible(false);
         logoutMessage.setVisible(false);
 
-        saveMessage.setText("");
+
     }
 
     /**
