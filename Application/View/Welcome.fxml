@@ -72,7 +72,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Add and delete events">
+                  <Label text="Add, edit, and delete events on those seven days">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -91,17 +91,17 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Simply click on the date on the calendar to view all the date's events">
-                     <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
-                     </font>
-                  </Label>
                   <Label text="Go to a specific date">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Add and delete events">
+                  <Label text="Simply click on the date on the calendar to view all the date's events">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Add, edit, and delete events">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -120,7 +120,7 @@
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="You can also add new categories while adding new events">
+                  <Label text="Can also add new categories while adding new events">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -134,7 +134,7 @@
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Edit, delete, or add new categories">
+                  <Label text="Add, edit, and delete categories">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>

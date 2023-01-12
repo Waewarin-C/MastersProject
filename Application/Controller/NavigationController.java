@@ -92,7 +92,7 @@ public class NavigationController implements Initializable {
     {
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/ManageEvents.fxml"));
             root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root, 840, 640));
             Main.stage.show();

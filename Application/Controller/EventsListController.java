@@ -47,10 +47,10 @@ public class EventsListController implements Initializable, ParentController {
     private GridPane topButtons, eventDetailsGrid;
 
     @FXML
-    private AnchorPane anchorPane, eventDetails, manageEvent, deleteEventConfirmation;
+    private AnchorPane anchorPane, eventDetails, manageEvents, deleteEventConfirmation;
 
     private ParentController parentController;
-    private ManageEventController manageEventController;
+    private ManageEventsController manageEventsController;
 
     private final GaussianBlur blur = new GaussianBlur();
     private final String theme = Main.login.getUser().getTheme();
@@ -63,13 +63,13 @@ public class EventsListController implements Initializable, ParentController {
     {
         try
         {
-            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvent.fxml"));
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvents.fxml"));
             Node addEventPopUp = addEventLoader.load();
-            manageEvent.getChildren().add(addEventPopUp);
+            manageEvents.getChildren().add(addEventPopUp);
 
-            this.manageEventController = ((ManageEventController)addEventLoader.getController());
-            this.manageEventController.setParentController(this);
-            this.manageEventController.popUpSetUp(true);
+            this.manageEventsController = ((ManageEventsController)addEventLoader.getController());
+            this.manageEventsController.setParentController(this);
+            this.manageEventsController.popUpSetUp(true);
         }
         catch (IOException e)
         {
@@ -80,13 +80,13 @@ public class EventsListController implements Initializable, ParentController {
         eventsListView.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
         eventDetailsGrid.setVisible(false);
-        manageEvent.setVisible(false);
+        manageEvents.setVisible(false);
         deleteEventConfirmation.setVisible(false);
     }
 
     public void closePopUp(String neededString)
     {
-        manageEvent.setVisible(false);
+        manageEvents.setVisible(false);
         displayEvents();
 
         if(this.eventIndex >= 0)
@@ -163,8 +163,8 @@ public class EventsListController implements Initializable, ParentController {
     public void addEvent()
     {
         setEffect(this.blur);
-        this.manageEventController.prefillDate(this.date);
-        manageEvent.setVisible(true);
+        this.manageEventsController.prefillDate(this.date);
+        manageEvents.setVisible(true);
     }
 
     /**
@@ -181,8 +181,8 @@ public class EventsListController implements Initializable, ParentController {
         eventDetails.add(eventCategoryDetails.getText());
         eventDetails.add(eventDescriptionDetails.getText());
 
-        this.manageEventController.editSetUp(eventDetails, this.eventIndex);
-        manageEvent.setVisible(true);
+        this.manageEventsController.editSetUp(eventDetails, this.eventIndex);
+        manageEvents.setVisible(true);
     }
 
     /**

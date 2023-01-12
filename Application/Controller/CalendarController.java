@@ -51,10 +51,10 @@ public class CalendarController implements Initializable, ParentController {
     private Pane navigationPane;
 
     @FXML
-    private AnchorPane anchorPane, manageEvent, listOfEvents;
+    private AnchorPane anchorPane, manageEvents, listOfEvents;
 
     private EventsListController eventsListController;
-    private ManageEventController manageEventController;
+    private ManageEventsController manageEventsController;
 
     private LocalDate selectedDate = LocalDate.now();
     private LocalDate firstDayOfMonth = this.selectedDate.withDayOfMonth(1);
@@ -74,13 +74,13 @@ public class CalendarController implements Initializable, ParentController {
             Node navigation = FXMLLoader.load(getClass().getResource("../View/Navigation.fxml"));
             navigationPane.getChildren().add(navigation);
 
-            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvent.fxml"));
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("../View/ManageEvents.fxml"));
             Node addEventPopUp = addEventLoader.load();
-            manageEvent.getChildren().add(addEventPopUp);
+            manageEvents.getChildren().add(addEventPopUp);
 
-            this.manageEventController = ((ManageEventController)addEventLoader.getController());
-            this.manageEventController.setParentController(this);
-            this.manageEventController.popUpSetUp(true);
+            this.manageEventsController = ((ManageEventsController)addEventLoader.getController());
+            this.manageEventsController.setParentController(this);
+            this.manageEventsController.popUpSetUp(true);
 
             FXMLLoader eventsListLoader = new FXMLLoader(getClass().getResource("../View/EventsList.fxml"));
             Node eventsListPopUp = eventsListLoader.load();
@@ -97,7 +97,7 @@ public class CalendarController implements Initializable, ParentController {
         setStyleFromTheme();
         calendarDatePicker.setStyle("-fx-font: 14px \"Berlin Sans FB\";");
 
-        manageEvent.setVisible(false);
+        manageEvents.setVisible(false);
         listOfEvents.setVisible(false);
 
         setUpCalendar();
@@ -105,7 +105,7 @@ public class CalendarController implements Initializable, ParentController {
 
     public void closePopUp(String stringNeeded)
     {
-        manageEvent.setVisible(false);
+        manageEvents.setVisible(false);
         listOfEvents.setVisible(false);
         setEffect(null);
         setUpCalendar();
@@ -140,7 +140,7 @@ public class CalendarController implements Initializable, ParentController {
      */
     public void addEvent()
     {
-        manageEvent.setVisible(true);
+        manageEvents.setVisible(true);
         setEffect(this.blur);
     }
 

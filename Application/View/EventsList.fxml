@@ -151,7 +151,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="manageEvent" layoutX="20.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" />
+      <AnchorPane fx:id="manageEvents" layoutX="20.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" />
       <AnchorPane fx:id="deleteEventConfirmation" layoutX="220.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="300.0">
          <children>
             <Label layoutX="85.0" layoutY="35.0" text="delete this event?">

@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- * The ManageEventController interacts with the ManageEvent.fxml file.
+ * The ManageEventController interacts with the ManageEvents.fxml file.
  * When the view is the main page, it allows the user to add events.
  * When the view is a popup, it allows the user to add and edit events.
  * The user can also add a new category when adding or editing events.
@@ -29,7 +29,7 @@ import java.util.*;
  * @author Waewarin Chindarassami
  */
 
-public class ManageEventController implements Initializable, ParentController {
+public class ManageEventsController implements Initializable, ParentController {
     @FXML
     private Button saveManageEventButton, cancelManageEventButton, doneManageEventButton, addNewEventCategoryButton;
 
