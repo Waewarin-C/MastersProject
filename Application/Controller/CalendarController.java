@@ -230,7 +230,7 @@ public class CalendarController implements Initializable, ParentController {
 
     /*
      * Display the current month or the month of the selected date.
-     * If a date has a event, it will be displayed. If a date has more than
+     * If a date has an event, it will be displayed. If a date has more than
      * one event, it will display the first event and shows how many more
      * events are left. Allows each date to be clicked so the user can view all the events for
      * that date.
