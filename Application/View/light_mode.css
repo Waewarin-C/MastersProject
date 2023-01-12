@@ -108,3 +108,7 @@
 .list-view .list-cell:odd {
     -fx-background-color: #e3e3e3;
 }
+.list-view .list-cell:selected {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
