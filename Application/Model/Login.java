@@ -88,7 +88,7 @@ public class Login {
         //Check if password and confirm password are the same
         if(!password.equals(confirmPassword))
         {
-            errorMessage += "Password and Confirm Password not the same";
+            errorMessage += "Password and Confirm Password do not match";
         }
 
         //Save new account information with default settings if everything is good to go
