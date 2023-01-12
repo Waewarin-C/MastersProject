@@ -112,7 +112,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="450.0" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <ComboBox fx:id="eventCategoryField" prefHeight="30.0" prefWidth="250.0" promptText="Select" />
-                  <Label text="or">
+                  <Label fx:id="orLabel" text="or">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>

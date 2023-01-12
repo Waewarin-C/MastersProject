@@ -43,7 +43,7 @@ public class ManageEventsController implements Initializable, ParentController {
     private ComboBox eventCategoryField;
 
     @FXML
-    private Label manageEventPageLabel, saveEventMessage, newCategory;
+    private Label manageEventPageLabel, saveEventMessage, orLabel, newCategory;
 
     @FXML
     private GridPane manageEventButtons, manageEventGridPane;
@@ -285,6 +285,7 @@ public class ManageEventsController implements Initializable, ParentController {
         Color color = getColorFromTheme();
 
         manageEventPageLabel.setTextFill(color);
+        orLabel.setTextFill(color);
         newCategory.setTextFill(color);
 
         ObservableList<Node> children = manageEventGridPane.getChildren();
