@@ -1,4 +1,4 @@
-# Masters Project - ColorPlan
+# Masters Project
 
 ## Waewarin Chindarassami
 
