@@ -35,7 +35,7 @@ Below are the main pages which are the options displayed on the bottom navigatio
   * View and edit account and preference settings
   * Logout
 
-### Running the Program
+### Running the Application
 Simply clone the repo and run it
 
 ### Future Directions
