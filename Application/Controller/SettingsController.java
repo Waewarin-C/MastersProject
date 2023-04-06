@@ -65,13 +65,28 @@ public class SettingsController implements Initializable {
     @FXML
     private Pane navigationPane;
 
+    private String oldUsername = Main.login.getUser().getUsername();
     private String username = Main.login.getUser().getUsername();
+
+    private String oldPassword = Main.login.getUser().getPassword();
     private String password = Main.login.getUser().getPassword();
+
+    private String oldDisplayName = Main.login.getUser().getDisplayName();
     private String displayName = Main.login.getUser().getDisplayName();
+
+    private String oldSecurityQuestion = Main.login.getUser().getSecurityQuestion();
     private String securityQuestion = Main.login.getUser().getSecurityQuestion();
+
+    private String oldSecurityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
     private String securityQuestionAnswer = Main.login.getUser().getSecurityQuestionAnswer();
+
+    private String oldWelcomePageShown = Main.login.getUser().getWelcomePageShown();
     private String welcomePageShown = Main.login.getUser().getWelcomePageShown();
+
+    private String oldDateFormat = Main.login.getUser().getDateFormat();
     private String dateFormat = Main.login.getUser().getDateFormat();
+
+    private String oldTheme = Main.login.getUser().getTheme();
     private String theme = Main.login.getUser().getTheme();
 
     @Override
@@ -105,8 +120,6 @@ public class SettingsController implements Initializable {
 
         showPassword.setVisible(false);
         logoutMessage.setVisible(false);
-
-
     }
 
     /**
@@ -192,6 +205,7 @@ public class SettingsController implements Initializable {
      */
     public void cancelSettings()
     {
+        resetFields();
         fillFields();
         resetRequirementsMessages();
         setFieldsDisable(true);
@@ -388,6 +402,21 @@ public class SettingsController implements Initializable {
         darkTheme.setDisable(disable);
         saveSettingsButton.setDisable(disable);
         cancelSettingsButton.setDisable(disable);
+    }
+
+    /*
+     * Resets the fields to their original values when edit is canceled
+     */
+    private void resetFields()
+    {
+        this.username = this.oldUsername;
+        this.password = this.oldPassword;
+        this.displayName = this.oldDisplayName;
+        this.securityQuestion = this.oldSecurityQuestion;
+        this.securityQuestionAnswer = this.oldSecurityQuestionAnswer;
+        this.welcomePageShown = this.oldWelcomePageShown;
+        this.dateFormat = this.oldDateFormat;
+        this.theme = this.oldTheme;
     }
 
     /*
