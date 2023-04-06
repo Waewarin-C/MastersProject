@@ -133,6 +133,7 @@ public class LoginController implements Initializable {
         else
         {
             securityQuestionMessage.setText("Sorry, incorrect answer");
+            securityQuestionMessage.setTextFill(Color.RED);
         }
     }
 
