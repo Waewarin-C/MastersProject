@@ -164,6 +164,7 @@ public class EventsListController implements Initializable, ParentController {
     {
         setEffect(this.blur);
         this.manageEventsController.prefillDate(this.date);
+        this.manageEventsController.resetForPopUp();
         manageEvents.setVisible(true);
     }
 

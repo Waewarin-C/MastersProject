@@ -140,6 +140,7 @@ public class CalendarController implements Initializable, ParentController {
      */
     public void addEvent()
     {
+        this.manageEventsController.resetForPopUp();
         manageEvents.setVisible(true);
         setEffect(this.blur);
     }

@@ -148,6 +148,22 @@ public class ManageEventsController implements Initializable, ParentController {
     }
 
     /**
+     * Resets view for the popup version
+     */
+    public void resetForPopUp()
+    {
+        this.isEdit = false;
+
+        updateCategoriesList();
+
+        manageEventPageLabel.setText("Add Event");
+        saveManageEventButton.setVisible(true);
+        cancelManageEventButton.setVisible(true);
+        doneManageEventButton.setVisible(false);
+        saveEventMessage.setText("");
+    }
+
+    /**
      * Prefill the date field with the selected date for adding an event
      * on that date
      *
@@ -178,7 +194,10 @@ public class ManageEventsController implements Initializable, ParentController {
         eventDatePicker.setValue(LocalDate.parse(eventDetails.get(1), this.format));
         eventDatePicker.setDisable(false);
         eventLocationField.setText(eventDetails.get(2));
+
+        updateCategoriesList();
         eventCategoryField.setValue(eventDetails.get(3));
+
         eventDescriptionField.setText(eventDetails.get(4));
     }
 
@@ -399,18 +418,5 @@ public class ManageEventsController implements Initializable, ParentController {
         addNewEventCategoryButton.setVisible(true);
 
         eventDescriptionField.clear();
-    }
-
-    /*
-     * Resets view for the popup version
-     */
-    private void resetForPopUp()
-    {
-        this.isEdit = false;
-        manageEventPageLabel.setText("Add Event");
-        saveManageEventButton.setVisible(true);
-        cancelManageEventButton.setVisible(true);
-        doneManageEventButton.setVisible(false);
-        saveEventMessage.setText("");
     }
 }
