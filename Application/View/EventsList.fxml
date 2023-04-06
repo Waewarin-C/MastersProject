@@ -75,22 +75,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Name:">
+                  <Label text="Name:" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Date:" GridPane.rowIndex="1">
+                  <Label text="Date:" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Location:" GridPane.rowIndex="2">
+                  <Label text="Location:" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Category:" GridPane.rowIndex="3">
+                  <Label text="Category:" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                      </font>
@@ -119,27 +119,27 @@
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventNameDetails" text="Label" GridPane.columnIndex="1">
+                  <Label fx:id="eventNameDetails" text="Label" GridPane.columnIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventDateDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="eventDateDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventLocationDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="eventLocationDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventCategoryDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="eventCategoryDetails" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="eventDescriptionDetails" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Label fx:id="eventDescriptionDetails" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
