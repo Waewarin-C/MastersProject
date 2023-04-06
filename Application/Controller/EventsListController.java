@@ -223,6 +223,7 @@ public class EventsListController implements Initializable, ParentController {
         else
         {
             deleteFailMessage.setVisible(true);
+            deleteFailMessage.setTextFill(Color.RED);
         }
 
         deleteEventConfirmation.setVisible(false);
