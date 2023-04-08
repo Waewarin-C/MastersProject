@@ -122,6 +122,7 @@ public class HomeController implements Initializable, ParentController {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            root.getStylesheets().add(getClass().getResource(getThemeCSS()).toExternalForm());
             Main.stage.setScene(new Scene(root));
             Main.stage.show();
         }
@@ -243,5 +244,24 @@ public class HomeController implements Initializable, ParentController {
         viewEventsButton.setOnAction(viewEvents);
 
         upcomingEvents.add(viewEventsButton, 1, row);
+    }
+
+    /*
+     * Get the theme CSS depending on the theme
+     */
+    private String getThemeCSS()
+    {
+        String themeCSS = "";
+
+        if(this.theme.equals("Light"))
+        {
+            themeCSS = "../View/light_mode.css";
+        }
+        else
+        {
+            themeCSS = "../View/dark_mode.css";
+        }
+
+        return themeCSS;
     }
 }

@@ -10,11 +10,11 @@ ColorPlan is a basic calendar application for desktop. The application is curren
 
 When the application loads for the first time, the user will be shown the Login/Sign Up page, and the user will be required to sign up. Once signed up, the user will be redirected to the Welcome page where they will get a quick overview of the application features. Through settings, the Welcome page can be shown first everytime after the user logs in or if the user did not logout, when the user loads the application.
 
-The user can then move on to the Home page and can begin using the application. 
+The user can then move on to the Home page and begin using the application. 
 
-To exit the application, the user can logout or close the window. 
+To exit the application, the user can log out or close the window. 
 
-From the second time onward, if they user had previously logged out they will need to login when the application loads, and they will then be redirected to either the Welcome or the Home page. If they did not previously log out they will immediately be shown the Welcome or the Home page. Which of the two pages is shown to the user depends on the user's settings.
+From the second time onward, if the user had previously logged out they will need to log in when the application loads, and they will then be redirected to either the Welcome or the Home page. If they did not previously log out they will immediately be shown the Welcome or the Home page. Which of the two pages is shown to the user first depends on the user's settings.
 
 Below are the main pages which are the options displayed on the bottom navigation of every view:
 * Home
@@ -35,13 +35,20 @@ Below are the main pages which are the options displayed on the bottom navigatio
   * View and edit account and preference settings
   * Logout
 
+### Language Used
+This project is done using Java and JavaFX with a little bit of CSS.
+
 ### Running the Application
 Simply clone the repo and run it
 
 ### Future Directions
 There is hope to implement a weekly view in the calendar so that the user will be able to switch between monthly and weekly views at their choosing, as well as possibly having the user set a default calendar view in the settings.
 
-There is also hope to expand the application to be able to keep track of mulitple accounts so that it can work with mulitple users.
+Add arrows on the calendar so that users can go back and forth one month or one week at a time (depending on which calendar they are on).
+
+Also want to add more requirements for passwords to make them stronger. In addition, for further security, hash the passwords when the users sign up before storing them with the user information.
+
+Hope to expand the application to be able to keep track of multiple accounts so that it can work with multiple users. There is also hope to find another way to store the users' information, such as in a database.
 
 ### Acknowledgements
 The calendar PNG/icon on the title bar is from the following website:
