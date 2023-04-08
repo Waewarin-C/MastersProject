@@ -91,6 +91,10 @@ public class EventsListController implements Initializable, ParentController {
 
         if(this.eventIndex >= 0)
         {
+            if(eventsListView.getItems().size() == this.eventIndex)
+            {
+                this.eventIndex = eventsListView.getItems().size() - 1;
+            }
             eventsListView.getSelectionModel().select(this.eventIndex);
             displaySelectedEventDetails();
         }
@@ -305,6 +309,10 @@ public class EventsListController implements Initializable, ParentController {
             {
                 eventsListView.getItems().add(event.getEventName());
             }
+        }
+        else
+        {
+            this.eventIndex = -1;
         }
     }
 }
