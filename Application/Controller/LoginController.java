@@ -109,35 +109,6 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Shows security question for when user forgets the password
-     */
-    public void forgotPassword()
-    {
-        securityQuestionGrid.setVisible(true);
-        loginSecurityQuestion.setText(Main.login.getUser().getSecurityQuestion());
-        securityQuestionMessage.setText("");
-    }
-
-    /**
-     * Checks if the security question answer is correct
-     */
-    public void checkSecurityQuestionAnswer()
-    {
-        String answerEntered = loginSecurityQuestionAnswer.getText();
-        String answerSaved = Main.login.getUser().getSecurityQuestionAnswer();
-
-        if(answerEntered.equalsIgnoreCase(answerSaved))
-        {
-            continueToNextPage(false);
-        }
-        else
-        {
-            securityQuestionMessage.setText("Sorry, incorrect answer");
-            securityQuestionMessage.setTextFill(Color.RED);
-        }
-    }
-
-    /**
      * Login to the account
      */
     public void login()
@@ -164,6 +135,35 @@ public class LoginController implements Initializable {
         else
         {
             nextStep(false);
+        }
+    }
+
+    /**
+     * Shows security question for when user forgets the password
+     */
+    public void forgotPassword()
+    {
+        securityQuestionGrid.setVisible(true);
+        loginSecurityQuestion.setText(Main.login.getUser().getSecurityQuestion());
+        securityQuestionMessage.setText("");
+    }
+
+    /**
+     * Checks if the security question answer is correct
+     */
+    public void checkSecurityQuestionAnswer()
+    {
+        String answerEntered = loginSecurityQuestionAnswer.getText();
+        String answerSaved = Main.login.getUser().getSecurityQuestionAnswer();
+
+        if(answerEntered.equalsIgnoreCase(answerSaved))
+        {
+            nextStep(false);
+        }
+        else
+        {
+            securityQuestionMessage.setText("Sorry, incorrect answer");
+            securityQuestionMessage.setTextFill(Color.RED);
         }
     }
 
