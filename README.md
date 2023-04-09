@@ -48,7 +48,7 @@ Add arrows on the calendar so that users can go back and forth one month or one 
 
 Also want to add more requirements for passwords to make them stronger. In addition, for further security, hash the passwords when the users sign up before storing them with the user information.
 
-Allow users to add multiple events, one after another, in the Add Event popup.
+Allow users to add multiple events, one after another, in the Add Event popup. Allow users to add multiple categories, one after another, in the Add Category popup in the Categories page.
 
 Hope to expand the application to be able to keep track of multiple accounts so that it can work with multiple users. There is also hope to find another way to store the users' information, such as in a database.
 
