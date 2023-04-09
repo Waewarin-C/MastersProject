@@ -159,17 +159,14 @@ public class SettingsController implements Initializable {
      */
     public void saveSettings()
     {
-        String oldUsername = this.username;
         this.username = usernameSettings.getText();
         this.displayName = displayNameSettings.getText();
         this.securityQuestion = securityQuestionSettings.getText();
         this.securityQuestionAnswer = securityQuestionAnswerSettings.getText();
         this.welcomePageShown = ((RadioButton) welcomePage.getSelectedToggle()).getText();
 
-        String oldDateFormat = this.dateFormat;
         this.dateFormat = ((RadioButton) dateFormatOption.getSelectedToggle()).getText();
 
-        String oldTheme = this.theme;
         this.theme = ((RadioButton) themeOption.getSelectedToggle()).getText();
 
         //Get the new password from the field that is visible to get the latest change
@@ -188,13 +185,13 @@ public class SettingsController implements Initializable {
         }
 
         saveSettingsToUser();
-        saveSettingsToFile(oldUsername);
-        Main.login.getUser().updateDateFormatOfEvents(oldDateFormat);
+        saveSettingsToFile(this.oldUsername);
+        Main.login.getUser().updateDateFormatOfEvents(this.oldDateFormat);
 
         setFieldsDisable(true);
 
         setStyleFromTheme();
-        if(!oldTheme.equals(this.theme))
+        if(!this.oldTheme.equals(this.theme))
         {
             reloadPage();
         }

@@ -240,7 +240,7 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <Label text="Abbreviate for Full Month">
+            <Label text="Abbreviate or Full Month">
                <font>
                   <Font name="Berlin Sans FB" size="16.0" />
                </font>
@@ -272,12 +272,12 @@
             </Label>
             <HBox fx:id="dayHbox" alignment="CENTER" spacing="5.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="E dd MMM yyyy" toggleGroup="$dateFormatOption">
+                  <RadioButton mnemonicParsing="false" text="E MMM dd yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="EEEE dd MMMM yyyy" toggleGroup="$dateFormatOption">
+                  <RadioButton mnemonicParsing="false" text="EEEE MMMM dd yyyy" toggleGroup="$dateFormatOption">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
