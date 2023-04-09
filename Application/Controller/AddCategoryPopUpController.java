@@ -163,7 +163,7 @@ public class AddCategoryPopUpController implements Initializable {
         }
         else
         {
-            anchorPane.setStyle("-fx-background-color: #31323e;; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            anchorPane.setStyle("-fx-background-color: #31323e; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
             return Color.WHITE;
         }
     }

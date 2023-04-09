@@ -169,6 +169,7 @@ public class CategoriesController implements Initializable, ParentController {
         setEffect(this.blur);
 
         this.popUpController.setUp();
+        addCategoryPopUp.toFront();
         addCategoryPopUp.setVisible(true);
     }
 
@@ -212,6 +213,7 @@ public class CategoriesController implements Initializable, ParentController {
     public void confirmDeleteCategories()
     {
         setEffect(this.blur);
+        deleteCategoriesConfirmation.toFront();
         deleteCategoriesConfirmation.setVisible(true);
     }
 
@@ -331,8 +333,8 @@ public class CategoriesController implements Initializable, ParentController {
         }
         else
         {
-            anchorPane.setStyle("-fx-background-color: #31323e;;");
-            deleteCategoriesConfirmation.setStyle("-fx-background-color: #31323e;; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
+            anchorPane.setStyle("-fx-background-color: #31323e;");
+            deleteCategoriesConfirmation.setStyle("-fx-background-color: #31323e; -fx-background-radius: 20; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2;");
             return Color.WHITE;
         }
     }
